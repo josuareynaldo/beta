@@ -1,0 +1,68 @@
+body
+{
+	background:url(../image/blur.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 0px;
+	height: 800px;
+}
+
+
+#header{
+	height: 150px;
+	background-image: url(../image/logo-web.png);
+	background-repeat: no-repeat;
+	margin-left: auto;
+	background-position: center;
+	margin-bottom: 100px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #333;
+  background-color: #eee;
+}
+
+
+.navbar-default {
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+  margin-top: 10px;
+}
+
+#form
+{
+	border: solid black 2px;
+	width: 450px;
+	color: black;
+	margin: 60px auto;
+	background: #eee;
+	padding: 50px;
+	font-size: 13px;	
+}
+
+#login_btn
+{
+	color: #fff;
+	width: 100px;
+	background: #337ab7;
+	padding: 8px;
+	margin-left: 108px;
+	font-size: 13px;	
+
+}
+
+#footer
+{
+	margin-top: 100px;
+	height: 70px;
+	padding: 10px;
+	color: white;
+	background-color: #0E476A;
+}
+
+.formcontent{
+	margin: 20px 75px;
+	margin-top: 5px;
+}
+

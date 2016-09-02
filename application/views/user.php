@@ -56,7 +56,6 @@
           </table>
 
           <a href="<?php echo base_url('user/register') ?>" class="btn btn-primary">Register</a>
-          <a href="<?php echo base_url('login/index') ?>" class="btn btn-warning">Login</a>
           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
           <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a>
           

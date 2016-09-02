@@ -1,0 +1,52 @@
+
+/*
+    Note: It is best to use a less version of this file ( see http://css2less.cc
+    For the media queries use @screen-sm-min instead of 768px.
+    For .omb_spanOr use @body-bg instead of white.
+*/
+
+
+#login_container
+{
+	border: black solid 2px;
+	height: 320px;
+	margin:auto;
+	padding: 10px;
+	background-color: white;
+	text-align: center;
+}
+
+.input-group {
+	position: relative;
+	font-size: 10px;
+	color: #aaa;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.forgot_pwd{
+	margin-top: 9px;
+}
+
+.admin_btn{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: left
+}
+			
+/*@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+        
+    }
+}*/
+
+	
+@media (min-width: 768px) {
+    .login_container .forgot_pwd {
+        text-align: right;
+		margin-top:10px;
+ 	}		
+}
