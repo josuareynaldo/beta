@@ -1,0 +1,35 @@
+#red{
+
+	background-color: red;
+}
+
+#yellow{
+	background-color: yellow;
+	height: 350px;
+}
+
+#green{
+	background-color: green;
+	height: 250px;
+}
+
+#blue{
+	background-color: blue;
+	height: 250px;
+}
+
+#purple{
+	background-color: purple;
+	height: 350px;
+}
+
+#black{
+	background-color: black;
+	color: #fff;
+}
+
+#gray{
+	background-color: gray;
+	height: 350px;
+}
+
