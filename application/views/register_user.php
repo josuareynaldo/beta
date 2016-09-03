@@ -50,13 +50,12 @@
             </div>
 
             
-            <!-- <label for="">Type</label><br>
+            <label for="">Type</label><br>
             <div class="radio-btn">
-              <input type="radio" name="member"> <b>Member</b>
-              <input type="radio" name="mgr"> <b>Manager</b>
-              <input type="radio" name="stake"> <b>Stakeholder</b>
-            </div> INI RADIO BUTTON BUAT VARIABLE TYPE-->
-
+              <input type="radio" name="pos" value="Employee"> <b>Employee</b>
+              <input type="radio" name="pos" value="Manager"> <b>Manager</b>
+              <input type="radio" name="pos" value="Stakeholder"> <b>Stakeholder</b>
+            </div>
             <div class="form-group">
               <input type="submit" name="register" value="Register" class="btn btn-primary">
             </div>
