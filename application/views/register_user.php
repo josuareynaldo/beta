@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>css/tes.css" type="text/css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,6 +48,13 @@
               <label for="">Address</label>
               <textarea class="form-control"  name="address" placeholder="Input address" required="1" ></textarea>
             </div>
+
+              <div class="radio-btn">
+              <input type="radio" name="member"> Member
+              <input type="radio" name="mgr"> Manager
+              <input type="radio" name="stake"> Stakeholder
+          </div>
+
             <div class="form-group">
               <input type="submit" name="register" value="Register" class="btn btn-primary">
             </div>

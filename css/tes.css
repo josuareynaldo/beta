@@ -30,12 +30,12 @@
 	margin-top: 9px;
 }
 
-/*.radio-btn{
+.radio-btn{
 	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-}*/
+}
 			
 /*@media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {
