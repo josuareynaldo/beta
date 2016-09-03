@@ -29,33 +29,49 @@
         <div class="col-xs-12">
         <p>Welcome, <?php echo $this->session->userdata('type'),$this->session->userdata('name') ?></p>
         <h1>Mr. Manager </h1>
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>Address</th>
-                <th>Type</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php $i=1 ?>
-              <?php foreach ($users as $user): ?>
-                <tr>
-                  <td><?php echo $i ?></td>
-                  <td><?php echo $user->name ?></td>
-                  <td><?php echo $user->password ?></td>
-                  <td><?php echo $user->address ?></td>
-                  <td><?php echo $user->position ?></td>
-                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
-                </tr>
-              <?php $i++ ?>
-              <?php endforeach ?>
-              
-            </tbody>
-          </table>
+        <ul class="nav nav-pills">
+        	<li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>
+        	<li><a data-toggle="pill" href="#product_database">Product Database</a></li>
+			
+        </ul>
+        <div class="tab-content">
+	        <div id="user_database" class="tab-pane fade in active">
+	        	<br>
+	        	<table class="table table-bordered">
+	            <thead>
+	              <tr>
+	                <th>No.</th>
+	                <th>Name</th>
+	                <th>Password</th>
+	                <th>Address</th>
+	                <th>Type</th>
+	                <th>Action</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              <?php $i=1 ?>
+	              <?php foreach ($users as $user): ?>
+	                <tr>
+	                  <td><?php echo $i ?></td>
+	                  <td><?php echo $user->name ?></td>
+	                  <td><?php echo $user->password ?></td>
+	                  <td><?php echo $user->address ?></td>
+	                  <td><?php echo $user->position ?></td>
+	                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+	                </tr>
+	              <?php $i++ ?>
+	              <?php endforeach ?>
+	              
+	            </tbody>
+	          </table>
+        	</div>
+        	<div id="product_database" class="tab-pane">
+        		<br>
+        		<p>Lorem ipsum dolor sit amet</p>
+        	</div>
+
+        </div>
+         
 
           <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">Register</a>
           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
