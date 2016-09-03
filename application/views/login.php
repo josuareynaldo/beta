@@ -48,9 +48,13 @@
             <input  type="password" class="form-control" name="pass" placeholder="Password">
           </div>
 
-          <p class="admin_btn">
-          <a href="<?php echo base_url('admin')   ?>">Login as Admin</a>
-        </p>
+         <!--  <div class="radio-btn">
+              <input type="radio" name="member"> Member
+              <input type="radio" name="mgr"> Manager
+              <input type="radio" name="stake"> Stakeholder
+          </div>
+ -->
+          
 
           <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit">Login</button>
           <!-- <input type="submit" name="signin" value="Sign In" class="btn btn-primary"> -->

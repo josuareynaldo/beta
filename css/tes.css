@@ -20,21 +20,22 @@
 	position: relative;
 	font-size: 10px;
 	color: #aaa;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .forgot_pwd{
 	margin-top: 9px;
 }
 
-.admin_btn{
+/*.radio-btn{
 	margin-top: 10px;
-	margin-bottom: 10px;
-	text-align: left
-}
+	margin-bottom: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}*/
 			
 /*@media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {

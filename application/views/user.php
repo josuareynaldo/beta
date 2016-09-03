@@ -27,7 +27,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <p>Welcome, <?php echo $this->session->userdata('name') ?></p>
+        <p>Welcome, <?php echo $this->session->userdata('type'),$this->session->userdata('name') ?></p>
         <h1>User</h1>
           <table class="table table-bordered">
             <thead>
@@ -36,6 +36,7 @@
                 <th>Name</th>
                 <th>Password</th>
                 <th>Address</th>
+                <th>Type</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -47,6 +48,7 @@
                   <td><?php echo $user->name ?></td>
                   <td><?php echo $user->password ?></td>
                   <td><?php echo $user->address ?></td>
+                  <td><?php echo $user->type ?></td>
                   <td><a href="<?php echo base_url('user/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
                 </tr>
               <?php $i++ ?>

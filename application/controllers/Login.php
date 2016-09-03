@@ -19,12 +19,13 @@
 				$data_session=array(
 								'id' => $user->id,
 								'name' => $user->name,
+								'type' => $user->type,
 								'isLogged' => true
 					);
 				$this->session->set_userdata($data_session);
-				redirect('user/index');
+				redirect('user/index'); //(nama controller / nama method)
 			}else{
-				redirect('login/index');
+				redirect('login/index'); //(nama controller / nama method)
 			}
 
 		}
