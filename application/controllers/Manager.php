@@ -26,8 +26,10 @@
 					);
 
 				$this->user_model->insert_data('users',$data);
+				redirect('manager/index');
 
 			}else{
+				redirect('manager/register_user');
 			}
 		}
 
@@ -46,13 +48,16 @@
 					);
 				 
 				$this->user_model->update_data('users',$data,array('id'=>$this->input->post('id')));
+				redirect('manager/index');
 
 			}else{
+				redirect('manager/register_user');
 			}
 		}
 
 		public function delete($id){
 			$this->user_model->delete_data('users',array('id'=>$id));
+			redirect('manager/index');
 
 		}
 

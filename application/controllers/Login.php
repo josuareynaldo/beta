@@ -8,6 +8,7 @@
 		
 		public function index(){
 			$this->load->view('login');
+			echo "yey"
 		}
 
 		public function log_in(){
@@ -19,11 +20,20 @@
 				$data_session=array(
 								'id' => $user->id,
 								'name' => $user->name,
-								'type' => $user->type,
+								'position' => $user->position,
 								'isLogged' => true
 					);
 				$this->session->set_userdata($data_session);
-				redirect('user/index'); //(nama controller / nama method)
+				if($data_session['position']=="Manager"){
+					redirect('manager/index');
+				}
+				elseif ($data_session['position']=="Stakeholder") {
+					redirect('stakeholder/index');
+				}
+				else{
+					redirect('user/index'); //(nama controller / nama method)
+				}
+				
 			}else{
 				redirect('login/index'); //(nama controller / nama method)
 			}

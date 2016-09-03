@@ -49,6 +49,7 @@
                   <td><?php echo $user->password ?></td>
                   <td><?php echo $user->address ?></td>
                   <td><?php echo $user->position ?></td>
+                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
                 </tr>
               <?php $i++ ?>
               <?php endforeach ?>
@@ -56,6 +57,7 @@
             </tbody>
           </table>
 
+          <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">Register</a>
           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
           <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a>
           
