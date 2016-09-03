@@ -36,7 +36,7 @@
                 <th>Name</th>
                 <th>Password</th>
                 <th>Address</th>
-                <th>Type</th>
+                <th>Position</th>
                 <th>Action</th>
               </tr>
             </thead>

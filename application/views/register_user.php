@@ -50,7 +50,7 @@
             </div>
 
             
-            <label for="">Type</label><br>
+            <label for="">Position</label><br>
             <div class="radio-btn">
               <input type="radio" name="pos" value="Employee"> <b>Employee</b>
               <input type="radio" name="pos" value="Manager"> <b>Manager</b>
