@@ -8,7 +8,6 @@
 		
 		public function index(){
 			$this->load->view('login');
-			echo "yey"
 		}
 
 		public function log_in(){
