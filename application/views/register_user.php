@@ -49,11 +49,13 @@
               <textarea class="form-control"  name="address" placeholder="Input address" required="1" ></textarea>
             </div>
 
-              <div class="radio-btn">
-              <input type="radio" name="member"> Member
-              <input type="radio" name="mgr"> Manager
-              <input type="radio" name="stake"> Stakeholder
-          </div>
+            
+            <!-- <label for="">Type</label><br>
+            <div class="radio-btn">
+              <input type="radio" name="member"> <b>Member</b>
+              <input type="radio" name="mgr"> <b>Manager</b>
+              <input type="radio" name="stake"> <b>Stakeholder</b>
+            </div> INI RADIO BUTTON BUAT VARIABLE TYPE-->
 
             <div class="form-group">
               <input type="submit" name="register" value="Register" class="btn btn-primary">

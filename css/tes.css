@@ -31,11 +31,55 @@
 }
 
 .radio-btn{
-	margin-top: 10px;
 	margin-bottom: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
+
+/*.button-popup 
+{
+	margin: 70px;
+	background: white;
+	padding: 10px;
+}
+
+.button-popup a
+{
+	color: black;
+	text-decoration: none;
+}
+
+.window-popup
+{
+	width: 400px;
+	height: 300px;
+	position: fixed;
+	z-index: 10;
+	background: white;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+.wp-content
+{
+	width: 400px;
+	height: 300px;
+	position: absolute;
+	background: white;
+	border-radius: 3px;
+}
+
+.wp-content a
+{
+	padding: 10px;
+	background: black;
+	color: white;
+	position: absolute;
+	right: 20px;
+	bottom: 5px;
+} INI CSS BUAT SI BUTTON MODAL*/
+
 			
 /*@media (min-width: 768px) {
     .omb_row-sm-offset-3 div:first-child[class*="col-"] {

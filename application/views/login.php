@@ -21,6 +21,21 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+   <!--  <script type="text/javascript">
+      $(document).ready(function()
+      {
+        $("#button-popup").click(function()
+        {
+          $(".window-popup").fadeIn(300);
+        });
+
+        $("#button-popup-close").click(function()
+        {
+          $(".window-popup").hide(300);
+        });
+      });
+    </script>  ini javascript buat MODAL-->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     
   </head>
@@ -48,7 +63,23 @@
             <input  type="password" class="form-control" name="pass" placeholder="Password">
           </div>
 
+
           <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit">Login</button>
+
+
+       <!--    <span class="button-popup">         
+            <a href="#" id="button-popup">Click Me</a></button>
+          </span>
+
+
+          <div class="window-popup">
+            <div class="wp-content">
+              <h3>Username or Password Wrong</h3> 
+              <a href="#" id="button-popup-close">Close</a>   
+            </div>
+          </div> INI BUTTON TEST BUAT MODAL-->
+
+
           <!-- <input type="submit" name="signin" value="Sign In" class="btn btn-primary"> -->
         </form>
       </div>
