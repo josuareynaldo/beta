@@ -45,7 +45,7 @@
 	                <th>Password</th>
 	                <th>Address</th>
 	                <th>Type</th>
-	                <th>Action</th>sadsad
+	                <th>Action</th>
 	              </tr>
 	            </thead>
 	            <tbody>
