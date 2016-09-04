@@ -64,18 +64,50 @@
 	              
 	            </tbody>
 	          </table>
+            <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">Register</a>
+            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
+            <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a>
         	</div>
         	<div id="product_database" class="tab-pane">
         		<br>
-        		<p>Lorem ipsum dolor sit amet</p>
+        		 <div class="container">
+      <div class="row">
+          <div class="col-xs-12">
+          <h1>Product</h1>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Serial Number</th>
+                <th>Article Number</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i=1 ?>
+              <?php foreach ($products as $product): ?>
+                <tr>
+                  <td><?php echo $i ?></td>
+                  <td><?php echo $product->serial_number ?></td>
+                  <td><?php echo $product->article_number ?></td>
+                  <td><?php echo $product->description ?></td>
+                  <td><?php echo $product->type ?></td>
+                  <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>  
+                </tr>
+              <?php $i++ ?>
+              <?php endforeach ?>
+              
+            </tbody>
+          </table>
+          <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a>
         	</div>
 
         </div>
          
 
-          <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">Register</a>
-          <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
-          <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a>
+         
           
         </div>
       </div>    

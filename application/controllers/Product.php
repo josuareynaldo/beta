@@ -28,8 +28,17 @@ class Product extends CI_Controller
 
 					);
 
-				$this->user_model->insert_data('product',$data);
-				redirect('user/index');
+				$this->user_model->insert_data('products',$data);
+				if($this->session->userdata('position')=="Manager"){
+					redirect('manager/index');
+				}
+				elseif($this->session->userdata('position')=="Stakeholder"){
+					redirect('stakeholder/index');
+				}
+				else{
+					redirect('user/index');
+				}
+				
 
 			}else{
 				redirect('product/register_product');
@@ -52,8 +61,17 @@ class Product extends CI_Controller
 						'type' => $this->input->post('type')
 					);
 				 
-				$this->user_model->update_data('product',$data,array('id'=>$this->input->post('id')));
-				redirect('user/index');
+				$this->user_model->update_data('products',$data,array('id'=>$this->input->post('id')));
+				
+				if($this->session->userdata('position')=="Manager"){
+					redirect('manager/index');
+				}
+				elseif($this->session->userdata('position')=="Stakeholder"){
+					redirect('stakeholder/index');
+				}
+				else{
+					redirect('user/index');
+				}
 
 			}else{
 				redirect('product/register');
@@ -61,8 +79,17 @@ class Product extends CI_Controller
 		}
 
 		public function delete($id){
-			$this->user_model->delete_data('product',array('id'=>$id));
-			redirect('user/index');
+			$this->user_model->delete_data('products',array('id'=>$id));
+			if($this->session->userdata('position')=="Manager"){
+					redirect('manager/index');
+				}
+				elseif($this->session->userdata('position')=="Stakeholder"){
+					redirect('stakeholder/index');
+				}
+				else{
+					redirect('user/index');
+				}
+
 
 		}
 

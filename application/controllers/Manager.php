@@ -7,7 +7,7 @@
 
 		public function index(){
 			$data['users'] = $this->user_model->get_data('users');
-			
+			$data['products'] = $this->user_model->get_data('products');
 
 			$this->load->view('manager',$data);
 		}	
@@ -60,6 +60,16 @@
 			redirect('manager/index');
 
 		}
+
+
+		
+
+		public function deleteProduct($id){
+			$this->user_model->delete_data('products',array('id'=>$id));
+			redirect('manager/index');
+
+		}
+
 
 	}
 
