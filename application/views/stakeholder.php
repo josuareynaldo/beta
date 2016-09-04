@@ -27,7 +27,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <p>Welcome, <?php echo $this->session->userdata('type'),$this->session->userdata('name') ?></p>
+        <p>Welcome, <?php echo $this->session->userdata('position'),$this->session->userdata('name') ?></p>
         <h1>Mr. Stakeholder </h1>
           <table class="table table-bordered">
             <thead>
@@ -36,7 +36,7 @@
                 <th>Name</th>
                 <th>Password</th>
                 <th>Address</th>
-                <th>Type</th>
+                <th>Position</th>
                 <th>Action</th>
               </tr>
             </thead>

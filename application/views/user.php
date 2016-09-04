@@ -27,8 +27,8 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <p>Welcome, <?php echo $this->session->userdata('type'),$this->session->userdata('name') ?></p>
-        <h1>User</h1>
+        <p>Welcome, <?php echo $this->session->userdata('position'),$this->session->userdata('name') ?></p>
+        <h1>Member</h1>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -36,7 +36,7 @@
                 <th>Name</th>
                 <th>Password</th>
                 <th>Address</th>
-                <th>Type</th>
+                <th>Position</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -57,9 +57,10 @@
             </tbody>
           </table>
 
-          <a href="<?php echo base_url('user/register') ?>" class="btn btn-primary">Register</a>
+          <!-- <a href="<?php echo base_url('user/register') ?>" class="btn btn-primary">Register</a> //member gabisa regist member baru --> 
+
           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
-          <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a>
+          <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> // member gabisa liat database product -->
           
         </div>
       </div>    

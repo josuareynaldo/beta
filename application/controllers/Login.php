@@ -23,10 +23,10 @@
 								'isLogged' => true
 					);
 				$this->session->set_userdata($data_session);
-				if($data_session['position']=="Manager"){
+				if($data_session['position']=="manager"){
 					redirect('manager/index');
 				}
-				elseif ($data_session['position']=="Stakeholder") {
+				elseif ($data_session['position']=="stakeholder") {
 					redirect('stakeholder/index');
 				}
 				else{
