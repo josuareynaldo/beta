@@ -29,39 +29,11 @@
         <div class="col-xs-12">
         <p>Welcome, <?php echo $this->session->userdata('position'),$this->session->userdata('name') ?></p>
         <h1>Member</h1>
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>Address</th>
-                <th>Position</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php $i=1 ?>
-              <?php foreach ($users as $user): ?>
-                <tr>
-                  <td><?php echo $i ?></td>
-                  <td><?php echo $user->name ?></td>
-                  <td><?php echo $user->password ?></td>
-                  <td><?php echo $user->address ?></td>
-                  <td><?php echo $user->position ?></td>
-                  <td><a href="<?php echo base_url('user/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
-                </tr>
-              <?php $i++ ?>
-              <?php endforeach ?>
-              
-            </tbody>
-          </table>
-
-          <!-- <a href="<?php echo base_url('user/register') ?>" class="btn btn-primary">Register</a> //member gabisa regist member baru --> 
-
-          <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
-          <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> // member gabisa liat database product -->
           
+          
+         
+
+          <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>         
         </div>
       </div>    
     </div>
