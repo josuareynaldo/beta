@@ -31,7 +31,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <p>Welcome, <?php echo $this->session->userdata('position'),$this->session->userdata('name') ?></p>
+        <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
         <h1>Mr. Manager </h1>
         <ul class="nav nav-pills">
         	<li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>

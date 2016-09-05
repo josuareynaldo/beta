@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,9 +29,39 @@
       <div class="row">
         <div class="col-xs-12">
         <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
-        <h1>Member</h1>
+        <h1>Employee</h1>
           
-          <table class="table table-bordered">
+
+        <table class="table table-bordered sortable " id="userTable">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Password</th>
+                  <th>Address</th>
+                  <th>Position</th>
+                  <!-- <th>Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i=1 ?>
+                <?php foreach ($users as $user): ?>
+                  <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $user->name ?></td>
+                    <td><?php echo $user->password ?></td>
+                    <td><?php echo $user->address ?></td>
+                    <td><?php echo $user->position ?></td>
+                   <!--  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                  </tr> -->
+                <?php $i++; ?>
+                <?php endforeach; ?>
+                
+              </tbody>
+            </table>
+
+      <h1>Forms</h1>
+          <table class="table table-bordered sortable" id="formTable">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -60,6 +91,7 @@
                     <td><?php echo $form_replacement->date_install ?></td>
                     <td><?php echo $form_replacement->date_replace ?></td>
                     <td><?php echo $form_replacement->problem ?></td>
+                    
                     <td><a href="<?php echo base_url('user/delete/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a></td>
                   </tr>
                 <?php $i++ ?>
@@ -68,7 +100,7 @@
               </tbody>
             </table>
         
-        <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form</a>  
+        <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form</a>
         
         <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
         <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>         
