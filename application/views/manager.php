@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,6 +20,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url() ?>js/sorttable.js"></script>
+    <script src="<?php echo base_url() ?>js/search.js"></script>
+
   </head>
   <body>
   <pre>
@@ -38,7 +41,10 @@
         <div class="tab-content">
 	        <div id="user_database" class="tab-pane fade in active">
 	        	<br>
-	        	<table class="table table-bordered">
+            <h1>User List</h1>
+            <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Name" title="Type in a name">
+
+	        	<table class="table table-bordered sortable " id="userTable">
 	            <thead>
 	              <tr>
 	                <th>No.</th>
@@ -58,13 +64,15 @@
 	                  <td><?php echo $user->password ?></td>
 	                  <td><?php echo $user->address ?></td>
 	                  <td><?php echo $user->position ?></td>
-	                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+	                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
 	                </tr>
 	              <?php $i++ ?>
 	              <?php endforeach ?>
 	              
 	            </tbody>
 	          </table>
+                   
+
             <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">Register</a>
             <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
             <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> -->
@@ -75,7 +83,8 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <table class="table table-bordered">
+          <input type="text" id="search2" onkeyup="searchFunctionProduct()" placeholder="Search For Serial Number" title="Type in a number">
+          <table class="table table-bordered sortable" id="productTable">
             <thead>
               <tr>
                 <th>No.</th>

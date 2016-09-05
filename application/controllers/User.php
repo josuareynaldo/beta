@@ -6,10 +6,10 @@
 	{
 
 		public function index(){
-			// $data['users'] = $this->user_model->get_data('users');
+			$data['users'] = $this->user_model->get_data('users');
 			
 
-			$this->load->view('user');
+			$this->load->view('user',$data);
 		}	
 		
 		
