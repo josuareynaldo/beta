@@ -27,13 +27,51 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <p>Welcome, <?php echo $this->session->userdata('position'),$this->session->userdata('name') ?></p>
+        <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
         <h1>Member</h1>
           
-          
-         
-
-          <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>         
+          <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Exchange ID</th>
+                  <th>Article No.</th>
+                  <th>Date Record</th>
+                  <th>Description</th>
+                  <th>Technician</th>
+                  <th>Serial No.</th>
+                  <th>Date Install</th>
+                  <th>Date Replace</th>
+                  <th>Description Problems</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i=1 ?>
+                <?php foreach ($form_replacements as $form_replacement): ?>
+                  <tr>
+                    <td><?php echo $i ?></td>
+                    <td><?php echo $form_replacement->exchange_id ?></td>
+                    <td><?php echo $form_replacement->article_number ?></td>
+                    <td><?php echo $form_replacement->date_record ?></td>
+                    <td><?php echo $form_replacement->description ?></td>
+                    <td><?php echo $form_replacement->technician ?></td>
+                    <td><?php echo $form_replacement->serial_number ?></td>
+                    <td><?php echo $form_replacement->date_install ?></td>
+                    <td><?php echo $form_replacement->date_replace ?></td>
+                    <td><?php echo $form_replacement->problem ?></td>
+                    <td><a href="<?php echo base_url('user/delete/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a></td>
+                  </tr>
+                <?php $i++ ?>
+                <?php endforeach ?>
+                
+              </tbody>
+            </table>
+        
+        <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form</a>  
+        
+        <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+        <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>         
         </div>
       </div>    
     </div>

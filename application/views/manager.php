@@ -52,15 +52,15 @@
 	              <?php $i=1 ?>
 	              <?php foreach ($users as $user): ?>
 	                <tr>
-	                  <td><?php echo $i ?></td>
+	                  <td><?php echo $i; ?></td>
 	                  <td><?php echo $user->name ?></td>
 	                  <td><?php echo $user->password ?></td>
 	                  <td><?php echo $user->address ?></td>
 	                  <td><?php echo $user->position ?></td>
-	                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+	                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
 	                </tr>
-	              <?php $i++ ?>
-	              <?php endforeach ?>
+	              <?php $i++; ?>
+	              <?php endforeach; ?>
 	              
 	            </tbody>
 	          </table>

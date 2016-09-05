@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4 text-center" >
-          <h2>User Registration</h2>
+          <h2>Edit User</h2>
         </div>
         <div class="col-xs-4"></div>
         
