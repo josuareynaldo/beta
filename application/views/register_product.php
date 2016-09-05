@@ -35,13 +35,14 @@
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
           <form action="<?php echo base_url('product/add_product') ?>" method="post">
+
             <div class="form-group">
               <label for="">Serial Number</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input name" required="1" autocomplete="off">
+              <input class="form-control" type="text" name="serial_number" placeholder="Input serial number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input name" required="1" autocomplete="off">
+              <input class="form-control" type="text" name="article_number" placeholder="Input article number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="">Description</label>
@@ -49,7 +50,7 @@
             </div>
             <div class="form-group">
               <label for="">Type</label>
-              <input class="form-control" type="text" name="type" placeholder="Input weight" required="1" autocomplete="off">
+              <input class="form-control" type="text" name="type" placeholder="Input type" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">
