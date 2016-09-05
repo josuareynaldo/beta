@@ -7,7 +7,8 @@
 
 		public function index(){
 			$data['users'] = $this->user_model->get_data('users');
-			
+			$data['products'] = $this->user_model->get_data('products');
+
 
 			$this->load->view('stakeholder',$data);
 		}	
