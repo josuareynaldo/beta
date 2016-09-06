@@ -36,6 +36,12 @@
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
           <form action="<?php echo base_url('manager/add_user') ?>" method="post">
+
+            <div class="form-group">
+              <label for="">Email</label>
+              <input class="form-control" type="text" name="name" placeholder="Input email" required="1" autocomplete="off">
+            </div>
+
             <div class="form-group">
               <label for="">Name</label>
               <input class="form-control" type="text" name="name" placeholder="Input name" required="1" autocomplete="off">

@@ -38,6 +38,7 @@
                   <th>No.</th>
                   <th>Name</th>
                   <th>Password</th>
+                  <th>Email</th>
                   <th>Address</th>
                   <th>Position</th>
                   <!-- <th>Action</th> -->
@@ -50,6 +51,7 @@
                     <td><?php echo $i; ?></td>
                     <td><?php echo $user->name ?></td>
                     <td><?php echo $user->password ?></td>
+                    <td><?php echo $user->email ?></td>
                     <td><?php echo $user->address ?></td>
                     <td><?php echo $user->position ?></td>
                    <!--  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  

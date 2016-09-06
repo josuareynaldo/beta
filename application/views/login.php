@@ -83,7 +83,7 @@
       </div>
       <div class="col-sm-4 col-xs-12">
         <p class="forgot_pwd">
-          <a href="#">Forgot password?</a>
+          <a href="<?php echo base_url('forget/index') ?>">Forgot password?</a>
         </p>
       </div>
     </div>  
