@@ -25,6 +25,10 @@
 		public function delete_data($table = '',$condition = array()){
 			$this->db->delete($table,$condition);
 		}
+		function totalRows($table = ''){
+		return $this->db->get($table)->num_rows();
+		}
+
 	}
 
  ?>

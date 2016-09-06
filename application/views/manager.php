@@ -44,7 +44,7 @@
             <h1>User List</h1>
             <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Name" title="Type in a name">
 
-	        	<table class="table table-bordered sortable " id="userTable">
+	        	<table class="table table-bordered  sortable " id="userTable">
 	            <thead>
 	              <tr>
 	                <th>No.</th>
@@ -106,7 +106,8 @@
                   <td><?php echo $product->article_number ?></td>
                   <td><?php echo $product->description ?></td>
                   <td><?php echo $product->type ?></td>
-                  <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>  
+                  <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
+                  <?php echo base_url('product/save/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>  
                 </tr>
               <?php $i++ ?>
               <?php endforeach ?>

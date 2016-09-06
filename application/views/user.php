@@ -94,7 +94,9 @@
                     <td><?php echo $form_replacement->date_replace ?></td>
                     <td><?php echo $form_replacement->problem ?></td>
                     
-                    <td><a href="<?php echo base_url('user/delete/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a></td>
+                    <td><a href="<?php echo base_url('user/delete/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a>
+                    <a href="<?php echo base_url('user/save/') ?>" class="btn btn-primary">Save</a>
+                    </td>
                   </tr>
                 <?php $i++ ?>
                 <?php endforeach ?>

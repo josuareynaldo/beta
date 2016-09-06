@@ -8,7 +8,6 @@
 		public function index(){
 			 $data['users'] = $this->user_model->get_data('users');
 			 $data['form_replacements'] = $this->form_replacement_model->get_data('form_replacements');
-
 			$this->load->view('user',$data);
 		}	
 		
@@ -53,7 +52,6 @@
 
 
 					);
-
 				$this->form_replacement_model->insert_data('form_replacements',$data);
 				redirect('user/index');
 
@@ -66,6 +64,23 @@
 			$this->form_replacement_model->delete_data('form_replacements',array('id'=>$id));
 			redirect('user/index');
 
+		}
+
+		public function save(){
+				 $data = [];
+        //load the view and saved it into $html variable
+        $html=$this->load->view('welcome_message', $data, true);
+ 
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "output_pdf_name.pdf";
+ 
+        //load mPDF library
+ 
+       //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+ 
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 		}
 
 	}
