@@ -66,13 +66,13 @@
 
 		}
 
-		public function save(){
-				 $data = [];
+		public function save($id){
+		$data['form_replacement'] = $this->form_replacement_model->get_byCondition('form_replacements',array('id'=>$id))->row();
         //load the view and saved it into $html variable
-        $html=$this->load->view('welcome_message', $data, true);
+        $html=$this->load->view('formReplacementpdf', $data, true);
  
         //this the the PDF filename that user will get to download
-        $pdfFilePath = "output_pdf_name.pdf";
+        $pdfFilePath = "form_replacement.pdf";
  
         //load mPDF library
  
