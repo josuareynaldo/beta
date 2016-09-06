@@ -18,7 +18,7 @@
 	          <legend>Reset password</legend>
 			
 				<div class="form-group">
-					<label for="email"> Email</label>
+					<label for="email">Email</label>
 					<input class="box" type="text" id="email" name="email" />
 				</div>
 				<div class="form-group">

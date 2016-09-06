@@ -21,6 +21,7 @@
 				$data= array(
 						'name' => $this->input->post('name'),
 						'password' => sha1($this->input->post('password')),
+						'email' => $this->input->post('email'),
 						'address' => $this->input->post('address'),
 						'position' => $this->input->post('pos')
 					);
