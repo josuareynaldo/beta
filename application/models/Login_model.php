@@ -12,7 +12,9 @@
 				))->row();
 		}
 
-
+		public function validate_email($email){
+			return $this->db->get_where('users',array('email'=>$email))->row();
+		}
 	}
 
  ?>

@@ -13,16 +13,16 @@
 		<div class="container">
 		 <div class="col-md-3 col-sm-2"></div>
 		<h2 style="text-align: center;">Forgot Password</h2>
-		<form class="form-horizontal well" method="post" id="form" action="<?php echo base_url('forget/email')?>">
+		<form class="form-horizontal well" method="post" id="form" action="<?php echo base_url('forget/recovery') ?>">
 			<fieldset>
 	          <legend>Reset password</legend>
 			
 				<div class="form-group">
-					<label for="email">Email</label>
-					<input class="box" type="text" name="email" />
+					<label for="password">New Password</label>
+					<input class="box" type="password"  name="Npassword" />
 				</div>
 				<div class="form-group">
-					<input type="submit" class="btn btn-primary" />
+					<input type="submit" class="btn btn-primary" value="updatePass" />
 				</div>
 				<!-- <?php if( isset($info)): ?>
 					<div class="alert alert-success">
@@ -33,7 +33,7 @@
 						<?php echo($error) ?>
 					</div>
 				<?php endif; ?>	 -->
-
+				
 			</fieldset>
 		</form>
 	</div> 

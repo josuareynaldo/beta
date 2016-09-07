@@ -4,15 +4,65 @@
 	class Forget extends CI_Controller{
 		public function index()
 			{
-				if (isset($_GET['info'])) {
+				/*if (isset($_GET['info'])) {
 		               $data['info'] = $_GET['info'];
 		              }
 				if (isset($_GET['error'])) {
 		              $data['error'] = $_GET['error'];
-		              }
+		              }*/
 				
 				$this->load->view('forget');
-			} 
+				
+			}
+		public function email(){
+				$email=$this->input->post('email');
+				$user=$this->login_model->validate_email($email);
+				if($user){
+
+					$recovery_id=random_string('alnum',6);
+					$this->load->library('email');
+					$this->email->from('reinardowill@gmail.com','reinardowill@gmail.com');
+					$this->email->to('$email');
+					$this->email->subject('Reset Password');
+					$message="This is your Recovery ID: " + $recovery_id;
+					$this->email->message($message);
+					$this->email->send();
+					redirect('forget/recovery');
+				}
+				else{
+					redirect('forget/index');
+				}
+		} 
+
+		public function recovery()
+		{
+			$this->load->view('recovery_ID');
+			
+			if($this->input->post('insertID')){
+				$recovery=$this->input->post('recovery_id');
+				if(strcmp($recovery_id,$recovery)==0){
+					redirect('forget/newPass');
+				}
+				else{
+					redirect('forget/recovery');
+				}
+			}
+			
+		}
+
+		public function newPass()
+		{
+			$this->load->view('forget_insertnewpass');
+			if($this->input->post('updatePass')){
+				$data=array(
+				'password' => sha1($this->input->post('Npassword'))
+				);
+			$this->user_model->update_data('users',$data,array('password'=>$this->input->post('Npassword')));
+			}
+			
+			redirect('login/index');
+
+		}
 
 
 		// public function doforget()
