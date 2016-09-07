@@ -55,7 +55,7 @@
           </div>
 
 
-          <button class="btn btn-lg btn-warning btn-block" class="log_in" type="button" id="button-popup">Login</button>
+          <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit" id="button-popup">Login</button>
 
 
     <!-- <span class="button-popup">         
