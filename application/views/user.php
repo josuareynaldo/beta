@@ -30,7 +30,7 @@
         <div class="col-xs-12">
         <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
         <h1>Employee</h1>
-        <h2>Tes</h2>
+          
 
         <table class="table table-bordered sortable " id="userTable">
               <thead>
