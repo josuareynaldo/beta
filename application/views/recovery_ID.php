@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
 </head>
 <body>
+<pre>
+	<?php print_r($recovery_id) ?>
+</pre>
 		<div class="container">
 		 <div class="col-md-3 col-sm-2"></div>
 		<h2 style="text-align: center;">Recover ID</h2>

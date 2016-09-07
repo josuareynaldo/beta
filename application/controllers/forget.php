@@ -20,13 +20,17 @@
 				if($user){
 
 					$recovery_id=random_string('alnum',6);
-					$this->load->library('email');
+					/*$this->load->library('email');
 					$this->email->from('reinardowill@gmail.com','reinardowill@gmail.com');
 					$this->email->to('$email');
 					$this->email->subject('Reset Password');
 					$message="This is your Recovery ID: " + $recovery_id;
 					$this->email->message($message);
 					$this->email->send();
+					echo $this->email->
+					//redirect('forget/recovery');*/
+					$text=$recovery_id;
+					mail($email,"Reset Password",$text , "From: Dhass Sumber Teknik" . "\r\n");
 					redirect('forget/recovery');
 				}
 				else{
