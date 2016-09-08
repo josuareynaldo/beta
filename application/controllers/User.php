@@ -7,7 +7,8 @@
 
 		public function index(){
 			 $data['users'] = $this->user_model->get_data('users');
-			 $data['form_replacements'] = $this->form_replacement_model->get_data('form_replacements');
+			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
+			 $data['form_services'] = $this->form_model->get_data('form_services');
 			$this->load->view('user',$data);
 		}	
 		
@@ -37,6 +38,10 @@
 			$this->load->view('forms/form_replacements');
 		}
 
+		public function form_service(){
+			$this->load->view('forms/form_services');
+		}
+
 		public function add_form_replacement(){
 			if($this->input->post('save')){
 				$data= array(
@@ -52,7 +57,7 @@
 
 
 					);
-				$this->form_replacement_model->insert_data('form_replacements',$data);
+				$this->form_model->insert_data('form_replacements',$data);
 				redirect('user/index');
 
 			}else{
@@ -60,19 +65,73 @@
 			}
 		}
 
-		public function delete($id){
-			$this->form_replacement_model->delete_data('form_replacements',array('id'=>$id));
-			redirect('user/index');
+		public function add_form_service(){
+			if($this->input->post('save')){
+				$data= array(
+						'date_service' => $this->input->post('date_service'),
+						'serial_number' => $this->input->post('serial_number'),
+						'printer' => $this->input->post('printer'),
+						'year_model' => $this->input->post('year_model'),
+						'date_install' => $this->input->post('date_install'),
+						'status' => $this->input->post('status'),
+						'ink_number' => $this->input->post('ink_number'),
+						'solvent_number' => $this->input->post('solvent_number'),
+						'visco_act' => $this->input->post('visco_act'),
+						'pres_act' => $this->input->post('pres_act'),
+						'mb_value' => $this->input->post('mb_value'),
+						'tmp' => $this->input->post('tmp'),
+						'bo_cur' => $this->input->post('bo_cur'),
+						'bo_ref' => $this->input->post('bo_ref'),
+						'date_ls' => $this->input->post('date_ls'),
+						'hour_ls' => $this->input->post('hour_ls'),
+						'total_hour' => $this->input->post('total_hour'),
+						'problem' => $this->input->post('problem'),
+						'replace_part' => $this->input->post('replace_part'),
+						'service_work' => $this->input->post('service_work')
 
+					);
+				$this->form_model->insert_data('form_services',$data);
+				redirect('user/index');
+
+			}else{
+				redirect('user/form_service');
+			}
 		}
 
-		public function save($id){
-		$data['form_replacement'] = $this->form_replacement_model->get_byCondition('form_replacements',array('id'=>$id))->row();
+		public function delete_replacement($id){
+			$this->form_model->delete_data('form_replacements',array('id'=>$id));
+			redirect('user/index');
+		}
+
+		public function delete_service($id){
+			$this->form_model->delete_data('form_services',array('id'=>$id));
+			redirect('user/index');
+		}
+
+		public function save_replacement($id){
+		$data['form_replacement'] = $this->form_model->get_byCondition('form_replacements',array('id'=>$id))->row();
         //load the view and saved it into $html variable
-        $html=$this->load->view('formReplacementpdf', $data, true);
+        $html=$this->load->view('pdf/form_replacementPDF', $data, true);
  
         //this the the PDF filename that user will get to download
         $pdfFilePath = "form_replacement.pdf";
+ 
+        //load mPDF library
+ 
+       //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+ 
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+		}
+
+		public function save_service($id){
+		$data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
+        //load the view and saved it into $html variable
+        $html=$this->load->view('pdf/form_servicePDF', $data, true);
+ 
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "form_service.pdf";
  
         //load mPDF library
  

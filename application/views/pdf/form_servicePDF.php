@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>formReplacement</title>
+    <title>Form Service</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -24,18 +24,30 @@
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
-				<p style="text-align: center;"><strong>Product Replacement Form </strong></p>
+				<p style="text-align: center;"><strong>Product Service Form </strong></p>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
-				<p>Exchange ID: <?php echo $form_replacement->exchange_id ?></p>
-				<p>Article No. : <?php echo $form_replacement->article_number ?></p>
-				<p>Date Record: <?php echo $form_replacement->date_record ?></p>
-				<p>Description: <?php echo $form_replacement->description ?></p>
-				<p>Technician: <?php echo $form_replacement->technician ?></p>
-				<p>Serial No. : <?php echo $form_replacement->serial_number ?></p>
-				<p>Date Install: <?php echo $form_replacement->date_install ?></p>
-				<p>Date Replace: <?php echo $form_replacement->date_replace ?></p>
-				<p>Description of Problem: <?php echo $form_replacement->problem ?></p>
+				<p>Date Service	: <?php echo $form_service->date_service ?><p>
+                <p>Serial No. 	:<?php echo $form_service->serial_number ?><p>
+                <p>Printer		:<?php echo $form_service->printer ?><p>
+                <p>Year Model	:<?php echo $form_service->year_model ?><p>
+                <p>Date Install	:<?php echo $form_service->date_install ?><p>
+                <p>Status		:<?php echo $form_service->status ?><p>
+                <p>Ink No. 		:<?php echo $form_service->ink_number ?><p>
+                <p>Solvent No. 	:<?php echo $form_service->solvent_number ?><p>
+                <p>Technician	:<?php echo $form_service->technician ?><p>
+                <p>Visco Act	:<?php echo $form_service->visco_act ?><p>
+                <p>Pres. Act	:<?php echo $form_service->pres_act ?><p>
+                <p>Mb. Value	:<?php echo $form_service->mb_value ?><p>
+                <p>TMP			:<?php echo $form_service->tmp ?><p>
+                <p>BO. Cur		:<?php echo $form_service->bo_cur ?><p>
+                <p>BO. Ref		:<?php echo $form_service->bo_ref ?><p>
+                <p>Date LS		:<?php echo $form_service->date_ls ?><p>
+                <p>Hour LS		:<?php echo $form_service->hour_ls ?><p>
+                <p>Total Hour	:<?php echo $form_service->total_hour ?><p>
+                <p>Problem Description	:<?php echo $form_service->problem ?><p>
+                <p>Replace Part	:<?php echo $form_service->replace_part ?><p>
+                <p>Service Work :<?php echo $form_service->service_work ?><p>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
@@ -45,7 +57,7 @@
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<?php echo $form_replacement->technician ?></p>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<?php echo $form_service->technician ?></p>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

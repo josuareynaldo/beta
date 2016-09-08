@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
               <label for="">Date Record</label>
-              <input class="form-control" type="date" name="date_record">
+              <input class="form-control" type="date" name="date_record" placeholder="YYYY/MM/DD" required="1">
             </div>
             <div class="form-group">
               <label for="">Description</label>
@@ -62,14 +62,14 @@
             </div>
             <div class="form-group">
               <label for="">Date Install</label>
-              <input class="form-control" type="date" name="date_install">
+              <input class="form-control" type="date" name="date_install" placeholder="YYYY/MM/DD" required="1">
             </div>
             <div class="form-group">
               <label for="">Date Replace</label>
-              <input class="form-control" type="date" name="date_replace">
+              <input class="form-control" type="date" name="date_replace" placeholder="YYYY/MM/DD" required="1">
             </div>
             <div class="form-group">
-              <label for="">Description of Problems</label>
+              <label for="">Problem Description</label>
               <textarea class="form-control"  name="problem" placeholder="Input problem" required="1" ></textarea>
             </div>
             <div class="form-group">
