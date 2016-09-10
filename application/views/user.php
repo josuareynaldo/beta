@@ -29,6 +29,11 @@
       <div class="row">
         <div class="col-xs-12">
         <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
+           <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
+        <a href="<?php echo base_url('user/form_service') ?>" class="btn btn-info">Form Service</a>
+        
+        <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+        <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>   
         <h1>Employee</h1>
           
 
@@ -179,11 +184,7 @@
               </tbody>
             </table>
         
-        <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
-        <a href="<?php echo base_url('user/form_service') ?>" class="btn btn-info">Form Service</a>
-        
-        <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
-        <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>         
+           
         </div>
       </div>    
     </div>
