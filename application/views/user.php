@@ -105,6 +105,7 @@
             </table>
 
       <h1>Forms Service</h1>
+      <h2>Printer Information</h2>
           <table class="table table-bordered sortable" id="formTable">
               <thead>
                 <tr>
@@ -118,6 +119,13 @@
                   <th>Ink No.</th>
                   <th>Solvent No.</th>
                   <th>Technician</th>
+                </tr>
+              </thead>
+              </table>
+        <h2>Hydraulic</h2>
+          <table class="table table-bordered sortable" id="formTable">
+              <thead>
+                <tr>
                   <th>Visco Act</th>
                   <th>Pres. Act</th>
                   <th>Mb. Value</th>
