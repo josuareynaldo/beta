@@ -38,7 +38,7 @@
 
         <div class="right" style="float: right;">
            <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
-           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a> 
+           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
        
         

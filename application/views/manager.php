@@ -33,6 +33,12 @@
         <div class="col-xs-12">
         <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
         <h1>Mr. Manager </h1>
+
+        <div class="right" style="float: right;">
+           <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
+        </div>
+
         <ul class="nav nav-pills">
         	<li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>
         	<li><a data-toggle="pill" href="#product_database">Product Database</a></li>
@@ -75,8 +81,7 @@
 	          </table>
                    
 
-            <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">Register</a>
-            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-info">Logout</a>
+            <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">User Register</a>
             <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> -->
         	</div>
         	<div id="product_database" class="tab-pane">

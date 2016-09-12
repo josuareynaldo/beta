@@ -84,19 +84,19 @@
         </form>
       </div>
     </div>
-    <div class="row">
+     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-4 col-xs-12">
         <label class="checkbox">
           <input type="checkbox" value="remember-me">Remember Me
         </label>
       </div>
-      <div class="col-sm-4 col-xs-12">
-        <p class="forgot_pwd">
-          <a href="<?php echo base_url('forget/index') ?>">Forgot password?</a>
-        </p>
-      </div>
-    </div>  
+       <!-- <div class="col-sm-4 col-xs-12">
+          <p class="forgot_pwd">
+            <a href="<?php echo base_url('forget/index') ?>">Forgot password?</a>
+          </p>
+        </div> -->
+    </div>   
   </div>
         
 </div>
