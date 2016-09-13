@@ -42,48 +42,54 @@
         <ul class="nav nav-pills">
         	<li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>
         	<li><a data-toggle="pill" href="#product_database">Product Database</a></li>
-			
+          <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
         <div class="tab-content">
 	        <div id="user_database" class="tab-pane fade in active">
 	        	<br>
-            <h1>User List</h1>
-            <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Name" title="Type in a name">
+             <div class="container">
+             <div class="row">
+             <div class="col-xs-12">
+                <h1>Employee</h1>
+                <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Name" title="Type in a name">
 
-	        	<table class="table table-bordered  sortable " id="userTable">
-	            <thead>
-	              <tr>
-	                <th>No.</th>
-	                <th>Name</th>
-	                <th>Password</th>
-                  <th>Email</th>
-	                <th>Address</th>
-	                <th>Position</th>
-	                <th>Action</th>
-	              </tr>
-	            </thead>
-	            <tbody>
-	              <?php $i=1 ?>
-	              <?php foreach ($users as $user): ?>
-	                <tr>
-	                  <td><?php echo $i; ?></td>
-	                  <td><?php echo $user->name ?></td>
-	                  <td><?php echo $user->password ?></td>
-                    <td><?php echo $user->email ?></td>
-	                  <td><?php echo $user->address ?></td>
-	                  <td><?php echo $user->position ?></td>
-	                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
-	                </tr>
-	              <?php $i++; ?>
-	              <?php endforeach; ?>
-	              
-	            </tbody>
-	          </table>
+    	        	<table class="table table-bordered  sortable " id="userTable">
+    	            <thead>
+    	              <tr>
+    	                <th>No.</th>
+    	                <th>Name</th>
+    	                <th>Password</th>
+                      <th>Email</th>
+    	                <th>Address</th>
+    	                <th>Position</th>
+    	                <th>Action</th>
+    	              </tr>
+    	            </thead>
+    	            <tbody>
+    	              <?php $i=1 ?>
+    	              <?php foreach ($users as $user): ?>
+    	                <tr>
+    	                  <td><?php echo $i; ?></td>
+    	                  <td><?php echo $user->name ?></td>
+    	                  <td><?php echo $user->password ?></td>
+                        <td><?php echo $user->email ?></td>
+    	                  <td><?php echo $user->address ?></td>
+    	                  <td><?php echo $user->position ?></td>
+    	                  <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+    	                </tr>
+    	              <?php $i++; ?>
+    	              <?php endforeach; ?>
+    	              
+    	            </tbody>
+    	          </table>
                    
 
-            <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">User Register</a>
-            <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> -->
+                <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">User Register</a>
+                <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> -->
         	</div>
+          </div>
+          </div>
+          </div>
         	<div id="product_database" class="tab-pane">
         		<br>
         		 <div class="container">
@@ -121,6 +127,45 @@
           </table>
           <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a>
         	</div>
+          </div>
+          </div>
+          </div>
+
+          <div id="history" class="tab-pane">
+            <br>
+            <div class="container">
+      <div class="row">
+          <div class="col-xs-12">
+          <h1>History</h1>
+            <table class="table table-bordered  sortable " id="userTable">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i=1 ?>
+                <?php foreach ($users as $user): ?>
+                  <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $user->name ?></td>
+                    <td><?php echo $user->position ?></td>
+                    <td><?php echo $user->position ?></td>
+                    <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                  </tr>
+                <?php $i++; ?>
+                <?php endforeach; ?>
+                
+              </tbody>
+            </table>
+          </div>
+          </div>
+          </div>
+          </div>
 
         </div>
          
