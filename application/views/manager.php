@@ -11,6 +11,7 @@
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,7 +23,7 @@
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
     <script src="<?php echo base_url() ?>js/search.js"></script>
-
+    <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
   </head>
   <body>
   <pre>
@@ -51,7 +52,11 @@
              <div class="row">
              <div class="col-xs-12">
                 <h1>Employee</h1>
-                <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Name" title="Type in a name">
+                <script type="text/javascript" charset="utf-8">
+                    $(document).ready(function() {
+                     $('#userTable').DataTable();
+                    } );
+                </script>
 
     	        	<table class="table table-bordered  sortable " id="userTable">
     	            <thead>
@@ -96,7 +101,11 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <input type="text" id="search2" onkeyup="searchFunctionProduct()" placeholder="Search For Serial Number" title="Type in a number">
+          <script type="text/javascript" charset="utf-8">
+                    $(document).ready(function() {
+                     $('#productTable').DataTable();
+                    } );
+                </script>
           <table class="table table-bordered sortable" id="productTable">
             <thead>
               <tr>
@@ -118,7 +127,6 @@
                   <td><?php echo $product->description ?></td>
                   <td><?php echo $product->type ?></td>
                   <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
-                  <?php echo base_url('product/save/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>  
                 </tr>
               <?php $i++ ?>
               <?php endforeach ?>
