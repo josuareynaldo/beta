@@ -52,13 +52,9 @@
              <div class="row">
              <div class="col-xs-12">
                 <h1>Employee</h1>
-                <script type="text/javascript" charset="utf-8">
-                    $(document).ready(function() {
-                     $('#userTable').DataTable();
-                    } );
-                </script>
+               
 
-    	        	<table class="table table-bordered  sortable " id="userTable">
+    	        	<table class="table display table-bordered  sortable " id="userTable">
     	            <thead>
     	              <tr>
     	                <th>No.</th>
@@ -101,14 +97,10 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <script type="text/javascript" charset="utf-8">
-                    $(document).ready(function() {
-                     $('#productTable').DataTable();
-                    } );
-                </script>
-          <table class="table table-bordered sortable" id="productTable">
+          <table class="table display table-bordered sortable" id="productTable">
             <thead>
               <tr>
+                <th></th>
                 <th>No.</th>
                 <th>Serial Number</th>
                 <th>Article Number</th>
@@ -120,13 +112,21 @@
             <tbody>
               <?php $i=1 ?>
               <?php foreach ($products as $product): ?>
-                <tr>
+                <tr class="clickable" data-toggle="collapse" id="row<?php echo $i ?>" data-target=".row<?php echo $i ?>">
+                  <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
                   <td><?php echo $product->serial_number ?></td>
                   <td><?php echo $product->article_number ?></td>
                   <td><?php echo $product->description ?></td>
                   <td><?php echo $product->type ?></td>
                   <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
+                </tr>
+                 <tr class="collapse row<?php echo $i ?>">
+                    <td>- child row</td>
+                    <td><?php echo $product->serial_number ?></td>
+                    <td><?php echo $product->article_number ?></td>  
+                    <td><?php echo $product->description ?></td>
+                    <td><?php echo $product->type ?></td>
                 </tr>
               <?php $i++ ?>
               <?php endforeach ?>
@@ -145,7 +145,7 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>History</h1>
-            <table class="table table-bordered  sortable " id="userTable">
+            <table class="table display table-bordered  sortable " id="userTable">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -178,7 +178,11 @@
         </div>
          
 
-         
+          <script type="text/javascript" charset="utf-8">
+                    $(document).ready(function() {
+                     $('table.display').DataTable();
+                    } );
+                </script>
           
         </div>
       </div>    

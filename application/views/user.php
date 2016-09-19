@@ -11,6 +11,7 @@
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,8 +21,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
-     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
+    <script src="<?php echo base_url() ?>js/sorttable.js"></script>
     <script src="<?php echo base_url() ?>js/search.js"></script>
+    <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url() ?>js/datatable.js"></script>
 
   </head>
   <body>
@@ -55,7 +58,7 @@
           <div id="edit" class="tab-pane fade in active">
             <br>
           <h1>User</h1>
-        <table class="table table-bordered sortable " id="userTable">
+        <table class="table display table-bordered sortable"  id="userTable">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -93,7 +96,7 @@
       <br>
           <h1>Form Replacement</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
-              <table class="table table-bordered sortable" id="formTable">
+              <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
                       <th>No.</th>
@@ -141,7 +144,7 @@
           <h1>Form Service</h1>
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
           <h3>Printer Information</h3>
-              <table class="table table-bordered sortable" id="formTable">
+              <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
                       <th>No.</th>
@@ -158,7 +161,7 @@
                   </thead>
                   </table>
             <h3>Hydraulic</h3>
-              <table class="table table-bordered sortable" id="formTable">
+              <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
                       <th>Visco Act</th>
@@ -223,7 +226,7 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>History</h1>
-            <table class="table table-bordered  sortable " id="userTable">
+            <table class="table display table-bordered  sortable " id="userTable">
               <thead>
                 <tr>
                   <th>No.</th>
@@ -253,7 +256,11 @@
           </div>
           </div>
         </div>
-           
+        <script type="text/javascript" charset="utf-8">
+                    $(document).ready(function() {
+                     $('table.display').DataTable();
+                    } );
+                </script>   
         </div>
       </div>    
     </div>
