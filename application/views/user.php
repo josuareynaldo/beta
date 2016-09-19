@@ -10,7 +10,7 @@
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,6 +20,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
+    <script src="<?php echo base_url() ?>js/search.js"></script>
+
   </head>
   <body>
   <pre>
@@ -31,8 +34,15 @@
         <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
          <ul class="nav nav-pills">
           <li class="active"><a data-toggle="pill" href="#edit">Edit</a></li>
-          <li><a data-toggle="pill" href="#forms">Forms</a></li>
-
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="pill" href="#form_replace">Form Replacement</a></li>
+                    <li><a data-toggle="pill" href="#form_service">Form Service</a></li>
+                </ul>
+          </li>
+          <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
           
 
@@ -40,14 +50,11 @@
            <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
-       
-        
-          
-        <h1>Employee</h1>
+      
         <div class="tab-content">
           <div id="edit" class="tab-pane fade in active">
             <br>
-
+          <h1>User</h1>
         <table class="table table-bordered sortable " id="userTable">
               <thead>
                 <tr>
@@ -82,10 +89,10 @@
           </div>
 
 
-      <div id="forms" class="tab-pane">
-        <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
-        <a href="<?php echo base_url('user/form_service') ?>" class="btn btn-info">Form Service</a>
-          <h1>Forms Replacement</h1>
+      <div id="form_replace" class="tab-pane">
+      <br>
+          <h1>Form Replacement</h1>
+        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
               <table class="table table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -126,9 +133,13 @@
                     
                   </tbody>
                 </table>
+                <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
+                </div>
             
-
-          <h1>Forms Service</h1>
+      <div id="form_service" class="tab-pane">
+      <br>
+          <h1>Form Service</h1>
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
           <h3>Printer Information</h3>
               <table class="table table-bordered sortable" id="formTable">
                   <thead>
@@ -203,7 +214,44 @@
                     
                   </tbody>
               </table>
+              <a href="<?php echo base_url('user/form_service') ?>" class="btn btn-info">Form Service</a>
       </div>
+
+       <div id="history" class="tab-pane">
+            <br>
+            <div class="container">
+      <div class="row">
+          <div class="col-xs-12">
+          <h1>History</h1>
+            <table class="table table-bordered  sortable " id="userTable">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Description</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i=1 ?>
+                <?php foreach ($users as $user): ?>
+                  <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $user->name ?></td>
+                    <td><?php echo $user->position ?></td>
+                    <td><?php echo $user->position ?></td>
+                    <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                  </tr>
+                <?php $i++; ?>
+                <?php endforeach; ?>
+                
+              </tbody>
+            </table>
+          </div>
+          </div>
+          </div>
+          </div>
         </div>
            
         </div>
