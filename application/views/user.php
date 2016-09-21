@@ -157,9 +157,36 @@
                       <th>Ink No.</th>
                       <th>Solvent No.</th>
                       <th>Technician</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
+                     <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($form_services as $form_service): ?>
+                      <tr>
+                        <td><?php echo $i ?></td>
+                        <td><?php echo $form_service->date_service ?></td>
+                        <td><?php echo $form_service->serial_number ?></td>
+                        <td><?php echo $form_service->printer ?></td>
+                        <td><?php echo $form_service->year_model ?></td>
+                        <td><?php echo $form_service->date_install ?></td>
+                        <td><?php echo $form_service->status ?></td>
+                        <td><?php echo $form_service->ink_number ?></td>
+                        <td><?php echo $form_service->solvent_number ?></td>
+                        <td><?php echo $form_service->technician ?></td>
+
+                        
+                        <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
+                        </td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
                   </table>
+
+
             <h3>Hydraulic</h3>
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
@@ -179,21 +206,10 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-
                   <tbody>
                     <?php $i=1 ?>
                     <?php foreach ($form_services as $form_service): ?>
                       <tr>
-                        <td><?php echo $i ?></td>
-                        <td><?php echo $form_service->date_service ?></td>
-                        <td><?php echo $form_service->serial_number ?></td>
-                        <td><?php echo $form_service->printer ?></td>
-                        <td><?php echo $form_service->year_model ?></td>
-                        <td><?php echo $form_service->date_install ?></td>
-                        <td><?php echo $form_service->status ?></td>
-                        <td><?php echo $form_service->ink_number ?></td>
-                        <td><?php echo $form_service->solvent_number ?></td>
-                        <td><?php echo $form_service->technician ?></td>
                         <td><?php echo $form_service->visco_act ?></td>
                         <td><?php echo $form_service->pres_act ?></td>
                         <td><?php echo $form_service->mb_value ?></td>

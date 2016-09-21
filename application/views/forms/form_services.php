@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
               <label for="">Status</label>
-              <input class="form-control" type="text">
+               <input class="form-control" type="text" name="status" placeholder="Input Status" required="1">
             </div>
             <div class="form-group">
               <label for="">Ink No.</label>
@@ -89,7 +89,7 @@
             </div>
             <div class="form-group">
               <label for="">TMP</label>
-              <input class="form-control" type="text" name="visco_act" placeholder="Input TMP" required="1">
+              <input class="form-control" type="text" name="tmp" placeholder="Input TMP" required="1">
             </div>
             <div class="form-group">
               <label for="">BO. Cur</label>
