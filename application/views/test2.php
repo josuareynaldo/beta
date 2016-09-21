@@ -19,23 +19,68 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+    <!-- <script src="<?php echo base_url() ?>jquery/jquery.min.js"></script> -->
+    <script src="<?php echo base_url()?>jquery/jquery-ui.js" type="text/javascript"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     
-     <script type="text/javascript">
+     <!-- <script type="text/javascript">
       $(document).ready(function() {
         $(".js-example-basic-single").select2();
       });
+    </script> -->
+    <script type="text/javascript">
+      $(function () {
+
+          $("#kode").autocomplete({    //id kode sebagai key autocomplete yang akan dibawa ke source url
+
+              minLength:0,
+
+              delay:0,
+
+              source:'<?php echo base_url('test/get_allkota'); ?>',   //nama source kita ambil langsung memangil fungsi get_allkota
+
+              select:function(event, ui){
+
+                  $('#name').val(ui.item.name);
+
+                  $('#address').val(ui.item.address);
+
+                  $('#position').val(ui.item.position);
+
+                  }
+
+              });
+
+          });
     </script>
   </head>
   <body>
   
 
-<select class="js-example-basic-single">
+<!-- <select class="js-example-basic-single">
   <option value="AL">Alabama</option>
   
   <option value="WY">Wyoming</option>
-</select>
+</select> -->
+  
+<div class="container">
+
+<p> <input type="text" id="kode" placeholder="Ketikan nama kota" > </p>
+
+<p>
+
+ Nama Kota : </br><input type="text" id="name"></br>
+
+ Keterangan :</br> <textarea id="address"></textarea></br>
+ 
+ Ibu Kota : </br><input type="text" id="position"></br>
+
+ 
+
+ </p>
+
+</div>
 
     
   </body>
