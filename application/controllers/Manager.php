@@ -8,7 +8,7 @@
 		public function index(){
 			$data['users'] = $this->user_model->get_data('users');
 			$data['products'] = $this->user_model->get_data('products');
-
+			$data['childs'] = $this->user_model->get_byCondition('products',array('serial_number'=>'123456'))->result();
 			$this->load->view('manager',$data);
 		}	
 		

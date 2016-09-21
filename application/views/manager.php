@@ -121,13 +121,14 @@
                   <td><?php echo $product->type ?></td>
                   <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
-                 <tr class="collapse row<?php echo $i ?>">
-                    <td>- child row</td>
-                    <td><?php echo $product->serial_number ?></td>
-                    <td><?php echo $product->article_number ?></td>  
-                    <td><?php echo $product->description ?></td>
-                    <td><?php echo $product->type ?></td>
-                </tr>
+                <?php foreach ($childs as $child): ?>
+                   <tr class="collapse row<?php echo $i ?>">
+                      <td><?php echo $child->serial_number ?></td>
+                      <td><?php echo $child->article_number ?></td>  
+                      <td><?php echo $child->description ?></td>
+                      <td><?php echo $child->type ?></td>
+                  </tr>
+                <?php endforeach ?>
               <?php $i++ ?>
               <?php endforeach ?>
               
