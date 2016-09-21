@@ -55,29 +55,34 @@
           </div>
 
 
-          <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit" id="button-popup">Login</button>
+          <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit" id="button-popup" data-toggle="modal" data-target="#myModal">Login</button>
 
 
-    <!-- <span class="button-popup">         
-            <a href="#" id="button-popup">Click Me</a></button>
-          </span>  -->
-<!-- 
-          <div class="window-popup">
-            <div class="wp-content">
-              <h3>Username or Password Wrong</h3> 
-              
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Attention</h4>
+                </div>
+                <div class="modal-body">
+                <img src="../image/alert.png" style="width:100px">
+                  <p>Username / Password Wrong</p>
+                </div>
+              </div>
             </div>
           </div>
- -->
 
-          <div class="window-popup" id="popUpWindow">
+          <!-- <div class="window-popup" id="popUpWindow" role="dialog">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal"><a href="#" id="button-popup-close">&times;</a></button>
                   <h4 style="margin-top: 10px;">Attention</h4>   
                 </div>
                 <h3 style="font-family: 'Andada', serif; margin-top: 40px;">Username or password wrong</h3>
             </div>
-
+ -->
 
 
           <!-- <input type="submit" name="signin" value="Sign In" class="btn btn-primary"> -->
@@ -101,7 +106,6 @@
         
 </div>
   </div>
-<script src="<?php echo base_url() ?>js/modal.js"></script>
 <script src="<?php echo base_url() ?>js/jquery-1.11.3.min.js"></script>
 <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
   </body>
