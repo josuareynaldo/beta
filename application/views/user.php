@@ -34,6 +34,8 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
+        <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+
         <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
          <ul class="nav nav-pills">
           <li class="active"><a data-toggle="pill" href="#edit">Edit</a></li>

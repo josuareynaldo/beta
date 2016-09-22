@@ -27,11 +27,14 @@
   </head>
   <body>
   <pre>
+    <?php print_r($childs) ?>
     <?php print_r($this->session->userdata()) ?>
   </pre>
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
+        <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+
         <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
         <h1>Mr. Manager </h1>
 
@@ -116,19 +119,16 @@
                   <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
                   <td><?php echo $product->serial_number ?></td>
-                  <td><?php echo $product->article_number ?></td>
-                  <td><?php echo $product->description ?></td>
-                  <td><?php echo $product->type ?></td>
                   <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
-                <?php foreach ($childs as $child): ?>
-                   <tr class="collapse row<?php echo $i ?>">
-                      <td><?php echo $child->serial_number ?></td>
-                      <td><?php echo $child->article_number ?></td>  
-                      <td><?php echo $child->description ?></td>
-                      <td><?php echo $child->type ?></td>
-                  </tr>
-                <?php endforeach ?>
+
+                  <?php foreach ($childs as $a): ?>
+                       <tr class="collapse row<?php echo $i ?>">
+                          <td><?php echo $child->article_number ?></td>  
+                          <td><?php echo $child->description ?></td>
+                          <td><?php echo $child->type ?></td>
+                      </tr>
+                  <?php endforeach ?>
               <?php $i++ ?>
               <?php endforeach ?>
               

@@ -40,6 +40,8 @@
 
   <div class="col-md-3 col-sm-2"></div>
   <div class="col-md-6 col-sm-8" id="login_container">
+  <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+
     <div class="row">
         <div class="col-sm-2 "></div>
       <div class="col-sm-8 col-xs-12">  
@@ -57,7 +59,7 @@
 
           <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit" id="button-popup" data-toggle="modal" data-target="#myModal">Login</button>
 
-
+          <?php if (! $user): ?>
           <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -74,6 +76,8 @@
               </div>
             </div>
           </div>
+          <?php endif ?>
+         
 
           <!-- <div class="window-popup" id="popUpWindow" role="dialog">
                 <div class="modal-header">
