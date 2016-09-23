@@ -5,8 +5,15 @@
 	*/
 	class Login extends CI_Controller
 	{
+		function __construct(){
+			parent::__construct();
+
+		}
 		
 		public function index(){
+			if($this->session->userdata('id')){
+				redirect($this->session->userdata('position'));
+			}
 			$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
 			$this->output->set_header("Pragma: no-cache");
 
@@ -14,7 +21,12 @@
 
 		}
 
+
 		public function log_in(){
+
+			if($this->session->userdata('id')){
+				redirect($this->session->userdata('position'));
+			}
 			$username=$this->input->post('username');
 			$password=sha1($this->input->post('pass'));
 
@@ -27,18 +39,11 @@
 								'isLogged' => true
 					);
 				$this->session->set_userdata($data_session);
-				if($this->session->userdata('position')=='Manager'){
-					redirect('manager/index');
-				}
-				elseif ($this->session->userdata('position')=='Stakeholder') {
-					redirect('stakeholder/index');
-				}
-				else{
-					redirect('user/index'); //(nama controller / nama method)
-				}
+				echo 'success';
 				
 			}else{
-				redirect('login/index'); //(nama controller / nama method)
+				echo 'failed';
+				// redirect('login/index'); //(nama controller / nama method)
 			}
 
 		}

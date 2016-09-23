@@ -42,24 +42,27 @@
   <div class="col-md-6 col-sm-8" id="login_container">
   <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
 
+  <?php $william = array('asd','abc','test','adsad');
+  print_r(json_decode(json_encode($william))); ?>
+
     <div class="row">
         <div class="col-sm-2 "></div>
       <div class="col-sm-8 col-xs-12">  
-          <form class="omb_loginForm" action="<?php echo base_url('login/log_in')   ?>" method="POST">
+          <form class="omb_loginForm" action="" method="POST">
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input type="text" class="form-control" name="username" placeholder="Username">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
           </div>
                     
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <input  type="password" class="form-control" name="pass" placeholder="Password">
+            <input  type="password" class="form-control" id="password" name="pass" placeholder="Password">
           </div>
 
 
-          <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit" id="button-popup" data-toggle="modal" data-target="#myModal">Login</button>
+          <button class="btn btn-lg btn-warning btn-block" class="log_in" type="submit" id="login">Login</button>
 
-          <?php if (! $user): ?>
+          
           <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -76,7 +79,7 @@
               </div>
             </div>
           </div>
-          <?php endif ?>
+          
          
 
           <!-- <div class="window-popup" id="popUpWindow" role="dialog">
@@ -112,5 +115,34 @@
   </div>
 <script src="<?php echo base_url() ?>js/jquery-1.11.3.min.js"></script>
 <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+
+    $('#login').click(function(){
+
+      var username = $('#username').val();
+      var password = $('#password').val();
+
+      
+      $.ajax({
+        url: "<?php echo base_url('login/log_in') ?>",
+        type: 'POST',
+        data : {username : username, pass : password},
+        success : function(result){
+          if(result == 'failed'){
+            $('#myModal').modal('show');
+          }else{
+            location.reload();
+          }
+        }
+      });
+
+    });
+
+  });
+</script>
+
+
   </body>
 </html>

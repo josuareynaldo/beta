@@ -24,6 +24,7 @@
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
     <script src="<?php echo base_url() ?>js/search.js"></script>
     <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
+      
   </head>
   <body>
   <pre>
@@ -100,15 +101,12 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <table class="table display table-bordered sortable" id="productTable">
+          <table class="table display table-bordered" id="productTable">
             <thead>
               <tr>
                 <th></th>
                 <th>No.</th>
                 <th>Serial Number</th>
-                <th>Article Number</th>
-                <th>Description</th>
-                <th>Type</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -121,13 +119,26 @@
                   <td><?php echo $product->serial_number ?></td>
                   <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
-
-                  <?php foreach ($childs as $a): ?>
-                       <tr class="collapse row<?php echo $i ?>">
-                          <td><?php echo $child->article_number ?></td>  
-                          <td><?php echo $child->description ?></td>
-                          <td><?php echo $child->type ?></td>
+  
+                  <?php foreach ($childs as $key => $value): ?>
+                    <?php if($product->serial_number == $key): ?>
+                      <tr class="collapse row<?php echo $i ?>">
+                        <th>Article Number</th>
+                        <th>Description</th>
+                        <th>Type</th>
                       </tr>
+                       <?php foreach ($value as $row):?>
+                          <tr class="collapse row<?php echo $i ?>">
+                          
+                            <td><?php echo $row->article_number ?></td>  
+                            <td><?php echo $row->description ?></td>
+                            <td><?php echo $row->type ?></td>
+                            
+                          </tr>
+                       <?php endforeach; ?>
+
+
+                    <?php endif; ?>
                   <?php endforeach ?>
               <?php $i++ ?>
               <?php endforeach ?>
@@ -181,7 +192,8 @@
 
           <script type="text/javascript" charset="utf-8">
                     $(document).ready(function() {
-                     $('table.display').DataTable();
+                     $('.display').DataTable();
+                     $('#productTable').DataTable();
                     } );
                 </script>
           
