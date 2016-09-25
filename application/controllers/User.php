@@ -9,7 +9,8 @@
 			 $data['users'] = $this->user_model->get_data('users');
 			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			 $data['form_services'] = $this->form_model->get_data('form_services');
-			$this->load->view('user',$data);
+			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');
+				$this->load->view('user',$data);
 		}	
 		
 		public function edit($id){
@@ -40,6 +41,10 @@
 
 		public function form_service(){
 			$this->load->view('forms/form_services');
+		}
+
+		public function owner_form(){
+			$this->load->view('forms/owner_forms');
 		}
 
 		public function add_form_replacement(){
@@ -76,6 +81,7 @@
 						'status' => $this->input->post('status'),
 						'ink_number' => $this->input->post('ink_number'),
 						'solvent_number' => $this->input->post('solvent_number'),
+						'technician' => $this->input->post('technician'),
 						'visco_act' => $this->input->post('visco_act'),
 						'pres_act' => $this->input->post('pres_act'),
 						'mb_value' => $this->input->post('mb_value'),
@@ -98,6 +104,40 @@
 			}
 		}
 
+
+		public function add_owner_form(){
+			if($this->input->post('save')){
+				$data= array(
+						'serial_number' => $this->input->post('serial_number'),
+						'article_number' => $this->input->post('article_number'),
+						'date_install' => $this->input->post('date_install'),
+						'company' => $this->input->post('company'),
+						'address' => $this->input->post('address'),
+						'city' => $this->input->post('city'),
+						'zipcode' => $this->input->post('zipcode'),
+						'contact' => $this->input->post('contact'),
+						'telp' => $this->input->post('telp'),
+						'fax' => $this->input->post('fax'),
+						'email' => $this->input->post('email'),
+						'industry' => $this->input->post('industry'),
+						'material' => $this->input->post('material'),
+						'description' => $this->input->post('description'),
+						'ink_number' => $this->input->post('ink_number'),
+						'solvent_number' => $this->input->post('solvent_number'),
+						'distributor' => $this->input->post('distributor'),
+						'cust' => $this->input->post('cust'),
+						'date' => $this->input->post('date')
+
+					);
+				$this->form_model->insert_data('owner_forms',$data);
+				redirect('user/index');
+
+			}else{
+				redirect('user/owner_form');
+			}
+		}
+
+
 		public function delete_replacement($id){
 			$this->form_model->delete_data('form_replacements',array('id'=>$id));
 			redirect('user/index');
@@ -105,6 +145,11 @@
 
 		public function delete_service($id){
 			$this->form_model->delete_data('form_services',array('id'=>$id));
+			redirect('user/index');
+		}
+
+		public function delete_owner($id){
+			$this->form_model->delete_data('owner_forms',array('id'=>$id));
 			redirect('user/index');
 		}
 
@@ -141,6 +186,24 @@
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 		}
+
+		public function save_owner($id){
+		$data['owner_form'] = $this->form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
+        //load the view and saved it into $html variable
+        $html=$this->load->view('pdf/owner_formPDF', $data, true);
+ 
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "owner_form.pdf";
+ 
+        //load mPDF library
+ 
+       //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+ 
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+		}
+
 
 	}
 

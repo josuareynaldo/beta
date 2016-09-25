@@ -45,6 +45,7 @@
                 <ul class="dropdown-menu">
                     <li><a data-toggle="pill" href="#form_replace">Form Replacement</a></li>
                     <li><a data-toggle="pill" href="#form_service">Form Service</a></li>
+                    <li><a data-toggle="pill" href="#owner_form">Owner Form</a></li>
                 </ul>
           </li>
           <li><a data-toggle="pill" href="#history">History</a></li>
@@ -159,7 +160,6 @@
                       <th>Ink No.</th>
                       <th>Solvent No.</th>
                       <th>Technician</th>
-                      <th>Action</th>
                     </tr>
                   </thead>
                      <tbody>
@@ -178,9 +178,9 @@
                         <td><?php echo $form_service->technician ?></td>
 
                         
-                        <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                        <!-- <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
                         <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
-                        </td>
+                        </td> -->
                       </tr>
                     <?php $i++ ?>
                     <?php endforeach ?>
@@ -206,6 +206,7 @@
                       <th>Replace Part</th>
                       <th>Service Work</th>
                       <th>Action</th>
+                    
                     </tr>
                   </thead>
                   <tbody>
@@ -237,6 +238,95 @@
               </table>
               <a href="<?php echo base_url('user/form_service') ?>" class="btn btn-info">Form Service</a>
       </div>
+
+
+       <div id="owner_form" class="tab-pane">
+      <br>
+          <h1>Owner Form</h1>
+        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Serial No.</th>
+                      <th>Article No.</th>
+                      <th>Date of Installation</th>
+                      <th>Company</th>
+                      <th>Address</th>
+                      <th>City</th>
+                      <th>Zipcode</th>
+                      <th>Contact</th>
+                      <th>Telp</th>
+                      <th>Fax</th>
+                      <th>Email</th>
+                       </tr>
+                  </thead>
+
+                  <tbody>
+                   <?php $i=1 ?>
+                    <?php foreach ($owner_forms as $owner_form): ?>
+                      <tr>
+                        <td><?php echo $i ?></td>
+                        <td><?php echo $owner_form->serial_number ?></td>
+                        <td><?php echo $owner_form->article_number ?></td>
+                        <td><?php echo $owner_form->date_install ?></td>
+                        <td><?php echo $owner_form->company ?></td>
+                        <td><?php echo $owner_form->address ?></td>
+                        <td><?php echo $owner_form->city ?></td>
+                        <td><?php echo $owner_form->zipcode ?></td>
+                        <td><?php echo $owner_form->contact ?></td>
+                        <td><?php echo $owner_form->telp ?></td>
+                        <td><?php echo $owner_form->fax ?></td>
+                        <td><?php echo $owner_form->email ?></td>
+                        
+                       <!--  <td><a href="<?php echo base_url('user/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a> -->
+                        </td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+
+                  <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>Industry</th>
+                      <th>Material</th>
+                      <th>Description</th>
+                      <th>Ink No.</th>
+                      <th>Solvent No.</th>
+                      <th>Distributor</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($owner_forms as $owner_form): ?>
+                      <tr>
+                        <td><?php echo $owner_form->industry ?></td>
+                        <td><?php echo $owner_form->material ?></td>
+                        <td><?php echo $owner_form->description ?></td>
+                        <td><?php echo $owner_form->ink_number ?></td>
+                        <td><?php echo $owner_form->solvent_number ?></td>
+                        <td><?php echo $owner_form->distributor ?></td>
+                        <td><?php echo $owner_form->cust ?></td>
+                        <td><?php echo $owner_form->date ?></td>
+                        
+                        <td><a href="<?php echo base_url('user/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a>
+                        </td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+                <a href="<?php echo base_url('user/owner_form') ?>" class="btn btn-info">Owner Form</a>
+                </div>
 
        <div id="history" class="tab-pane">
             <br>
