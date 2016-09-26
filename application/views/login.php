@@ -42,9 +42,6 @@
   <div class="col-md-6 col-sm-8" id="login_container">
   <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
 
-  <?php $william = array('asd','abc','test','adsad');
-  print_r(json_decode(json_encode($william))); ?>
-
     <div class="row">
         <div class="col-sm-2 "></div>
       <div class="col-sm-8 col-xs-12">  
