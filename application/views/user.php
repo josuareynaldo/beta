@@ -288,7 +288,8 @@
                     
                   </tbody>
                 </table>
-
+                <br>
+                <br>
                   <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
