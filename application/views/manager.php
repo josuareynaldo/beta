@@ -101,12 +101,15 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <table class="table display table-bordered" id="productTable">
+          <table class="table display table-bordered sortable" id="productTable">
             <thead>
               <tr>
-                <th></th>
+                <th>Toggle</th>
                 <th>No.</th>
                 <th>Serial Number</th>
+                <th>Product Name</th>
+                <th>Shipment Date</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -117,6 +120,9 @@
                   <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
                   <td><?php echo $product->serial_number ?></td>
+                  <td><?php echo $product->product_name ?></td>
+                  <td><?php echo $product->shipment_date ?></td>
+                  <td><?php echo $product->status ?></td>
                   <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
@@ -126,13 +132,16 @@
                         <th>Article Number</th>
                         <th>Description</th>
                         <th>Type</th>
+                        <th>Service Date</th>
+                        <th>Installation Date</th>
                       </tr>
                        <?php foreach ($value as $row):?>
                           <tr class="collapse row<?php echo $i ?>">
-                          
                             <td><?php echo $row->article_number ?></td>  
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
+                            <td><?php echo $row->service_date ?></td>
+                            <td><?php echo $row->date_install ?></td>
                             
                           </tr>
                        <?php endforeach; ?>
