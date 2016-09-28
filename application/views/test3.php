@@ -63,11 +63,11 @@
 
     <form style="width:50%;">
         <div class="form-group">
-            <label for="name">Negara Asia Tenggara</label>
+            <label for="name">Nama user</label>
             <input class="form-control ui-widget" id="name" type="text" name="name" placholder="Nama Negara Asia Tenggara" required autocomplete="off">
         </div>
         <div class="form-group">
-            <label for="position">Ibu Kota Negara</label>
+            <label for="position">Position</label>
             <input class="form-control" id="position" type="text" name="position" placholder="Ibu Kota Negara" disabled="">
         </div>
     </form>

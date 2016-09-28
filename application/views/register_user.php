@@ -58,7 +58,7 @@
             
             <label for="">Type</label><br>
             <div class="radio-btn">
-              <input type="radio" name="pos" value="Employee"> <b>Employee</b>
+              <input type="radio" name="pos" value="User"> <b>User</b>
               <input type="radio" name="pos" value="Manager"> <b>Manager</b>
               <input type="radio" name="pos" value="Stakeholder"> <b>Stakeholder</b>
             </div>

@@ -10,7 +10,7 @@
 
 			public function index(){
 				
-				$this->load->view('test2');
+				$this->load->view('test3');
 			}
 
 			// public function get_allkota() {
