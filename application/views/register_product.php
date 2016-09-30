@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" placeholder="Input Product Name" > 
+              <input class="form-control" type="text" id="product_name" name="product_name" disabled="" > 
             </div>
             <div class="form-group">
               <label for="">Article Number</label>
@@ -61,7 +61,7 @@
             </div>
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
-              <input class="form-control" type="date" name="shipment_date" autocomplete="off">
+              <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
             </div>
             <div class="form-group">
               <label for="">Service Date</label>
@@ -83,10 +83,7 @@
     </div>  
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#product_name').hide();
-            $('label[for="product_name"]').hide();
-            $('#shipment_date').hide();
-            $('label[for="shipment_date"]').hide();
+            
             $("#serial_number").autocomplete({
                 source: '<?php echo base_url('product/lookup'); ?>',
 
@@ -94,7 +91,8 @@
                     event.preventDefault();
 
                     $(this).val(ui.item.label);
-                    $('#product_name').val("");
+                    $('#product_name').val(ui.item.value);
+                    $('#shipment_date').val(ui.item.value1);
 
                     return false;
                 },
@@ -103,18 +101,12 @@
                     event.preventDefault();
 
                     $(this).val(ui.item.label);
-                    $('#product_name').val("");
+                    $('#product_name').val(ui.item.value);
+                    $('#shipment_date').val(ui.item.value1);
 
                     return false;
-                },
-                change: function(event, ui) {
-                if (!ui.item) {
-                    $('#product_name').show();
-                    $('label[for="product_name"]').show();
-                    $('#shipment_date').show();
-                    $('label[for="shipment_date"]').show();
                 }
-            }
+
 
             });
         });
