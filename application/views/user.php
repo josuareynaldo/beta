@@ -130,8 +130,8 @@
                         <td><?php echo $form_replacement->date_replace ?></td>
                         <td><?php echo $form_replacement->problem ?></td>
                         
-                        <td><a href="<?php echo base_url('user/delete_replacement/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_replacement/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
+                        <td><a href="<?php echo base_url('user/delete_replacement/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_replacement/'.$form_replacement->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                       </tr>
                     <?php $i++ ?>
@@ -140,107 +140,172 @@
                   </tbody>
                 </table>
                 <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
-                </div>
+      </div>
             
       <div id="form_service" class="tab-pane">
       <br>
           <h1>Form Service</h1>
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
-          <h3>Printer Information</h3>
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
                       <th>No.</th>
                       <th>Date Service</th>
                       <th>Serial No.</th>
-                      <th>Printer</th>
-                      <th>Year Model</th>
-                      <th>Date Install</th>
                       <th>Status</th>
-                      <th>Ink No.</th>
-                      <th>Solvent No.</th>
                       <th>Technician</th>
+                      <th>Printer of Information</th>
+                      <th>Hydraulic of Information</th>
+                      <th>Problem</th>
                     </tr>
                   </thead>
                      <tbody>
-                    <?php $i=1 ?>
-                    <?php foreach ($form_services as $form_service): ?>
-                      <tr>
-                        <td><?php echo $i ?></td>
-                        <td><?php echo $form_service->date_service ?></td>
-                        <td><?php echo $form_service->serial_number ?></td>
-                        <td><?php echo $form_service->printer ?></td>
-                        <td><?php echo $form_service->year_model ?></td>
-                        <td><?php echo $form_service->date_install ?></td>
-                        <td><?php echo $form_service->status ?></td>
-                        <td><?php echo $form_service->ink_number ?></td>
-                        <td><?php echo $form_service->solvent_number ?></td>
-                        <td><?php echo $form_service->technician ?></td>
+                        <?php $i=1 ?>
+                        <?php foreach ($form_services as $form_service): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $form_service->date_service ?></td>
+                            <td><?php echo $form_service->serial_number ?></td>
+                            <td><?php echo $form_service->status ?></td>
+                            <td><?php echo $form_service->technician ?></td>
+                            <td><button type="<?php echo base_url('user/see_more/'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#hoi">See more</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#prs">See more</button></td>
+                            
+                            <!-- <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
+                            </td> -->
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
 
-                        
-                        <!-- <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
-                        </td> -->
-                      </tr>
-                    <?php $i++ ?>
-                    <?php endforeach ?>
-                    
-                  </tbody>
-                  </table>
-
-
-            <h3>Hydraulic</h3>
-              <table class="table display table-bordered sortable" id="formTable">
-                  <thead>
-                    <tr>
-                      <th>Visco Act</th>
-                      <th>Pres. Act</th>
-                      <th>Mb. Value</th>
-                      <th>TMP</th>
-                      <th>BO. Cur</th>
-                      <th>BO. Ref</th>
-                      <th>Date LS</th>
-                      <th>Hour LS</th>
-                      <th>Total Hour</th>
-                      <th>Problem Description</th>
-                      <th>Replace Part</th>
-                      <th>Service Work</th>
-                      <th>Action</th>
-                    
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i=1 ?>
-                    <?php foreach ($form_services as $form_service): ?>
-                      <tr>
-                        <td><?php echo $form_service->visco_act ?></td>
-                        <td><?php echo $form_service->pres_act ?></td>
-                        <td><?php echo $form_service->mb_value ?></td>
-                        <td><?php echo $form_service->tmp ?></td>
-                        <td><?php echo $form_service->bo_cur ?></td>
-                        <td><?php echo $form_service->bo_ref ?></td>
-                        <td><?php echo $form_service->date_ls ?></td>
-                        <td><?php echo $form_service->hour_ls ?></td>
-                        <td><?php echo $form_service->total_hour ?></td>
-                        <td><?php echo $form_service->problem ?></td>
-                        <td><?php echo $form_service->replace_part ?></td>
-                        <td><?php echo $form_service->service_work ?></td>
-
-                        
-                        <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
-                        </td>
-                      </tr>
-                    <?php $i++ ?>
-                    <?php endforeach ?>
-                    
-                  </tbody>
-              </table>
               <a href="<?php echo base_url('user/form_service') ?>" class="btn btn-info">Form Service</a>
       </div>
 
+      <div id="poi" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Printer of Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Printer</th>
+                    <th>Shipment Date</th>
+                    <th>Date Install</th>
+                    <th>Ink No.</th>
+                    <th>Solvent No.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach($form_services as $form_service): ?>
+                  <tr>
+                    <td><?php echo $form_service->printer ?></td>
+                    <td><?php echo $form_service->shipment_date ?></td>
+                    <td><?php echo $form_service->date_install ?></td>
+                    <td><?php echo $form_service->ink_number ?></td>
+                    <td><?php echo $form_service->solvent_number ?></td> 
+                  <?php endforeach ?> 
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="close" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-       <div id="owner_form" class="tab-pane">
+      <div id="hoi" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Hydraulic of Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Visco Act</th>
+                    <th>Pres. Act</th>
+                    <th>Mb. Value</th>
+                    <th>TMP</th>
+                    <th>BO. Cur</th>
+                    <th>BO. Ref</th>
+                    <th>Date LS</th>
+                    <th>Hour LS</th>
+                    <th>Total Hour</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($form_services as $form_service): ?>
+                          <tr>
+                            <td><?php echo $form_service->visco_act ?></td>
+                            <td><?php echo $form_service->pres_act ?></td>
+                            <td><?php echo $form_service->mb_value ?></td>
+                            <td><?php echo $form_service->tmp ?></td>
+                            <td><?php echo $form_service->bo_cur ?></td>
+                            <td><?php echo $form_service->bo_ref ?></td>
+                            <td><?php echo $form_service->date_ls ?></td>
+                            <td><?php echo $form_service->hour_ls ?></td>
+                            <td><?php echo $form_service->total_hour ?></td>
+                          </tr>
+                    <?php $i++ ?>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="close" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>      
+
+      <div id="prs" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Hydraulic of Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Problem Description</th>
+                    <th>Replace Part</th>
+                    <th>Service Work</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($form_services as $form_service): ?>
+                          <tr>
+                            <td><?php echo $form_service->problem ?></td>
+                            <td><?php echo $form_service->replace_part ?></td>
+                            <td><?php echo $form_service->service_work ?></td>
+                    <?php $i++ ?>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="close" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>   
+
+      <div id="owner_form" class="tab-pane">
       <br>
           <h1>Owner Form</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
@@ -327,9 +392,9 @@
                   </tbody>
                 </table>
                 <a href="<?php echo base_url('user/owner_form') ?>" class="btn btn-info">Owner Form</a>
-                </div>
+      </div>
 
-       <div id="history" class="tab-pane">
+      <div id="history" class="tab-pane">
             <br>
             <div class="container">
       <div class="row">
