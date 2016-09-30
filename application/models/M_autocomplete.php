@@ -11,8 +11,8 @@ class M_autocomplete extends CI_model
 	function lookup($keyword)
 	{
 		$this->db->select('*');
-		$this->db->like('name', $keyword);
-		$query = $this->db->get('users');
+		$this->db->like('serial_number', $keyword);
+		$query = $this->db->get('products');
 
 		return $query->result_array();
 		/*

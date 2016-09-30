@@ -52,8 +52,8 @@
 
 					if (count($query) > 0) {
 							foreach ($query as $row) {
-								$new_row['label'] = htmlentities(stripcslashes($row['name']));
-								$new_row['value'] = htmlentities(stripcslashes($row['position']));
+								$new_row['label'] = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['value'] = htmlentities(stripcslashes($row['product_name']));
 								$row_set[] = $new_row;
 							}
 					echo json_encode($row_set);
