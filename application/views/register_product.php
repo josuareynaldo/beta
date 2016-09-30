@@ -22,33 +22,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-       
-        $(document).ready(function(){
-
-            $("#serial_number").autocomplete({
-                source: 'product/lookup',
-
-                focus: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-
-                    return false;
-                },
-
-                select: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-
-                    return false;
-                }
-            });
-        });
-    </script>
+    
   </head>
   <body>
     <div class="container">
@@ -70,8 +44,8 @@
               <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input serial number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" placeholder="Input Product Name" required="1" > 
+              <label for="product_name">Product Name</label>
+              <input class="form-control" type="text" id="product_name" name="product_name" placeholder="Input Product Name" > 
             </div>
             <div class="form-group">
               <label for="">Article Number</label>
@@ -86,8 +60,8 @@
               <textarea class="form-control"  name="type" placeholder="Input type" required="1" ></textarea>
             </div>
             <div class="form-group">
-              <label for="">Shipment Date</label>
-              <input class="form-control" type="date" name="shipment_date" required="1" autocomplete="off">
+              <label for="shipment_date">Shipment Date</label>
+              <input class="form-control" type="date" name="shipment_date" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="">Service Date</label>
@@ -107,6 +81,43 @@
       </div>
 
     </div>  
-    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#product_name').hide();
+            $('label[for="product_name"]').hide();
+            $('#shipment_date').hide();
+            $('label[for="shipment_date"]').hide();
+            $("#serial_number").autocomplete({
+                source: '<?php echo base_url('product/lookup'); ?>',
+
+                focus: function(event, ui){
+                    event.preventDefault();
+
+                    $(this).val(ui.item.label);
+                    $('#product_name').val("");
+
+                    return false;
+                },
+
+                select: function(event, ui){
+                    event.preventDefault();
+
+                    $(this).val(ui.item.label);
+                    $('#product_name').val("");
+
+                    return false;
+                },
+                change: function(event, ui) {
+                if (!ui.item) {
+                    $('#product_name').show();
+                    $('label[for="product_name"]').show();
+                    $('#shipment_date').show();
+                    $('label[for="shipment_date"]').show();
+                }
+            }
+
+            });
+        });
+    </script>
   </body>
 </html>
