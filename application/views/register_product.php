@@ -114,6 +114,12 @@
                     $('#shipment_date').show();
                     $('label[for="shipment_date"]').show();
                 }
+                else{
+                  $('#product_name').hide();
+                  $('label[for="product_name"]').hide();
+                  $('#shipment_date').hide();
+                  $('label[for="shipment_date"]').hide();
+                }
             }
 
             });
