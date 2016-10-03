@@ -10,6 +10,7 @@
 			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			 $data['form_services'] = $this->form_model->get_data('form_services');
 			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');
+			 $data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
 				$this->load->view('user',$data);
 		}	
 		
@@ -52,6 +53,11 @@
 			$this->load->view('forms/owner_forms');
 		}
 
+
+		public function form_exchange(){
+			$this->load->view('forms/form_exchanges');
+		}
+
 		public function add_form_replacement(){
 			if($this->input->post('save')){
 				$data= array(
@@ -81,7 +87,6 @@
 						'date_service' => $this->input->post('date_service'),
 						'serial_number' => $this->input->post('serial_number'),
 						'printer' => $this->input->post('printer'),
-						'shipment_date' => $this->input->post('shipment_date'),
 						'date_install' => $this->input->post('date_install'),
 						'status' => $this->input->post('status'),
 						'ink_number' => $this->input->post('ink_number'),
@@ -143,6 +148,37 @@
 		}
 
 
+		public function add_form_exchange(){
+			if($this->input->post('save')){
+				$data= array(
+						'article_number' => $this->input->post('article_number'),
+						'serial_number' => $this->input->post('serial_number'),
+						'date_replace' => $this->input->post('date_replace'),
+						'run_time' => $this->input->post('run_time'),
+						'description' => $this->input->post('description'),
+						'distributor' => $this->input->post('distributor'),
+						'technician' => $this->input->post('technician'),
+						'cust' => $this->input->post('cust'),
+						'stock' => $this->input->post('stock'),
+						'dismantled' => $this->input->post('dismantled'),
+						'descr' => $this->input->post('descr'),
+						'cond' => $this->input->post('cond'),
+						'scrapping' => $this->input->post('scrapping'),
+						'warranty' => $this->input->post('warranty'),
+						'contact' => $this->input->post('contact'),
+						'date' => $this->input->post('date')
+
+					);
+				$this->form_model->insert_data('form_exchanges',$data);
+				redirect('user/index');
+
+			}else{
+				redirect('user/form_exchange');
+			}
+		}
+
+
+
 		public function delete_replacement($id){
 			$this->form_model->delete_data('form_replacements',array('id'=>$id));
 			redirect('user/index');
@@ -155,6 +191,11 @@
 
 		public function delete_owner($id){
 			$this->form_model->delete_data('owner_forms',array('id'=>$id));
+			redirect('user/index');
+		}
+
+		public function delete_exchange($id){
+			$this->form_model->delete_data('form_exchanges',array('id'=>$id));
 			redirect('user/index');
 		}
 
@@ -208,6 +249,25 @@
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 		}
+
+
+		public function save_exchange($id){
+		$data['form_exchange'] = $this->form_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
+        //load the view and saved it into $html variable
+        $html=$this->load->view('pdf/form_exchangePDF', $data, true);
+ 
+        //this the the PDF filename that user will get to download
+        $pdfFilePath = "form_exchange.pdf";
+ 
+        //load mPDF library
+ 
+       //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
+ 
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+		}
+
 
 
 	}

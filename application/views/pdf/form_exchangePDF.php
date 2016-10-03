@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Owner Form</title>
+    <title>Form Exchange</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,14 +19,14 @@
   </head>
   <body>		
  <td><?php echo $i ?></td>
-                        <td><?php echo $owner_form->industry ?></td>
-                        <td><?php echo $owner_form->material ?></td>
-                        <td><?php echo $owner_form->description ?></td>
-                        <td><?php echo $owner_form->ink_number ?></td>
-                        <td><?php echo $owner_form->solvent_number ?></td>
-                        <td><?php echo $owner_form->distributor ?></td>
-                        <td><?php echo $owner_form->cust ?></td>
-                        <td><?php echo $owner_form->date ?></td>
+                        <td><?php echo $form_exchange->stock ?></td>
+                        <td><?php echo $form_exchange->dismantled ?></td>
+                        <td><?php echo $form_exchange->descr ?></td>
+                        <td><?php echo $form_exchange->cond ?></td>
+                        <td><?php echo $form_exchange->scrapping ?></td>
+                        <td><?php echo $form_exchange->warranty ?></td>
+                        <td><?php echo $form_exchange->contact ?></td>
+                        <td><?php echo $form_exchange->date ?></td>
 
 
 
@@ -40,25 +40,15 @@
 				<p style="text-align: center;"><strong>Product Service Form </strong></p>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
-				<p>Serial No.	: <?php echo $form_service->serial_number ?><p>
-                <p>Article No. 	:<?php echo $form_service->article_number ?><p>
-                <p>Date Install :<?php echo $form_service->date_install ?><p>
-                <p>Company		:<?php echo $form_service->company ?><p>
-                <p>Address	    :<?php echo $form_service->address ?><p>
-                <p>City		    :<?php echo $form_service->city ?><p>
-                <p>Zipcode      :<?php echo $form_service->zipcode ?><p>
-                <p>Contact      :<?php echo $form_service->contact ?><p>
-                <p>Telp         :<?php echo $form_service->telp ?><p>
-                <p>Fax          :<?php echo $form_service->fax ?><p>
-                <p>Email        :<?php echo $form_service->email ?><p>
-                <p>Industry     :<?php echo $form_service->industry ?><p>
-                <p>Material     :<?php echo $form_service->material ?><p>
-                <p>Description  :<?php echo $form_service->description ?><p>
-                <p>Ink No. 		:<?php echo $form_service->ink_number ?><p>
-                <p>Solvent No. 	:<?php echo $form_service->solvent_number ?><p>
-                <p>Distributor  :<?php echo $form_service->distributor ?><p>
-                <p>Customer	    :<?php echo $form_service->cust ?><p>
-                <p>Date	        :<?php echo $form_service->date ?><p>
+                <p>Article No. 	:<?php echo $form_exchange->article_number ?><p>
+                <p>Description  :<?php echo $form_exchange->description ?><p>
+                <p>Serial No.   :<?php echo $form_exchange->serial_number ?><p>
+                <p>Date Replace :<?php echo $form_exchange->date_replace ?><p>
+                <p>Run Time		:<?php echo $form_exchange->run_time ?><p>
+                <p>Distributor	:<?php echo $form_exchange->distributor ?><p>
+                <p>Technician	:<?php echo $form_exchange->technician ?><p>
+                <p>Customer     :<?php echo $form_exchange->cust ?><p>
+               
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>
 				<p>&nbsp;</p>

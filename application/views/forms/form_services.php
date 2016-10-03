@@ -50,10 +50,6 @@
               <input class="form-control" type="text" name="printer" placeholder="Input Printer" required="1">
             </div>
             <div class="form-group">
-              <label for="">Shipment Date</label>
-              <input class="form-control" type="date" name="shipment_date" placeholder="YYYY/MM/DD" required="1">
-            </div>
-            <div class="form-group">
               <label for="">Date Install</label>
               <input class="form-control" type="date" name="date_install" placeholder="YYYY/MM/DD" required="1">
             </div>

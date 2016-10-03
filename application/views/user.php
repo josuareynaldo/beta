@@ -46,6 +46,7 @@
                     <li><a data-toggle="pill" href="#form_replace">Form Replacement</a></li>
                     <li><a data-toggle="pill" href="#form_service">Form Service</a></li>
                     <li><a data-toggle="pill" href="#owner_form">Owner Form</a></li>
+                    <li><a data-toggle="pill" href="#form_exchange">Form Exchange</a></li>
                 </ul>
           </li>
           <li><a data-toggle="pill" href="#history">History</a></li>
@@ -111,7 +112,7 @@
                       <th>Serial No.</th>
                       <th>Date Install</th>
                       <th>Date Replace</th>
-                      <th>Problem Description</th>
+                      <th>Problem Desc</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -196,7 +197,6 @@
                 <thead>
                   <tr>
                     <th>Printer</th>
-                    <th>Shipment Date</th>
                     <th>Date Install</th>
                     <th>Ink No.</th>
                     <th>Solvent No.</th>
@@ -206,7 +206,6 @@
                   <?php foreach($form_services as $form_service): ?>
                   <tr>
                     <td><?php echo $form_service->printer ?></td>
-                    <td><?php echo $form_service->shipment_date ?></td>
                     <td><?php echo $form_service->date_install ?></td>
                     <td><?php echo $form_service->ink_number ?></td>
                     <td><?php echo $form_service->solvent_number ?></td> 
@@ -214,9 +213,6 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="close" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -263,9 +259,6 @@
                 </tbody>
               </table>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="close" data-dismiss="modal">Close</button>
-            </div>
           </div>
         </div>
       </div>      
@@ -284,6 +277,7 @@
                     <th>Problem Description</th>
                     <th>Replace Part</th>
                     <th>Service Work</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -294,12 +288,11 @@
                             <td><?php echo $form_service->replace_part ?></td>
                             <td><?php echo $form_service->service_work ?></td>
                     <?php $i++ ?>
+                    <td><a href="<?php echo base_url('user/delete_replacement/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_replacement/'.$form_replacement->id) ?>" class="btn btn-primary">Save</a>
                   <?php endforeach ?>
                 </tbody>
               </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="close" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
@@ -393,6 +386,94 @@
                 </table>
                 <a href="<?php echo base_url('user/owner_form') ?>" class="btn btn-info">Owner Form</a>
       </div>
+
+
+
+
+      <div id="form_exchange" class="tab-pane">
+      <br>
+          <h1>Form Exchange</h1>
+        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Article No.</th>
+                      <th>Serial No.</th>
+                      <th>Date Replace</th>
+                      <th>Run Time</th>
+                      <th>Description</th>
+                      <th>Distributor</th>
+                      <th>Technician</th>
+                      <th>Customer</th>
+                       </tr>
+                  </thead>
+
+                  <tbody>
+                   <?php $i=1 ?>
+                    <?php foreach ($form_exchanges as $form_exchange): ?>
+                      <tr>
+                        <td><?php echo $i ?></td>
+                        <td><?php echo $form_exchange->article_number ?></td>
+                        <td><?php echo $form_exchange->serial_number ?></td>
+                        <td><?php echo $form_exchange->date_replace ?></td>
+                        <td><?php echo $form_exchange->run_time ?></td>
+                        <td><?php echo $form_exchange->description ?></td>
+                        <td><?php echo $form_exchange->distributor ?></td>
+                        <td><?php echo $form_exchange->technician ?></td>
+                        <td><?php echo $form_exchange->cust ?></td>
+                        
+                       <!--  <td><a href="<?php echo base_url('user/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a> -->
+                        </td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+                <br>
+                <br>
+                  <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>Part of Stock</th>
+                      <th>Dismantled</th>
+                      <th>Desc of Fault</th>
+                      <th>Condition</th>
+                      <th>Scrapping</th>
+                      <th>Warranty / Exch Part</th>
+                      <th>Contact</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($form_exchanges as $form_exchange): ?>
+                      <tr>
+                        <td><?php echo $form_exchange->stock ?></td>
+                        <td><?php echo $form_exchange->dismantled ?></td>
+                        <td><?php echo $form_exchange->descr ?></td>
+                        <td><?php echo $form_exchange->cond ?></td>
+                        <td><?php echo $form_exchange->scrapping ?></td>
+                        <td><?php echo $form_exchange->warranty ?></td>
+                        <td><?php echo $form_exchange->contact ?></td>
+                        <td><?php echo $form_exchange->date ?></td>
+                        
+                        <td><a href="<?php echo base_url('user/delete_owner/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_owner/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
+                        </td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+                <a href="<?php echo base_url('user/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
+      </div>
+
+
 
       <div id="history" class="tab-pane">
             <br>
