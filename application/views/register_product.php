@@ -65,6 +65,13 @@
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
               <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
+<<<<<<< HEAD
+=======
+            </div>
+            <div class="form-group">
+              <label for="">Service Date</label>
+              <input class="form-control" type="date" name="service_date" required="1" autocomplete="off">
+>>>>>>> origin/master
             </div>
             <div class="form-group">
               <label for="">Installation Date</label>
@@ -108,6 +115,7 @@
                     $('#shipment_date').val(ui.item.value1);
 
                     return false;
+<<<<<<< HEAD
                 }
 <<<<<<< HEAD
                 else{
@@ -118,6 +126,10 @@
                 }
             }
 =======
+
+>>>>>>> origin/master
+=======
+                }
 
 >>>>>>> origin/master
 
