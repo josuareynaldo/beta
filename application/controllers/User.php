@@ -18,6 +18,11 @@
 			$this->load->view('edit_user',$data);
 		}
 
+		public function see_more($id){
+			$data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
+
+		}
+
 		public function update(){
 			if($this->input->post('update')){
 				$data= array(
@@ -76,7 +81,7 @@
 						'date_service' => $this->input->post('date_service'),
 						'serial_number' => $this->input->post('serial_number'),
 						'printer' => $this->input->post('printer'),
-						'year_model' => $this->input->post('year_model'),
+						'shipment_date' => $this->input->post('shipment_date'),
 						'date_install' => $this->input->post('date_install'),
 						'status' => $this->input->post('status'),
 						'ink_number' => $this->input->post('ink_number'),
