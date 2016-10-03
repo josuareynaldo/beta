@@ -437,12 +437,12 @@
                   <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
-                      <th>Part of Stock</th>
-                      <th>Dismantled</th>
+                      <th><a data-toggle="tooltip" title="Part of Stock ?">Part of Stock</a></th>
+                      <th><a data-toggle="tooltip" title="Dismantled from a printer ?">Dismantled</a></th>
                       <th>Desc of Fault</th>
                       <th>Condition</th>
-                      <th>Scrapping</th>
-                      <th>Warranty / Exch Part</th>
+                      <th><a data-toggle="tooltip" title="Scrapping permitted if repair cost wouldn't be economic(otherwise redelivery unfree)">Scrapping</a></th>
+                      <th><a data-toggle="tooltip" title="If No warranty / exchange part => herewith new order for this part">Warranty / Exch Part</a></th>
                       <th>Contact</th>
                       <th>Date</th>
                       <th>Action</th>
@@ -511,6 +511,13 @@
           </div>
           </div>
         </div>
+
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+
         <script type="text/javascript" charset="utf-8">
                     $(document).ready(function() {
                      $('table.display').DataTable();
