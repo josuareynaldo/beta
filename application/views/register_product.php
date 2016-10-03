@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/start/jquery-ui.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,6 +23,8 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url() ?>js/fileinput.js" type="text/javascript"></script>
+
     
   </head>
   <body>
@@ -64,12 +67,12 @@
               <input class="form-control" type="date" name="shipment_date" autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="">Service Date</label>
-              <input class="form-control" type="date" name="service_date" required="1" autocomplete="off">
-            </div>
-            <div class="form-group">
               <label for="">Installation Date</label>
               <input class="form-control" type="date" name="date_install" required="1" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="">Upload Printer Image</label>
+              <input class="file" type="file" name="upload_image" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">

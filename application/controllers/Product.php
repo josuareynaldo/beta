@@ -97,7 +97,7 @@ class Product extends CI_Controller
 		}
 
 		public function edit($id){
-			$data['products'] = $this->user_model->get_byCondition('products',array('id'=>$id))->row();
+			$data['products'] = $this->user_model->get_byCondition('articles',array('id'=>$id))->row();
 			$this->load->view('edit_product',$data);
 		}
 
