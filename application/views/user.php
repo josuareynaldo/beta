@@ -288,8 +288,8 @@
                             <td><?php echo $form_service->replace_part ?></td>
                             <td><?php echo $form_service->service_work ?></td>
                     <?php $i++ ?>
-                    <td><a href="<?php echo base_url('user/delete_replacement/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_replacement/'.$form_replacement->id) ?>" class="btn btn-primary">Save</a>
+                    <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
                   <?php endforeach ?>
                 </tbody>
               </table>
@@ -351,6 +351,7 @@
                   <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
+                      <th>No.</th>
                       <th>Industry</th>
                       <th>Material</th>
                       <th>Description</th>
@@ -366,6 +367,7 @@
                     <?php $i=1 ?>
                     <?php foreach ($owner_forms as $owner_form): ?>
                       <tr>
+                        <td><?php echo $i ?></td>
                         <td><?php echo $owner_form->industry ?></td>
                         <td><?php echo $owner_form->material ?></td>
                         <td><?php echo $owner_form->description ?></td>
@@ -437,6 +439,7 @@
                   <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
+                      <th>No</th>
                       <th><a data-toggle="tooltip" title="Part of Stock ?">Part of Stock</a></th>
                       <th><a data-toggle="tooltip" title="Dismantled from a printer ?">Dismantled</a></th>
                       <th>Desc of Fault</th>
@@ -452,6 +455,7 @@
                     <?php $i=1 ?>
                     <?php foreach ($form_exchanges as $form_exchange): ?>
                       <tr>
+                       <td><?php echo $i ?></td>
                         <td><?php echo $form_exchange->stock ?></td>
                         <td><?php echo $form_exchange->dismantled ?></td>
                         <td><?php echo $form_exchange->descr ?></td>
@@ -461,8 +465,8 @@
                         <td><?php echo $form_exchange->contact ?></td>
                         <td><?php echo $form_exchange->date ?></td>
                         
-                        <td><a href="<?php echo base_url('user/delete_owner/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_owner/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
+                        <td><a href="<?php echo base_url('user/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_exchange/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                       </tr>
                     <?php $i++ ?>

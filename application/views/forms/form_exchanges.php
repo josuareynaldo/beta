@@ -114,9 +114,13 @@
               <input class="form-control" type="date" name="date" placeholder="YYYY/MM/DD" required="1" >
             </div>
             <div class="form-group">
-              <input type="submit" name="save" value="Save Form" class="btn btn-primary">
+              <input type="submit" name="save" value="Submit" class="btn btn-primary">
             </div>
+           <!--  <?php include 'checkbox.php';?> -->
           </form>
+
+       
+
         </div>
         <div class="col-xs-4"></div>
       </div>
@@ -128,6 +132,7 @@
       </div>
 
     </div>
+
 
     
   </body>
