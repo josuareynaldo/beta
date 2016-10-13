@@ -21,8 +21,8 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    
     <script src="<?php echo base_url() ?>js/fileinput.js" type="text/javascript"></script>
 
     
@@ -41,14 +41,14 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('product/add_product') ?>" method="post">
+          <?php echo form_open_multipart('product/add_product') ?>
             <div class="form-group">
               <label for="">Serial Number</label>
               <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input serial number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" disabled="" > 
+              <input class="form-control" type="text" id="product_name" name="product_name" placeholder="Input Product Name"> 
             </div>
             <div class="form-group">
               <label for="">Article Number</label>
@@ -65,22 +65,19 @@
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
               <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
-<<<<<<< HEAD
-=======
             </div>
             <div class="form-group">
               <label for="">Service Date</label>
               <input class="form-control" type="date" name="service_date" required="1" autocomplete="off">
->>>>>>> origin/master
             </div>
             <div class="form-group">
               <label for="">Installation Date</label>
               <input class="form-control" type="date" name="date_install" required="1" autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="">Upload Printer Image</label>
-              <input class="file" type="file" name="upload_image" required="1" autocomplete="off">
-            </div>
+             <label for="">Upload Printer Image</label>
+             <input type="file" name="upload_image" required="1" autocomplete="off">
+           </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">
 
@@ -89,52 +86,52 @@
         </div>
         <div class="col-xs-4"></div>
       </div>
+      <?php echo $error ?>
 
     </div>  
-    <script type="text/javascript">
-        $(document).ready(function(){
-            
-            $("#serial_number").autocomplete({
-                source: '<?php echo base_url('product/lookup'); ?>',
-
-                focus: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-                    $('#shipment_date').val(ui.item.value1);
-
-                    return false;
-                },
-
-                select: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-                    $('#shipment_date').val(ui.item.value1);
-
-                    return false;
-<<<<<<< HEAD
-                }
-<<<<<<< HEAD
-                else{
-                  $('#product_name').hide();
-                  $('label[for="product_name"]').hide();
-                  $('#shipment_date').hide();
-                  $('label[for="shipment_date"]').hide();
-                }
-            }
-=======
-
->>>>>>> origin/master
-=======
-                }
-
->>>>>>> origin/master
-
-            });
-        });
-    </script>
+    <!--  <script type="text/javascript">
+       $(document).ready(function(){
+           $('#product_name').hide();
+           $('label[for="product_name"]').hide();
+           $('#shipment_date').hide();
+           $('label[for="shipment_date"]').hide();
+           $("#serial_number").autocomplete({
+               source: '<?php echo base_url('product/lookup'); ?>',
+    
+               focus: function(event, ui){
+                   event.preventDefault();
+    
+                   $(this).val(ui.item.label);
+                   $('#product_name').val("");
+    
+                   return false;
+               },
+    
+               select: function(event, ui){
+                   event.preventDefault();
+    
+                   $(this).val(ui.item.label);
+                   $('#product_name').val("");
+    
+                   return false;
+               },
+               change: function(event, ui) {
+               if (!ui.item) {
+                   $('#product_name').show();
+                   $('label[for="product_name"]').show();
+                   $('#shipment_date').show();
+                   $('label[for="shipment_date"]').show();
+               }
+               else{
+                 $('#product_name').hide();
+                 $('label[for="product_name"]').hide();
+                 $('#shipment_date').hide();
+                 $('label[for="shipment_date"]').hide();
+               }
+           }
+    
+           });
+       });
+        </script> -->
   </body>
 </html>

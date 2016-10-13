@@ -25,32 +25,44 @@
     <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4 text-center" >
-          <h2>Product Registration</h2>
+          <h2>Parts Registration</h2>
         </div>
         <div class="col-xs-4"></div>
         
     </div>
     <pre>
-      <?php print_r($products) ?>
+      <?php print_r($childs) ?>
     </pre>
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('product/update') ?>" method="post">
+          <form action="<?php echo base_url('product/updateParts') ?>" method="post">
             <div class="form-group">
               <label for="">Serial Number</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input Serial Number" value="<?php echo $products->serial_number ?>" >
+              <input class="form-control" type="text" name="serial_number" placeholder="Input Serial Number" value="<?php echo $articles->serial_number ?>" readonly="readonly">
             </div>
             <div class="form-group">
-              <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" placeholder="Input Product Name"> 
+              <label for="">Article Number</label>
+              <input class="form-control" type="text" name="article_number" placeholder="Input article number" required="1" value="<?php echo $articles->article_number ?>" readonly="readonly">
             </div>
            <div class="form-group">
-              <label for="shipment_date">Shipment Date</label>
-              <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
+              <label for="">Description</label>
+              <textarea class="form-control"  name="description" placeholder="Input description" required="1" ></textarea>
             </div>
             <div class="form-group">
-              <input type="hidden" name="id" value="<?php echo $products->serial_number ?>">
+              <label for="">Type</label>
+              <textarea class="form-control"  name="type" placeholder="Input type" required="1" ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="">Service Date</label>
+              <input class="form-control" type="date" name="service_date" required="1" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="">Installation Date</label>
+              <input class="form-control" type="date" name="date_install" required="1" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="id" value="<?php echo $articles->article_number ?>">
               <input type="submit" name="update" value="Update" class="btn btn-info">
             </div>
           </form>

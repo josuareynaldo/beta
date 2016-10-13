@@ -8,7 +8,7 @@
 		public function index(){
 			$data['users'] = $this->user_model->get_data('users');
 			$data['products'] = $this->user_model->get_data('products');
-
+			$data['articles'] = $this->user_model->get_data('articles');
 			$childs = array();
 			foreach ($data['products'] as $product) {
 				$articles = $this->user_model->get_products($product->serial_number);

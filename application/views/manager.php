@@ -18,7 +18,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
@@ -28,7 +28,9 @@
   </head>
   <body>
   <pre>
+    <?php print_r($articles) ?>
     <?php print_r($childs) ?>
+
     <?php print_r($this->session->userdata()) ?>
   </pre>
     <div class="container">
@@ -101,7 +103,7 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <table class="table display table-bordered sortable" id="productTable">
+          <table class="table table-bordered sortable" id="productTable">
             <thead>
               <tr>
                 <th>Toggle</th>
@@ -123,7 +125,7 @@
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="<?php echo base_url('product/register_part/'.$product->serial_number) ?>" class="btn btn-primary">New Parts</a><a href="<?php echo base_url('product/edit/'.$product->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->serial_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
@@ -143,7 +145,7 @@
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
+                            <td><a href="<?php echo base_url('product/editParts/'.$row->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/deleteParts/'.$row->article_number) ?>" class="btn btn-danger">Delete</a></td>
                             
                           </tr>
                        <?php endforeach; ?>
@@ -156,7 +158,7 @@
               
             </tbody>
           </table>
-          <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a>
+          <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">New Product</a>
         	</div>
           </div>
           </div>

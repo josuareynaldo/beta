@@ -26,17 +26,19 @@
     
     
     <script type="text/javascript">
-       
         $(document).ready(function(){
-
-            $("#name").autocomplete({
-                source: 'test/lookup',
+            $('#product_name').hide();
+            $('label[for="product_name"]').hide();
+            $('#shipment_date').hide();
+            $('label[for="shipment_date"]').hide();
+            $("#serial_number").autocomplete({
+                source: '<?php echo base_url('product/lookup'); ?>',
 
                 focus: function(event, ui){
                     event.preventDefault();
 
                     $(this).val(ui.item.label);
-                    $('#position').val(ui.item.value);
+                    $('#product_name').val("");
 
                     return false;
                 },
@@ -45,10 +47,25 @@
                     event.preventDefault();
 
                     $(this).val(ui.item.label);
-                    $('#position').val(ui.item.value);
-                    
+                    $('#product_name').val("");
+
                     return false;
+                },
+                change: function(event, ui) {
+                if (!ui.item) {
+                    $('#product_name').show();
+                    $('label[for="product_name"]').show();
+                    $('#shipment_date').show();
+                    $('label[for="shipment_date"]').show();
                 }
+                else{
+                  $('#product_name').hide();
+                  $('label[for="product_name"]').hide();
+                  $('#shipment_date').hide();
+                  $('label[for="shipment_date"]').hide();
+                }
+            }
+
             });
         });
     </script>

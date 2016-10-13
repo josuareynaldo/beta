@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2016 at 05:00 PM
+-- Generation Time: Oct 13, 2016 at 10:01 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -30,6 +30,7 @@ CREATE TABLE `products` (
   `serial_number` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `shipment_date` date NOT NULL,
+  `image_name` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -37,9 +38,9 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`serial_number`, `product_name`, `shipment_date`, `status`) VALUES
-('123asd', 'asus', '0000-00-00', ''),
-('234dsa', 'Lenovo', '0000-00-00', '');
+INSERT INTO `products` (`serial_number`, `product_name`, `shipment_date`, `image_name`, `status`) VALUES
+('123asd', 'asdasdasdasd', '2016-10-22', '', 'Warraty'),
+('kontolwil', 'tititwil', '2016-01-01', 'Foto_Yearbook_2.jpg', 'Warraty');
 
 --
 -- Indexes for dumped tables
