@@ -40,7 +40,7 @@ class Product extends CI_Controller
 	public function add_product(){
 			
 			if($this->input->post('register_product')){
-				 $config['upload_path']          = 'uploads/'.$this->input->post('serial_number');
+				 $config['upload_path']          = 'uploads/products/'.$this->input->post('serial_number');
                 $config['allowed_types']        = 'gif|jpg|png';
                 // $config['max_size']             = 100;
                 // $config['max_width']            = 1024;
@@ -236,10 +236,28 @@ class Product extends CI_Controller
 		}
 
 
+		function recursiveRemoveDirectory($directory)
+		{
+		    foreach(glob("{$directory}/*") as $file)
+		    {
+		        if(is_dir($file)) { 
+		            recursiveRemoveDirectory($file);
+		        } else {
+		            unlink($file);
+		        }
+		    }
+		    rmdir($directory);
+		}
 
 		public function delete($serial_number){
 			$this->user_model->delete_data('products',array('serial_number'=>$serial_number));
 			$this->user_model->delete_data('articles',array('serial_number'=>$serial_number));
+			$data['products']= $this->user_model->get_byCondition('products',array('serial_number'=>$serial_number));
+
+			foreach ($products as $product) {
+				recursiveRemoveDirectory(baseurl().$products->image_name);
+			}
+			
 			if($this->session->userdata('position')=="Manager"){
 					redirect('manager/index');
 				}
@@ -252,6 +270,9 @@ class Product extends CI_Controller
 
 
 		}
+
+
+
 		public function deleteParts($serial_number){
 			$this->user_model->delete_data('articles',array('serial_number'=>$serial_number));
 			if($this->session->userdata('position')=="Manager"){

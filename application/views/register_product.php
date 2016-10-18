@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
              <label for="">Upload Printer Image</label>
-             <input type="file" name="upload_image" required="1" autocomplete="off">
+             <input type="file" class="file" multiple data-show-upload="false" name="upload_image" required="1" autocomplete="off">
            </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">

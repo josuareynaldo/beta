@@ -29,6 +29,7 @@
   <body>
   <pre>
     <?php print_r($articles) ?>
+    <?php print_r($products) ?>
     <?php print_r($childs) ?>
 
     <?php print_r($this->session->userdata()) ?>
@@ -112,6 +113,7 @@
                 <th>Product Name</th>
                 <th>Shipment Date</th>
                 <th>Status</th>
+                <th>Printer Image</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -125,6 +127,7 @@
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->status ?></td>
+                  <td><img src="<?php echo base_url()?>/<?php echo $product->image_name ?>"/></td>
                   <td><a href="<?php echo base_url('product/register_part/'.$product->serial_number) ?>" class="btn btn-primary">New Parts</a><a href="<?php echo base_url('product/edit/'.$product->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->serial_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
