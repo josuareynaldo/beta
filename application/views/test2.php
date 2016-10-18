@@ -16,13 +16,13 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js">"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <!-- <script src="<?php echo base_url() ?>jquery/jquery.min.js"></script> -->
     <script src="<?php echo base_url()?>jquery/jquery-ui.js" type="text/javascript"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <link href="<?php echo base_url() ?>css/select2.min.css" rel="stylesheet">
+    <script src="<?php echo base_url() ?>js/select2.min.js"></script>
     
      <!-- <script type="text/javascript">
       $(document).ready(function() {

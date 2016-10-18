@@ -80,20 +80,20 @@
             </div>
             <div class="form-group">
               <label for="">Description of Fault</label><br>
-              <input type="checkbox"  name="descr" value="no function"  > no function<br>
-              <input type="checkbox"  name="descr" value="malfunction"  > malfunction<br>
-              <input type="checkbox"  name="descr" value="leak"  > leak<br>
-              <input type="checkbox"  name="descr" value="out of box fault"  > out of box fault<br>
+              <input type="checkbox"  name="descr[]" value="no function"  > no function<br>
+              <input type="checkbox"  name="descr[]" value="malfunction"  > malfunction<br>
+              <input type="checkbox"  name="descr[]" value="leak"  > leak<br>
+              <input type="checkbox"  name="descr[]" value="out of box fault"  > out of box fault<br>
             </div>
             <div class="form-group">
               <label for="">Condition</label><br>
-              <input type="checkbox"  name="cond" value="Wet"  > wet<br>
-              <input type="checkbox"  name="cond" value="Cold"  > cold<br>
-              <input type="checkbox"  name="cond" value="Humid" > humid<br>
-              <input type="checkbox"  name="cond" value="Dust"  > dust<br>
-              <input type="checkbox"  name="cond" value="Hot"  > hot<br>
-              <input type="checkbox"  name="cond" value="Vibration"  > vibration<br>
-              <input type="checkbox"  name="cond" value="Other"  > other<br>
+              <input type="checkbox"  name="cond[]" value="Wet"  > wet<br>
+              <input type="checkbox"  name="cond[]" value="Cold"  > cold<br>
+              <input type="checkbox"  name="cond[]" value="Humid" > humid<br>
+              <input type="checkbox"  name="cond[]" value="Dust"  > dust<br>
+              <input type="checkbox"  name="cond[]" value="Hot"  > hot<br>
+              <input type="checkbox"  name="cond[]" value="Vibration"  > vibration<br>
+              <input type="checkbox"  name="cond[]" value="Other"  > other<br>
             </div>
             <div class="form-group">
               <label for="">Scrapping Permitted if repair cost wouldn't be economic(otherwise redelivery unfree)</label><br>

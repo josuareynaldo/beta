@@ -149,6 +149,12 @@
 
 
 		public function add_form_exchange(){
+			// echo "<pre>";
+			// print_r($this->input->post());
+			// echo "</pre>";
+			// $test = implode(', ', $this->input->post('descr'));
+			// echo $test;
+			// exit;
 			if($this->input->post('save')){
 				$data= array(
 						'article_number' => $this->input->post('article_number'),
@@ -161,8 +167,8 @@
 						'cust' => $this->input->post('cust'),
 						'stock' => $this->input->post('stock'),
 						'dismantled' => $this->input->post('dismantled'),
-						'descr' => $this->input->post('descr'),
-						'cond' => $this->input->post('cond'),
+						'descr' => implode(', ',  $this->input->post('descr')),
+						'cond' => implode(', ', $this->input->post('cond')),
 						'scrapping' => $this->input->post('scrapping'),
 						'warranty' => $this->input->post('warranty'),
 						'contact' => $this->input->post('contact'),
