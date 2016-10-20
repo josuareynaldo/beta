@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,6 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url() ?>js/fileinput.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="container">
@@ -36,7 +38,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('product/add_part') ?>" method="post">
+          <form action="<?php echo base_url('product/add_part') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Serial Number</label>
               <input class="form-control" type="text" name="serial_number" placeholder="Input Serial Number" value="<?php echo $serial_number ?>" readonly="readonly">
@@ -61,9 +63,13 @@
               <label for="">Installation Date</label>
               <input class="form-control" type="date" name="date_install" required="1" autocomplete="off">
             </div>
+             <div class="form-group">
+              <label for="">Upload Parts Image</label>
+              <input class="file" type="file" name="upload_image" required="1" autocomplete="off">
+            </div>
             <div class="form-group">
               <input type="hidden" name="id" value="<?php echo $articles->article_number ?>">
-              <input type="submit" name="update" value="Update" class="btn btn-info">
+              <input type="submit" name="register_part" value="Register part" class="btn btn-info">
             </div>
           </form>
         </div>

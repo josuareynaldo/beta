@@ -101,7 +101,7 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <table class="table display table-bordered sortable" id="productTable">
+          <table class="table table-bordered sortable" id="productTable">
             <thead>
               <tr>
                 <th>Toggle</th>
@@ -110,6 +110,7 @@
                 <th>Product Name</th>
                 <th>Shipment Date</th>
                 <th>Status</th>
+                <th>Printer Image</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -123,7 +124,8 @@
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><img src="<?php echo base_url().$product->image_name ?>" alt=""></td>
+                  <td><a href="<?php echo base_url('product/register_part/'.$product->serial_number) ?>" class="btn btn-info">New Parts</a><a href="<?php echo base_url('product/edit/'.$product->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->serial_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
@@ -134,6 +136,7 @@
                         <th>Type</th>
                         <th>Service Date</th>
                         <th>Installation Date</th>
+                        <th>Part Image</th>
                         <th>Action</th>
                       </tr>
                        <?php foreach ($value as $row):?>
@@ -143,7 +146,8 @@
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>
+                            <td><img src="<?php echo base_url().$row->image_name ?>" alt=""></td>
+                            <td><a href="<?php echo base_url('product/edit/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
                             
                           </tr>
                        <?php endforeach; ?>

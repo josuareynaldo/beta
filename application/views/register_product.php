@@ -41,14 +41,14 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('product/add_product') ?>" method="post">
+          <form action="<?php echo base_url('product/add_product') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Serial Number</label>
               <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input serial number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" disabled="" > 
+              <input class="form-control" type="text" id="product_name" name="product_name" > 
             </div>
             <div class="form-group">
               <label for="">Article Number</label>
@@ -65,13 +65,10 @@
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
               <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
-<<<<<<< HEAD
-=======
             </div>
             <div class="form-group">
               <label for="">Service Date</label>
               <input class="form-control" type="date" name="service_date" required="1" autocomplete="off">
->>>>>>> origin/master
             </div>
             <div class="form-group">
               <label for="">Installation Date</label>
