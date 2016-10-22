@@ -89,42 +89,68 @@
         <div id="product_database" class="tab-pane">
             <br>
              <div class="container">
-              <div class="row">
-                <div class="col-xs-12">
-                    <h1>Product</h1>
-                    <table class="table display table-bordered">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Serial Number</th>
-                          <th>Article Number</th>
-                          <th>Description</th>
-                          <th>Type</th>
-                          <!-- <th>Action</th> -->
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $i=1 ?>
-                        <?php foreach ($products as $product): ?>
-                          <tr>
-                            <td><?php echo $i ?></td>
-                            <td><?php echo $product->serial_number ?></td>
-                            <td><?php echo $product->article_number ?></td>
-                            <td><?php echo $product->description ?></td>
-                            <td><?php echo $product->type ?></td>
-                            <!-- <td><a href="<?php echo base_url('product/edit/'.$product->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->id) ?>" class="btn btn-danger">Delete</a></td>   -->
+      <div class="row">
+          <div class="col-xs-12">
+          <h1>Product</h1>
+          <table class="table table-bordered sortable" id="productTable">
+            <thead>
+              <tr>
+                <th>Toggle</th>
+                <th>No.</th>
+                <th>Serial Number</th>
+                <th>Product Name</th>
+                <th>Shipment Date</th>
+                <th>Status</th>
+                <th>Printer Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $i=1 ?>
+              <?php foreach ($products as $product): ?>
+                <tr class="clickable" data-toggle="collapse" id="row<?php echo $i ?>" data-target=".row<?php echo $i ?>">
+                  <td><i class="glyphicon glyphicon-plus"></i></td>
+                  <td><?php echo $i ?></td>
+                  <td><?php echo $product->serial_number ?></td>
+                  <td><?php echo $product->product_name ?></td>
+                  <td><?php echo $product->shipment_date ?></td>
+                  <td><?php echo $product->status ?></td>
+                  <td><img src="<?php echo base_url().$product->image_name ?>" alt=""></td>
+                </tr>
+  
+                  <?php foreach ($childs as $key => $value): ?>
+                    <?php if($product->serial_number == $key): ?>
+                      <tr class="collapse row<?php echo $i ?>">
+                        <th>Article Number</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                        <th>Service Date</th>
+                        <th>Installation Date</th>
+                        <th>Part Image</th>
+                      </tr>
+                       <?php foreach ($value as $row):?>
+                          <tr class="collapse row<?php echo $i ?>">
+                            <td><?php echo $row->article_number ?></td>  
+                            <td><?php echo $row->description ?></td>
+                            <td><?php echo $row->type ?></td>
+                            <td><?php echo $row->service_date ?></td>
+                            <td><?php echo $row->date_install ?></td>
+                            <td><img src="<?php echo base_url().$row->image_name ?>" alt=""></td>
                           </tr>
-                        <?php $i++ ?>
-                        <?php endforeach ?>
-                        
-                      </tbody>
-                    </table>
-                    <!-- <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a> -->
-                </div>
-            </div>
+                       <?php endforeach; ?>
+
+
+                    <?php endif; ?>
+                  <?php endforeach ?>
+              <?php $i++ ?>
+              <?php endforeach ?>
+              
+            </tbody>
+          </table>
+          <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a>
           </div>
-          
-        </div>
+          </div>
+          </div>
+          </div>
 
          <div id="history" class="tab-pane">
             <br>

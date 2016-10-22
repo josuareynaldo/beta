@@ -84,7 +84,7 @@ class Product extends CI_Controller
 					$diff = abs(strtotime($currDate) - strtotime($productDate));
 					$years = floor($diff / (365*60*60*24));
 					if($years<2){
-							$status="Warraty";
+							$status="Warranty";
 					}
 					else{
 							$status="Warranty Expired";

@@ -8,7 +8,23 @@
 		public function index(){
 			$data['users'] = $this->user_model->get_data('users');
 			$data['products'] = $this->user_model->get_data('products');
+			$childs = array();
+			foreach ($data['products'] as $product) {
+				$articles = $this->user_model->get_products($product->serial_number);
+				$childs[$product->serial_number] = array();
+				foreach ($articles as $article) {
 
+					if(array_key_exists($article->serial_number,$childs)){
+	        			array_push($childs[$article->serial_number],$article);
+	        		}else{
+	        			$childs[$article->serial_number] = $article;	
+	        		}
+					
+				}
+				
+			}
+
+			$data['childs'] = $childs;
 
 			$this->load->view('stakeholder',$data);
 		}	
