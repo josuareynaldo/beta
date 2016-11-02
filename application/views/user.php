@@ -169,10 +169,10 @@
                             <td><?php echo $form_service->serial_number ?></td>
                             <td><?php echo $form_service->status ?></td>
                             <td><?php echo $form_service->technician ?></td>
-                            <td><button type="<?php echo base_url('user/see_more/'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
+                            <td><button type="<?php echo base_url('user/see_more'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#hoi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#prs">See more</button></td>
-                            
+                            <input type="hidden" name="id" value="<?php echo $form_service->id ?>">
                             <!-- <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
                             <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
                             </td> -->
@@ -203,15 +203,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $i=1 ?>
-                    <?php foreach ($form_services as $form_service): ?>
+                  <!-- <?php $i=1 ?> -->
+                    <!-- <?php foreach ($form_services as $form_service): ?> -->
                   <tr>
                     <td><?php echo $form_service->printer ?></td>
                     <td><?php echo $form_service->date_install ?></td>
                     <td><?php echo $form_service->ink_number ?></td>
                     <td><?php echo $form_service->solvent_number ?></td> 
-                   <?php $i++ ?>
-                  <?php endforeach ?>
+                   <!-- <?php $i++ ?> -->
+                  <!-- <?php endforeach ?> -->
+
                   </tr>
                 </tbody>
               </table>
@@ -312,13 +313,16 @@
                       <th>Article No.</th>
                       <th>Date of Installation</th>
                       <th>Company</th>
-                      <th>Address</th>
+                      <!-- <th>Address</th>
                       <th>City</th>
                       <th>Zipcode</th>
                       <th>Contact</th>
                       <th>Telp</th>
                       <th>Fax</th>
-                      <th>Email</th>
+                      <th>Email</th> -->
+                      <th>Ink No.</th>
+                      <th>Solvent No.</th>
+                      <th>Action</th>
                        </tr>
                   </thead>
 
@@ -331,16 +335,18 @@
                         <td><?php echo $owner_form->article_number ?></td>
                         <td><?php echo $owner_form->date_install ?></td>
                         <td><?php echo $owner_form->company ?></td>
-                        <td><?php echo $owner_form->address ?></td>
+                        <td><?php echo $owner_form->ink_number ?></td>
+                        <td><?php echo $owner_form->solvent_number ?></td>
+<!--                         <td><?php echo $owner_form->address ?></td>
                         <td><?php echo $owner_form->city ?></td>
                         <td><?php echo $owner_form->zipcode ?></td>
                         <td><?php echo $owner_form->contact ?></td>
                         <td><?php echo $owner_form->telp ?></td>
                         <td><?php echo $owner_form->fax ?></td>
-                        <td><?php echo $owner_form->email ?></td>
+                        <td><?php echo $owner_form->email ?></td> -->
                         
-                       <!--  <td><a href="<?php echo base_url('user/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a> -->
+                        <td><a href="<?php echo base_url('user/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                       </tr>
                     <?php $i++ ?>
@@ -349,7 +355,7 @@
                   </tbody>
                 </table>
                 <br>
-                <br>
+                <!-- <br>
                   <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -387,7 +393,7 @@
                     <?php endforeach ?>
                     
                   </tbody>
-                </table>
+                </table> -->
                 <a href="<?php echo base_url('user/owner_form') ?>" class="btn btn-info">Owner Form</a>
       </div>
 
@@ -407,9 +413,11 @@
                       <th>Date Replace</th>
                       <th>Run Time</th>
                       <th>Description</th>
-                      <th>Distributor</th>
-                      <th>Technician</th>
+                      <!-- <th>Distributor</th> -->
+                      <!-- <th>Technician</th> -->
                       <th>Customer</th>
+                      <th>Date</th>
+                      <th>Action</th>
                        </tr>
                   </thead>
 
@@ -423,12 +431,13 @@
                         <td><?php echo $form_exchange->date_replace ?></td>
                         <td><?php echo $form_exchange->run_time ?></td>
                         <td><?php echo $form_exchange->description ?></td>
-                        <td><?php echo $form_exchange->distributor ?></td>
-                        <td><?php echo $form_exchange->technician ?></td>
+                        <!-- <td><?php echo $form_exchange->distributor ?></td> -->
+                        <!-- <td><?php echo $form_exchange->technician ?></td> -->
                         <td><?php echo $form_exchange->cust ?></td>
+                        <td><?php echo $form_exchange->date ?></td>
                         
-                       <!--  <td><a href="<?php echo base_url('user/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a> -->
+                        <td><a href="<?php echo base_url('user/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('user/save_exchange/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                       </tr>
                     <?php $i++ ?>
@@ -437,7 +446,7 @@
                   </tbody>
                 </table>
                 <br>
-                <br>
+                <!-- <br>
                   <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -475,7 +484,7 @@
                     <?php endforeach ?>
                     
                   </tbody>
-                </table>
+                </table> -->
                 <a href="<?php echo base_url('user/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
       </div>
 
