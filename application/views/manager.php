@@ -516,7 +516,7 @@
                         <td><?php echo $form_exchange->technician ?></td>
                         <td><?php echo $form_exchange->cust ?></td>
                         <td><?php echo $form_exchange->date ?></td> 
-                        <td><button type="<?php echo base_url('manager/btn_see'.$owner_forms->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#exc">See more</button></td>
+                        <td><button type="<?php echo base_url('manager/btn_see'.$form_exchanges->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#exc">See more</button></td>
                       </tr>
                     <?php $i++ ?>
                     <?php endforeach ?>
@@ -529,7 +529,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Customer Information</h4>
+                <h4 class="modal-title">Other Information</h4>
               </div>
             <div class="modal-body">
               <table class="table table-bordered">
@@ -575,7 +575,9 @@
       <a href="<?php echo base_url('manager/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
       </div>
 
-          <div id="history" class="tab-pane">
+
+
+    <div id="history" class="tab-pane">
             <br>
             <div class="container">
       <div class="row">

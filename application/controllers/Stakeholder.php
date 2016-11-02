@@ -93,6 +93,10 @@
 
 		}
 
+		public function btn_see($id){
+			$data['form_exchange'] = $this->form_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
+
+		}
 
 		public function form_replacement(){
 			$this->load->view('forms/form_replacements');
