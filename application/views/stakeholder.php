@@ -46,6 +46,16 @@
         <ul class="nav nav-pills">
           <li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>
           <li><a data-toggle="pill" href="#product_database">Product Database</a></li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="pill" href="#form_replace">Form Replacement</a></li>
+                    <li><a data-toggle="pill" href="#form_service">Form Service</a></li>
+                    <li><a data-toggle="pill" href="#owner_form">Owner Form</a></li>
+                    <li><a data-toggle="pill" href="#form_exchange">Form Exchange</a></li>
+                </ul>
+          </li>
           <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
          <div class="tab-content">
@@ -81,10 +91,6 @@
               
             </tbody>
           </table>
-
-          <a href="<?php echo base_url('stakeholder/register') ?>" class="btn btn-primary">User Register</a>
-          
-          <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> -->
           </div>
         <div id="product_database" class="tab-pane">
             <br>
@@ -146,47 +152,414 @@
               
             </tbody>
           </table>
-          <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a>
           </div>
           </div>
           </div>
           </div>
 
-         <div id="history" class="tab-pane">
-            <br>
-            <div class="container">
-      <div class="row">
-          <div class="col-xs-12">
-          <h1>History</h1>
-            <table class="table display table-bordered  sortable " id="userTable">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Description</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php $i=1 ?>
-                <?php foreach ($users as $user): ?>
+           <div id="form_replace" class="tab-pane">
+      <br>
+          <h1>Form Replacement</h1>
+        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Exchange ID</th>
+                      <th>Article No.</th>
+                      <th>Date Record</th>
+                      <th>Description</th>
+                      <th>Technician</th>
+                      <th>Serial No.</th>
+                      <th>Date Install</th>
+                      <th>Date Replace</th>
+                      <th>Problem Desc</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($form_replacements as $form_replacement): ?>
+                      <tr>
+                        <td><?php echo $i ?></td>
+                        <td><?php echo $form_replacement->exchange_id ?></td>
+                        <td><?php echo $form_replacement->article_number ?></td>
+                        <td><?php echo $form_replacement->date_record ?></td>
+                        <td><?php echo $form_replacement->description ?></td>
+                        <td><?php echo $form_replacement->technician ?></td>
+                        <td><?php echo $form_replacement->serial_number ?></td>
+                        <td><?php echo $form_replacement->date_install ?></td>
+                        <td><?php echo $form_replacement->date_replace ?></td>
+                        <td><?php echo $form_replacement->problem ?></td>
+                        
+                        </td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+      </div>
+
+      <div id="form_service" class="tab-pane">
+      <br>
+          <h1>Form Service</h1>
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Date Service</th>
+                      <th>Serial No.</th>
+                      <th>Status</th>
+                      <th>Technician</th>
+                      <th>Printer of Information</th>
+                      <th>Hydraulic of Information</th>
+                      <th>Problem</th>
+                    </tr>
+                  </thead>
+                     <tbody>
+                        <?php $i=1 ?>
+                        <?php foreach ($form_services as $form_service): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $form_service->date_service ?></td>
+                            <td><?php echo $form_service->serial_number ?></td>
+                            <td><?php echo $form_service->status ?></td>
+                            <td><?php echo $form_service->technician ?></td>
+                            <td><button type="<?php echo base_url('stakeholder/see_more'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#hoi">See more</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#prs">See more</button></td>
+                            <input type="hidden" name="id" value="<?php echo $form_service->id ?>">
+                           
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
+      </div>
+
+      <div id="poi" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Printer of Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
                   <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><?php echo $user->name ?></td>
-                    <td><?php echo $user->position ?></td>
-                    <td><?php echo $user->position ?></td>
-                    <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                    <th>Printer</th>
+                    <th>Date Install</th>
+                    <th>Ink No.</th>
+                    <th>Solvent No.</th>
                   </tr>
-                <?php $i++; ?>
-                <?php endforeach; ?>
-                
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <!-- <?php $i=1 ?> -->
+                    <!-- <?php foreach ($form_services as $form_service): ?> -->
+                  <tr>
+                    <td><?php echo $form_service->printer ?></td>
+                    <td><?php echo $form_service->date_install ?></td>
+                    <td><?php echo $form_service->ink_number ?></td>
+                    <td><?php echo $form_service->solvent_number ?></td> 
+                   <!-- <?php $i++ ?> -->
+                  <!-- <?php endforeach ?> -->
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div id="hoi" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Hydraulic of Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Visco Act</th>
+                    <th>Pres. Act</th>
+                    <th>Mb. Value</th>
+                    <th>TMP</th>
+                    <th>BO. Cur</th>
+                    <th>BO. Ref</th>
+                    <th>Date LS</th>
+                    <th>Hour LS</th>
+                    <th>Total Hour</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($form_services as $form_service): ?>
+                          <tr>
+                            <td><?php echo $form_service->visco_act ?></td>
+                            <td><?php echo $form_service->pres_act ?></td>
+                            <td><?php echo $form_service->mb_value ?></td>
+                            <td><?php echo $form_service->tmp ?></td>
+                            <td><?php echo $form_service->bo_cur ?></td>
+                            <td><?php echo $form_service->bo_ref ?></td>
+                            <td><?php echo $form_service->date_ls ?></td>
+                            <td><?php echo $form_service->hour_ls ?></td>
+                            <td><?php echo $form_service->total_hour ?></td>
+                          </tr>
+                    <?php $i++ ?>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </div>
+      </div>      
+
+      <div id="prs" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Hydraulic of Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Problem Description</th>
+                    <th>Replace Part</th>
+                    <th>Service Work</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($form_services as $form_service): ?>
+                          <tr>
+                            <td><?php echo $form_service->problem ?></td>
+                            <td><?php echo $form_service->replace_part ?></td>
+                            <td><?php echo $form_service->service_work ?></td>
+                    <?php $i++ ?>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </div>
+      </div>   
+
+ <div id="owner_form" class="tab-pane">
+      <br>
+          <h1>Owner Form</h1>
+        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Serial No.</th>
+                      <th>Article No.</th>
+                      <th>Date of Installation</th>
+                      <th>Industry</th>
+                      <th>Material</th>
+                      <th>Description</th>
+                      <th>Ink No.</th>
+                      <th>Solvent No.</th>
+                      <th>Distributor</th>
+                      <th>Date</th>
+                      <th>Customer</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                   <?php $i=1 ?>
+                    <?php foreach ($owner_forms as $owner_form): ?>
+                      <tr>
+                        <td><?php echo  $i ?></td>
+                        <td><?php echo $owner_form->serial_number ?></td>
+                        <td><?php echo $owner_form->article_number ?></td>
+                        <td><?php echo $owner_form->date_install ?></td>
+                        <td><?php echo $owner_form->industry ?></td>
+                        <td><?php echo $owner_form->material ?></td>
+                        <td><?php echo $owner_form->description ?></td>
+                        <td><?php echo $owner_form->ink_number ?></td>
+                        <td><?php echo $owner_form->solvent_number ?></td>
+                        <td><?php echo $owner_form->distributor ?></td>
+                        <td><?php echo $owner_form->date ?></td>
+                        <td><button type="<?php echo base_url('stakeholder/button_see'.$owner_forms->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#owner">See more</button></td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+                <br>
+                <br>
+
+        <div id="owner" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Customer Information</h4>
+              </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                     <th>Company</th>
+                      <th>Address</th>
+                      <th>City</th>
+                      <th>Zipcode</th>
+                      <th>Contact</th>
+                      <th>Telp</th>
+                      <th>Fax</th>
+                      <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($owner_forms as $owner_form): ?>
+                  <tr>
+                        <td><?php echo $owner_form->company ?></td>
+                        <td><?php echo $owner_form->address ?></td>
+                        <td><?php echo $owner_form->city ?></td>
+                        <td><?php echo $owner_form->zipcode ?></td>
+                        <td><?php echo $owner_form->contact ?></td>
+                        <td><?php echo $owner_form->telp ?></td>
+                        <td><?php echo $owner_form->fax ?></td>
+                        <td><?php echo $owner_form->email ?></td> 
+                        </tr>
+                  <?php $i++ ?>
+                  <?php endforeach ?>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+        </div>
+      </div>
+      </div>
+
+
+
+      <div id="form_exchange" class="tab-pane">
+      <br>
+          <h1>Form Exchange</h1>
+        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Article No.</th>
+                      <th>Serial No.</th>
+                      <th>Date Replace</th>
+                      <th>Run Time</th>
+                      <th>Description</th>
+                      <th>Distributor</th>
+                      <th>Technician</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                       </tr>
+                  </thead>
+
+                  <tbody>
+                   <?php $i=1 ?>
+                    <?php foreach ($form_exchanges as $form_exchange): ?>
+                      <tr>
+                        <td><?php echo $i ?></td>
+                        <td><?php echo $form_exchange->article_number ?></td>
+                        <td><?php echo $form_exchange->serial_number ?></td>
+                        <td><?php echo $form_exchange->date_replace ?></td>
+                        <td><?php echo $form_exchange->run_time ?></td>
+                        <td><?php echo $form_exchange->description ?></td>
+                        <td><?php echo $form_exchange->distributor ?></td> 
+                        <td><?php echo $form_exchange->technician ?></td>
+                        <td><?php echo $form_exchange->cust ?></td>
+                        <td><?php echo $form_exchange->date ?></td> 
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+                <br>
+                <br>
+                  <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th><a data-toggle="tooltip" title="Part of Stock ?">Part of Stock</a></th>
+                      <th><a data-toggle="tooltip" title="Dismantled from a printer ?">Dismantled</a></th>
+                      <th>Desc of Fault</th>
+                      <th>Condition</th>
+                      <th><a data-toggle="tooltip" title="Scrapping permitted if repair cost wouldn't be economic(otherwise redelivery unfree)">Scrapping</a></th>
+                      <th><a data-toggle="tooltip" title="If No warranty / exchange part => herewith new order for this part">Warranty / Exch Part</a></th>
+                      <th>Contact</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($form_exchanges as $form_exchange): ?>
+                      <tr>
+                       <td><?php echo $i ?></td>
+                        <td><?php echo $form_exchange->stock ?></td>
+                        <td><?php echo $form_exchange->dismantled ?></td>
+                        <td><?php echo $form_exchange->descr ?></td>
+                        <td><?php echo $form_exchange->cond ?></td>
+                        <td><?php echo $form_exchange->scrapping ?></td>
+                        <td><?php echo $form_exchange->warranty ?></td>
+                        <td><?php echo $form_exchange->contact ?></td>
+                        <td><?php echo $form_exchange->date ?></td>
+                        </td>
+                      </tr>
+                    <?php $i++ ?>
+                    <?php endforeach ?>
+                    
+                  </tbody>
+                </table>
+      </div>
+
+
+    <div id="history" class="tab-pane">
+      <br>
+      <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+              <h1>History</h1>
+                <table class="table display table-bordered  sortable " id="userTable">
+                 <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Position</th>
+                      <th>Description</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($users as $user): ?>
+                      <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $user->name ?></td>
+                        <td><?php echo $user->position ?></td>
+                        <td><?php echo $user->position ?></td>
+                        <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                      </tr>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>   
+            </div>
+          </div>
+        </div>
+      </div>
+
           <script type="text/javascript" charset="utf-8">
                     $(document).ready(function() {
                      $('table.display').DataTable();

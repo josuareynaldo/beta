@@ -23,7 +23,7 @@
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
     <script src="<?php echo base_url() ?>js/search.js"></script>
-
+    <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>js/datatable.js"></script>
 
   </head>
