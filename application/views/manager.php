@@ -542,7 +542,6 @@
                       <th><a data-toggle="tooltip" title="Scrapping permitted if repair cost wouldn't be economic(otherwise redelivery unfree)">Scrapping</a></th>
                       <th><a data-toggle="tooltip" title="If No warranty / exchange part => herewith new order for this part">Warranty / Exch Part</a></th>
                       <th>Contact</th>
-                      <th>Date</th>
                         <th>Action</th>
                   </tr>
                 </thead>
@@ -557,7 +556,6 @@
                         <td><?php echo $form_exchange->scrapping ?></td>
                         <td><?php echo $form_exchange->warranty ?></td>
                         <td><?php echo $form_exchange->contact ?></td>
-                        <td><?php echo $form_exchange->date ?></td>
                         <td><a href="<?php echo base_url('manager/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
                         <a href="<?php echo base_url('manager/save_exchange/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
                         </td>
