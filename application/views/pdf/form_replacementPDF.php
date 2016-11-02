@@ -28,7 +28,7 @@
       </div>
 
       <div class="headerr">
-        <h4 style="color: black; font-family: calibri;">DATA REPLACEMENT PART INK JET LEIBRINGER</h4>
+        <h4 style="color: black; font-family: calibri; text-align: center">DATA REPLACEMENT PART INK JET LEIBRINGER</h4>
         <hr style="border-style: solid;">
       </div>
 
@@ -41,7 +41,7 @@
           <div class="col-xs-6">
           Serial No. : <?php echo $form_replacement->serial_number ?><br><br>
 
-            <table style="width:300px; text-align: left;">
+            <table style="width:100%; text-align: left;">
               <tr>
               <th> 
                 Exchange ID : <?php echo $form_replacement->exchange_id ?><br>
@@ -49,11 +49,11 @@
                 Technician : <?php echo $form_replacement->technician ?><br>
                 Date Install : <?php echo $form_replacement->date_install ?><br>
               </th>
-              </tr>
+             <!--  </tr>
               </table>
 
-               <table style="width:300px; float: right;">
-               <tr>
+               <table style="width:300px; text-align: right">
+               <tr> -->
               <th>
                 Article No : <?php echo $form_replacement->article_number ?><br>
                 Description : <?php echo $form_replacement->description ?><br>
@@ -66,7 +66,7 @@
 
           <div class="col-xs-6">
             <h4>Description of Problem</h4> 
-            <div style="width:350px;height:100px;border:2px solid #000;"><?php echo $form_replacement->problem ?></div>
+            <div style="width:300px;height:120px;border:2px solid #000;"><?php echo $form_replacement->problem ?></div>
           </div>
             </div>
 
@@ -75,36 +75,34 @@
           <div class="row">
             <div class="col-xs-6">
 
-            <table style="width:60%; text-align: left;">
+            <table style="width:100%; text-align: left;">
               <tr>
               <th> 
-                Exchange ID <br>
-                Date Record <br>
-                Technician <br>
-                Date Install <br>
+                Exchange ID : <?php echo $form_replacement->exchange_id ?><br>
+                Date Record : <?php echo $form_replacement->date_record ?> <br>
+                Technician : <?php echo $form_replacement->technician ?><br>
+                Date Install : <?php echo $form_replacement->date_install ?><br>
               </th>
               <th>
-                Article No <br>
-                Description <br>
-                Serial No. <br>
-                Date Replace <br>
+                Article No : <?php echo $form_replacement->article_number ?><br>
+                Description : <?php echo $form_replacement->description ?><br>
+                Serial No. : <?php echo $form_replacement->serial_number ?><br>
+                Date Replace : <?php echo $form_replacement->date_replace ?><br>
               </th>
             </tr>
             </table>
           </div>
           <div class="col-xs-6">
             <h4>Description of Problem</h4> 
-            <div style="width:350px;height:100px;border:2px solid #000;"></div>
+            <div style="width:300px;height:120px;border:2px solid #000;"><?php echo $form_replacement->problem ?></div>
           </div>
       </div>
 
-      
-
-      <div class="hal" style="margin-top: 160px;">
+      <div class="hal" style="margin-top: 40px;">
       <hr style="border-style: solid">
-          <h6 style="text-align: right">Halaman</h6>
-          <div class="hal_kiri" style="text-align: left;float: left">
-            <h6>Tanggal Cetak : </h6>
+          <h6 style="float: right">Halaman <?php echo $form_replacement->id ?></h6>
+          <div class="hal_kiri" style="float: left">
+            <h6>Tanggal Cetak : <?php echo $form_replacement->date_replace ?></h6>
           </div>
       </div>
       
