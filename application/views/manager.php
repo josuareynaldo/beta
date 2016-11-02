@@ -498,6 +498,7 @@
                       <th>Technician</th>
                       <th>Customer</th>
                       <th>Date</th>
+                      <th>Other</th>
                        </tr>
                   </thead>
 
@@ -515,19 +516,26 @@
                         <td><?php echo $form_exchange->technician ?></td>
                         <td><?php echo $form_exchange->cust ?></td>
                         <td><?php echo $form_exchange->date ?></td> 
+                        <td><button type="<?php echo base_url('manager/btn_see'.$owner_forms->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#exc">See more</button></td>
                       </tr>
                     <?php $i++ ?>
                     <?php endforeach ?>
                     
                   </tbody>
                 </table>
-                <br>
-                <br>
-                  <table class="table display table-bordered sortable" id="formTable">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th><a data-toggle="tooltip" title="Part of Stock ?">Part of Stock</a></th>
+
+                  <div id="exc" class="modal fade" role="dialog">
+          <div class="modal-dialog" style="width: 1000px;">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Customer Information</h4>
+              </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                     <th><a data-toggle="tooltip" title="Part of Stock ?">Part of Stock</a></th>
                       <th><a data-toggle="tooltip" title="Dismantled from a printer ?">Dismantled</a></th>
                       <th>Desc of Fault</th>
                       <th>Condition</th>
@@ -536,13 +544,12 @@
                       <th>Contact</th>
                       <th>Date</th>
                         <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i=1 ?>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
                     <?php foreach ($form_exchanges as $form_exchange): ?>
                       <tr>
-                       <td><?php echo $i ?></td>
                         <td><?php echo $form_exchange->stock ?></td>
                         <td><?php echo $form_exchange->dismantled ?></td>
                         <td><?php echo $form_exchange->descr ?></td>
@@ -551,17 +558,23 @@
                         <td><?php echo $form_exchange->warranty ?></td>
                         <td><?php echo $form_exchange->contact ?></td>
                         <td><?php echo $form_exchange->date ?></td>
-                      <td><a href="<?php echo base_url('manager/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
+                        <td><a href="<?php echo base_url('manager/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
                         <a href="<?php echo base_url('manager/save_exchange/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                         </td>
                       </tr>
                     <?php $i++ ?>
                     <?php endforeach ?>
-                    
-                  </tbody>
-                </table>
-                <a href="<?php echo base_url('manager/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+      <a href="<?php echo base_url('manager/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
       </div>
 
           <div id="history" class="tab-pane">
