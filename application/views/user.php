@@ -203,13 +203,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($form_services as $form_service): ?>
+                  <?php $i=1 ?>
+                    <?php foreach ($form_services as $form_service): ?>
                   <tr>
                     <td><?php echo $form_service->printer ?></td>
                     <td><?php echo $form_service->date_install ?></td>
                     <td><?php echo $form_service->ink_number ?></td>
                     <td><?php echo $form_service->solvent_number ?></td> 
-                  <?php endforeach ?> 
+                   <?php $i++ ?>
+                  <?php endforeach ?>
                   </tr>
                 </tbody>
               </table>
