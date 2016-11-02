@@ -9,6 +9,10 @@
 			$data['users'] = $this->user_model->get_data('users');
 			$data['products'] = $this->user_model->get_data('products');
 			$data['articles'] = $this->user_model->get_data('articles');
+			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
+			 $data['form_services'] = $this->form_model->get_data('form_services');
+			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');
+			 $data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
 			$childs = array();
 			foreach ($data['products'] as $product) {
 				$articles = $this->user_model->get_products($product->serial_number);
@@ -58,6 +62,16 @@
 		public function edit($id){
 			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
 			$this->load->view('edit_user',$data);
+		}
+
+		public function see_more($id){
+			$data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
+
+		}
+
+		public function button_see($id){
+			$data['owner_form'] = $this->form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
+
 		}
 
 		public function update(){

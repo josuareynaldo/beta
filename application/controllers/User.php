@@ -24,6 +24,11 @@
 
 		}
 
+		public function button_see($id){
+			$data['owner_form'] = $this->form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
+
+		}
+
 		public function update(){
 			if($this->input->post('update')){
 				$data= array(
