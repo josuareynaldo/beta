@@ -8,7 +8,7 @@
     <title>Form Replacement</title>
 
     <!-- Bootstrap -->
-    <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -100,9 +100,9 @@
 
       <div class="hal" style="margin-top: 40px;">
       <hr style="border-style: solid">
-          <h6 style="float: right">Halaman <?php echo $form_replacement->id ?></h6>
+          <h5 style="float: right">Halaman <?php echo $form_replacement->id ?></h5>
           <div class="hal_kiri" style="float: left">
-            <h6>Tanggal Cetak : <?php echo $form_replacement->date_replace ?></h6>
+            <h5>Tanggal Cetak : <?php echo $form_replacement->date_replace ?></h5>
           </div>
       </div>
       
