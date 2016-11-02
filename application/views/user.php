@@ -349,8 +349,6 @@
                     
                   </tbody>
                 </table>
-                <br>
-                <br>
 
         <div id="own" class="modal fade" role="dialog">
           <div class="modal-dialog">

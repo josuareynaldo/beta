@@ -431,8 +431,6 @@
                     
                   </tbody>
                 </table>
-                <br>
-                <br>
 
         <div id="own" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -453,7 +451,6 @@
                       <th>Telp</th>
                       <th>Fax</th>
                       <th>Email</th>
-
                   </tr>
                 </thead>
                 <tbody>
@@ -467,8 +464,7 @@
                         <td><?php echo $owner_form->contact ?></td>
                         <td><?php echo $owner_form->telp ?></td>
                         <td><?php echo $owner_form->fax ?></td>
-                        <td><?php echo $owner_form->email ?></td> 
-                        
+                        <td><?php echo $owner_form->email ?></td>        
                   <?php $i++ ?>
                   <?php endforeach ?>
 
