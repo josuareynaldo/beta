@@ -196,8 +196,10 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>No. </th>
                     <th>Printer</th>
                     <th>Date Install</th>
+                    <th>Year Model</th>
                     <th>Ink No.</th>
                     <th>Solvent No.</th>
                   </tr>
@@ -206,8 +208,10 @@
                   <?php $i=1 ?>
                   <?php foreach ($form_services as $form_service): ?> 
                   <tr>
+                    <td><?php echo $i ?></td>
                     <td><?php echo $form_service->printer ?></td>
                     <td><?php echo $form_service->date_install ?></td>
+                    <td><?php echo $form_service->year_model ?></td>
                     <td><?php echo $form_service->ink_number ?></td>
                     <td><?php echo $form_service->solvent_number ?></td> 
                     <?php $i++ ?>
@@ -232,6 +236,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>No. </th>
                     <th>Visco Act</th>
                     <th>Pres. Act</th>
                     <th>Mb. Value</th>
@@ -247,6 +252,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($form_services as $form_service): ?>
                           <tr>
+                            <td><?php echo $i ?></td>
                             <td><?php echo $form_service->visco_act ?></td>
                             <td><?php echo $form_service->pres_act ?></td>
                             <td><?php echo $form_service->mb_value ?></td>
@@ -277,6 +283,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>No.</th>
                     <th>Problem Description</th>
                     <th>Replace Part</th>
                     <th>Service Work</th>
@@ -287,6 +294,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($form_services as $form_service): ?>
                           <tr>
+                            <td><?php echo $i ?></td>
                             <td><?php echo $form_service->problem ?></td>
                             <td><?php echo $form_service->replace_part ?></td>
                             <td><?php echo $form_service->service_work ?></td>
@@ -351,7 +359,7 @@
                 </table>
 
         <div id="see" class="modal fade" role="dialog">
-          <div class="modal-dialog">
+          <div class="modal-dialog" style="width: 800px;">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -361,7 +369,8 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                     <th>Company</th>
+                      <th>No.</th>
+                      <th>Company</th>
                       <th>Address</th>
                       <th>City</th>
                       <th>Zipcode</th>
@@ -375,6 +384,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($owner_forms as $owner_form): ?>
                   <tr>
+                        <td><?php echo $i ?></td>
                         <td><?php echo $owner_form->company ?></td>
                         <td><?php echo $owner_form->address ?></td>
                         <td><?php echo $owner_form->city ?></td>
@@ -452,6 +462,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                     <th>No.</th>
                      <th><a data-toggle="tooltip" title="Part of Stock ?">Part of Stock</a></th>
                       <th><a data-toggle="tooltip" title="Dismantled from a printer ?">Dismantled</a></th>
                       <th>Desc of Fault</th>
@@ -466,6 +477,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($form_exchanges as $form_exchange): ?>
                       <tr>
+                         <td><?php echo $i ?></td>
                         <td><?php echo $form_exchange->stock ?></td>
                         <td><?php echo $form_exchange->dismantled ?></td>
                         <td><?php echo $form_exchange->descr ?></td>

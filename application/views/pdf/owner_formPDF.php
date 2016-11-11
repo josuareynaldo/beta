@@ -8,8 +8,11 @@
     <title>Owner Form</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -17,62 +20,82 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>		
- <td><?php echo $i ?></td>
-                        <td><?php echo $owner_form->industry ?></td>
-                        <td><?php echo $owner_form->material ?></td>
-                        <td><?php echo $owner_form->description ?></td>
-                        <td><?php echo $owner_form->ink_number ?></td>
-                        <td><?php echo $owner_form->solvent_number ?></td>
-                        <td><?php echo $owner_form->distributor ?></td>
-                        <td><?php echo $owner_form->cust ?></td>
-                        <td><?php echo $owner_form->date ?></td>
+  <body>    
+      <div class="container">
+
+      <div class="logo">
+        <img src="image/dhass/image002.png" style="margin-left: 10px;width: 200px;height: 100px">
+      </div>
+
+      <!-- <div class="headerr">
+        <h4 style="color: black; font-family: calibri; text-align: center">DATA REPLACEMENT PART INK JET LEIBRINGER</h4>
+        <hr style="border-style: solid;">
+      </div> -->
 
 
+      <div style="text-decoration: underline; font-weight: bold; font-family: calibri;text-align: center">Owner Registration Form</div><br>
+      <div style="font-family: calibri; text-align: center">(return by fax, mail or E-mail)</div>
 
-    
-  				<img src="<?php echo base_url ?>/image/logo-web.png" alt="Mountain View" style="text-align:center">
-    			<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p style="text-align: center;"><strong>Product Service Form </strong></p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>Serial No.	: <?php echo $form_service->serial_number ?><p>
-                <p>Article No. 	:<?php echo $form_service->article_number ?><p>
-                <p>Date Install :<?php echo $form_service->date_install ?><p>
-                <p>Company		:<?php echo $form_service->company ?><p>
-                <p>Address	    :<?php echo $form_service->address ?><p>
-                <p>City		    :<?php echo $form_service->city ?><p>
-                <p>Zipcode      :<?php echo $form_service->zipcode ?><p>
-                <p>Contact      :<?php echo $form_service->contact ?><p>
-                <p>Telp         :<?php echo $form_service->telp ?><p>
-                <p>Fax          :<?php echo $form_service->fax ?><p>
-                <p>Email        :<?php echo $form_service->email ?><p>
-                <p>Industry     :<?php echo $form_service->industry ?><p>
-                <p>Material     :<?php echo $form_service->material ?><p>
-                <p>Description  :<?php echo $form_service->description ?><p>
-                <p>Ink No. 		:<?php echo $form_service->ink_number ?><p>
-                <p>Solvent No. 	:<?php echo $form_service->solvent_number ?><p>
-                <p>Distributor  :<?php echo $form_service->distributor ?><p>
-                <p>Customer	    :<?php echo $form_service->cust ?><p>
-                <p>Date	        :<?php echo $form_service->date ?><p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-				<p>Jakarta, 30 Februari 2020</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+      <br>
+      <br>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <div class="row">
+        <div class="col-xs-6">
+              Serial No. : <?php echo $owner_form->serial_number ?><br>
+              Article No. : <?php echo $owner_form->article_number ?><br>
+              Date of Installation : <?php echo $owner_form->date_install ?><br><br>
+
+              <!--   <table style="width:50%;">
+                  <tr>
+                  <th>  -->
+                  <div style="font-family: calibri; text-decoration: underline;">Customer/end user information</div>
+                    Company : <?php echo $owner_form->company ?><br>
+                    Address : <?php echo $owner_form->address ?> <br>
+                    City : <?php echo $owner_form->city ?><br>
+                    Zipcode : <?php echo $owner_form->zipcode ?><br>
+                    Contact : <?php echo $owner_form->contact ?><br>
+                    Telp : <?php echo $owner_form->telp ?> <br>
+                    Fax : <?php echo $owner_form->fax ?><br>
+                    Email : <?php echo $owner_form->email ?><br>
+                 <!--  </th>
+                  </tr>
+                </table> -->
+                <br>
+
+           <!--  <table style="width:100%; text-align: left;">
+              <tr>
+              <th>  -->
+              <h4 style="font-family: calibri;text-decoration: underline; font-weight: bold;">Industry</h4>
+                <div style="width:250px;height:100px;border:2px solid #000;"><?php echo $owner_form->industry ?></div>
+<!--               </th>
+              <th> -->
+               <h4 style="font-family: calibri;text-decoration: underline; font-weight: bold;">Material</h4>
+                <div style="width:250px;height:100px;border:2px solid #000;"><?php echo $owner_form->material ?></div>
+             <!--  </th>
+            </tr>
+            </table> -->
+                
+          </div>
+
+          <div class="col-xs-6">
+            <h4>Product Desc / Comments</h4> 
+            <div style="width:180px;height:80px;border:2px solid #000;"><?php echo $owner_form->description ?></div>
+          </div>
+     </div>
+
+          <br>
+          <br>
+
+      <div class="hal" style="margin-top: 40px;">
+      <hr style="border-style: solid">
+
+            <h5 style="float: right">Mail</h5>
+            <h5>PT. DHASS SUMBER TEKNIK</h5>
+            <h5>Rukan Mahkota Mas Blok K28/29</h5>
+            <h5>Tangerang 15117, Banten- Indonesia</h5>
+
+      </div>
+      
+      </div>       
   </body>
 </html>

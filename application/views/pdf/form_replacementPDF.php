@@ -100,6 +100,7 @@
 
       <div class="hal" style="margin-top: 40px;">
       <hr style="border-style: solid">
+
           <h5 style="float: right">Halaman <?php echo $form_replacement->id ?></h5>
           <div class="hal_kiri" style="float: left">
             <h5>Tanggal Cetak : <?php echo $form_replacement->date_replace ?></h5>

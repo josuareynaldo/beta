@@ -8,8 +8,12 @@
     <title>Form Service</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <link rel="stylesheet" href="<?php echo base_url() ?>css/service.css">
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -17,51 +21,134 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>		
-  				<img src="<?php echo base_url ?>/image/logo-web.png" alt="Mountain View" style="text-align:center">
-    			<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p style="text-align: center;"><strong>Product Service Form </strong></p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>Date Service	: <?php echo $form_service->date_service ?><p>
-                <p>Serial No. 	:<?php echo $form_service->serial_number ?><p>
-                <p>Printer		:<?php echo $form_service->printer ?><p>
-                <p>Year Model	:<?php echo $form_service->year_model ?><p>
-                <p>Date Install	:<?php echo $form_service->date_install ?><p>
-                <p>Status		:<?php echo $form_service->status ?><p>
-                <p>Ink No. 		:<?php echo $form_service->ink_number ?><p>
-                <p>Solvent No. 	:<?php echo $form_service->solvent_number ?><p>
-                <p>Technician	:<?php echo $form_service->technician ?><p>
-                <p>Visco Act	:<?php echo $form_service->visco_act ?><p>
-                <p>Pres. Act	:<?php echo $form_service->pres_act ?><p>
-                <p>Mb. Value	:<?php echo $form_service->mb_value ?><p>
-                <p>TMP			:<?php echo $form_service->tmp ?><p>
-                <p>BO. Cur		:<?php echo $form_service->bo_cur ?><p>
-                <p>BO. Ref		:<?php echo $form_service->bo_ref ?><p>
-                <p>Date LS		:<?php echo $form_service->date_ls ?><p>
-                <p>Hour LS		:<?php echo $form_service->hour_ls ?><p>
-                <p>Total Hour	:<?php echo $form_service->total_hour ?><p>
-                <p>Problem Description	:<?php echo $form_service->problem ?><p>
-                <p>Replace Part	:<?php echo $form_service->replace_part ?><p>
-                <p>Service Work :<?php echo $form_service->service_work ?><p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-				<p>Jakarta, 30 Februari 2020</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<?php echo $form_service->technician ?></p>
+  <body>    
+      <div class="container">
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+      <div class="logo">
+        <img src="image/logo-web.png" style="margin-left: 10px">
+      </div>
+
+      <div class="headerr">
+        <h3 style="color: black/*#F5F7FC*/; font-family: arial; text-align: center">Laporan Service Jet Printer Leibringer</h3>
+        <hr style="border-style: solid;">
+      </div>
+
+      <br>
+        <div class="row">
+          <div class="col-xs-6">
+          Serial No. : <?php echo $form_service->serial_number ?><br>
+
+         <!--  <div style="border: 2px solid #000;width: 520px;height: 280px"> -->
+            <table style="width:90%; text-align: right;">
+              <tr>
+              <th> 
+              <div style="text-decoration: underline; font-weight: bold;">Printer Information</div> <br><br>
+                Date Service : <?php echo $form_service->date_service ?><br>
+                Serial No. : <?php echo $form_service->serial_number ?> <br>
+                Printer : <?php echo $form_service->printer ?><br>
+                Year Model : <?php echo $form_service->year_model ?><br>
+                Date Install : <?php echo $form_service->date_install ?><br>
+                Status : <?php echo $form_service->status ?> <br>
+                Ink No. : <?php echo $form_service->ink_number ?><br>
+                Solvent No. : <?php echo $form_service->solvent_number ?><br>
+                Teknisi : <?php echo $form_service->technician ?><br>
+              </th>
+              <th>
+              <br>
+               <div style="text-decoration: underline; font-weight: bold;">Hydraulic Information</div> <br><br>
+                Visco Act : <?php echo $form_service->visco_act ?><br>
+                Pres. Act : <?php echo $form_service->pres_act ?> <br>
+                Printer : <?php echo $form_service->printer ?><br>
+                Mb. Value : <?php echo $form_service->mb_value ?><br>
+                TMP : <?php echo $form_service->tmp ?><br>
+                BO.Cur: <?php echo $form_service->bo_cur ?> <br>
+                BO.Ref : <?php echo $form_service->bo_ref ?><br>
+                Date LS : <?php echo $form_service->date_ls ?><br>
+                Hour LS : <?php echo $form_service->hour_ls ?><br>
+                Total Hour : <?php echo $form_service->total_hour ?><br>
+              </th>
+            </tr>
+            </table>
+          </div>
+          </div>
+
+
+          <div class="col-xs-6">
+            <h4>Description of Problem</h4> 
+            <div style="width:400px;height:120px;border:2px solid #000;"><?php echo $form_service->problem ?></div>
+          </div>
+   
+             <div class="col-xs-6">
+            <h4>Replace Part</h4> 
+            <div style="width:400px;height:120px;border:2px solid #000;"><?php echo $form_service->replace_part ?></div>
+          </div>
+
+             <div class="col-xs-6">
+            <h4>Service Work</h4> 
+            <div style="width:400px;height:120px;border:2px solid #000;"><?php echo $form_service->service_work ?></div>
+          </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+         <!--  <div style="border: 2px solid #000;width: 520px;height: 280px"> -->
+            <table style="width:90%; text-align: left;">
+              <tr>
+              <th> 
+              <div style="text-decoration: underline; font-weight: bold;">Printer Information</div> <br><br>
+                Date Service : <?php echo $form_service->date_service ?><br>
+                Serial No. : <?php echo $form_service->serial_number ?> <br>
+                Printer : <?php echo $form_service->printer ?><br>
+                Year Model : <?php echo $form_service->year_model ?><br>
+                Date Install : <?php echo $form_service->date_install ?><br>
+                Status : <?php echo $form_service->status ?> <br>
+                Ink No. : <?php echo $form_service->ink_number ?><br>
+                Solvent No. : <?php echo $form_service->solvent_number ?><br>
+                Teknisi : <?php echo $form_service->technician ?><br>
+              </th>
+              <th>
+              <br>
+               <div style="text-decoration: underline; font-weight: bold;">Hydraulic Information</div> <br><br>
+                Visco Act : <?php echo $form_service->visco_act ?><br>
+                Pres. Act : <?php echo $form_service->pres_act ?> <br>
+                Printer : <?php echo $form_service->printer ?><br>
+                Mb. Value : <?php echo $form_service->mb_value ?><br>
+                TMP : <?php echo $form_service->tmp ?><br>
+                BO.Cur: <?php echo $form_service->bo_cur ?> <br>
+                BO.Ref : <?php echo $form_service->bo_ref ?><br>
+                Date LS : <?php echo $form_service->date_ls ?><br>
+                Hour LS : <?php echo $form_service->hour_ls ?><br>
+                Total Hour : <?php echo $form_service->total_hour ?><br>
+              </th>
+            </tr>
+            </table>
+          </div>
+          </div>
+
+
+          <div class="col-xs-6">
+            <h4>Description of Problem</h4> 
+            <div style="width:400px;height:120px;border:2px solid #000;"><?php echo $form_service->problem ?></div>
+          </div>
+   
+             <div class="col-xs-6">
+            <h4>Replace Part</h4> 
+            <div style="width:400px;height:120px;border:2px solid #000;"><?php echo $form_service->problem ?></div>
+          </div>
+               <br>
+             <div class="col-xs-6">
+            <h4>Service Work</h4> 
+            <div style="width:400px;height:120px;border:2px solid #000;"><?php echo $form_service->problem ?></div>
+          </div>
+
+
+        <div class="hal" style="margin-top: 40px;">
+            <hr style="border-style: solid">
+                    <h5 style="float: right">Halaman <?php echo $form_service->id ?></h5>
+                <div class="hal_kiri" style="float: left">
+                    <h5>Tanggal Cetak : <?php echo $form_service->date_service ?></h5>
+                </div>
+      </div>
+
+    </div>
   </body>
 </html>
