@@ -587,21 +587,17 @@
               <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Description</th>
-                  <th>Action</th>
+                  <th>Time</th>
+                  <th>Report</th>
                 </tr>
               </thead>
               <tbody>
                 <?php $i=1 ?>
-                <?php foreach ($users as $user): ?>
+                <?php foreach ($histories as $history): ?>
                   <tr>
                     <td><?php echo $i; ?></td>
-                    <td><?php echo $user->name ?></td>
-                    <td><?php echo $user->position ?></td>
-                    <td><?php echo $user->position ?></td>
-                    <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                    <td><?php echo $history->Time ?></td>
+                    <td><?php echo $history->Report ?></td>
                   </tr>
                 <?php $i++; ?>
                 <?php endforeach; ?>

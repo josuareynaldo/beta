@@ -40,7 +40,7 @@ class Product extends CI_Controller
 	public function add_product(){
 			
 			if($this->input->post('register_product')){
-				 $config['upload_path']          = 'uploads/products/'.$this->input->post('serial_number');
+				$config['upload_path']          = 'uploads/products/'.$this->input->post('serial_number');
                 $config['allowed_types']        = 'gif|jpg|png';
                 // $config['max_size']             = 100;
                 // $config['max_width']            = 1024;
@@ -99,6 +99,11 @@ class Product extends CI_Controller
 					);
 
 					$this->user_model->insert_data('products',$data2);
+					$report=array(
+						'report'=> $this->session->userdata('name').' has inserted '.$this->input->post('product_name').' into product database'
+					);
+					
+					$this->user_model->insert_data('history',$report);
 					if($this->session->userdata('position')=="Manager"){
 						redirect('manager/index');
 					}
