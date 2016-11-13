@@ -9,6 +9,7 @@
 			$data['users'] = $this->user_model->get_data('users');
 			$data['products'] = $this->user_model->get_data('products');
 			$data['articles'] = $this->user_model->get_data('articles');
+			$data['accessories'] = $this->user_model->get_data('accessories');
 			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			 $data['form_services'] = $this->form_model->get_data('form_services');
 			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');
@@ -64,6 +65,11 @@
 			$this->load->view('edit_user',$data);
 		}
 
+		public function edit_acc($id){
+			$data['accessories'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
+			$this->load->view('edit_acc',$data);
+		}
+
 		public function see_more($id){
 			$data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
 
@@ -103,12 +109,15 @@
 		}
 
 
-		
 
 		public function deleteProduct($id){
 			$this->user_model->delete_data('products',array('id'=>$id));
 			redirect('manager/index');
 
+		}
+
+		public function accessories(){
+			$this->load->view('accessories');
 		}
 
 		public function form_replacement(){
@@ -127,6 +136,24 @@
 		public function form_exchange(){
 			$this->load->view('forms/form_exchanges');
 		}
+
+
+		public function add_accessories(){
+			if($this->input->post('save')){
+				$data= array(
+						'name' => $this->input->post('name'),
+						'serial_number' => $this->input->post('serial_number'),
+						'article_number' => $this->input->post('article_number'),
+						'parts' => $this->input->post('parts')
+					);
+				$this->form_model->insert_data('accessories',$data);
+				redirect('manager/index');
+
+			}else{
+				redirect('manager/accessories');
+			}
+		}
+
 
 		public function add_form_replacement(){
 			if($this->input->post('save')){
@@ -254,25 +281,30 @@
 		}
 
 
+		public function delete_acc($id){
+			$this->form_model->delete_data('accessories',array('id'=>$id));
+			redirect('manager/index');
+		}
+
 
 		public function delete_replacement($id){
 			$this->form_model->delete_data('form_replacements',array('id'=>$id));
-			redirect('user/index');
+			redirect('manager/index');
 		}
 
 		public function delete_service($id){
 			$this->form_model->delete_data('form_services',array('id'=>$id));
-			redirect('user/index');
+			redirect('manager/index');
 		}
 
 		public function delete_owner($id){
 			$this->form_model->delete_data('owner_forms',array('id'=>$id));
-			redirect('user/index');
+			redirect('manager/index');
 		}
 
 		public function delete_exchange($id){
 			$this->form_model->delete_data('form_exchanges',array('id'=>$id));
-			redirect('user/index');
+			redirect('manager/index');
 		}
 
 		public function save_replacement($id){

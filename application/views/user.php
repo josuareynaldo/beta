@@ -140,7 +140,7 @@
                     
                   </tbody>
                 </table>
-                <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
+               <!--  <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a> -->
       </div>
             
       <div id="form_service" class="tab-pane">
@@ -404,7 +404,7 @@
         </div>
       </div>
                 
-     <a href="<?php echo base_url('user/owner_form') ?>" class="btn btn-info">Owner Form</a>
+     <!-- <a href="<?php echo base_url('user/owner_form') ?>" class="btn btn-info">Owner Form</a> -->
       </div>
 
 
@@ -501,7 +501,7 @@
         </div>
       </div>
             
-      <a href="<?php echo base_url('user/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
+      <!-- <a href="<?php echo base_url('user/form_exchange') ?>" class="btn btn-info">Form Exchange</a> -->
       </div>
 
 

@@ -9,6 +9,7 @@
 			$data['users'] = $this->user_model->get_data('users');
 			$data['products'] = $this->user_model->get_data('products');
 			$data['articles'] = $this->user_model->get_data('articles');
+			$data['accessories'] = $this->user_model->get_data('accessories');
 			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			 $data['form_services'] = $this->form_model->get_data('form_services');
 			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');
@@ -114,6 +115,45 @@
 		public function form_exchange(){
 			$this->load->view('forms/form_exchanges');
 		}
+
+		public function add_form_service(){
+			if($this->input->post('save')){
+				$data= array(
+						'date_service' => $this->input->post('date_service'),
+						'serial_number' => $this->input->post('serial_number'),
+						'printer' => $this->input->post('printer'),
+						'date_install' => $this->input->post('date_install'),
+						'status' => $this->input->post('status'),
+						'ink_number' => $this->input->post('ink_number'),
+						'solvent_number' => $this->input->post('solvent_number'),
+						'technician' => $this->input->post('technician'),
+						'visco_act' => $this->input->post('visco_act'),
+						'pres_act' => $this->input->post('pres_act'),
+						'mb_value' => $this->input->post('mb_value'),
+						'tmp' => $this->input->post('tmp'),
+						'bo_cur' => $this->input->post('bo_cur'),
+						'bo_ref' => $this->input->post('bo_ref'),
+						'date_ls' => $this->input->post('date_ls'),
+						'hour_ls' => $this->input->post('hour_ls'),
+						'total_hour' => $this->input->post('total_hour'),
+						'problem' => $this->input->post('problem'),
+						'replace_part' => $this->input->post('replace_part'),
+						'service_work' => $this->input->post('service_work')
+
+					);
+				$this->form_model->insert_data('form_services',$data);
+				redirect('user/index');
+
+			}else{
+				redirect('user/form_service');
+			}
+		}
+
+		public function delete_service($id){
+			$this->form_model->delete_data('form_services',array('id'=>$id));
+			redirect('user/index');
+		}
+
 
 	}
 

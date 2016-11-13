@@ -48,6 +48,7 @@
         <ul class="nav nav-pills">
         	<li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>
         	<li><a data-toggle="pill" href="#product_database">Product Database</a></li>
+          <li><a data-toggle="pill" href="#accessories">Accessories</a></li>
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
                 <span class="caret"></span></a>
@@ -101,11 +102,11 @@
                    
 
                 <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">User Register</a>
-                <!-- <a href="<?php echo base_url('product/index') ?>" class="btn btn-info">Product</a> -->
         	</div>
           </div>
           </div>
           </div>
+
         	<div id="product_database" class="tab-pane">
         		<br>
         		 <div class="container">
@@ -177,6 +178,49 @@
           </div>
           </div>
           </div>
+
+          <div id="accessories" class="tab-pane">
+            <br>
+             <div class="container">
+             <div class="row">
+             <div class="col-xs-12">
+                <h1>Accessories</h1>
+               
+
+                <table class="table display table-bordered  sortable " id="accTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Serial No. </th>
+                      <th>Article No. </th>
+                      <th>Parts</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($accessories as $accessorie): ?>
+                      <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $accessorie->name ?></td>
+                        <td><?php echo $accessorie->serial_number ?></td>
+                        <td><?php echo $accessorie->article_number ?></td>
+                        <td><?php echo $accessorie->parts ?></td>
+                        <td><a href="<?php echo base_url('manager/delete_acc/'.$accessorie->id) ?>" class="btn btn-danger">Delete</a></td>  
+                      </tr>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
+                    
+                  </tbody>
+                </table> 
+                  <br>
+                <a href="<?php echo base_url('manager/accessories') ?>" class="btn btn-primary">Accessories Register</a>
+          </div>
+          </div>
+          </div>
+          </div>
+
 
            <div id="form_replace" class="tab-pane">
       <br>
