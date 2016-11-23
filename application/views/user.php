@@ -38,7 +38,7 @@
 
         <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
          <ul class="nav nav-pills">
-          <li class="active"><a data-toggle="pill" href="#edit">Employee</a></li>
+          <li class="active"><a data-toggle="pill" href="#edit">User</a></li>
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
                 <span class="caret"></span></a>
@@ -61,7 +61,7 @@
         <div class="tab-content">
           <div id="edit" class="tab-pane fade in active">
             <br>
-          <h1>User</h1>
+          <h1>Employee</h1>
         <table class="table display table-bordered sortable"  id="userTable">
               <thead>
                 <tr>

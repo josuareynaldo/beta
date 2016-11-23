@@ -29,8 +29,7 @@
         <div class="col-xs-4 text-center" >
           <h2>Form Exchange</h2>
         </div>
-        <div class="col-xs-4"></div>
-        
+        <div class="col-xs-4"></div>  
     </div>
       <div class="row">
         <div class="col-xs-4"></div>
@@ -116,24 +115,10 @@
             <div class="form-group">
               <input type="submit" name="save" value="Submit" class="btn btn-primary">
             </div>
-           <!--  <?php include 'checkbox.php';?> -->
-          </form>
-
-       
-
-        </div>
-        <div class="col-xs-4"></div>
-      </div>
-
-      
           </form>
         </div>
         <div class="col-xs-4"></div>
       </div>
-
     </div>
-
-
-    
   </body>
 </html>

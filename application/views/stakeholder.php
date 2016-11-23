@@ -39,13 +39,13 @@
         <h1>Mr. Stakeholder </h1>
 
          <div class="right" style="float: right;">
-           <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+           <a href="<?php echo base_url('stakeholder/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
 
         <ul class="nav nav-pills">
-          <li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>
-          <li><a data-toggle="pill" href="#product_database">Product Database</a></li>
+          <li class="active"><a data-toggle="pill" href="#user_database">User</a></li>
+          <li><a data-toggle="pill" href="#product_database">Product</a></li>
           <li><a data-toggle="pill" href="#accessories">Accessories</a></li>
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
@@ -85,7 +85,7 @@
                   <td><?php echo $user->email ?></td>
                   <td><?php echo $user->address ?></td>
                   <td><?php echo $user->position ?></td>
-                  <td><a href="<?php echo base_url('user/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                  <td><a href="<?php echo base_url('stakeholder/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('stakeholder/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
                 </tr>
               <?php $i++ ?>
               <?php endforeach ?>
@@ -601,7 +601,7 @@
                         <td><?php echo $user->name ?></td>
                         <td><?php echo $user->position ?></td>
                         <td><?php echo $user->position ?></td>
-                        <td><a href="<?php echo base_url('manager/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('manager/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                        <td><a href="<?php echo base_url('stakeholder/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('stakeholder/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
                       </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>

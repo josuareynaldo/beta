@@ -41,13 +41,13 @@
         <h1>Mr. Manager </h1>
 
         <div class="right" style="float: right;">
-           <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+           <a href="<?php echo base_url('manager/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
 
         <ul class="nav nav-pills">
-        	<li class="active"><a data-toggle="pill" href="#user_database">User Database</a></li>
-        	<li><a data-toggle="pill" href="#product_database">Product Database</a></li>
+        	<li class="active"><a data-toggle="pill" href="#user_database">User</a></li>
+        	<li><a data-toggle="pill" href="#product_database">Product</a></li>
           <li><a data-toggle="pill" href="#accessories">Accessories</a></li>
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
@@ -417,8 +417,8 @@
                             <td><?php echo $form_service->replace_part ?></td>
                             <td><?php echo $form_service->service_work ?></td>
                     <?php $i++ ?>
-                    <td><a href="<?php echo base_url('user/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('user/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
+                    <td><a href="<?php echo base_url('manager/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('manager/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
                   <?php endforeach ?>
                 </tbody>
               </table>
