@@ -24,7 +24,7 @@
       <div class="container">
 
       <div class="logo">
-        <img src="image/logo-web.png" style="margin-left: 10px">
+        <img src="image/logo-web.png" style="margin-left: 67px; height: 80px" >
       </div>
 
       <div class="headerr">
@@ -39,21 +39,21 @@
 
         <div class="row">
           <div class="col-xs-6">
-            Trial / Install No. : <?php echo $trial_req->trial_no ?><br><br>
-              <div>
+            Trial / Install No. : <?php echo $trial_req->trial_no ?><br>              
+            <div>
                     Date of Start Trial :  <?php echo $trial_req->date_start ?><br>
-                    Date of End Trial : <?php echo $trial_req->date_end ?> <br>
+                    Date of End Trial : <?php echo $trial_req->date_end ?>
 
-                <h3 style="text-align: center; ">CUSTOMER INFORMATION</h3>
+                <h4 style="text-align: left; margin-top: 3px; margin-bottom: 5px">CUSTOMER INFORMATION</h4>
 
                     Company : <?php echo $trial_req->company ?><br>
                     Street : <?php echo $trial_req->street ?><br>
                     Contact Person : <?php echo $trial_req->contact ?><br>
                     Phone / Fax / HP : <?php echo $trial_req->phone ?><br>
                     Email : <?php echo $trial_req->email ?><br>
-                    Business Field : <?php echo $trial_req->bus_field ?><br>
+                    Business Field : <?php echo $trial_req->bus_field ?>
 
-                    <h3 style="text-align: center; ">APPLICATION</h3>
+                    <h4 style="text-align: left; margin-top: 3px; margin-bottom: 5px">APPLICATION</h4>
 
                     Machine Type : <?php echo $trial_req->machine_type ?><br>
                     Ink Type : <?php echo $trial_req->ink_type ?><br>
@@ -63,19 +63,26 @@
                     Accessories Support : <?php echo $trial_req->acc_supp ?><br>
                     Sensor Type : <?php echo $trial_req->sensor_type ?><br>
                     Encoder : <?php echo $trial_req->encoder ?><br>
-                    Sales Note : <?php echo $trial_req->sales_note ?><br>
-                    Technical Note : <?php echo $trial_req->tech_note ?><br>
+                   
+
+                <div class="col-xs-6" style="margin-top: -10px">
+                    <h4>Sales Note</h4> 
+                    <div style="width:280px;height:100px;border:2px solid #000;"><?php echo $trial_req->sales_note ?></div>
+                </div>
+                   
+                <div class="col-xs-6" style="margin-top: -10px">
+                    <h4>Technical Note</h4> 
+                    <div style="width:280px;height:100px;border:2px solid #000;"><?php echo $trial_req->tech_note ?></div>
+                </div>
+
               </div>
           </div>
 
           <br>
           <br>
 
-      <div class="hal" style="margin-top: 40px;">
-      <hr style="border-style: solid">
-
-          <h5 style="float: right">Halaman <?php echo $trial_req->id ?></h5>
-          <div class="hal_kiri" style="float: left">
+      <div class="hal" style="margin-top: -10px;">
+          <div class="ttd" style="border: 2px solid #000; height: 80px">
             <h5>Tanggal Cetak : <?php echo date("y/m/d") ?></h5>
           </div>
       </div>
