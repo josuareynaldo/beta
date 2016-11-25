@@ -10,7 +10,7 @@
 			$data['products'] = $this->user_model->get_data('products');
 			$data['articles'] = $this->user_model->get_data('articles');
 // <<<<<<< HEAD
-			$data['accessories'] = $this->user_model->get_data('accessories');
+			//$data['accessories'] = $this->user_model->get_data('accessories');
 			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			 $data['form_services'] = $this->form_model->get_data('form_services');
 			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');

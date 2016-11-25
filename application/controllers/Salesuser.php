@@ -8,6 +8,7 @@
 		public function index(){
 			 $data['users'] = $this->user_model->get_data('users');
 			 $data['trial_reqs'] = $this->user_model->get_data('trial_reqs');
+			 $data['trial_results'] = $this->user_model->get_data('trial_results');
 			 $data['histories']= $this->user_model->get_data('history');
 			 // $data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			 // $data['form_services'] = $this->form_model->get_data('form_services');
@@ -57,9 +58,10 @@
 		 	$this->load->view('forms/trial_reqs');
 		 }
 
-		// public function form_service(){
-		// 	$this->load->view('forms/form_services');
-		// }
+		public function trial_result(){
+		 	$this->load->view('forms/trial_results');
+		 }
+
 
 
 
@@ -97,38 +99,50 @@
 			}
 		}
 
-		// public function add_form_service(){
-		// 	if($this->input->post('save')){
-		// 		$data= array(
-		// 				'date_service' => $this->input->post('date_service'),
-		// 				'serial_number' => $this->input->post('serial_number'),
-		// 				'printer' => $this->input->post('printer'),
-		// 				'date_install' => $this->input->post('date_install'),
-		// 				'status' => $this->input->post('status'),
-		// 				'ink_number' => $this->input->post('ink_number'),
-		// 				'solvent_number' => $this->input->post('solvent_number'),
-		// 				'technician' => $this->input->post('technician'),
-		// 				'visco_act' => $this->input->post('visco_act'),
-		// 				'pres_act' => $this->input->post('pres_act'),
-		// 				'mb_value' => $this->input->post('mb_value'),
-		// 				'tmp' => $this->input->post('tmp'),
-		// 				'bo_cur' => $this->input->post('bo_cur'),
-		// 				'bo_ref' => $this->input->post('bo_ref'),
-		// 				'date_ls' => $this->input->post('date_ls'),
-		// 				'hour_ls' => $this->input->post('hour_ls'),
-		// 				'total_hour' => $this->input->post('total_hour'),
-		// 				'problem' => $this->input->post('problem'),
-		// 				'replace_part' => $this->input->post('replace_part'),
-		// 				'service_work' => $this->input->post('service_work')
+		public function add_trial_result(){
+			if($this->input->post('save')){
+				$data= array(
+						'result_no' => $this->input->post('result_no'),
+						'company' => $this->input->post('company'),
+						'street' => $this->input->post('street'),
+						'contact' => $this->input->post('contact'),
+						'profession' => $this->input->post('profession'),
+						'phone' => $this->input->post('phone'),
+						'email' => $this->input->post('email'),
+						'bus_field' => $this->input->post('bus_field'),
+						'machine_type' => implode(', ',	$this->input->post('machine_type')),
+						'ink_type' => $this->input->post('ink_type'),
+						'solvent_type' => $this->input->post('solvent_type'),
+						'material' => implode(', ', $this->input->post('material')),
+						'printing_app' => implode(', ', $this->input->post('printing_app')),
+						'acc_supp' => implode(', ', $this->input->post('acc_supp')),
+						'sensor_type' => implode(', ', $this->input->post('sensor_type')),
+						'encoder' => implode(', ', $this->input->post('encoder')),
+						'print_char' => $this->input->post('print_char'),
+						'dots' => $this->input->post('dots'),
+						'counter_start' => $this->input->post('counter_start'),
+						'counter_end' => $this->input->post('counter_end'),
+						'total_counter' => $this->input->post('total_counter'),
+						'date_start' => $this->input->post('date_start'),
+						'date_end' => $this->input->post('date_end'),
+						'time_start' => $this->input->post('time_start'),
+						'time_end' => $this->input->post('time_end'),
+						'ink' => $this->input->post('ink'),
+						'solvent' => $this->input->post('solvent'),
+						'temperature' => $this->input->post('temperature'),
+						'humidity' => $this->input->post('humidity'),
+						'result' => $this->input->post('result'),
+						'customer' => $this->input->post('customer'),
 
-		// 			);
-		// 		$this->form_model->insert_data('form_services',$data);
-		// 		redirect('user/index');
 
-		// 	}else{
-		// 		redirect('user/form_service');
-		// 	}
-		// }
+					);
+				$this->form_model->insert_data('trial_results',$data);
+				redirect('salesuser/index');
+
+			}else{
+				redirect('salesuser/trial_result');
+			}
+		}
 
 
 
@@ -137,14 +151,15 @@
 			redirect('salesuser/index');
 		 }
 
-		// public function delete_service($id){
-		// 	$this->form_model->delete_data('form_services',array('id'=>$id));
-		// 	redirect('user/index');
-		// }
+		public function delete_trial_result($id){
+			$this->form_model->delete_data('trial_results',array('id'=>$id));
+			redirect('salesuser/index');
+		 }
+
 
 		
 
-		 public function save_trial_req($id){
+		public function save_trial_req($id){
 			 $data['trial_req'] = $this->form_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
 	  			//load the view and saved it into $html variable
 	         $html=$this->load->view('pdf/trial_reqPDF', $data, true);
@@ -160,22 +175,21 @@
 	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 	 	}
 
-		// public function save_service($id){
-		// $data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
-  //       //load the view and saved it into $html variable
-  //       $html=$this->load->view('pdf/form_servicePDF', $data, true);
- 
-  //       //this the the PDF filename that user will get to download
-  //       $pdfFilePath = "form_service.pdf";
- 
-  //       //load mPDF library
- 
-  //      //generate the PDF from the given html
-  //       $this->m_pdf->pdf->WriteHTML($html);
- 
-  //       //download it.
-  //       $this->m_pdf->pdf->Output($pdfFilePath, "D");        
-		// }
+		public function save_trial_result($id){
+			 $data['trial_result'] = $this->form_model->get_byCondition('trial_results',array('id'=>$id))->row();
+	  			//load the view and saved it into $html variable
+	         $html=$this->load->view('pdf/trial_resultPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "trial_req.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	         $this->m_pdf->pdf->WriteHTML($html);
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+	 	}
 
 	}
 
