@@ -32,20 +32,17 @@
         <div class="col-xs-4"></div>
         
     </div>
-    <pre>
-      <?php print_r($childs) ?>
-    </pre>
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
           <form action="<?php echo base_url('product/add_part') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="">Serial Number</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input Serial Number" value="<?php echo $serial_number ?>" readonly="readonly">
+              <label for="">Article Number</label>
+              <input class="form-control" type="text" name="article_number" value="<?php echo $article_number ?>" readonly="readonly">
             </div>
             <div class="form-group">
-              <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input article number" required="1" value="<?php echo $articles->article_number ?>" >
+              <label for="">Serial Number</label>
+              <input class="form-control" type="text" name="serial_number" placeholder="Input serial number" required="1" >
             </div>
            <div class="form-group">
               <label for="">Description</label>
@@ -68,7 +65,7 @@
               <input class="file" type="file" name="upload_image" required="1" autocomplete="off">
             </div>
             <div class="form-group">
-              <input type="hidden" name="id" value="<?php echo $articles->article_number ?>">
+              <input type="hidden" name="id" value="<?php echo $articles->serial_number ?>">
               <input type="submit" name="register_part" value="Register part" class="btn btn-info">
             </div>
           </form>

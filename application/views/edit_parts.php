@@ -31,19 +31,19 @@
         
     </div>
     <pre>
-      <?php print_r($childs) ?>
+      <?php print_r($articles) ?>
     </pre>
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
           <form action="<?php echo base_url('product/updateParts') ?>" method="post">
             <div class="form-group">
-              <label for="">Serial Number</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input Serial Number" value="<?php echo $articles->serial_number ?>" readonly="readonly">
+              <label for="">Article Number</label>
+              <input class="form-control" type="text" name="article_number" placeholder="Input Serial Number" value="<?php echo $articles->article_number ?>" readonly="readonly">
             </div>
             <div class="form-group">
-              <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input article number" required="1" value="<?php echo $articles->article_number ?>" readonly="readonly">
+              <label for="">Serial Number</label>
+              <input class="form-control" type="text" name="serial_number" placeholder="Input article number" required="1" value="<?php echo $articles->serial_number ?>" readonly="readonly">
             </div>
            <div class="form-group">
               <label for="">Description</label>
@@ -62,7 +62,7 @@
               <input class="form-control" type="date" name="date_install" required="1" autocomplete="off">
             </div>
             <div class="form-group">
-              <input type="hidden" name="id" value="<?php echo $articles->article_number ?>">
+              <input type="hidden" name="id" value="<?php echo $articles->serial_number ?>">
               <input type="submit" name="update" value="Update" class="btn btn-info">
             </div>
           </form>

@@ -9,29 +9,25 @@
 			$data['users'] = $this->user_model->get_data('users');
 			$data['products'] = $this->user_model->get_data('products');
 			$data['articles'] = $this->user_model->get_data('articles');
-// <<<<<<< HEAD
-			//$data['accessories'] = $this->user_model->get_data('accessories');
-			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
-			 $data['form_services'] = $this->form_model->get_data('form_services');
-			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');
-			 $data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
-// =======
+			$data['form_replacements'] = $this->form_model->get_data('form_replacements');
+			$data['form_services'] = $this->form_model->get_data('form_services');
+			$data['owner_forms'] = $this->form_model->get_data('owner_forms');
+			$data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
 			$data['histories']= $this->user_model->get_data('history');
 			$data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			$data['form_services'] = $this->form_model->get_data('form_services');
 			$data['owner_forms'] = $this->form_model->get_data('owner_forms');
 			$data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
-// >>>>>>> d7502813b9b09a2d7998d5973cd3f26186dc2d53
 			$childs = array();
 			foreach ($data['products'] as $product) {
-				$articles = $this->user_model->get_products($product->serial_number);
-				$childs[$product->serial_number] = array();
+				$articles = $this->user_model->get_products($product->article_number);
+				$childs[$product->article_number] = array();
 				foreach ($articles as $article) {
 
-					if(array_key_exists($article->serial_number,$childs)){
-	        			array_push($childs[$article->serial_number],$article);
+					if(array_key_exists($article->article_number,$childs)){
+	        			array_push($childs[$article->article_number],$article);
 	        		}else{
-	        			$childs[$article->serial_number] = $article;	
+	        			$childs[$article->article_number] = $article;	
 	        		}
 					
 				}

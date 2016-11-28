@@ -31,15 +31,15 @@
         
     </div>
     <pre>
-      <?php print_r($products) ?>
+      <?php print_r($product) ?>
     </pre>
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
           <form action="<?php echo base_url('product/update') ?>" method="post">
             <div class="form-group">
-              <label for="">Serial Number</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input Serial Number" value="<?php echo $products->serial_number ?>" >
+              <label for="">Article Number</label>
+              <input class="form-control" type="text" name="article_number" placeholder="Input Serial Number" value="<?php echo $products->article_number ?>" >
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
@@ -50,7 +50,7 @@
               <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
             </div>
             <div class="form-group">
-              <input type="hidden" name="id" value="<?php echo $products->serial_number ?>">
+              <input type="hidden" name="id" value="<?php echo $products->article_number ?>">
               <input type="submit" name="update" value="Update" class="btn btn-info">
             </div>
           </form>

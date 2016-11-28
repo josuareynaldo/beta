@@ -29,11 +29,11 @@
 		return $this->db->get($table)->num_rows();
 		}
 
-		function get_products($serial_number){
+		function get_products($article_number){
 			$this->db->select('articles.*,products.product_name');
 			$this->db->from('products');
-			$this->db->join('articles', 'articles.serial_number = products.serial_number');
-			$this->db->where('products.serial_number',$serial_number);
+			$this->db->join('articles', 'articles.article_number = products.article_number');
+			$this->db->where('products.article_number',$article_number);
 			return $this->db->get()->result();
 		}
 

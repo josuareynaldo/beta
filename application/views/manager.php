@@ -118,11 +118,10 @@
               <tr>
                 <th>Toggle</th>
                 <th>No.</th>
-                <th>Serial Number</th>
+                <th>Article Number</th>
                 <th>Product Name</th>
                 <th>Shipment Date</th>
                 <th>Status</th>
-                <th>Printer Image</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -132,23 +131,21 @@
                 <tr class="clickable" data-toggle="collapse" id="row<?php echo $i ?>" data-target=".row<?php echo $i ?>">
                   <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
-                  <td><?php echo $product->serial_number ?></td>
+                  <td><?php echo $product->article_number ?></td>
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><img src="<?php echo base_url().$product->image_name ?>" alt=""></td>
-                  <td><a href="<?php echo base_url('product/register_part/'.$product->serial_number) ?>" class="btn btn-info">New Parts</a><a href="<?php echo base_url('product/edit/'.$product->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->serial_number) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number) ?>" class="btn btn-info">New Parts</a><a href="<?php echo base_url('product/edit/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
-                    <?php if($product->serial_number == $key): ?>
+                    <?php if($product->article_number == $key): ?>
                       <tr class="collapse row<?php echo $i ?>">
                         <th>Article Number</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Service Date</th>
                         <th>Installation Date</th>
-                        <th>Part Image</th>
                         <th>Action</th>
                       </tr>
                        <?php foreach ($value as $row):?>
@@ -158,8 +155,7 @@
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><img src="<?php echo base_url().$row->image_name ?>" alt=""></td>
-                            <td><a href="<?php echo base_url('product/edit/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
+                            <td><a href="<?php echo base_url('product/editParts/'.$row->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/deleteParts/'.$row->serial_number) ?>" class="btn btn-danger">Delete</a></td>
                             
                           </tr>
                        <?php endforeach; ?>
