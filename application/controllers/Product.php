@@ -13,26 +13,6 @@ class Product extends CI_Controller
 		$this->load->view('product',$data);
 	}
 	
-	public function lookup()
-			{
-				$term = $this->input->get('term');
-				if (isset($term)) {
-					$q = strtolower($term);
-					$query = $this->m_autocomplete->lookup($q);
-
-					if (count($query) > 0) {
-							foreach ($query as $row) {
-								$new_row['label'] = htmlentities(stripcslashes($row['serial_number']));
-								$new_row['value'] = htmlentities(stripcslashes($row['product_name']));
-								$new_row['value1'] = htmlentities(stripcslashes($row['shipment_date']));
-								$row_set[] = $new_row;
-							}
-					echo json_encode($row_set);
-					}
-				}
-
-
-			}
 	public function register_product(){
 			$this->load->view('register_product');
 		}

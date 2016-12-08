@@ -9,8 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
-   <link href="<?php echo base_url() ?>css/jquery-ui.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -20,25 +19,26 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js">"></script>
-     <script src="<?php echo base_url() ?>js/jquery-1.11.1.min.js">"></script>
-    <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/start/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     
     
-    <script type="text/javascript">
+ <script type="text/javascript">
+       
         $(document).ready(function(){
-            $('#product_name').hide();
-            $('label[for="product_name"]').hide();
-            $('#shipment_date').hide();
-            $('label[for="shipment_date"]').hide();
+
             $("#serial_number").autocomplete({
-                source: '<?php echo base_url('product/lookup'); ?>',
+                source: 'manager/lookup',
 
                 focus: function(event, ui){
                     event.preventDefault();
 
                     $(this).val(ui.item.label);
-                    $('#product_name').val("");
+                    $('#description').val(ui.item.value);
 
                     return false;
                 },
@@ -47,25 +47,10 @@
                     event.preventDefault();
 
                     $(this).val(ui.item.label);
-                    $('#product_name').val("");
+                    $('#description').val(ui.item.value);
 
                     return false;
-                },
-                change: function(event, ui) {
-                if (!ui.item) {
-                    $('#product_name').show();
-                    $('label[for="product_name"]').show();
-                    $('#shipment_date').show();
-                    $('label[for="shipment_date"]').show();
                 }
-                else{
-                  $('#product_name').hide();
-                  $('label[for="product_name"]').hide();
-                  $('#shipment_date').hide();
-                  $('label[for="shipment_date"]').hide();
-                }
-            }
-
             });
         });
     </script>
@@ -78,12 +63,12 @@
 
     <form style="width:50%;">
         <div class="form-group">
-            <label for="name">Nama user</label>
-            <input class="form-control ui-widget" id="name" type="text" name="name" placholder="Nama Negara Asia Tenggara" required autocomplete="off">
+            <label for="name">Negara Asia Tenggara</label>
+            <input class="form-control ui-widget" id="serial_number" type="text" name="serial_number" placholder="Nama Negara Asia Tenggara" required autocomplete="off">
         </div>
         <div class="form-group">
-            <label for="position">Position</label>
-            <input class="form-control" id="position" type="text" name="position" placholder="Ibu Kota Negara" disabled="">
+            <label for="position">Ibu Kota Negara</label>
+            <input class="form-control" id="description" type="text" name="description" placholder="Ibu Kota Negara" disabled="">
         </div>
     </form>
 </div>

@@ -41,6 +41,31 @@
 			$this->load->view('manager',$data);
 			
 		}	
+
+		public function lookup()
+			{
+				$term = $this->input->get('term');
+				if (isset($term)) {
+					$q = strtolower($term);
+					$query = $this->m_autocomplete->lookup($q);
+
+					if (count($query) > 0) {
+							foreach ($query as $row) {
+								$new_row['label'] = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['value'] = htmlentities(stripcslashes($row['description']));
+								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
+								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
+								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
+								$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
+								$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
+								$row_set[] = $new_row;
+							}
+					echo json_encode($row_set);
+					}
+				}
+
+
+			}
 		
 		public function register(){
 			$this->load->view('register_user');
@@ -112,6 +137,11 @@
 
 		}
 
+		public function addpart(){
+		if($this->input->post('register_part'))
+			$value=$this->input->post('select');
+			redirect('product/register_part/'.$value);
+		}
 
 
 		public function deleteProduct($id){

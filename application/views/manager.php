@@ -19,13 +19,14 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js">"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
     <script src="<?php echo base_url() ?>js/search.js"></script>
     <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>js/datatable.js"></script>
-      
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   </head>
   <body>
   <pre>
@@ -141,7 +142,7 @@
                   <?php foreach ($childs as $key => $value): ?>
                     <?php if($product->article_number == $key): ?>
                       <tr class="collapse row<?php echo $i ?>">
-                        <th>Article Number</th>
+                        <th>Serial Number</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Service Date</th>
@@ -150,7 +151,7 @@
                       </tr>
                        <?php foreach ($value as $row):?>
                           <tr class="collapse row<?php echo $i ?>">
-                            <td><?php echo $row->article_number ?></td>  
+                            <td><?php echo $row->serial_number ?></td>  
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
@@ -181,37 +182,90 @@
              <div class="row">
              <div class="col-xs-12">
                 <h1>Accessories</h1>
-               
-
-                <table class="table display table-bordered  sortable " id="accTable">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Name</th>
-                      <th>Serial No. </th>
-                      <th>Article No. </th>
-                      <th>Parts</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i=1 ?>
-                    <?php foreach ($accessories as $accessorie): ?>
-                      <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $accessorie->name ?></td>
-                        <td><?php echo $accessorie->serial_number ?></td>
-                        <td><?php echo $accessorie->article_number ?></td>
-                        <td><?php echo $accessorie->parts ?></td>
-                        <td><a href="<?php echo base_url('manager/delete_acc/'.$accessorie->id) ?>" class="btn btn-danger">Delete</a></td>  
-                      </tr>
-                    <?php $i++; ?>
-                    <?php endforeach; ?>
-                    
-                  </tbody>
-                </table> 
+                <div class="form-group">
+                    <label for="serial_number">Serial Number</label>
+                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="article_number">Article Number</label>
+                    <input class="form-control" id="article_number" type="text" name="article_number" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input class="form-control" id="description" type="text" name="description" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <input class="form-control" id="type" type="text" name="type" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="service_date">Service Date</label>
+                    <input class="form-control" id="service_date" type="text" name="service_date" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="date_install">Installation Date</label>
+                    <input class="form-control" id="date_install" type="text" name="date_install" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                  <label for="date_install">Parts Image</label>
                   <br>
-                <a href="<?php echo base_url('manager/accessories') ?>" class="btn btn-primary">Accessories Register</a>
+                  <img id="img">
+                </div>
+                 <script type="text/javascript">
+       
+                    $(document).ready(function(){
+
+                        $("#serial_number").autocomplete({
+                            source: 'manager/lookup',
+
+                            focus: function(event, ui){
+                                event.preventDefault();
+
+                                $(this).val(ui.item.label);
+                                $('#article_number').val(ui.item.value5);
+                                $('#description').val(ui.item.value);
+                                $('#type').val(ui.item.value1);
+                                $('#service_date').val(ui.item.value2);
+                                $('#date_install').val(ui.item.value3);
+                                $('#img').attr("src",ui.item.value4);
+                                $('#img').show();
+                                return false;
+                            },
+
+                            select: function(event, ui){
+                                event.preventDefault();
+
+                                $(this).val(ui.item.label);
+                                $('#article_number').val(ui.item.value5);
+                                $('#description').val(ui.item.value);
+                                $('#type').val(ui.item.value1);
+                                $('#service_date').val(ui.item.value2);
+                                $('#date_install').val(ui.item.value3);
+                                $('#img').attr("src",ui.item.value4);
+                                $('#img').show();
+                                return false;
+                            }
+                        });
+                    });
+                </script>
+                <br>
+                <br>
+                <form action="<?php echo base_url('manager/addpart') ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                    Please Select The Article Number
+                      <select name="select" id="select">
+                        <?php foreach ($products as $product): ?>
+                            <?php echo "<option value='".$product->article_number."'>".$product->article_number."</option>" ?>
+                          <?php endforeach; ?>   
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" name="register_part" value="Accessories Register" class="btn btn-primary">
+
+                    </div>
+                </form>
+                
+               
           </div>
           </div>
           </div>
@@ -656,7 +710,7 @@
                     $(document).ready(function() {
                      $('.display').DataTable();
                      $('#productTable').DataTable();
-                    } );
+                   });
                 </script>
           
         </div>

@@ -12,7 +12,7 @@ class M_autocomplete extends CI_model
 	{
 		$this->db->select('*');
 		$this->db->like('serial_number', $keyword);
-		$query = $this->db->get('products');
+		$query = $this->db->get('articles');
 
 		return $query->result_array();
 		/*
