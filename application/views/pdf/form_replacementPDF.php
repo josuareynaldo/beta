@@ -98,7 +98,7 @@
           </div>
       </div>
 
-      <div class="hal" style="margin-top: 40px;">
+      <div class="hal" style="margin-top: 60px;">
       <hr style="border-style: solid">
 
           <h5 style="float: right">Halaman <?php echo $form_replacement->id ?></h5>
