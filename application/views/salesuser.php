@@ -232,6 +232,7 @@
                     <tr>
                       <th>No.</th>
                       <th>Trial / Install No.</th>
+                      <th>Company</th>
                       <th>Customer Information</th>
                       <th>Application</th>
                       <th>Trial Result</th>
@@ -243,7 +244,7 @@
                         <?php foreach ($trial_results as $trial_res): ?>
                           <tr>
                             <td><?php echo $i ?></td>
-                            <td><?php echo $trial_res->result_no ?></td>
+                            <td><?php echo $trial_res->company ?></td>
                             <td><button type="<?php echo base_url('salesuser/see_more'.$trial_res->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cust">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
@@ -393,7 +394,7 @@
                             <td><?php echo $trial_res->ink ?></td>
                             <td><?php echo $trial_res->solvent ?></td>
                             <td><?php echo $trial_res->temperature ?></td>
-                            <td><?php echo $trial_res->humidity ?></td>
+                            <td><?php echo $trial_res->humididty ?></td>
                             <td><?php echo $trial_res->result ?></td>
                           </tr>
                     <?php $i++ ?>
