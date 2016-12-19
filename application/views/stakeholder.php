@@ -19,15 +19,18 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js">"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
     <script src="<?php echo base_url() ?>js/search.js"></script>
     <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>js/datatable.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   </head>
   <body>
   <pre>
+    <?php print_r($childs) ?>
     <?php print_r($this->session->userdata()) ?>
   </pre>
     <div class="container">
@@ -38,7 +41,7 @@
         <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
         <h1>Mr. Stakeholder </h1>
 
-         <div class="right" style="float: right;">
+        <div class="right" style="float: right;">
            <a href="<?php echo base_url('stakeholder/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
@@ -57,44 +60,54 @@
                     <li><a data-toggle="pill" href="#form_exchange">Form Exchange</a></li>
                 </ul>
           </li>
-          <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
-         <div class="tab-content">
+        <div class="tab-content">
           <div id="user_database" class="tab-pane fade in active">
             <br>
-            <h1>Employee</h1>
-          <table class="table display table-bordered">
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Position</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php $i=1 ?>
-              <?php foreach ($users as $user): ?>
-                <tr>
-                  <td><?php echo $i ?></td>
-                  <td><?php echo $user->name ?></td>
-                  <td><?php echo $user->password ?></td>
-                  <td><?php echo $user->email ?></td>
-                  <td><?php echo $user->address ?></td>
-                  <td><?php echo $user->position ?></td>
-                  <td><a href="<?php echo base_url('stakeholder/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('stakeholder/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
-                </tr>
-              <?php $i++ ?>
-              <?php endforeach ?>
-              
-            </tbody>
-          </table>
+             <div class="container">
+             <div class="row">
+             <div class="col-xs-12">
+                <h1>Employee</h1>
+               
+
+                <table class="table display table-bordered  sortable " id="userTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Password</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Position</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($users as $user): ?>
+                      <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $user->name ?></td>
+                        <td><?php echo $user->password ?></td>
+                        <td><?php echo $user->email ?></td>
+                        <td><?php echo $user->address ?></td>
+                        <td><?php echo $user->position ?></td>
+                        <td><a href="<?php echo base_url('stakeholder/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('stakeholder/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                      </tr>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
+                    
+                  </tbody>
+                </table>
+                   
+
+                <a href="<?php echo base_url('stakeholder/register') ?>" class="btn btn-primary">User Register</a>
+          </div>
+          </div>
+          </div>
           </div>
 
-        <div id="product_database" class="tab-pane">
+          <div id="product_database" class="tab-pane">
             <br>
              <div class="container">
       <div class="row">
@@ -105,11 +118,11 @@
               <tr>
                 <th>Toggle</th>
                 <th>No.</th>
-                <th>Serial Number</th>
+                <th>Article Number</th>
                 <th>Product Name</th>
                 <th>Shipment Date</th>
                 <th>Status</th>
-                <th>Printer Image</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -118,31 +131,32 @@
                 <tr class="clickable" data-toggle="collapse" id="row<?php echo $i ?>" data-target=".row<?php echo $i ?>">
                   <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
-                  <td><?php echo $product->serial_number ?></td>
+                  <td><?php echo $product->article_number ?></td>
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><img src="<?php echo base_url().$product->image_name ?>" alt=""></td>
+                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number) ?>" class="btn btn-info">New Parts</a><a href="<?php echo base_url('product/edit/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
-                    <?php if($product->serial_number == $key): ?>
+                    <?php if($product->article_number == $key): ?>
                       <tr class="collapse row<?php echo $i ?>">
-                        <th>Article Number</th>
+                        <th>Serial Number</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Service Date</th>
                         <th>Installation Date</th>
-                        <th>Part Image</th>
+                        <th>Action</th>
                       </tr>
                        <?php foreach ($value as $row):?>
                           <tr class="collapse row<?php echo $i ?>">
-                            <td><?php echo $row->article_number ?></td>  
+                            <td><?php echo $row->serial_number ?></td>  
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><img src="<?php echo base_url().$row->image_name ?>" alt=""></td>
+                            <td><a href="<?php echo base_url('product/editParts/'.$row->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/deleteParts/'.$row->serial_number) ?>" class="btn btn-danger">Delete</a></td>
+                            
                           </tr>
                        <?php endforeach; ?>
 
@@ -154,11 +168,12 @@
               
             </tbody>
           </table>
+          <br>
+          <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a>
           </div>
           </div>
           </div>
           </div>
-
 
           <div id="accessories" class="tab-pane">
             <br>
@@ -166,33 +181,90 @@
              <div class="row">
              <div class="col-xs-12">
                 <h1>Accessories</h1>
-               
+                <div class="form-group">
+                    <label for="serial_number">Serial Number</label>
+                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="article_number">Article Number</label>
+                    <input class="form-control" id="article_number" type="text" name="article_number" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input class="form-control" id="description" type="text" name="description" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <input class="form-control" id="type" type="text" name="type" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="service_date">Service Date</label>
+                    <input class="form-control" id="service_date" type="text" name="service_date" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="date_install">Installation Date</label>
+                    <input class="form-control" id="date_install" type="text" name="date_install" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                  <label for="date_install">Parts Image</label>
+                  <br>
+                  <img id="img">
+                </div>
+                 <script type="text/javascript">
+       
+                    $(document).ready(function(){
 
-                <table class="table display table-bordered  sortable " id="accTable">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Name</th>
-                      <th>Serial No. </th>
-                      <th>Article No. </th>
-                      <th>Parts</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i=1 ?>
-                    <?php foreach ($accessories as $accessorie): ?>
-                      <tr>
-                         <td><?php echo $i; ?></td>
-                        <td><?php echo $accessorie->name ?></td>
-                        <td><?php echo $accessorie->serial_number ?></td>
-                        <td><?php echo $accessorie->article_number ?></td>
-                        <td><?php echo $accessorie->parts ?></td> 
-                      </tr>
-                    <?php $i++; ?>
-                    <?php endforeach; ?>
-                    
-                  </tbody>
-                </table>
+                        $("#serial_number").autocomplete({
+                            source: 'stakeholder/lookup',
+
+                            focus: function(event, ui){
+                                event.preventDefault();
+
+                                $(this).val(ui.item.label);
+                                $('#article_number').val(ui.item.value5);
+                                $('#description').val(ui.item.value);
+                                $('#type').val(ui.item.value1);
+                                $('#service_date').val(ui.item.value2);
+                                $('#date_install').val(ui.item.value3);
+                                $('#img').attr("src",ui.item.value4);
+                                $('#img').show();
+                                return false;
+                            },
+
+                            select: function(event, ui){
+                                event.preventDefault();
+
+                                $(this).val(ui.item.label);
+                                $('#article_number').val(ui.item.value5);
+                                $('#description').val(ui.item.value);
+                                $('#type').val(ui.item.value1);
+                                $('#service_date').val(ui.item.value2);
+                                $('#date_install').val(ui.item.value3);
+                                $('#img').attr("src",ui.item.value4);
+                                $('#img').show();
+                                return false;
+                            }
+                        });
+                    });
+                </script>
+                <br>
+                <br>
+                <form action="<?php echo base_url('stakeholder/addpart') ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                    Please Select The Article Number
+                      <select name="select" id="select">
+                        <?php foreach ($products as $product): ?>
+                            <?php echo "<option value='".$product->article_number."'>".$product->article_number."</option>" ?>
+                          <?php endforeach; ?>   
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" name="register_part" value="Accessories Register" class="btn btn-primary">
+
+                    </div>
+                </form>
+                
+               
           </div>
           </div>
           </div>
@@ -216,6 +288,7 @@
                       <th>Date Install</th>
                       <th>Date Replace</th>
                       <th>Problem Desc</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -233,6 +306,8 @@
                         <td><?php echo $form_replacement->date_replace ?></td>
                         <td><?php echo $form_replacement->problem ?></td>
                         
+                        <td><a href="<?php echo base_url('stakeholder/delete_replacement/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('stakeholder/save_replacement/'.$form_replacement->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                       </tr>
                     <?php $i++ ?>
@@ -240,6 +315,7 @@
                     
                   </tbody>
                 </table>
+                <a href="<?php echo base_url('stakeholder/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
       </div>
 
       <div id="form_service" class="tab-pane">
@@ -272,13 +348,16 @@
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#hoi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#prs">See more</button></td>
                             <input type="hidden" name="id" value="<?php echo $form_service->id ?>">
-                           
+                            <!-- <td><a href="<?php echo base_url('stakeholder/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('stakeholder/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
+                            </td> -->
                           </tr>
                         <?php $i++ ?>
                         <?php endforeach ?>
                       </tbody>
              </table>
-             <a href="<?php echo base_url('stakeholder/form_service') ?>" class="btn btn-info">Form Service</a>
+
+              <a href="<?php echo base_url('stakeholder/form_service') ?>" class="btn btn-info">Form Service</a>
       </div>
 
       <div id="poi" class="modal fade" role="dialog">
@@ -376,6 +455,7 @@
                     <th>Problem Description</th>
                     <th>Replace Part</th>
                     <th>Service Work</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -386,6 +466,8 @@
                             <td><?php echo $form_service->replace_part ?></td>
                             <td><?php echo $form_service->service_work ?></td>
                     <?php $i++ ?>
+                    <td><a href="<?php echo base_url('stakeholder/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('stakeholder/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
                   <?php endforeach ?>
                 </tbody>
               </table>
@@ -413,7 +495,8 @@
                       <th>Distributor</th>
                       <th>Date</th>
                       <th>Customer</th>
-                    </tr>
+                      <th>Action</th>
+                       </tr>
                   </thead>
 
                   <tbody>
@@ -431,17 +514,18 @@
                         <td><?php echo $owner_form->solvent_number ?></td>
                         <td><?php echo $owner_form->distributor ?></td>
                         <td><?php echo $owner_form->date ?></td>
-                        <td><button type="<?php echo base_url('stakeholder/button_see'.$owner_forms->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#owner">See more</button></td>
+                        <td><button type="<?php echo base_url('stakeholder/button_see'.$owner_forms->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#own">See more</button></td>
+                         <td><a href="<?php echo base_url('stakeholder/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('stakeholder/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a>
+                        </td>
                       </tr>
                     <?php $i++ ?>
                     <?php endforeach ?>
                     
                   </tbody>
                 </table>
-                <br>
-                <br>
 
-        <div id="owner" class="modal fade" role="dialog">
+        <div id="own" class="modal fade" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -473,8 +557,7 @@
                         <td><?php echo $owner_form->contact ?></td>
                         <td><?php echo $owner_form->telp ?></td>
                         <td><?php echo $owner_form->fax ?></td>
-                        <td><?php echo $owner_form->email ?></td> 
-                        </tr>
+                        <td><?php echo $owner_form->email ?></td>        
                   <?php $i++ ?>
                   <?php endforeach ?>
 
@@ -485,11 +568,13 @@
           </div>
         </div>
       </div>
+                
+     <a href="<?php echo base_url('stakeholder/owner_form') ?>" class="btn btn-info">Owner Form</a>
       </div>
 
 
 
-     <div id="form_exchange" class="tab-pane">
+      <div id="form_exchange" class="tab-pane">
       <br>
           <h1>Form Exchange</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
@@ -550,6 +635,7 @@
                       <th><a data-toggle="tooltip" title="Scrapping permitted if repair cost wouldn't be economic(otherwise redelivery unfree)">Scrapping</a></th>
                       <th><a data-toggle="tooltip" title="If No warranty / exchange part => herewith new order for this part">Warranty / Exch Part</a></th>
                       <th>Contact</th>
+                        <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -563,6 +649,9 @@
                         <td><?php echo $form_exchange->scrapping ?></td>
                         <td><?php echo $form_exchange->warranty ?></td>
                         <td><?php echo $form_exchange->contact ?></td>
+                        <td><a href="<?php echo base_url('stakeholder/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('stakeholder/save_exchange/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
+                        </td>
                         </td>
                       </tr>
                     <?php $i++ ?>
@@ -575,49 +664,23 @@
           </div>
         </div>
       </div>
+            
+      <a href="<?php echo base_url('stakeholder/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
       </div>
 
-    <div id="history" class="tab-pane">
-      <br>
-      <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-              <h1>History</h1>
-                <table class="table display table-bordered  sortable " id="userTable">
-                 <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Description</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i=1 ?>
-                    <?php foreach ($users as $user): ?>
-                      <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $user->name ?></td>
-                        <td><?php echo $user->position ?></td>
-                        <td><?php echo $user->position ?></td>
-                        <td><a href="<?php echo base_url('stakeholder/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('stakeholder/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
-                      </tr>
-                    <?php $i++; ?>
-                    <?php endforeach; ?>
-                  </tbody>
-                </table>   
-            </div>
-          </div>
         </div>
-      </div>
+         
 
           <script type="text/javascript" charset="utf-8">
                     $(document).ready(function() {
-                     $('table.display').DataTable();
-                    } );
+                     $('.display').DataTable();
+                     $('#productTable').DataTable();
+                   });
                 </script>
+          
+        </div>
       </div>    
+    </div>
 
     
   </body>

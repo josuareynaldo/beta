@@ -6,14 +6,94 @@
 	{
 
 		public function index(){
-			 $data['users'] = $this->user_model->get_data('users');
-			 $data['form_replacements'] = $this->form_model->get_data('form_replacements');
-			 $data['form_services'] = $this->form_model->get_data('form_services');
-			 $data['owner_forms'] = $this->form_model->get_data('owner_forms');
-			 $data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
-				$this->load->view('user',$data);
+			$data['users'] = $this->user_model->get_data('users');
+			$data['products'] = $this->user_model->get_data('products');
+			$data['articles'] = $this->user_model->get_data('articles');
+			$data['form_replacements'] = $this->form_model->get_data('form_replacements');
+			$data['form_services'] = $this->form_model->get_data('form_services');
+			$data['owner_forms'] = $this->form_model->get_data('owner_forms');
+			$data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
+			$data['histories']= $this->user_model->get_data('history');
+			$data['form_replacements'] = $this->form_model->get_data('form_replacements');
+			$data['form_services'] = $this->form_model->get_data('form_services');
+			$data['owner_forms'] = $this->form_model->get_data('owner_forms');
+			$data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
+			$childs = array();
+			foreach ($data['products'] as $product) {
+				$articles = $this->user_model->get_products($product->article_number);
+				$childs[$product->article_number] = array();
+				foreach ($articles as $article) {
+
+					if(array_key_exists($article->article_number,$childs)){
+	        			array_push($childs[$article->article_number],$article);
+	        		}else{
+	        			$childs[$article->article_number] = $article;	
+	        		}
+					
+				}
+				
+			}
+
+			$data['childs'] = $childs;
+
+			// $data['products'] = $this->user_model->get_data('products');
+			// $data['childs'] = $this->user_model->get_byCondition('products',array('serial_number'=>'123456'))->result();
+			$this->load->view('user',$data);
+			
 		}	
+
+		public function lookup()
+			{
+				$term = $this->input->get('term');
+				if (isset($term)) {
+					$q = strtolower($term);
+					$query = $this->m_autocomplete->lookup($q);
+
+					if (count($query) > 0) {
+							foreach ($query as $row) {
+								$new_row['label'] = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['value'] = htmlentities(stripcslashes($row['description']));
+								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
+								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
+								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
+								$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
+								$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
+								$row_set[] = $new_row;
+							}
+					echo json_encode($row_set);
+					}
+				}
+
+
+			}
 		
+		public function register(){
+			$this->load->view('register_user');
+		}
+
+		public function add_user(){
+			if($this->input->post('register')){
+				$data= array(
+						'name' => $this->input->post('name'),
+						'password' => sha1($this->input->post('password')),
+						'email' => $this->input->post('email'),
+						'address' => $this->input->post('address'),
+						'position' => $this->input->post('pos')
+					);
+
+				$this->user_model->insert_data('users',$data);
+				$report=array(
+						'report'=> $this->session->userdata('name').' has created an user account with name '.$this->input->post('name').' with the position as '.$this->input->post('pos')
+					);
+				$this->user_model->insert_data('history',$report);	
+			$this->user_model->insert_data('history',$report);
+				redirect('user/index');
+
+			}else{
+				redirect('user/register_user');
+			}
+		}
+
 		public function edit($id){
 			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
 			$this->load->view('edit_user',$data);
@@ -44,11 +124,39 @@
 					);
 				 
 				$this->user_model->update_data('users',$data,array('id'=>$this->input->post('id')));
+				$report=array(
+						'report'=> 'Employee '.$this->session->userdata('name').' has edited an user account with name '.$this->input->post('name')
+					);
+				$this->user_model->insert_data('history',$report);
 				redirect('user/index');
 
 			}else{
-				redirect('user/edit');
+				redirect('user/register_user');
 			}
+		}
+
+		public function delete($id){
+			$temp=$this->user_model->select_data('name','users',$id);
+			$this->user_model->delete_data('users',array('id'=>$id));
+			$report=array(
+						'report'=> 'Employee '.$this->session->userdata('name').' has deleted an user account with name '.$temp->name
+					);
+			$this->user_model->insert_data('history',$report);
+			redirect('user/index');
+
+		}
+
+		public function addpart(){
+		if($this->input->post('register_part'))
+			$value=$this->input->post('select');
+			redirect('product/register_part/'.$value);
+		}
+
+
+		public function deleteProduct($id){
+			$this->user_model->delete_data('products',array('id'=>$id));
+			redirect('user/index');
+
 		}
 
 		public function form_replacement(){
@@ -68,6 +176,7 @@
 			$this->load->view('forms/form_exchanges');
 		}
 
+
 		public function add_form_replacement(){
 			if($this->input->post('save')){
 				$data= array(
@@ -84,6 +193,10 @@
 
 					);
 				$this->form_model->insert_data('form_replacements',$data);
+				$report=array(
+						'report'=> $this->session->userdata('name').' has inserted a new form replacement with Exchange Id '.$this->input->post('exchange_id')
+					);
+				$this->user_model->insert_data('history',$report);
 				redirect('user/index');
 
 			}else{
@@ -117,6 +230,10 @@
 
 					);
 				$this->form_model->insert_data('form_services',$data);
+				$report=array(
+						'report'=> $this->session->userdata('name').' has inserted a new form service with Service Date '.$this->input->post('date_service')
+					);
+				$this->user_model->insert_data('history',$report);
 				redirect('user/index');
 
 			}else{
@@ -150,6 +267,10 @@
 
 					);
 				$this->form_model->insert_data('owner_forms',$data);
+				$report=array(
+						'report'=> $this->session->userdata('name').' has inserted a new owner form with serial number '.$this->input->post('serial_number')
+					);
+				$this->user_model->insert_data('history',$report);
 				redirect('user/index');
 
 			}else{
@@ -186,6 +307,10 @@
 
 					);
 				$this->form_model->insert_data('form_exchanges',$data);
+				$report=array(
+						'report'=> $this->session->userdata('name').' has inserted a new form exchange with article number '.$this->input->post('article_number')
+					);
+				$this->user_model->insert_data('history',$report);
 				redirect('user/index');
 
 			}else{
@@ -196,26 +321,47 @@
 
 
 		public function delete_replacement($id){
+			$temp=$this->user_model->select_data('exchange_id','form_replacements',$id);
 			$this->form_model->delete_data('form_replacements',array('id'=>$id));
+			$report=array(
+						'report'=> 'Employee '.$this->session->userdata('name').' has deleted a replacement form with exchange ID '.$temp->exchange_id
+					);
+			$this->user_model->insert_data('history',$report);
 			redirect('user/index');
 		}
 
 		public function delete_service($id){
+			$temp=$this->user_model->select_data('date_service','form_services',$id);
 			$this->form_model->delete_data('form_services',array('id'=>$id));
+			$report=array(
+						'report'=> 'Employee '.$this->session->userdata('name').' has deleted a service form with install date '.$temp->date_service
+					);
+			$this->user_model->insert_data('history',$report);
 			redirect('user/index');
 		}
 
 		public function delete_owner($id){
+			$temp=$this->user_model->select_data('serial_number','owner_forms',$id);
 			$this->form_model->delete_data('owner_forms',array('id'=>$id));
+			$report=array(
+						'report'=> 'Employee '.$this->session->userdata('name').' has deleted a service form with serial number '.$temp->serial_number
+					);
+			$this->user_model->insert_data('history',$report);
 			redirect('user/index');
 		}
 
 		public function delete_exchange($id){
+			$temp=$this->user_model->select_data('article_number','form_exchanges',$id);
 			$this->form_model->delete_data('form_exchanges',array('id'=>$id));
+			$report=array(
+						'report'=> 'Employee '.$this->session->userdata('name').' has deleted a service form with article number '.$temp->article_number
+					);
+			$this->user_model->insert_data('history',$report);
 			redirect('user/index');
 		}
 
 		public function save_replacement($id){
+		$temp=$this->user_model->select_data('exchange_id','form_replacements',$id);
 		$data['form_replacement'] = $this->form_model->get_byCondition('form_replacements',array('id'=>$id))->row();
         //load the view and saved it into $html variable
         $html=$this->load->view('pdf/form_replacementPDF', $data, true);
@@ -229,10 +375,16 @@
         $this->m_pdf->pdf->WriteHTML($html);
  
         //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+        $report=array(
+						'report'=> $this->session->userdata('name').' has saved a replacement form with exchange ID '.$temp->exchange_id
+					);
+		$this->user_model->insert_data('history',$report);
+
 		}
 
 		public function save_service($id){
+		$temp=$this->user_model->select_data('date_service','form_services',$id);
 		$data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
         //load the view and saved it into $html variable
         $html=$this->load->view('pdf/form_servicePDF', $data, true);
@@ -246,10 +398,15 @@
         $this->m_pdf->pdf->WriteHTML($html);
  
         //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+        $report=array(
+						'report'=> $this->session->userdata('name').' has saved a service form with install date '.$temp->date_service
+					);
+		$this->user_model->insert_data('history',$report);        
 		}
 
 		public function save_owner($id){
+		$temp=$this->user_model->select_data('serial_number','owner_forms',$id);
 		$data['owner_form'] = $this->form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
         //load the view and saved it into $html variable
         $html=$this->load->view('pdf/owner_formPDF', $data, true);
@@ -263,11 +420,16 @@
         $this->m_pdf->pdf->WriteHTML($html);
  
         //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+        $report=array(
+						'report'=> $this->session->userdata('name').' has saved a service form with article number '.$temp->article_number
+					);
+			$this->user_model->insert_data('history',$report);        
 		}
 
 
 		public function save_exchange($id){
+		$temp=$this->user_model->select_data('article_number','form_exchanges',$id);
 		$data['form_exchange'] = $this->form_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
         //load the view and saved it into $html variable
         $html=$this->load->view('pdf/form_exchangePDF', $data, true);
@@ -281,7 +443,11 @@
         $this->m_pdf->pdf->WriteHTML($html);
  
         //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+        $report=array(
+						'report'=> 'Employee '.$this->session->userdata('name').' has saved a service form with article number '.$temp->article_number
+					);
+		$this->user_model->insert_data('history',$report);        
 		}
 
 

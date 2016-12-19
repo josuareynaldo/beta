@@ -698,6 +698,7 @@
                 
               </tbody>
             </table>
+            <a href="<?php echo base_url('manager/clear_report') ?>" class="btn btn-primary">Clear All Report</a>
           </div>
           </div>
           </div>

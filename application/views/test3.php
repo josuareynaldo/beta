@@ -29,31 +29,41 @@
     
  <script type="text/javascript">
        
-        $(document).ready(function(){
+                    $(document).ready(function(){
 
-            $("#serial_number").autocomplete({
-                source: 'manager/lookup',
+                        $("#serial_number").autocomplete({
+                            source: 'manager/lookup',
 
-                focus: function(event, ui){
-                    event.preventDefault();
+                            focus: function(event, ui){
+                                event.preventDefault();
 
-                    $(this).val(ui.item.label);
-                    $('#description').val(ui.item.value);
+                                $(this).val(ui.item.label);
+                                $('#article_number').val(ui.item.value5);
+                                $('#description').val(ui.item.value);
+                                $('#type').val(ui.item.value1);
+                                $('#service_date').val(ui.item.value2);
+                                $('#date_install').val(ui.item.value3);
+                                $('#img').attr("src",ui.item.value4);
+                                $('#img').show();
+                                return false;
+                            },
 
-                    return false;
-                },
+                            select: function(event, ui){
+                                event.preventDefault();
 
-                select: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#description').val(ui.item.value);
-
-                    return false;
-                }
-            });
-        });
-    </script>
+                                $(this).val(ui.item.label);
+                                $('#article_number').val(ui.item.value5);
+                                $('#description').val(ui.item.value);
+                                $('#type').val(ui.item.value1);
+                                $('#service_date').val(ui.item.value2);
+                                $('#date_install').val(ui.item.value3);
+                                $('#img').attr("src",ui.item.value4);
+                                $('#img').show();
+                                return false;
+                            }
+                        });
+                    });
+                </script>
 
   </head>
   <body>
@@ -61,17 +71,35 @@
     <h1>Tutorial Autocomplete</h1>
     <hr>
 
-    <form style="width:50%;">
-        <div class="form-group">
-            <label for="name">Negara Asia Tenggara</label>
-            <input class="form-control ui-widget" id="serial_number" type="text" name="serial_number" placholder="Nama Negara Asia Tenggara" required autocomplete="off">
-        </div>
-        <div class="form-group">
-            <label for="position">Ibu Kota Negara</label>
-            <input class="form-control" id="description" type="text" name="description" placholder="Ibu Kota Negara" disabled="">
-        </div>
-    </form>
-</div>
+    <div class="form-group">
+                    <label for="serial_number">Serial Number</label>
+                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="article_number">Article Number</label>
+                    <input class="form-control" id="article_number" type="text" name="article_number" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input class="form-control" id="description" type="text" name="description" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <input class="form-control" id="type" type="text" name="type" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="service_date">Service Date</label>
+                    <input class="form-control" id="service_date" type="text" name="service_date" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="date_install">Installation Date</label>
+                    <input class="form-control" id="date_install" type="text" name="date_install" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                  <label for="date_install">Parts Image</label>
+                  <br>
+                  <img id="img">
+                </div>
 
 
     

@@ -114,7 +114,11 @@ class Product extends CI_Controller
 
 					);
 					$this->user_model->insert_data('articles',$data1);
+					$report=array(
+						'report'=> $this->session->userdata('name').' has inserted parts with serial_number '.$this->input->post('serial_number').' into part database'
+					);
 					
+					$this->user_model->insert_data('history',$report);
 					if($this->session->userdata('position')=="Manager"){
 							redirect('manager/index');
 						}
@@ -167,7 +171,11 @@ class Product extends CI_Controller
 					);
 				 
 				$this->user_model->update_data('products',$data,array('article_number'=>$this->input->post('article_number')));
-				
+				$report=array(
+						'report'=> $this->session->userdata('name').' has updated '.$this->input->post('product_name').' on product database'
+					);
+					
+				$this->user_model->insert_data('history',$report);
 				if($this->session->userdata('position')=="Manager"){
 					redirect('manager/index');
 				}
@@ -200,7 +208,12 @@ class Product extends CI_Controller
 					);
 				 
 				$this->user_model->update_data('articles',$data,array('serial_number'=>$this->input->post('serial_number')));
-				
+				$report=array(
+						'report'=> $this->session->userdata('name').' has updated parts with serial number '.$this->input->post('serial_number').' on part database'
+					);
+					
+					$this->user_model->insert_data('history',$report);
+
 				if($this->session->userdata('position')=="Manager"){
 					redirect('manager/index');
 				}
@@ -238,7 +251,12 @@ class Product extends CI_Controller
 			foreach ($products as $product) {
 				recursiveRemoveDirectory(baseurl().$products->image_name);
 			}
-			
+			$report=array(
+						'report'=> $this->session->userdata('name').' has deleted product with article number '.$article_number.' on product database'
+					);
+					
+			$this->user_model->insert_data('history',$report);
+
 			if($this->session->userdata('position')=="Manager"){
 					redirect('manager/index');
 			}
@@ -256,6 +274,10 @@ class Product extends CI_Controller
 
 		public function deleteParts($serial_number){
 			$this->user_model->delete_data('articles',array('serial_number'=>$serial_number));
+			$report=array(
+						'report'=> $this->session->userdata('name').' has deleted product with serial number '.$article_number.' on part database'
+					);		
+			$this->user_model->insert_data('history',$report);
 			if($this->session->userdata('position')=="Manager"){
 					redirect('manager/index');
 				}
