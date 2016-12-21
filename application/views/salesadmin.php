@@ -48,19 +48,20 @@
                 </ul>
           </li>
           <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Customer
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a data-toggle="pill" href="#quote">Quotation</a></li>
-                    <li><a data-toggle="pill" href="#rpt">Customer Report</a></li>
+                    <li><a data-toggle="pill" href="#trial_req">Trial Request</a></li>
+                    <li><a data-toggle="pill" href="#trial_res">Trial Result</a></li>
                 </ul>
           </li>
+          <li><a data-toggle="pill" href="#quote">Quotation</a></li>
           <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
           
 
         <div class="right" style="float: right;">
-           <a href="<?php echo base_url('salesuser/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+           <a href="<?php echo base_url('salesadmin/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
       

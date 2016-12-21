@@ -62,6 +62,7 @@
               <input type="radio" name="pos" value="Manager"> <b>Manager</b><br>
               <input type="radio" name="pos" value="Stakeholder"> <b>Stakeholder</b><br>
               <input type="radio" name="pos" value="Salesmanager"> <b>Salesmanager</b><br>
+              <input type="radio" name="pos" value="Salesadmin"> <b>Salesadmin</b><br>
               <input type="radio" name="pos" value="Salesuser"> <b>Salesuser</b>
             </div>
             <div class="form-group">

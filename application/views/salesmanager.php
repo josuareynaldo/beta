@@ -47,6 +47,14 @@
                     <li><a data-toggle="pill" href="#trial_res">Trial Result</a></li>
                 </ul>
           </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Customer
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="pill" href="#quote">Quotation</a></li>
+                    <li><a data-toggle="pill" href="#rpt">Customer Report</a></li>
+                </ul>
+          </li>
           <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
           
@@ -232,7 +240,6 @@
                     <tr>
                       <th>No.</th>
                       <th>Trial / Install No.</th>
-                      <th>Company</th>
                       <th>Customer Information</th>
                       <th>Application</th>
                       <th>Trial Result</th>
@@ -244,7 +251,7 @@
                         <?php foreach ($trial_results as $trial_res): ?>
                           <tr>
                             <td><?php echo $i ?></td>
-                            <td><?php echo $trial_res->company ?></td>
+                            <td><?php echo $trial_res->result_no ?></td>
                             <td><button type="<?php echo base_url('salesuser/see_more'.$trial_res->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cust">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
