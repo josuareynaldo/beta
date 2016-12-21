@@ -96,6 +96,8 @@
                 
               </tbody>
             </table>
+
+             <a href="<?php echo base_url('salesmanager/register') ?>" class="btn btn-primary">User Register</a>
           </div>
 
 

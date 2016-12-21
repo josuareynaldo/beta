@@ -58,8 +58,19 @@
                     <li><a data-toggle="pill" href="#form_service">Form Service</a></li>
                     <li><a data-toggle="pill" href="#owner_form">Owner Form</a></li>
                     <li><a data-toggle="pill" href="#form_exchange">Form Exchange</a></li>
+                    <li><a data-toggle="pill" href="#trial_req">Trial Request</a></li>
+                    <li><a data-toggle="pill" href="#trial_res">Trial Result</a></li>
                 </ul>
           </li>
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Report
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a data-toggle="pill" href="#quote">Quotation</a></li>
+                    <li><a data-toggle="pill" href="#rpt">Customer Report</a></li>
+                </ul>
+          </li>
+           <li><a data-toggle="pill" href="#customerr">Customer</a></li>
         </ul>
         <div class="tab-content">
           <div id="user_database" class="tab-pane fade in active">
@@ -371,6 +382,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                  <th>No. </th>
                     <th>Printer</th>
                     <th>Date Install</th>
                     <th>Ink No.</th>
@@ -381,6 +393,7 @@
                   <!-- <?php $i=1 ?> -->
                     <!-- <?php foreach ($form_services as $form_service): ?> -->
                   <tr>
+                  <td><?php echo $i ?></td>
                     <td><?php echo $form_service->printer ?></td>
                     <td><?php echo $form_service->date_install ?></td>
                     <td><?php echo $form_service->ink_number ?></td>
@@ -407,6 +420,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>No. </th>
                     <th>Visco Act</th>
                     <th>Pres. Act</th>
                     <th>Mb. Value</th>
@@ -422,6 +436,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($form_services as $form_service): ?>
                           <tr>
+                            <td><?php echo $i ?></td>
                             <td><?php echo $form_service->visco_act ?></td>
                             <td><?php echo $form_service->pres_act ?></td>
                             <td><?php echo $form_service->mb_value ?></td>
@@ -452,6 +467,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                  <th>No. </th>
                     <th>Problem Description</th>
                     <th>Replace Part</th>
                     <th>Service Work</th>
@@ -462,6 +478,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($form_services as $form_service): ?>
                           <tr>
+                            <td><?php echo $i ?></td>
                             <td><?php echo $form_service->problem ?></td>
                             <td><?php echo $form_service->replace_part ?></td>
                             <td><?php echo $form_service->service_work ?></td>
@@ -536,6 +553,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>No. </th>
                      <th>Company</th>
                       <th>Address</th>
                       <th>City</th>
@@ -550,6 +568,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($owner_forms as $owner_form): ?>
                   <tr>
+                        <td><?php echo $i ?></td>
                         <td><?php echo $owner_form->company ?></td>
                         <td><?php echo $owner_form->address ?></td>
                         <td><?php echo $owner_form->city ?></td>
@@ -642,6 +661,7 @@
                   <?php $i=1 ?>
                     <?php foreach ($form_exchanges as $form_exchange): ?>
                       <tr>
+                        <td><?php echo $i ?></td>
                         <td><?php echo $form_exchange->stock ?></td>
                         <td><?php echo $form_exchange->dismantled ?></td>
                         <td><?php echo $form_exchange->descr ?></td>
@@ -668,8 +688,326 @@
       <a href="<?php echo base_url('stakeholder/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
       </div>
 
+      <div id="trial_req" class="tab-pane">
+      <br>
+          <h1>Trial Request Form</h1>
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Trial / Install No.</th>
+                      <th>Date of Start Trial</th>
+                      <th>Date of End Trial</th>
+                      <th>Customer Information</th>
+                      <th>Application</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                     <tbody>
+                        <?php $i=1 ?>
+                        <?php foreach ($trial_reqs as $trial_req): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $trial_req->trial_no ?></td>
+                            <td><?php echo $trial_req->date_start ?></td>
+                            <td><?php echo $trial_req->date_end ?></td>
+                            <td><button type="<?php echo base_url('salesuser/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#apl">See more</button></td>
+                            <td>
+                            <a href="<?php echo base_url('salesuser/deleter_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('salesuser/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
+                            </td>
+                            <input type="hidden" name="id" value="<?php echo $trial_req->id ?>">
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
+
+              <a href="<?php echo base_url('salesuser/trial_req') ?>" class="btn btn-info">Trial Request</a>
+      </div>
+
+      <div id="cst" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 750px" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Customer Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>Company</th>
+                    <th>Street</th>
+                    <th>Contact Person</th>
+                    <th>Profession</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Business Field</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                  <?php foreach ($trial_reqs as $trial_req): ?> 
+                  <tr>
+                    <td><?php echo $i ?></td>
+                    <td><?php echo $trial_req->company ?></td>
+                    <td><?php echo $trial_req->street ?></td>
+                    <td><?php echo $trial_req->contact ?></td>
+                    <td><?php echo $trial_req->profession ?></td>
+                    <td><?php echo $trial_req->phone ?></td>
+                    <td><?php echo $trial_req->email ?></td> 
+                    <td><?php echo $trial_req->bus_field ?></td> 
+                    <?php $i++ ?>
+                 <?php endforeach ?> 
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+      </div>
+      
+      <div id="apl" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 1000px">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Application</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>Machine Type</th>
+                    <th>Ink Type</th>
+                    <th>Solvent Type</th>
+                    <th>Material to Print</th>
+                    <th>Printing App</th>
+                    <th>Accessories Supp</th>
+                    <th>Sensor Type</th>
+                    <th>Encoder</th>
+                    <th>Sales Note</th>
+                    <th>Technical Note</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($trial_reqs as $trial_req): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $trial_req->machine_type ?></td>
+                            <td><?php echo $trial_req->ink_type ?></td>
+                            <td><?php echo $trial_req->solvent_type ?></td>
+                            <td><?php echo $trial_req->material ?></td>
+                            <td><?php echo $trial_req->printing_app ?></td>
+                            <td><?php echo $trial_req->acc_supp ?></td>
+                            <td><?php echo $trial_req->sensor_type ?></td>
+                            <td><?php echo $trial_req->encoder ?></td>
+                            <td><?php echo $trial_req->sales_note ?></td>
+                            <td><?php echo $trial_req->tech_note ?></td>
+                          </tr>
+                    <?php $i++ ?>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>  
+
+
+      <div id="trial_res" class="tab-pane">
+        <br>
+        <h1>Trial Result Form</h1>
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Trial / Install No.</th>
+                      <th>Customer Information</th>
+                      <th>Application</th>
+                      <th>Trial Result</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                     <tbody>
+                        <?php $i=1 ?>
+                        <?php foreach ($trial_results as $trial_res): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $trial_res->result_no ?></td>
+                            <td><button type="<?php echo base_url('salesuser/see_more'.$trial_res->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cust">See more</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
+                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
+                            <td>
+                            <a href="<?php echo base_url('salesuser/deleter_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('salesuser/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
+                            <input type="hidden" name="id" value="<?php echo $trial_res->id ?>">
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
+
+              <a href="<?php echo base_url('salesuser/trial_result') ?>" class="btn btn-info">Trial Result</a>
+      </div>
+
+      <div id="cust" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 750px" >
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Customer Information</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>Company</th>
+                    <th>Street</th>
+                    <th>Contact Person</th>
+                    <th>Profession</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Business Field</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                  <?php foreach ($trial_results as $trial_res): ?> 
+                  <tr>
+                    <td><?php echo $i ?></td>
+                    <td><?php echo $trial_res->company ?></td>
+                    <td><?php echo $trial_res->street ?></td>
+                    <td><?php echo $trial_res->contact ?></td>
+                    <td><?php echo $trial_res->profession ?></td>
+                    <td><?php echo $trial_res->phone ?></td>
+                    <td><?php echo $trial_res->email ?></td> 
+                    <td><?php echo $trial_res->bus_field ?></td> 
+                    <?php $i++ ?>
+                 <?php endforeach ?> 
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="app" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 1000px">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Application</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>Machine Type</th>
+                    <th>Ink Type</th>
+                    <th>Solvent Type</th>
+                    <th>Material to Print</th>
+                    <th>Printing App</th>
+                    <th>Accessories Supp</th>
+                    <th>Sensor Type</th>
+                    <th>Encoder</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($trial_results as $trial_res): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $trial_res->machine_type ?></td>
+                            <td><?php echo $trial_res->ink_type ?></td>
+                            <td><?php echo $trial_res->solvent_type ?></td>
+                            <td><?php echo $trial_res->material ?></td>
+                            <td><?php echo $trial_res->printing_app ?></td>
+                            <td><?php echo $trial_res->acc_supp ?></td>
+                            <td><?php echo $trial_res->sensor_type ?></td>
+                            <td><?php echo $trial_res->encoder ?></td>
+                          </tr>
+                    <?php $i++ ?>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="res" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="width: 1000px">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Application</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>No. </th>
+                    <th>Printed Characters</th>
+                    <th>Printed Dots</th>
+                    <th>Counter Start</th>
+                    <th>Counter End</th>
+                    <th>Total Counter</th>
+                    <th>Date Start</th>
+                    <th>Date End</th>
+                    <th>Time Start</th>
+                    <th>Time End</th>
+                    <th>Ink</th>
+                    <th>Solvent</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>Trial Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php $i=1 ?>
+                    <?php foreach ($trial_results as $trial_res): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $trial_res->print_char ?></td>
+                            <td><?php echo $trial_res->dots ?></td>
+                            <td><?php echo $trial_res->counter_start ?></td>
+                            <td><?php echo $trial_res->counter_end ?></td>
+                            <td><?php echo $trial_res->total_counter ?></td>
+                            <td><?php echo $trial_res->date_start ?></td>
+                            <td><?php echo $trial_res->date_end ?></td>
+                            <td><?php echo $trial_res->time_start ?></td>
+                            <td><?php echo $trial_res->time_end ?></td>
+                            <td><?php echo $trial_res->ink ?></td>
+                            <td><?php echo $trial_res->solvent ?></td>
+                            <td><?php echo $trial_res->temperature ?></td>
+                            <td><?php echo $trial_res->humidity ?></td>
+                            <td><?php echo $trial_res->result ?></td>
+                          </tr>
+                    <?php $i++ ?>
+                  <?php endforeach ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  </div>
          
+
+
 
           <script type="text/javascript" charset="utf-8">
                     $(document).ready(function() {
@@ -677,6 +1015,8 @@
                      $('#productTable').DataTable();
                    });
                 </script>
+
+
           
         </div>
       </div>    

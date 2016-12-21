@@ -39,14 +39,7 @@
         <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
          <ul class="nav nav-pills">
           <li class="active"><a data-toggle="pill" href="#edit">User</a></li>
-          <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Customer
-                <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a data-toggle="pill" href="#crt">Create Customer</a></li>
-                    <li><a data-toggle="pill" href="#upd">Update Customer</a></li>
-                </ul>
-          </li>
+          <li><a data-toggle="pill" href="#customerr">Customer</a></li>
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
                 <span class="caret"></span></a>

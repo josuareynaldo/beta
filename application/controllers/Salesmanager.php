@@ -16,6 +16,35 @@
 			 // $data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
 				$this->load->view('salesmanager',$data);
 		}	
+
+
+		public function register(){
+			$this->load->view('register_user');
+		}
+
+		public function add_user(){
+			if($this->input->post('register')){
+				$data= array(
+						'name' => $this->input->post('name'),
+						'password' => sha1($this->input->post('password')),
+						'email' => $this->input->post('email'),
+						'address' => $this->input->post('address'),
+						'position' => $this->input->post('pos')
+					);
+
+				$this->user_model->insert_data('users',$data);
+				$report=array(
+						'report'=> $this->session->userdata('name').' has created an user account with name '.$this->input->post('name').' with the position as '.$this->input->post('pos')
+					);
+				$this->user_model->insert_data('history',$report);	
+			$this->user_model->insert_data('history',$report);
+				redirect('salesmanager/index');
+
+			}else{
+				redirect('salesmanager/register_user');
+			}
+		}
+
 		
 		public function edit($id){
 			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();

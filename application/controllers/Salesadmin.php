@@ -10,10 +10,6 @@
 			 $data['trial_reqs'] = $this->user_model->get_data('trial_reqs');
 			 $data['trial_results'] = $this->user_model->get_data('trial_results');
 			 $data['histories']= $this->user_model->get_data('history');
-			 // $data['form_replacements'] = $this->form_model->get_data('form_replacements');
-			 // $data['form_services'] = $this->form_model->get_data('form_services');
-			 // $data['owner_forms'] = $this->form_model->get_data('owner_forms');
-			 // $data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
 				$this->load->view('salesadmin',$data);
 		}	
 		
