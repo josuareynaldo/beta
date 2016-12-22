@@ -7,6 +7,7 @@
 
 		public function index(){
 			 $data['users'] = $this->user_model->get_data('users');
+			 $data['customers'] = $this->user_model->get_data('customers');
 			 $data['trial_reqs'] = $this->user_model->get_data('trial_reqs');
 			 $data['trial_results'] = $this->user_model->get_data('trial_results');
 			 $data['histories']= $this->user_model->get_data('history');
@@ -50,6 +51,10 @@
 			}
 		}
 
+		 public function customer(){
+		 	$this->load->view('forms/customers');
+		 }
+
 		 public function trial_req(){
 		 	$this->load->view('forms/trial_reqs');
 		 }
@@ -59,7 +64,24 @@
 		 }
 
 
+		 public function add_customer(){
+			if($this->input->post('save')){
+				$data= array(
+						'company' => $this->input->post('company'),
+						'address' => $this->input->post('address'),
+						'telp' => $this->input->post('telp'),
+						'fax' => $this->input->post('fax'),
+						'hp' => $this->input->post('hp'),
+						'email' => $this->input->post('email'),
+						'sales' => $this->input->post('sales')
+					);
+				$this->form_model->insert_data('customers',$data);
+				redirect('salesadmin/index');
 
+			}else{
+				redirect('salesadmin/customer');
+			}
+		}
 
 		 public function add_trial_req(){
 			if($this->input->post('save')){
@@ -140,7 +162,10 @@
 			}
 		}
 
-
+		public function delete_customer($id){
+			$this->form_model->delete_data('customers',array('id'=>$id));
+			redirect('salesuser/index');
+		 }
 
 		public function delete_trial_req($id){
 			$this->form_model->delete_data('trial_reqs',array('id'=>$id));
@@ -153,6 +178,21 @@
 		 }
 
 
+		public function save_customer($id){
+			 $data['trial_req'] = $this->form_model->get_byCondition('customers',array('id'=>$id))->row();
+	  			//load the view and saved it into $html variable
+	         $html=$this->load->view('pdf/customerPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "customer.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	         $this->m_pdf->pdf->WriteHTML($html);
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+	 	}
 		
 
 		public function save_trial_req($id){
@@ -170,6 +210,7 @@
 	        //download it.
 	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 	 	}
+
 
 		public function save_trial_result($id){
 			 $data['trial_result'] = $this->form_model->get_byCondition('trial_results',array('id'=>$id))->row();

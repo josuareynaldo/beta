@@ -9,6 +9,7 @@
 			 $data['users'] = $this->user_model->get_data('users');
 			 $data['trial_reqs'] = $this->user_model->get_data('trial_reqs');
 			 $data['trial_results'] = $this->user_model->get_data('trial_results');
+			 $data['reports'] = $this->user_model->get_data('reports');
 			 $data['histories']= $this->user_model->get_data('history');
 			 // $data['form_replacements'] = $this->form_model->get_data('form_replacements');
 			 // $data['form_services'] = $this->form_model->get_data('form_services');
@@ -91,6 +92,9 @@
 		 	$this->load->view('forms/trial_results');
 		 }
 
+		 public function report(){
+		 	$this->load->view('forms/reports');
+		 }
 
 
 
@@ -173,6 +177,25 @@
 			}
 		}
 
+		public function add_report(){
+			if($this->input->post('save')){
+				$data= array(
+						'sales_name' => $this->input->post('sales_name'),
+						'date_report' => $this->input->post('date_report'),
+						'date_info' => $this->input->post('date_info'),
+						'customer' => $this->input->post('customer'),
+						'report' => $this->input->post('report'),
+						'action_plan' => $this->input->post('action_plan'),
+
+
+					);
+				$this->form_model->insert_data('reports',$data);
+				redirect('salesmanager/index');
+
+			}else{
+				redirect('salesmanager/report');
+			}
+		}
 
 
 		public function delete_trial_req($id){
@@ -185,6 +208,10 @@
 			redirect('salesmanager/index');
 		 }
 
+		 public function delete_report($id){
+			$this->form_model->delete_data('reports',array('id'=>$id));
+			redirect('salesmanager/index');
+		 }
 
 		
 
@@ -219,6 +246,23 @@
 	        //download it.
 	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 	 	}
+
+	 	public function save_report($id){
+			 $data['report'] = $this->form_model->get_byCondition('report',array('id'=>$id))->row();
+	  			//load the view and saved it into $html variable
+	         $html=$this->load->view('pdf/reportPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "report.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	         $this->m_pdf->pdf->WriteHTML($html);
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+	 	}
+
 
 	}
 

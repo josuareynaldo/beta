@@ -92,6 +92,50 @@
             </table>
           </div>
 
+           <div id="customerr" class="tab-pane">
+        <br>
+        <h1>Customer</h1>
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Company</th>
+                      <th>Address</th>
+                      <th>Telp</th>
+                      <th>Fax</th>
+                      <th>HP</th>
+                      <th>Email</th>
+                      <th>Sales</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                     <tbody>
+                        <?php $i=1 ?>
+                        <?php foreach ($customers as $customer): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $customer->company ?></td>
+                            <td><?php echo $customer->address ?></td>
+                            <td><?php echo $customer->telp ?></td>
+                            <td><?php echo $customer->fax ?></td>
+                            <td><?php echo $customer->hp ?></td>
+                            <td><?php echo $customer->email ?></td>
+                            <td><?php echo $customer->sales ?></td>
+                            <td>
+                            <!-- <a href="<?php echo base_url('salesadmin/update_customer/'.$customer->id) ?>" class="btn btn-info">Update</a> -->
+                            <a href="<?php echo base_url('salesadmin/delete_customer/'.$customer->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('salesadmin/save_customer/'.$customer->id) ?>" class="btn btn-primary">Save</a></td>
+                            <input type="hidden" name="id" value="<?php echo $customer->id ?>">
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
+
+              <a href="<?php echo base_url('salesadmin/customer') ?>" class="btn btn-info">Customer</a>
+      </div>
+
 
       <div id="trial_req" class="tab-pane">
       <br>
