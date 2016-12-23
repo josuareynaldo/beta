@@ -30,10 +30,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   </head>
   <body>
-  <pre>
-    <?php print_r($childs) ?>
-    <?php print_r($this->session->userdata()) ?>
-  </pre>
     <div class="container">
       <div class="row">
         <div class="col-xs-12">

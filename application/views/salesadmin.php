@@ -29,9 +29,6 @@
 
   </head>
   <body>
-  <pre>
-    <?php print_r($this->session->userdata()) ?>
-  </pre>
     <div class="container">
       <div class="row">
         <div class="col-xs-12">

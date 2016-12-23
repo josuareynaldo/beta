@@ -86,7 +86,6 @@
 						'report'=> $this->session->userdata('name').' has created an user account with name '.$this->input->post('name').' with the position as '.$this->input->post('pos')
 					);
 				$this->user_model->insert_data('history',$report);	
-			$this->user_model->insert_data('history',$report);
 				redirect('manager/index');
 
 			}else{

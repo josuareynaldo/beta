@@ -30,10 +30,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   </head>
   <body>
-  <pre>
-    <?php print_r($childs) ?>
-    <?php print_r($this->session->userdata()) ?>
-  </pre>
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
@@ -115,7 +111,8 @@
       <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
-          <table class="table table-bordered sortable" id="productTable">
+          <input type="text" class="form-control ui-widget" id="myInput" onkeyup="searchFunction()" placeholder="Search for product..">
+          <table class="table table-bordered" id="productTable">
             <thead>
               <tr>
                 <th>Toggle</th>
@@ -714,7 +711,28 @@
                      $('#productTable').DataTable();
                    });
                 </script>
-          
+          <script>
+          function searchFunction() {
+            // Declare variables 
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("productTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[3];
+              if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              } 
+            }
+          }
+          </script>
         </div>
       </div>    
     </div>
