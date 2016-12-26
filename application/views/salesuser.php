@@ -9,7 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+    <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,7 +49,7 @@
                     <li><a data-toggle="pill" href="#rpt">Customer Report</a></li>
                 </ul>
           </li>
-          <li><a data-toggle="pill" href="#history">History</a></li>
+          <!-- <li><a data-toggle="pill" href="#history">History</a></li> -->
         </ul>
           
 
@@ -491,7 +492,7 @@
               <a href="<?php echo base_url('salesuser/report') ?>" class="btn btn-info">Report</a>
       </div>     
 
-      <div id="history" class="tab-pane">
+      <!-- <div id="history" class="tab-pane">
             <br>
             <div class="container">
       <div class="row">
@@ -521,7 +522,7 @@
           </div>
           </div>
           </div>
-          </div>
+          </div> -->
 
         <script>
             $(document).ready(function(){

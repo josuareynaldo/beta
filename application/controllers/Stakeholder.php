@@ -7,6 +7,7 @@
 
 		public function index(){
 			$data['users'] = $this->user_model->get_data('users');
+			$data['customers'] = $this->user_model->get_data('customers');
 			$data['products'] = $this->user_model->get_data('products');
 			$data['articles'] = $this->user_model->get_data('articles');
 			$data['histories']= $this->user_model->get_data('history');
@@ -16,6 +17,7 @@
 			$data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
 			$data['trial_reqs'] = $this->user_model->get_data('trial_reqs');
 			 $data['trial_results'] = $this->user_model->get_data('trial_results');
+			 $data['reports'] = $this->user_model->get_data('reports');
 			$childs = array();
 			foreach ($data['products'] as $product) {
 				$articles = $this->user_model->get_products($product->article_number);
@@ -181,6 +183,15 @@
 		public function trial_result(){
 		 	$this->load->view('forms/trial_results');
 		 }
+
+		  public function customer(){
+		 	$this->load->view('forms/customers');
+		 }
+
+		 public function report(){
+		 	$this->load->view('forms/reports');
+		 }
+
 
 
 		public function add_form_replacement(){
@@ -403,6 +414,45 @@
 			}
 		}
 
+		 public function add_customer(){
+			if($this->input->post('save')){
+				$data= array(
+						'company' => $this->input->post('company'),
+						'address' => $this->input->post('address'),
+						'telp' => $this->input->post('telp'),
+						'fax' => $this->input->post('fax'),
+						'hp' => $this->input->post('hp'),
+						'email' => $this->input->post('email'),
+						'sales' => $this->input->post('sales')
+					);
+				$this->form_model->insert_data('customers',$data);
+				redirect('stakeholder/index');
+
+			}else{
+				redirect('stakeholder/customer');
+			}
+		}
+
+		public function add_report(){
+			if($this->input->post('save')){
+				$data= array(
+						'sales_name' => $this->input->post('sales_name'),
+						'date_report' => $this->input->post('date_report'),
+						'date_info' => $this->input->post('date_info'),
+						'customer' => $this->input->post('customer'),
+						'report' => $this->input->post('report'),
+						'action_plan' => $this->input->post('action_plan'),
+
+
+					);
+				$this->form_model->insert_data('reports',$data);
+				redirect('stakeholder/index');
+
+			}else{
+				redirect('stakeholder/report');
+			}
+		}
+
 
 
 		public function delete_replacement($id){
@@ -454,6 +504,17 @@
 			$this->form_model->delete_data('trial_results',array('id'=>$id));
 			redirect('stakeholder/index');
 		 }
+
+		 public function delete_customer($id){
+			$this->form_model->delete_data('customers',array('id'=>$id));
+			redirect('stakeholder/index');
+		 }
+
+		 public function delete_report($id){
+			$this->form_model->delete_data('reports',array('id'=>$id));
+			redirect('stakeholder/index');
+		 }
+
 
 		public function save_replacement($id){
 		$temp=$this->user_model->select_data('exchange_id','form_replacements',$id);
@@ -578,6 +639,38 @@
 	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 	 	}
 
+	 	public function save_customer($id){
+			 $data['trial_req'] = $this->form_model->get_byCondition('customers',array('id'=>$id))->row();
+	  			//load the view and saved it into $html variable
+	         $html=$this->load->view('pdf/customerPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "customer.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	         $this->m_pdf->pdf->WriteHTML($html);
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+	 	}
+
+
+	 	public function save_report($id){
+			 $data['report'] = $this->form_model->get_byCondition('report',array('id'=>$id))->row();
+	  			//load the view and saved it into $html variable
+	         $html=$this->load->view('pdf/reportPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "report.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	         $this->m_pdf->pdf->WriteHTML($html);
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+	 	}
 
 
 	}

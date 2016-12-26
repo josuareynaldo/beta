@@ -9,7 +9,9 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+    <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -1002,6 +1004,92 @@
           </div>
         </div>
       </div>
+
+       <div id="rpt" class="tab-pane">
+        <br>
+        <h1>Report Form</h1>
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Sales name</th>
+                      <th>Date Report</th>
+                      <th>Date Info</th>
+                      <th>Customer</th>
+                      <th>Report</th>
+                      <th>Action Plan</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                     <tbody>
+                        <?php $i=1 ?>
+                        <?php foreach ($reports as $report): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $report->sales_name ?></td>
+                            <td><?php echo $report->date_report ?></td>
+                            <td><?php echo $report->date_info ?></td>
+                            <td><?php echo $report->customer ?></td>
+                            <td><?php echo $report->report ?></td>
+                            <td><?php echo $report->action_plan ?></td>
+                            <td>
+                            <a href="<?php echo base_url('stakeholder/delete_report/'.$report->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('stakeholder/save_report/'.$report->id) ?>" class="btn btn-primary">Save</a></td>
+                            <input type="hidden" name="id" value="<?php echo $report>id ?>">
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
+
+              <a href="<?php echo base_url('stakeholder/report') ?>" class="btn btn-info">Report</a>
+      </div> 
+
+
+      <div id="customerr" class="tab-pane">
+        <br>
+        <h1>Customer</h1>
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Company</th>
+                      <th>Address</th>
+                      <th>Telp</th>
+                      <th>Fax</th>
+                      <th>HP</th>
+                      <th>Email</th>
+                      <th>Sales</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                     <tbody>
+                        <?php $i=1 ?>
+                        <?php foreach ($customers as $customer): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $customer->company ?></td>
+                            <td><?php echo $customer->address ?></td>
+                            <td><?php echo $customer->telp ?></td>
+                            <td><?php echo $customer->fax ?></td>
+                            <td><?php echo $customer->hp ?></td>
+                            <td><?php echo $customer->email ?></td>
+                            <td><?php echo $customer->sales ?></td>
+                            <td>
+                            <!-- <a href="<?php echo base_url('stakeholder/update_customer/'.$customer->id) ?>" class="btn btn-info">Update</a> -->
+                            <a href="<?php echo base_url('stakeholder/delete_customer/'.$customer->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('stakeholder/save_customer/'.$customer->id) ?>" class="btn btn-primary">Save</a></td>
+                            <input type="hidden" name="id" value="<?php echo $customer->id ?>">
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
+
+              <a href="<?php echo base_url('stakeholder/customer') ?>" class="btn btn-info">Customer</a>
+      </div>  
 
 
   </div>
