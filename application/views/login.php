@@ -13,7 +13,7 @@
     <link href="<?php echo base_url() ?>css/tes.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
-
+    <script type="text/javascript" src="<?php echo base_url() ?>js/time.js"></script>
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,7 +41,9 @@
 
   <div class="col-md-3 col-sm-2"></div>
   <div class="col-md-6 col-sm-8" id="login_container">
-  <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+            <span id="date_time"></span>
+            <script type="text/javascript">window.onload = date_time('date_time');</script>
+
 
     <div class="row">
         <div class="col-sm-2 "></div>

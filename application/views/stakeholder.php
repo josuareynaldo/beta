@@ -29,12 +29,14 @@
     <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>js/datatable.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url() ?>js/time.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+        <span id="date_time"></span>
+        <script type="text/javascript">window.onload = date_time('date_time');</script>
 
         <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
         <h1>Mr. Stakeholder </h1>
