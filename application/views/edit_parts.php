@@ -23,16 +23,16 @@
   <body>
     <div class="container">
     <div class="row">
-        <div class="col-xs-4"></div>
-        <div class="col-xs-4 text-center" >
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 text-center" >
           <h2>Parts Registration</h2>
         </div>
-        <div class="col-xs-4"></div>
+        <div class="col-xs-1"></div>
         
     </div>
       <div class="row">
-        <div class="col-xs-4"></div>
-        <div class="col-xs-4">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
           <form action="<?php echo base_url('product/updateParts') ?>" method="post">
             <div class="form-group">
               <label for="">Article Number</label>
@@ -68,7 +68,7 @@
             </div>
           </form>
         </div>
-        <div class="col-xs-4"></div>
+        <div class="col-xs-1"></div>
       </div>
     </div>
 
