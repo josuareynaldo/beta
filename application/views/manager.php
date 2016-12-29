@@ -30,13 +30,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url() ?>js/time.js"></script>
   </head>
-  <body>
+  <body style="margin-top: 50px;">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
          <span id="date_time"></span>
          <script type="text/javascript">window.onload = date_time('date_time');</script>
-        <div class="col-xs-10 col-sm-12">
+       
 
         <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
         <h1>Mr. Manager </h1>
@@ -511,6 +511,7 @@
       <div class="col-xs-12 col-sm-12">
           <h1>Owner Form</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+        <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -555,6 +556,7 @@
                     
                   </tbody>
                 </table>
+                </div>
 
         <div id="own" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -617,6 +619,7 @@
       <div class="col-xs-12 col-sm-12">
           <h1>Form Exchange</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+        <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -655,6 +658,7 @@
                     
                   </tbody>
                 </table>
+                </div>
 
           <div id="exc" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -781,6 +785,7 @@
         </div>
       </div>    
     </div>
+
 
     
   </body>
