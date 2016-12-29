@@ -52,6 +52,7 @@
 					if (count($query) > 0) {
 							foreach ($query as $row) {
 								$new_row['label'] = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['value0'] = htmlentities(stripcslashes($row['part_name']));
 								$new_row['value'] = htmlentities(stripcslashes($row['description']));
 								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
 								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));

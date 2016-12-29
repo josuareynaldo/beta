@@ -35,6 +35,7 @@ class Product extends CI_Controller
 								'article_number' => $this->input->post('article_number'),
 								'product_name' => $this->input->post('product_name'),
 								'shipment_date' => $this->input->post('shipment_date'),
+								'description' =>$this->input->post('description'),
 								'status' => $status,
 					);
 
@@ -106,10 +107,12 @@ class Product extends CI_Controller
 				$data1= array(
 						'serial_number' => $this->input->post('serial_number'),
 						'article_number' => $this->input->post('article_number'),
+						'part_name' => $this->input->post('part_name'),
 						'description' => $this->input->post('description'),
 						'type' => $this->input->post('type'),
 						'service_date' => $this->input->post('service_date'),
 						'date_install' => $this->input->post('date_install'),
+						'description' => $this->input->post('description'),
 						'image_name' => $image_name
 
 					);
@@ -167,6 +170,7 @@ class Product extends CI_Controller
 						'article_number' => $this->input->post('article_number'),
 						'product_name' => $this->input->post('product_name'),
 						'shipment_date' => $this->input->post('shipment_date'),
+						'description' => $this->input->post('description'),
 						'status' => $status
 					);
 				 
@@ -201,6 +205,7 @@ class Product extends CI_Controller
 				$data= array(
 						'serial_number' => $this->input->post('serial_number'),
 						'article_number' => $this->input->post('article_number'),
+						'part_name' => $this->input->post('part_name'),
 						'description' => $this->input->post('description'),
 						'type' => $this->input->post('type'),
 						'service_date' => $this->input->post('service_date'),

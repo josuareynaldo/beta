@@ -54,6 +54,10 @@
               <label for="shipment_date">Shipment Date</label>
               <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
             </div>
+             <div class="form-group">
+              <label for="product_name">Description</label>
+              <input class="form-control" type="text" id="description" name="description" placeholder="Input Description"> 
+            </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">
 
@@ -64,50 +68,5 @@
       </div>
 
     </div>  
-    <script type="text/javascript">
-        $(document).ready(function(){
-            
-            $("#serial_number").autocomplete({
-                source: '<?php echo base_url('product/lookup'); ?>',
-
-                focus: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-                    $('#shipment_date').val(ui.item.value1);
-
-                    return false;
-                },
-
-                select: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-                    $('#shipment_date').val(ui.item.value1);
-
-                    return false;
-<<<<<<< HEAD
-                }
-<<<<<<< HEAD
-                else{
-                  $('#product_name').hide();
-                  $('label[for="product_name"]').hide();
-                  $('#shipment_date').hide();
-                  $('label[for="shipment_date"]').hide();
-                }
-            }
-=======
-
->>>>>>> origin/master
-=======
-                }
-
->>>>>>> origin/master
-
-            });
-        });
-    </script>
   </body>
 </html>

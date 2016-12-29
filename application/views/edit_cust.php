@@ -30,9 +30,6 @@
         <div class="col-xs-4"></div>
         
     </div>
-    <pre>
-      <?php print_r($user) ?>
-    </pre>
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">

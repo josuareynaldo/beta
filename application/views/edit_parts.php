@@ -30,9 +30,6 @@
         <div class="col-xs-4"></div>
         
     </div>
-    <pre>
-      <?php print_r($articles) ?>
-    </pre>
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
@@ -44,6 +41,10 @@
             <div class="form-group">
               <label for="">Serial Number</label>
               <input class="form-control" type="text" name="serial_number" placeholder="Input article number" required="1" value="<?php echo $articles->serial_number ?>" readonly="readonly">
+            </div>
+            <div class="form-group">
+              <label for="">Part Name</label>
+              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name"> 
             </div>
            <div class="form-group">
               <label for="">Description</label>

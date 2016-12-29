@@ -30,9 +30,6 @@
         <div class="col-xs-4"></div>
         
     </div>
-    <pre>
-      <?php print_r($product) ?>
-    </pre>
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
@@ -48,6 +45,10 @@
            <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
               <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
+            </div>
+            <div class="form-group">
+              <label for="product_name">Description</label>
+              <input class="form-control" type="text" id="description" name="description" placeholder="Input Description"> 
             </div>
             <div class="form-group">
               <input type="hidden" name="id" value="<?php echo $products->article_number ?>">

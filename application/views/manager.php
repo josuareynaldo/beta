@@ -126,6 +126,7 @@
                 <th>Article Number</th>
                 <th>Product Name</th>
                 <th>Shipment Date</th>
+                <th>Description</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -139,14 +140,16 @@
                   <td><?php echo $product->article_number ?></td>
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
+                  <td><?php echo $product->description ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number) ?>" class="btn btn-info">New Parts</a><a href="<?php echo base_url('product/edit/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
                     <?php if($product->article_number == $key): ?>
                       <tr class="collapse row<?php echo $i ?>">
                         <th>Serial Number</th>
+                        <th>Part Name</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Service Date</th>
@@ -155,7 +158,8 @@
                       </tr>
                        <?php foreach ($value as $row):?>
                           <tr class="collapse row<?php echo $i ?>">
-                            <td><?php echo $row->serial_number ?></td>  
+                            <td><?php echo $row->serial_number ?></td>
+                            <td><?php echo $row->part_name ?></td>
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
@@ -190,6 +194,10 @@
                 <div class="form-group">
                     <label for="serial_number">Serial Number</label>
                     <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="serial_number">Parts Number</label>
+                    <input class="form-control ui-widget" id="part_name" type="text" name="name" placholder="" disabled="" required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="article_number">Article Number</label>
@@ -228,6 +236,7 @@
 
                                 $(this).val(ui.item.label);
                                 $('#article_number').val(ui.item.value5);
+                                $('#part_name').val(ui.item.value0);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
                                 $('#service_date').val(ui.item.value2);
@@ -242,6 +251,7 @@
 
                                 $(this).val(ui.item.label);
                                 $('#article_number').val(ui.item.value5);
+                                $('#part_name').val(ui.item.value0);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
                                 $('#service_date').val(ui.item.value2);

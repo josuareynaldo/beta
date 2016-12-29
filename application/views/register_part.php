@@ -44,6 +44,10 @@
               <label for="">Serial Number</label>
               <input class="form-control" type="text" name="serial_number" placeholder="Input serial number" required="1" >
             </div>
+            <div class="form-group">
+              <label for="">Part Name</label>
+              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name"> 
+            </div>
            <div class="form-group">
               <label for="">Description</label>
               <textarea class="form-control"  name="description" placeholder="Input description" required="1" ></textarea>
