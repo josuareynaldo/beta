@@ -52,8 +52,12 @@
               <input class="form-control" type="text" name="customer" placeholder="Input Customer" required="1">
             </div>
             <div class="form-group">
-              <label for="">Report</label>
-              <input class="form-control" type="text" name="report" placeholder="Input Report" required="1">
+              <label for="">Report</label><br>
+              <input type="radio"  name="report" value="Visit" required="1" > Visit<br>
+              <input type="radio"  name="report" value="Trial" required="1" > Trial<br>
+              <input type="radio"  name="report" value="Negotiations" required="1" > Negotiations<br>
+              <input type="radio"  name="report" value="Quote" required="1" > Quote<br>
+              <input type="radio"  name="report" value="Order" required="1" > Order<br>
             </div>
             <div class="form-group">
               <label for="">Action Plan</label>
