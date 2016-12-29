@@ -37,7 +37,6 @@
          <span id="date_time"></span>
          <script type="text/javascript">window.onload = date_time('date_time');</script>
         <div class="col-xs-10 col-sm-12">
-        <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
 
         <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
         <h1>Mr. Manager </h1>
