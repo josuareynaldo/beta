@@ -32,7 +32,7 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-10 col-sm-12">
         <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
 
         <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
@@ -42,7 +42,7 @@
            <a href="<?php echo base_url('manager/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
-
+        <div class="col-xs-6 col-sm-12">
         <ul class="nav nav-pills">
         	<li class="active"><a data-toggle="pill" href="#user_database">User</a></li>
         	<li><a data-toggle="pill" href="#product_database">Product</a></li>
@@ -59,15 +59,16 @@
           </li>
           <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
+        </div>
         <div class="tab-content">
 	        <div id="user_database" class="tab-pane fade in active">
 	        	<br>
              <div class="container">
              <div class="row">
-             <div class="col-xs-12">
+             <div class="col-xs-12 col-sm-12">
                 <h1>Employee</h1>
                
-
+                <div class="table-responsive">
     	        	<table class="table display table-bordered  sortable " id="userTable">
     	            <thead>
     	              <tr>
@@ -97,6 +98,7 @@
     	              
     	            </tbody>
     	          </table>
+                </div>
                    
 
                 <a href="<?php echo base_url('manager/register') ?>" class="btn btn-primary">User Register</a>
@@ -108,10 +110,11 @@
         	<div id="product_database" class="tab-pane">
         		<br>
         		 <div class="container">
-      <div class="row">
+           <div class="row">
           <div class="col-xs-12">
           <h1>Product</h1>
           <input type="text" class="form-control ui-widget" id="myInput" onkeyup="searchFunction()" placeholder="Search for product..">
+          <div class="table-responsive">
           <table class="table table-bordered" id="productTable">
             <thead>
               <tr>
@@ -167,6 +170,7 @@
               
             </tbody>
           </table>
+          </div>
           <br>
           <a href="<?php echo base_url('product/register_product') ?>" class="btn btn-primary">Product Register</a>
         	</div>
@@ -272,8 +276,12 @@
 
            <div id="form_replace" class="tab-pane">
       <br>
+            <div class="container">
+      <div class="row">
+      <div class="col-xs-12 col-sm-12">
           <h1>Form Replacement</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
+        <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -314,13 +322,21 @@
                     
                   </tbody>
                 </table>
+                </div>
                 <a href="<?php echo base_url('manager/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
+                </div>
+                </div>
+                </div>
       </div>
 
       <div id="form_service" class="tab-pane">
       <br>
+      <div class="container">
+      <div class="row">
+      <div class="col-xs-12 col-sm-12">
           <h1>Form Service</h1>
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+             <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -355,8 +371,12 @@
                         <?php endforeach ?>
                       </tbody>
              </table>
+             </div>
 
               <a href="<?php echo base_url('manager/form_service') ?>" class="btn btn-info">Form Service</a>
+              </div>
+              </div>
+              </div>
       </div>
 
       <div id="poi" class="modal fade" role="dialog">
@@ -367,6 +387,7 @@
               <h4 class="modal-title">Printer of Information</h4>
             </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -390,6 +411,7 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
@@ -403,6 +425,7 @@
               <h4 class="modal-title">Hydraulic of Information</h4>
             </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -435,6 +458,7 @@
                   <?php endforeach ?>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
@@ -448,6 +472,7 @@
               <h4 class="modal-title">Hydraulic of Information</h4>
             </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -466,10 +491,11 @@
                             <td><?php echo $form_service->service_work ?></td>
                     <?php $i++ ?>
                     <td><a href="<?php echo base_url('manager/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('manager/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
+                        <a href="<?php echo base_url('manager/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a></td>
                   <?php endforeach ?>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
@@ -477,6 +503,9 @@
 
  <div id="owner_form" class="tab-pane">
       <br>
+            <div class="container">
+      <div class="row">
+      <div class="col-xs-12 col-sm-12">
           <h1>Owner Form</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
               <table class="table display table-bordered sortable" id="formTable">
@@ -532,6 +561,7 @@
                 <h4 class="modal-title">Customer Information</h4>
               </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -563,18 +593,25 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
                 
      <a href="<?php echo base_url('manager/owner_form') ?>" class="btn btn-info">Owner Form</a>
+     </div>
+     </div>
+     </div>
       </div>
 
 
 
       <div id="form_exchange" class="tab-pane">
       <br>
+            <div class="container">
+      <div class="row">
+      <div class="col-xs-12 col-sm-12">
           <h1>Form Exchange</h1>
         <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
               <table class="table display table-bordered sortable" id="formTable">
@@ -616,14 +653,15 @@
                   </tbody>
                 </table>
 
-                  <div id="exc" class="modal fade" role="dialog">
-          <div class="modal-dialog" style="width: 1000px;">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Other Information</h4>
-              </div>
+          <div id="exc" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <h4 class="modal-title">Other Information</h4>
+                 </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -659,12 +697,16 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
             
       <a href="<?php echo base_url('manager/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
+      </div>
+      </div>
+      </div>
       </div>
 
 
@@ -673,7 +715,7 @@
             <br>
             <div class="container">
       <div class="row">
-          <div class="col-xs-12">
+          <div class="col-xs-12 col-sm-12">
           <h1>History</h1>
             <table class="table display table-bordered  sortable " id="userTable">
               <thead>
