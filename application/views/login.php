@@ -73,7 +73,7 @@
                   <h4 class="modal-title">Attention</h4>
                 </div>
                 <div class="modal-body">
-                <img src="../image/alert.png" style="width:100px">
+                <img src="<?php echo base_url(); ?>image/alert.png" style="width:100px">
                   <p>Username / Password Wrong</p>
                 </div>
               </div>
@@ -82,33 +82,16 @@
           
          
 
-          <!-- <div class="window-popup" id="popUpWindow" role="dialog">
+           <div class="window-popup" id="popUpWindow" role="dialog">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><a href="#" id="button-popup-close">&times;</a></button>
-                  <h4 style="margin-top: 10px;">Attention</h4>   
                 </div>
-                <h3 style="font-family: 'Andada', serif; margin-top: 40px;">Username or password wrong</h3>
             </div>
- -->
 
 
           <!-- <input type="submit" name="signin" value="Sign In" class="btn btn-primary"> -->
         </form>
       </div>
     </div>
-     <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-4 col-xs-12">
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me">Remember Me
-        </label>
-      </div>
-       <!-- <div class="col-sm-4 col-xs-12">
-          <p class="forgot_pwd">
-            <a href="<?php echo base_url('forget/index') ?>">Forgot password?</a>
-          </p>
-        </div> -->
-    </div>   
   </div>
         
 </div>

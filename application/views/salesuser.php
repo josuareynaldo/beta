@@ -12,6 +12,7 @@
     <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,13 +33,15 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <span id="date_time"></span>
-        <script type="text/javascript">window.onload = date_time('date_time');</script>
-
-        <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
+       <div class="header">
+          &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
+          &nbsp<span id="date_time"></span>
+          <script type="text/javascript">window.onload = date_time('date_time');</script>
+          &nbsp<h1>Sales User View</h1>
+       </div>
 
         <div class="col-xs-6 col-sm-12">
-         <ul class="nav nav-pills">
+         <ul class="nav nav-pills" id="pills">
           <li class="active"><a data-toggle="pill" href="#edit">User</a></li>
           <li><a data-toggle="pill" href="#customerr">Customer</a></li>
           <li class="dropdown">

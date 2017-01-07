@@ -12,6 +12,7 @@
     <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,21 +35,22 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-         <span id="date_time"></span>
-         <script type="text/javascript">window.onload = date_time('date_time');</script>
-       
-
-        <p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
-        <h1>Mr. Manager </h1>
-
+       <div class="header">
+        &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
+        &nbsp<span id="date_time"></span>
+        <script type="text/javascript">window.onload = date_time('date_time');</script>
+        &nbsp<h1>Manager View
         <div class="right" style="float: right;">
            <a href="<?php echo base_url('manager/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
            <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
-        <div class="col-xs-6 col-sm-12">
-        <ul class="nav nav-pills">
-        	<li class="active"><a data-toggle="pill" href="#user_database">User</a></li>
-        	<li><a data-toggle="pill" href="#product_database">Product</a></li>
+        </h1>
+        
+       </div>
+      <div class="col-xs-6 col-sm-12">
+        <ul class="nav nav-pills" id="pills">
+          <li class="active"><a data-toggle="pill" href="#user_database">User</a></li>
+          <li><a data-toggle="pill" href="#product_database">Product</a></li>
           <li><a data-toggle="pill" href="#accessories">Accessories</a></li>
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
@@ -63,6 +65,8 @@
           <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
         </div>
+
+ 
         <div class="tab-content">
 	        <div id="user_database" class="tab-pane fade in active">
 	        	<br>
