@@ -126,17 +126,6 @@
 			}
 		}
 
-		public function delete($id){
-			$temp=$this->user_model->select_data('name','users',$id);
-			$this->user_model->delete_data('users',array('id'=>$id));
-			$report=array(
-						'report'=> 'Employee '.$this->session->userdata('name').' has deleted an user account with name '.$temp->name
-					);
-			$this->user_model->insert_data('history',$report);
-			redirect('user/index');
-
-		}
-
 		public function addpart(){
 		if($this->input->post('register_part'))
 			$value=$this->input->post('select');

@@ -44,14 +44,6 @@
 			$this->db->truncate($table);
 		}
 
-		function lookup($table ='',$search){
-			$this->db->select($table,'*');
-			$this->db->like('name', $search);
-			$query = $this->db->get('');
-
-			return $query->result_array();
-		}
-
 	}
 
  ?>

@@ -479,7 +479,7 @@
 		$this->user_model->insert_data('history',$report);        
 		}
 
-		public function clear_report(){
+		public function clear_history(){
 			$this->user_model->truncate_table('history');
 			redirect('manager/index');
 		}

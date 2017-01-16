@@ -115,6 +115,7 @@
              <div class="row">
              <div class="col-xs-12">
           <h1>Product</h1>
+          <input type="text" class="form-control ui-widget" id="myInput" onkeyup="searchFunction()" placeholder="Search for product..">
           <div class="table-responsive">
           <table class="table table-bordered sortable" id="productTable">
             <thead>
@@ -729,7 +730,30 @@
                      $('.display').DataTable();
                      $('#productTable').DataTable();
                    });
-                </script>
+          </script>
+
+          <script>
+              function searchFunction() {
+                // Declare variables 
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("productTable");
+                tr = table.getElementsByTagName("tr");
+
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                  td = tr[i].getElementsByTagName("td")[3];
+                  if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                      tr[i].style.display = "";
+                    } else {
+                      tr[i].style.display = "none";
+                    }
+                  } 
+                }
+              }
+          </script>
           
         </div>
       </div>    
