@@ -42,18 +42,18 @@
 			
 		}	
 
-		public function lookup()
+		public function lookupParts()
 			{
 				$term = $this->input->get('term');
 				if (isset($term)) {
 					$q = strtolower($term);
-					$query = $this->m_autocomplete->lookup($q);
+					$query = $this->m_autocomplete->lookup('articles','serial_number',$q);
 
 					if (count($query) > 0) {
 							foreach ($query as $row) {
-								$new_row['label'] = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['label']  = htmlentities(stripcslashes($row['serial_number']));
 								$new_row['value0'] = htmlentities(stripcslashes($row['part_name']));
-								$new_row['value'] = htmlentities(stripcslashes($row['description']));
+								$new_row['value']  = htmlentities(stripcslashes($row['description']));
 								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
 								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
 								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
@@ -61,13 +61,29 @@
 								$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
 								$row_set[] = $new_row;
 							}
-					echo json_encode($row_set);
+							echo json_encode($row_set);
 					}
 				}
 
 
 			}
-		
+		public function lookupProduct()
+		{
+			$term = $this->input->get('term');
+				if (isset($term)) {
+					$q = strtolower($term);
+					$query = $this->m_autocomplete->lookup('products','article_number',$q);
+
+					if (count($query) > 0) {
+							foreach ($query as $row) {
+								$new_row['label']  = htmlentities(stripcslashes($row['article_number']));
+								$row_set[] = $new_row;
+							}
+							echo json_encode($row_set);
+					}
+				}
+
+		}
 		public function register(){
 			$this->load->view('register_user');
 		}
@@ -146,18 +162,6 @@
 
 		}
 
-		public function addpart(){
-		if($this->input->post('register_part'))
-			$value=$this->input->post('select');
-			redirect('product/register_part/'.$value);
-		}
-
-
-		public function deleteProduct($id){
-			$this->user_model->delete_data('products',array('id'=>$id));
-			redirect('manager/index');
-
-		}
 
 		public function form_replacement(){
 			$this->load->view('forms/form_replacements');
@@ -179,7 +183,10 @@
 
 		public function add_form_replacement(){
 			if($this->input->post('save')){
-				$data= array(
+				$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
+				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				if(count($query1)>0 && count($query2)>0){
+					$data= array(
 						'exchange_id' => $this->input->post('exchange_id'),
 						'article_number' => $this->input->post('article_number'),
 						'date_record' => $this->input->post('date_record'),
@@ -192,21 +199,29 @@
 
 
 					);
-				$this->form_model->insert_data('form_replacements',$data);
-				$report=array(
-						'report'=> $this->session->userdata('name').' has inserted a new form replacement with Exchange Id '.$this->input->post('exchange_id')
-					);
-				$this->user_model->insert_data('history',$report);
-				redirect('manager/index');
+					$this->form_model->insert_data('form_replacements',$data);
+					$report=array(
+							'report'=> $this->session->userdata('name').' has inserted a new form replacement with Exchange Id '.$this->input->post('exchange_id')
+						);
+					$this->user_model->insert_data('history',$report);
+					redirect('manager/index');
+				}
+				else{
+					redirect('manager/form_replacement');
+				}
+				
+			}
 
-			}else{
+			else{
 				redirect('manager/form_replacement');
 			}
 		}
 
 		public function add_form_service(){
 			if($this->input->post('save')){
-				$data= array(
+				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				if(count($query2)>0){
+					$data= array(
 						'date_service' => $this->input->post('date_service'),
 						'serial_number' => $this->input->post('serial_number'),
 						'printer' => $this->input->post('printer'),
@@ -229,12 +244,16 @@
 						'service_work' => $this->input->post('service_work')
 
 					);
-				$this->form_model->insert_data('form_services',$data);
-				$report=array(
-						'report'=> $this->session->userdata('name').' has inserted a new form service with Service Date '.$this->input->post('date_service')
-					);
-				$this->user_model->insert_data('history',$report);
-				redirect('manager/index');
+					$this->form_model->insert_data('form_services',$data);
+					$report=array(
+							'report'=> $this->session->userdata('name').' has inserted a new form service with Service Date '.$this->input->post('date_service')
+						);
+					$this->user_model->insert_data('history',$report);
+					redirect('manager/index');
+				}
+				else{
+					redirect('manager/form_service');
+				}
 
 			}else{
 				redirect('manager/form_service');
@@ -243,7 +262,10 @@
 
 
 		public function add_owner_form(){
-			if($this->input->post('save')){
+			$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
+			$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+			if(count($query1)>0 && count($query2)>0){
+				if($this->input->post('save')){
 				$data= array(
 						'serial_number' => $this->input->post('serial_number'),
 						'article_number' => $this->input->post('article_number'),
@@ -272,6 +294,10 @@
 					);
 				$this->user_model->insert_data('history',$report);
 				redirect('manager/index');
+			}
+			else{
+				redirect('manager/owner_form');
+			}
 
 			}else{
 				redirect('manager/owner_form');
@@ -280,14 +306,11 @@
 
 
 		public function add_form_exchange(){
-			// echo "<pre>";
-			// print_r($this->input->post());
-			// echo "</pre>";
-			// $test = implode(', ', $this->input->post('descr'));
-			// echo $test;
-			// exit;
 			if($this->input->post('save')){
-				$data= array(
+				$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
+				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				if(count($query1)>0 && count($query2)>0){
+					$data= array(
 						'article_number' => $this->input->post('article_number'),
 						'serial_number' => $this->input->post('serial_number'),
 						'date_replace' => $this->input->post('date_replace'),
@@ -306,14 +329,20 @@
 						'date' => $this->input->post('date')
 
 					);
-				$this->form_model->insert_data('form_exchanges',$data);
-				$report=array(
-						'report'=> $this->session->userdata('name').' has inserted a new form exchange with article number '.$this->input->post('article_number')
-					);
-				$this->user_model->insert_data('history',$report);
-				redirect('manager/index');
+					$this->form_model->insert_data('form_exchanges',$data);
+					$report=array(
+							'report'=> $this->session->userdata('name').' has inserted a new form exchange with article number '.$this->input->post('article_number')
+						);
+					$this->user_model->insert_data('history',$report);
+					redirect('manager/index');
+				}
 
-			}else{
+				else{
+					redirect('manager/form_exchange');
+					}
+				}
+				
+			else{
 				redirect('manager/form_exchange');
 			}
 		}

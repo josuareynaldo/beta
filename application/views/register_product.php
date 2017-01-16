@@ -48,15 +48,15 @@
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" > 
+              <input class="form-control" type="text" id="product_name" name="product_name"  required="1"> 
             </div>
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
-              <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
+              <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date" required="1">
             </div>
              <div class="form-group">
               <label for="product_name">Description</label>
-              <input class="form-control" type="text" id="description" name="description" placeholder="Input Description"> 
+              <input class="form-control" type="text" id="description" name="description" placeholder="Input Description" required="1"> 
             </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">

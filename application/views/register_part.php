@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
               <label for="">Part Name</label>
-              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name"> 
+              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name" required="1"> 
             </div>
            <div class="form-group">
               <label for="">Description</label>

@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery-ui.css">
     <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
@@ -21,7 +22,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js">"></script>
-
+    <script src="<?php echo base_url() ?>js/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
@@ -223,7 +224,7 @@
                     $(document).ready(function(){
 
                         $("#serial_number").autocomplete({
-                            source: 'manager/lookup',
+                            source: 'user/lookupParts',
 
                             focus: function(event, ui){
                                 event.preventDefault();
@@ -259,7 +260,7 @@
                 </script>
                 <br>
                 <br>
-                <form action="<?php echo base_url('manager/addpart') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('user/addpart') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                     Please Select The Article Number
                       <select name="select" id="select">

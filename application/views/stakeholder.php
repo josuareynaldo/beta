@@ -11,7 +11,7 @@
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
     <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery-ui.css">
     <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
@@ -22,7 +22,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js">"></script>
-
+    <script src="<?php echo base_url() ?>js/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
@@ -40,7 +40,7 @@
           &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
           &nbsp<span id="date_time"></span>
           <script type="text/javascript">window.onload = date_time('date_time');</script>
-          &nbsp<h1>Manager View
+          &nbsp<h1>Stakeholder View
           <div class="right" style="float: right;">
              <a href="<?php echo base_url('stakeholder/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
              <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
@@ -242,7 +242,7 @@
                     $(document).ready(function(){
 
                         $("#serial_number").autocomplete({
-                            source: 'manager/lookup',
+                            source: 'stakeholder/lookupParts',
 
                             focus: function(event, ui){
                                 event.preventDefault();
@@ -278,7 +278,7 @@
                 </script>
                 <br>
                 <br>
-                <form action="<?php echo base_url('manager/addpart') ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('stakeholder/addpart') ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                     Please Select The Article Number
                       <select name="select" id="select">

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery-ui.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,6 +27,8 @@
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
     <script src="<?php echo base_url() ?>js/sorttable.js"></script>
     <script src="<?php echo base_url() ?>js/search.js"></script>
+    <script src="<?php echo base_url() ?>js/jquery-ui.js"></script>
+    <script src="<?php echo base_url() ?>js/select2.min.js"></script>
     <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>js/datatable.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
@@ -34,19 +37,19 @@
   <body style="margin-top: 50px;">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
-       <div class="header">
-        &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
-        &nbsp<span id="date_time"></span>
-        <script type="text/javascript">window.onload = date_time('date_time');</script>
-        &nbsp<h1>Manager View
-        <div class="right" style="float: right;">
-           <a href="<?php echo base_url('manager/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
-           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
-        </div>
-        </h1>
-        
-       </div>
+       <div class="col-xs-12">
+         <div class="header">
+          &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
+          &nbsp<span id="date_time"></span>
+          <script type="text/javascript">window.onload = date_time('date_time');</script>
+          &nbsp<h1>Manager View
+          <div class="right" style="float: right;">
+             <a href="<?php echo base_url('manager/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+             <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
+          </div>
+          </h1>
+          
+         </div>
       <div class="col-xs-6 col-sm-12">
         <ul class="nav nav-pills" id="pills">
           <li class="active"><a data-toggle="pill" href="#user_database">User</a></li>
@@ -64,7 +67,7 @@
           </li>
           <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
-        </div>
+      </div>
 
  
         <div class="tab-content">
@@ -233,7 +236,7 @@
                     $(document).ready(function(){
 
                         $("#serial_number").autocomplete({
-                            source: 'manager/lookup',
+                            source: 'manager/lookupParts',
 
                             focus: function(event, ui){
                                 event.preventDefault();
@@ -804,3 +807,4 @@
     
   </body>
 </html>
+
