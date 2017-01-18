@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2016 at 10:01 AM
+-- Generation Time: Jan 18, 2017 at 04:48 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -27,20 +27,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `products` (
-  `serial_number` varchar(255) NOT NULL,
+  `article_number_machine` varchar(255) NOT NULL,
   `product_name` varchar(255) NOT NULL,
+  `serial_number` varchar(255) NOT NULL,
   `shipment_date` date NOT NULL,
-  `image_name` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) NOT NULL,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`serial_number`, `product_name`, `shipment_date`, `image_name`, `status`) VALUES
-('123asd', 'asdasdasdasd', '2016-10-22', '', 'Warraty'),
-('kontolwil', 'tititwil', '2016-01-01', 'Foto_Yearbook_2.jpg', 'Warraty');
+INSERT INTO `products` (`article_number_machine`, `product_name`, `serial_number`, `shipment_date`, `status`, `description`) VALUES
+('asdasdsadsad', 'asdsadsad', '', '2016-12-14', 'Warranty', ''),
+('asdsadsadasd', 'benz', '', '2016-12-17', 'Warranty', ''),
+('dsadasdsadsa', 'asdsadsad', '', '0000-00-00', 'Warranty Expired', 'qwewqewqe'),
+('ghghgh', 'asjdklsadjkas', '', '2016-12-16', 'Warranty', ''),
+('sadasd', 'dasasdasd', '', '2017-01-11', 'Warranty', 'dasdasd'),
+('sadasdas', 'sdasdasd', '', '2016-12-24', 'Warranty', '');
 
 --
 -- Indexes for dumped tables
@@ -50,7 +55,7 @@ INSERT INTO `products` (`serial_number`, `product_name`, `shipment_date`, `image
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`serial_number`);
+  ADD PRIMARY KEY (`article_number_machine`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
