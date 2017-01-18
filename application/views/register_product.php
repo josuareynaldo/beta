@@ -44,11 +44,15 @@
           <form action="<?php echo base_url('product/add_product') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input article number" required="1" autocomplete="off">
+              <input class="form-control" type="text" name="article_number_machine" placeholder="Input Article Number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
               <input class="form-control" type="text" id="product_name" name="product_name"  required="1"> 
+            </div>
+            <div class="form-group">
+              <label for="product_name">Serial Number</label>
+              <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input Serial Number"  required="1"> 
             </div>
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
@@ -56,7 +60,7 @@
             </div>
              <div class="form-group">
               <label for="product_name">Description</label>
-              <input class="form-control" type="text" id="description" name="description" placeholder="Input Description" required="1"> 
+              <textarea class="form-control" name="description" required="1" placeholder="Input Description" id="" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">

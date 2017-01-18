@@ -20,14 +20,14 @@
 			$data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
 			$childs = array();
 			foreach ($data['products'] as $product) {
-				$articles = $this->user_model->get_products($product->article_number);
-				$childs[$product->article_number] = array();
+				$articles = $this->user_model->get_products($product->article_number_machine);
+				$childs[$product->article_number_machine] = array();
 				foreach ($articles as $article) {
 
-					if(array_key_exists($article->article_number,$childs)){
-	        			array_push($childs[$article->article_number],$article);
+					if(array_key_exists($article->article_number_machine,$childs)){
+	        			array_push($childs[$article->article_number_machine],$article);
 	        		}else{
-	        			$childs[$article->article_number] = $article;	
+	        			$childs[$article->article_number_machine] = $article;	
 	        		}
 					
 				}
@@ -43,47 +43,46 @@
 		}	
 
 		public function lookupParts()
-				{
-					$term = $this->input->get('term');
-					if (isset($term)) {
-						$q = strtolower($term);
-						$query = $this->m_autocomplete->lookup('articles','serial_number',$q);
-
-						if (count($query) > 0) {
-								foreach ($query as $row) {
-									$new_row['label']  = htmlentities(stripcslashes($row['serial_number']));
-									$new_row['value0'] = htmlentities(stripcslashes($row['part_name']));
-									$new_row['value']  = htmlentities(stripcslashes($row['description']));
-									$new_row['value1'] = htmlentities(stripcslashes($row['type']));
-									$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
-									$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
-									$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
-									$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
-									$row_set[] = $new_row;
-								}
-								echo json_encode($row_set);
-						}
-					}
-
-
-				}
-		public function lookupProduct()
 			{
 				$term = $this->input->get('term');
-					if (isset($term)) {
-						$q = strtolower($term);
-						$query = $this->m_autocomplete->lookup('products','article_number',$q);
+				if (isset($term)) {
+					$q = strtolower($term);
+					$query = $this->m_autocomplete->lookup('articles','article_number_part',$q);
 
-						if (count($query) > 0) {
-								foreach ($query as $row) {
-									$new_row['label']  = htmlentities(stripcslashes($row['article_number']));
-									$row_set[] = $new_row;
-								}
-								echo json_encode($row_set);
-						}
+					if (count($query) > 0) {
+							foreach ($query as $row) {
+								$new_row['label']  = htmlentities(stripcslashes($row['article_number_part']));
+								$new_row['value0'] = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['value']  = htmlentities(stripcslashes($row['description']));
+								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
+								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
+								$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
+								$new_row['value5'] = htmlentities(stripcslashes($row['article_number_machine']));
+								$row_set[] = $new_row;
+							}
+							echo json_encode($row_set);
 					}
+				}
+
 
 			}
+		public function lookupProduct()
+		{
+			$term = $this->input->get('term');
+				if (isset($term)) {
+					$q = strtolower($term);
+					$query = $this->m_autocomplete->lookup('products','article_number_machine',$q);
+
+					if (count($query) > 0) {
+							foreach ($query as $row) {
+								$new_row['label']  = htmlentities(stripcslashes($row['article_number_machine']));
+								$row_set[] = $new_row;
+							}
+							echo json_encode($row_set);
+					}
+				}
+
+		}
 
 		public function edit($id){
 			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
@@ -152,8 +151,8 @@
 
 		public function add_form_replacement(){
 			if($this->input->post('save')){
-				$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
-				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				$query1 = $this->form_model->lookup('products','article_number_machine',$this->input->post('article_number'));
+				$query2 = $this->form_model->lookup('articles','article_number_part',$this->input->post('serial_number'));
 				if(count($query1)>0 && count($query2)>0){
 					$data= array(
 						'exchange_id' => $this->input->post('exchange_id'),
@@ -188,7 +187,7 @@
 
 		public function add_form_service(){
 			if($this->input->post('save')){
-				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				$query2 = $this->form_model->lookup('articles','article_number_part',$this->input->post('serial_number'));
 				if(count($query2)>0){
 					$data= array(
 						'date_service' => $this->input->post('date_service'),
@@ -231,8 +230,8 @@
 
 
 		public function add_owner_form(){
-			$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
-			$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+			$query1 = $this->form_model->lookup('products','article_number_machine',$this->input->post('article_number'));
+			$query2 = $this->form_model->lookup('articles','article_number_part',$this->input->post('serial_number'));
 			if(count($query1)>0 && count($query2)>0){
 				if($this->input->post('save')){
 				$data= array(
@@ -276,8 +275,8 @@
 
 		public function add_form_exchange(){
 			if($this->input->post('save')){
-				$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
-				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				$query1 = $this->form_model->lookup('products','article_number_machine',$this->input->post('article_number'));
+				$query2 = $this->form_model->lookup('articles','article_number_part',$this->input->post('serial_number'));
 				if(count($query1)>0 && count($query2)>0){
 					$data= array(
 						'article_number' => $this->input->post('article_number'),
