@@ -44,15 +44,23 @@
           <form action="<?php echo base_url('product/add_product') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input article number" required="1" autocomplete="off">
+              <input class="form-control" type="text" name="article_number_machine" placeholder="Input Article Number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" > 
+              <input class="form-control" type="text" id="product_name" name="product_name"  required="1"> 
+            </div>
+            <div class="form-group">
+              <label for="product_name">Serial Number</label>
+              <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input Serial Number"  required="1"> 
             </div>
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
-              <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
+              <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date" required="1">
+            </div>
+             <div class="form-group">
+              <label for="product_name">Description</label>
+              <textarea class="form-control" name="description" required="1" placeholder="Input Description" id="" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">
@@ -64,50 +72,5 @@
       </div>
 
     </div>  
-    <script type="text/javascript">
-        $(document).ready(function(){
-            
-            $("#serial_number").autocomplete({
-                source: '<?php echo base_url('product/lookup'); ?>',
-
-                focus: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-                    $('#shipment_date').val(ui.item.value1);
-
-                    return false;
-                },
-
-                select: function(event, ui){
-                    event.preventDefault();
-
-                    $(this).val(ui.item.label);
-                    $('#product_name').val(ui.item.value);
-                    $('#shipment_date').val(ui.item.value1);
-
-                    return false;
-<<<<<<< HEAD
-                }
-<<<<<<< HEAD
-                else{
-                  $('#product_name').hide();
-                  $('label[for="product_name"]').hide();
-                  $('#shipment_date').hide();
-                  $('label[for="shipment_date"]').hide();
-                }
-            }
-=======
-
->>>>>>> origin/master
-=======
-                }
-
->>>>>>> origin/master
-
-            });
-        });
-    </script>
   </body>
 </html>

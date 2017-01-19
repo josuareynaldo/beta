@@ -21,9 +21,6 @@
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
   </head>
   <body>
-  <pre>
-    <?php print_r($this->session->userdata()) ?>
-  </pre>
     <div class="container">
       <div class="row">
           <div class="col-xs-12">

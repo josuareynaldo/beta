@@ -12,7 +12,8 @@
     <link href="<?php echo base_url() ?>css/style.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/tes.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>css/bootstrap-theme.min.css" rel="stylesheet">
-
+    <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
+    <script type="text/javascript" src="<?php echo base_url() ?>js/time.js"></script>
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,7 +22,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+   <!--  <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
 
  
 
@@ -40,7 +41,9 @@
 
   <div class="col-md-3 col-sm-2"></div>
   <div class="col-md-6 col-sm-8" id="login_container">
-  <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+            <span id="date_time"></span>
+            <script type="text/javascript">window.onload = date_time('date_time');</script>
+
 
     <div class="row">
         <div class="col-sm-2 "></div>
@@ -70,7 +73,7 @@
                   <h4 class="modal-title">Attention</h4>
                 </div>
                 <div class="modal-body">
-                <img src="../image/alert.png" style="width:100px">
+                <img src="<?php echo base_url(); ?>image/alert.png" style="width:100px">
                   <p>Username / Password Wrong</p>
                 </div>
               </div>
@@ -79,33 +82,16 @@
           
          
 
-          <!-- <div class="window-popup" id="popUpWindow" role="dialog">
+           <div class="window-popup" id="popUpWindow" role="dialog">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><a href="#" id="button-popup-close">&times;</a></button>
-                  <h4 style="margin-top: 10px;">Attention</h4>   
                 </div>
-                <h3 style="font-family: 'Andada', serif; margin-top: 40px;">Username or password wrong</h3>
             </div>
- -->
 
 
           <!-- <input type="submit" name="signin" value="Sign In" class="btn btn-primary"> -->
         </form>
       </div>
     </div>
-     <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-4 col-xs-12">
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me">Remember Me
-        </label>
-      </div>
-       <!-- <div class="col-sm-4 col-xs-12">
-          <p class="forgot_pwd">
-            <a href="<?php echo base_url('forget/index') ?>">Forgot password?</a>
-          </p>
-        </div> -->
-    </div>   
   </div>
         
 </div>

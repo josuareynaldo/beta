@@ -9,18 +9,24 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="<?php echo base_url() ?>css/style.css" rel="stylesheet"> -->
-    <link href="<?php echo base_url()?>css/tes.css" type="text/css" rel="stylesheet">
-
+    <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery-ui.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js">"></script>
+    <script src="<?php echo base_url() ?>js/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url() ?>js/time.js"></script>
   </head>
   <body>
     <div class="container">
@@ -35,7 +41,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('user/add_form_service') ?>" method="post">
+          <form action="<?php echo base_url($this->session->userdata('position')); ?>/add_form_service" method="post">
             <h2>Printer Information</h2>
             <div class="form-group">
               <label for="">Date Service</label>
@@ -43,7 +49,7 @@
             </div>
             <div class="form-group">
               <label for="">Serial No.</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input Serial Number" required="1">
+              <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input Serial Number" required="1">
             </div>
             <div class="form-group">
               <label for="">Printer</label>
@@ -126,9 +132,7 @@
         </div>
         <div class="col-xs-4"></div>
       </div>
-
       
-          </form>
         </div>
         <div class="col-xs-4"></div>
       </div>
@@ -138,3 +142,26 @@
     
   </body>
 </html>
+
+<script>
+      $(document).ready(function(){
+
+                            $("#serial_number").autocomplete({
+                                source: '<?php echo base_url()?>manager/lookupParts',
+
+                                focus: function(event, ui){
+                                    event.preventDefault();
+
+                                    $(this).val(ui.item.label);
+                                    return false;
+                                },
+
+                                select: function(event, ui){
+                                    event.preventDefault();
+
+                                    $(this).val(ui.item.label);
+                                    return false;
+                                }
+                            });
+                        });
+</script>

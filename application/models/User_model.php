@@ -33,23 +33,15 @@
 		return $this->db->get($table)->num_rows();
 		}
 
-		function get_products($article_number){
+		function get_products($article_number_machine){
 			$this->db->select('articles.*,products.product_name');
 			$this->db->from('products');
-			$this->db->join('articles', 'articles.article_number = products.article_number');
-			$this->db->where('products.article_number',$article_number);
+			$this->db->join('articles', 'articles.article_number_machine = products.article_number_machine');
+			$this->db->where('products.article_number_machine',$article_number_machine);
 			return $this->db->get()->result();
 		}
 		public function truncate_table($table=''){
 			$this->db->truncate($table);
-		}
-
-		function lookup($table ='',$search){
-			$this->db->select($table,'*');
-			$this->db->like('name', $search);
-			$query = $this->db->get('');
-
-			return $query->result_array();
 		}
 
 	}

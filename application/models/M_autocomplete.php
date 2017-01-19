@@ -8,11 +8,11 @@ class M_autocomplete extends CI_model
 		parent::__construct();
 	}
 
-	function lookup($keyword)
+	function lookup($table,$column,$keyword)
 	{
 		$this->db->select('*');
-		$this->db->like('serial_number', $keyword);
-		$query = $this->db->get('articles');
+		$this->db->like($column, $keyword);
+		$query = $this->db->get($table);
 
 		return $query->result_array();
 		/*

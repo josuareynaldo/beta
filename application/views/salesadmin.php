@@ -9,7 +9,9 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
+    <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
+   <!--  <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -25,19 +27,27 @@
     <script src="<?php echo base_url() ?>js/search.js"></script>
     <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>js/datatable.js"></script>
-
+    <script type="text/javascript" src="<?php echo base_url() ?>js/time.js"></script>
   </head>
-  <body>
-  <pre>
-    <?php print_r($this->session->userdata()) ?>
-  </pre>
+  <body style="margin-top: 50px;">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-        <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+       <div class="header">
+          &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
+          &nbsp<span id="date_time"></span>
+          <script type="text/javascript">window.onload = date_time('date_time');</script>
+          &nbsp<h1>Sales Admin View
+            <div class="right" style="float: right;">
+             <a href="<?php echo base_url('salesadmin/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+             <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
+            </div>
+          </h1>
+       </div>
 
-        <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
-         <ul class="nav nav-pills">
+
+        <div class="col-xs-6 col-sm-12">
+         <ul class="nav nav-pills" id="pills">
           <li class="active"><a data-toggle="pill" href="#edit">User</a></li>
           <li><a data-toggle="pill" href="#customerr">Customer</a></li>
           <li class="dropdown">
@@ -49,19 +59,19 @@
                 </ul>
           </li>
           <li><a data-toggle="pill" href="#quote">Quotation</a></li>
-          <li><a data-toggle="pill" href="#history">History</a></li>
+          <!-- <li><a data-toggle="pill" href="#history">History</a></li> -->
         </ul>
-          
-
-        <div class="right" style="float: right;">
-           <a href="<?php echo base_url('salesadmin/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
-           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
         </div>
+          
       
         <div class="tab-content">
           <div id="edit" class="tab-pane fade in active">
             <br>
-          <h1>User</h1>
+            <div class="container">
+             <div class="row">
+             <div class="col-xs-12 col-sm-12">
+          <h1>Employee</h1>
+          <div class="table-responsive">
         <table class="table display table-bordered sortable"  id="userTable">
               <thead>
                 <tr>
@@ -73,7 +83,6 @@
                   <th>Position</th>
                 </tr>
               </thead>
-              
               <tbody>
                 <?php $i=1 ?>
                 <?php foreach ($users as $user): ?>
@@ -90,12 +99,20 @@
                 
               </tbody>
             </table>
+            </div>
+            </div>
+            </div>
+            </div>
           </div>
 
            <div id="customerr" class="tab-pane">
         <br>
+             <div class="container">
+             <div class="row">
+             <div class="col-xs-12 col-sm-12">
         <h1>Customer</h1>
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+             <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -132,15 +149,23 @@
                         <?php endforeach ?>
                       </tbody>
              </table>
+             </div>
 
               <a href="<?php echo base_url('salesadmin/customer') ?>" class="btn btn-info">Customer</a>
+              </div>
+              </div>
+              </div>
       </div>
 
 
       <div id="trial_req" class="tab-pane">
       <br>
+             <div class="container">
+             <div class="row">
+             <div class="col-xs-12 col-sm-12">
           <h1>Trial Request Form</h1>
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+             <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -173,18 +198,23 @@
                         <?php endforeach ?>
                       </tbody>
              </table>
+             </div>
 
               <a href="<?php echo base_url('salesuser/trial_req') ?>" class="btn btn-info">Trial Request</a>
+              </div>
+              </div>
+              </div>
       </div>
       
       <div id="cst" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="width: 750px" >
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Customer Information</h4>
             </div>
             <div class="modal-body">
+             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -215,19 +245,21 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
       
       <div id="apl" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="width: 1000px">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Application</h4>
             </div>
             <div class="modal-body">
+             <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -264,6 +296,7 @@
                   <?php endforeach ?>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
@@ -271,8 +304,12 @@
 
       <div id="trial_res" class="tab-pane">
         <br>
+        <div class="container">
+             <div class="row">
+             <div class="col-xs-12 col-sm-12">
         <h1>Trial Result Form</h1>
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -302,18 +339,23 @@
                         <?php endforeach ?>
                       </tbody>
              </table>
+             </div>
 
               <a href="<?php echo base_url('salesuser/trial_result') ?>" class="btn btn-info">Trial Result</a>
+              </div>
+              </div>
+              </div>
       </div>
 
       <div id="cust" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="width: 750px" >
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Customer Information</h4>
             </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -344,19 +386,21 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div id="app" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="width: 1000px">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Application</h4>
             </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -389,19 +433,21 @@
                   <?php endforeach ?>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div id="res" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="width: 1000px">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Application</h4>
             </div>
             <div class="modal-body">
+            <div class="table-responsive">
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -446,12 +492,13 @@
                   <?php endforeach ?>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>
       </div>        
 
-      <div id="history" class="tab-pane">
+      <!-- <div id="history" class="tab-pane">
             <br>
             <div class="container">
       <div class="row">
@@ -482,7 +529,7 @@
           </div>
           </div>
           </div>
-
+ -->
         <script>
             $(document).ready(function(){
                 $('[data-toggle="tooltip"]').tooltip();
