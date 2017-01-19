@@ -72,6 +72,9 @@
 		 	$this->load->view('forms/reports');
 		 }
 
+		public function quotation(){
+		 	$this->load->view('forms/quotations');
+		 }		 
 
 		 public function add_customer(){
 			if($this->input->post('save')){
