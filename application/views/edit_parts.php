@@ -35,20 +35,24 @@
         <div class="col-xs-10">
           <form action="<?php echo base_url('product/updateParts') ?>" method="post">
             <div class="form-group">
-              <label for="">Article Number Machine</label>
+              <label for="">Article Number</label>
               <input class="form-control" type="text" name="article_number" placeholder="Input Serial Number" value="<?php echo $articles->article_number ?>" readonly="readonly">
             </div>
             <div class="form-group">
-              <label for="">Article Number Part</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input article number" required="1" value="<?php echo $articles->article_number_part ?>" readonly="readonly">
+              <label for="">Serial Number</label>
+              <input class="form-control" type="text" name="serial_number" placeholder="Input article number" required="1" value="<?php echo $articles->serial_number ?>" readonly="readonly">
             </div>
             <div class="form-group">
-              <label for="">Serial Number</label>
-              <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input serial number" required="1" value="<?php echo $articles->serial_number ?>"> 
+              <label for="">Part Name</label>
+              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name"> 
             </div>
            <div class="form-group">
               <label for="">Description</label>
               <textarea class="form-control"  name="description" placeholder="Input description" required="1" ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="">Type</label>
+              <textarea class="form-control"  name="type" placeholder="Input type" required="1" ></textarea>
             </div>
             <div class="form-group">
               <label for="">Service Date</label>

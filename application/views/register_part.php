@@ -37,20 +37,24 @@
         <div class="col-xs-4">
           <form action="<?php echo base_url('product/add_part') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="">Article Number Machine</label>
-              <input class="form-control" type="text" name="article_number_machine" value="<?php echo $article_number ?>" readonly="readonly">
-            </div>
-            <div class="form-group">
-              <label for="">Article Number Part</label>
-              <input class="form-control" type="text" name="article_number_part" placeholder="Input article number part" required="1" >
+              <label for="">Article Number</label>
+              <input class="form-control" type="text" name="article_number" value="<?php echo $article_number ?>" readonly="readonly">
             </div>
             <div class="form-group">
               <label for="">Serial Number</label>
-              <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input serial number" required="1"> 
+              <input class="form-control" type="text" name="serial_number" placeholder="Input serial number" required="1" >
+            </div>
+            <div class="form-group">
+              <label for="">Part Name</label>
+              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name" required="1"> 
             </div>
            <div class="form-group">
               <label for="">Description</label>
               <textarea class="form-control"  name="description" placeholder="Input description" required="1" ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="">Type</label>
+              <textarea class="form-control"  name="type" placeholder="Input type" required="1" ></textarea>
             </div>
             <div class="form-group">
               <label for="">Service Date</label>

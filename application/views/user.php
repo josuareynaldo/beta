@@ -58,7 +58,7 @@
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <!-- <li><a data-toggle="pill" href="#form_replace">Form Replacement</a></li> -->
+                    <li><a data-toggle="pill" href="#form_replace">Form Replacement</a></li>
                     <li><a data-toggle="pill" href="#form_service">Form Service</a></li>
                     <li><a data-toggle="pill" href="#owner_form">Owner Form</a></li>
                     <li><a data-toggle="pill" href="#form_exchange">Form Exchange</a></li>
@@ -117,15 +117,15 @@
           <h1>Product</h1>
           <input type="text" class="form-control ui-widget" id="myInput" onkeyup="searchFunction()" placeholder="Search for product..">
           <div class="table-responsive">
-          <table class="table table-bordered" id="productTable">
+          <table class="table table-bordered sortable" id="productTable">
             <thead>
               <tr>
                 <th>Toggle</th>
                 <th>No.</th>
                 <th>Article Number</th>
                 <th>Product Name</th>
-                <th>Serial Number</th>
                 <th>Shipment Date</th>
+                <th>Description</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -136,35 +136,32 @@
                 <tr class="clickable" data-toggle="collapse" id="row<?php echo $i ?>" data-target=".row<?php echo $i ?>">
                   <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
-                  <td><?php echo $product->article_number_machine ?></td>
+                  <td><?php echo $product->article_number ?></td>
                   <td><?php echo $product->product_name ?></td>
-                  <td><?php echo $product->serial_number ?></td>
                   <td><?php echo $product->shipment_date ?></td>
+                  <td><?php echo $product->description ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number_machine) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit/'.$product->article_number_machine) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number_machine) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number) ?>" class="btn btn-info">New Acc</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
-                    <?php if($product->article_number_machine == $key): ?>
+                    <?php if($product->article_number == $key): ?>
                       <tr class="collapse row<?php echo $i ?>">
-                        <th>Article Number</th>
                         <th>Serial Number</th>
+                        <th>Part Name</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Service Date</th>
                         <th>Installation Date</th>
-                        <th>Action</th>
                       </tr>
                        <?php foreach ($value as $row):?>
                           <tr class="collapse row<?php echo $i ?>">
-                            <td><?php echo $row->article_number_part ?></td>
                             <td><?php echo $row->serial_number ?></td>
+                            <td><?php echo $row->part_name ?></td>  
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><a href="<?php echo base_url('product/editParts/'.$row->article_number_part) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/article_number_part/'.$row->serial_number) ?>" class="btn btn-danger">Delete</a></td>
-                            
                           </tr>
                        <?php endforeach; ?>
 
@@ -184,23 +181,23 @@
           </div>
           </div>
 
-      <div id="accessories" class="tab-pane">
+        <div id="accessories" class="tab-pane">
             <br>
              <div class="container">
              <div class="row">
              <div class="col-xs-12">
                 <h1>Accessories</h1>
                 <div class="form-group">
-                    <label for="serial_number">Article Number Part</label>
-                    <input class="form-control ui-widget" id="article_number_part" type="text" name="name" placholder="Please Input Article Number" required autocomplete="off">
-                </div>
-                <div class="form-group">
                     <label for="serial_number">Serial Number</label>
-                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" disabled="" required autocomplete="off">
+                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
+                </div>
+                 <div class="form-group">
+                    <label for="serial_number">Parts Number</label>
+                    <input class="form-control ui-widget" id="part_name" type="text" name="name" placholder="" disabled="" required autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <label for="article_number">Article Number Machine</label>
-                    <input class="form-control" id="article_number_machine" type="text" name="article_number" placholder="" disabled="">
+                    <label for="article_number">Article Number</label>
+                    <input class="form-control" id="article_number" type="text" name="article_number" placholder="" disabled="">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -227,15 +224,15 @@
        
                     $(document).ready(function(){
 
-                        $("#article_number_part").autocomplete({
-                            source: 'manager/lookupParts',
+                        $("#serial_number").autocomplete({
+                            source: 'user/lookupParts',
 
                             focus: function(event, ui){
                                 event.preventDefault();
 
                                 $(this).val(ui.item.label);
-                                $('#article_number_machine').val(ui.item.value5);
-                                $('#serial_number').val(ui.item.value0);
+                                $('#article_number').val(ui.item.value5);
+                                $('#part_name').val(ui.item.value0);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
                                 $('#service_date').val(ui.item.value2);
@@ -249,8 +246,8 @@
                                 event.preventDefault();
 
                                 $(this).val(ui.item.label);
-                                $('#article_number_machine').val(ui.item.value5);
-                                $('#serial_number').val(ui.item.value0);
+                                $('#article_number').val(ui.item.value5);
+                                $('#part_name').val(ui.item.value0);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
                                 $('#service_date').val(ui.item.value2);
@@ -264,6 +261,21 @@
                 </script>
                 <br>
                 <br>
+                <form action="<?php echo base_url('user/addpart') ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                    Please Select The Article Number
+                      <select name="select" id="select">
+                        <?php foreach ($products as $product): ?>
+                            <?php echo "<option value='".$product->article_number."'>".$product->article_number."</option>" ?>
+                          <?php endforeach; ?>   
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" name="register_part" value="Accessories Register" class="btn btn-primary">
+
+                    </div>
+                </form>
+                
                
           </div>
           </div>
@@ -271,13 +283,13 @@
           </div>
 
 
-<!-- <div id="form_replace" class="tab-pane">
+           <div id="form_replace" class="tab-pane">
       <br>
           <div class="container">
           <div class="row">
           <div class="col-xs-12 col-sm-12">
           <h1>Form Replacement</h1>
-        <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name">
+        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
         <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
@@ -323,8 +335,8 @@
                 </div>
                 </div>
                 </div>
-                <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
-      </div> -->
+                <!-- <a href="<?php echo base_url('user/form_replacement') ?>" class="btn btn-info">Form Replacement</a> -->
+      </div>
 
       <div id="form_service" class="tab-pane">
       <br>
