@@ -3,7 +3,7 @@
 	/**
 	* 
 	*/
-	class User_model extends CI_Model
+	class Products_model extends CI_Model
 	{
 		public function get_data($table = ''){
 			return $this->db->get($table)->result();
@@ -29,7 +29,26 @@
 		public function delete_data($table = '',$condition = array()){
 			$this->db->delete($table,$condition);
 		}
+		function totalRows($table = ''){
+		return $this->db->get($table)->num_rows();
+		}
 
+		function get_products($article_number){
+			$this->db->select('acc.*,products.product_name');
+			$this->db->from('products');
+			$this->db->join('acc', 'acc.article_number = products.article_number');
+			$this->db->where('products.article_number',$article_number);
+			return $this->db->get()->result();
+		}
+
+		function lookup($table,$column,$keyword)
+		{
+			$this->db->select('*');
+			$this->db->like($column, $keyword);
+			$query = $this->db->get($table);
+
+			return $query->result_array();
+		}
 
 	}
 

@@ -12,7 +12,7 @@
 		
 		public function index(){
 			if($this->session->userdata('id')){
-				redirect($this->session->userdata('position'));
+				redirect('user/index');
 			}
 			$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
 			$this->output->set_header("Pragma: no-cache");
@@ -25,12 +25,14 @@
 		public function log_in(){
 
 			if($this->session->userdata('id')){
-				redirect($this->session->userdata('position'));
+				redirect('user/index');
 			}
 			$username=$this->input->post('username');
 			$password=sha1($this->input->post('pass'));
 
-			$user=$this->login_model->validate_user($username,$password);
+			$user=$this->db->get_where('users',array('name'=> $username,
+												'password' => $password
+				))->row();
 			if($user){
 				$data_session=array(
 								'id' => $user->id,

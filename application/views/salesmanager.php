@@ -37,9 +37,8 @@
           &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
           &nbsp<span id="date_time"></span>
           <script type="text/javascript">window.onload = date_time('date_time');</script>
-          &nbsp<h1>Sales Manager View
              <div class="right" style="float: right;">
-               <a href="<?php echo base_url('salesuser/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+               <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
                <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
             </div>
           </h1>
@@ -47,7 +46,7 @@
 
         <div class="col-xs-6 col-sm-12">
          <ul class="nav nav-pills" id="pills">
-          <li class="active"><a data-toggle="pill" href="#edit">User</a></li>
+         <li class="active"><a data-toggle="pill" href="#user_database">User</a></li>
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
                 <span class="caret"></span></a>
@@ -60,10 +59,10 @@
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Report
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a data-toggle="pill" href="#quote">Quotation</a></li>
                     <li><a data-toggle="pill" href="#rpt">Customer Report</a></li>
                 </ul>
           </li>
+          <li><a data-toggle="pill" href="#customerr">Customer</a></li>
           <!-- <li><a data-toggle="pill" href="#history">History</a></li> -->
         </ul>
         </div>
@@ -72,49 +71,52 @@
        
       
         <div class="tab-content">
-          <div id="edit" class="tab-pane fade in active">
-            <br>
-            <div class="container">
+        
+         <div id="user_database" class="tab-pane fade in active">
+       <br>
+             <div class="container">
              <div class="row">
              <div class="col-xs-12 col-sm-12">
-          <h1>Employee</h1>
-          <div class="table-responsive">
-        <table class="table display table-bordered sortable"  id="userTable">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Name</th>
-                  <th>Password</th>
-                  <th>Email</th>
-                  <th>Address</th>
-                  <th>Position</th>
-                </tr>
-              </thead>
-              
-              <tbody>
-                <?php $i=1 ?>
-                <?php foreach ($users as $user): ?>
-                  <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><?php echo $user->name ?></td>
-                    <td><?php echo $user->password ?></td>
-                    <td><?php echo $user->email ?></td>
-                    <td><?php echo $user->address ?></td>
-                    <td><?php echo $user->position ?></td>
-                  </tr>
-                <?php $i++; ?>
-                <?php endforeach; ?>
-                
-              </tbody>
-            </table>
-            </div>
+                <h1>Employee</h1>
+               
+                <div class="table-responsive">
+                <table class="table display table-bordered  sortable " id="userTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Password</th>
+                      <th>Address</th>
+                      <th>Position</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i=1 ?>
+                    <?php foreach ($users as $user): ?>
+                      <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $user->name ?></td>
+                        <td><?php echo $user->password ?></td>
+                        <td><?php echo $user->address ?></td>
+                        <td><?php echo $user->position ?></td>
+                        <td><a href="<?php echo base_url('user/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                      </tr>
+                    <?php $i++; ?>
+                    <?php endforeach; ?>
+                    
+                  </tbody>
+                </table>
+                </div>
+                   
 
-             <a href="<?php echo base_url('salesmanager/register') ?>" class="btn btn-primary">User Register</a>
-             </div>
-             </div>
-             </div>
+                <a href="<?php echo base_url('user/register') ?>" class="btn btn-primary">User Register</a>
+          </div>
+          </div>
+          </div>
           </div>
 
+        
 
       <div id="trial_req" class="tab-pane">
       <br>
@@ -144,11 +146,11 @@
                             <td><?php echo $trial_req->trial_no ?></td>
                             <td><?php echo $trial_req->date_start ?></td>
                             <td><?php echo $trial_req->date_end ?></td>
-                            <td><button type="<?php echo base_url('salesuser/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
+                            <td><button type="<?php echo base_url('form_sales/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#apl">See more</button></td>
                             <td>
-                            <a href="<?php echo base_url('salesuser/deleter_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('salesuser/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
+                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
                             </td>
                             <input type="hidden" name="id" value="<?php echo $trial_req->id ?>">
                           </tr>
@@ -158,7 +160,7 @@
              </table>
              </div>
 
-              <a href="<?php echo base_url('salesuser/trial_req') ?>" class="btn btn-info">Trial Request</a>
+              <a href="<?php echo base_url('form_sales/trial_req') ?>" class="btn btn-info">Trial Request</a>
               </div>
               </div>
               </div>
@@ -210,7 +212,7 @@
       </div>
       
       <div id="apl" class="modal fade" role="dialog">
-        <div class="modal-dialog" style="width: 1000px">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -285,12 +287,12 @@
                           <tr>
                             <td><?php echo $i ?></td>
                             <td><?php echo $trial_res->result_no ?></td>
-                            <td><button type="<?php echo base_url('salesuser/see_more'.$trial_res->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cust">See more</button></td>
+                            <td><button type="<?php echo base_url('form_sales/see_more'.$trial_res->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cust">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
                             <td>
-                            <a href="<?php echo base_url('salesuser/deleter_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('salesuser/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
+                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $trial_res->id ?>">
                           </tr>
                         <?php $i++ ?>
@@ -299,7 +301,7 @@
              </table>
              </div>
 
-              <a href="<?php echo base_url('salesuser/trial_result') ?>" class="btn btn-info">Trial Result</a>
+              <a href="<?php echo base_url('form_sales/trial_result') ?>" class="btn btn-info">Trial Result</a>
               </div>
               </div>
               </div>
@@ -489,8 +491,8 @@
                             <td><?php echo $report->report ?></td>
                             <td><?php echo $report->action_plan ?></td>
                             <td>
-                            <a href="<?php echo base_url('salesmanager/delete_report/'.$report->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('salesmanager/save_report/'.$report->id) ?>" class="btn btn-primary">Save</a></td>
+                            <a href="<?php echo base_url('form_sales/delete_report/'.$report->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_report/'.$report->id) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $report>id ?>">
                           </tr>
                         <?php $i++ ?>
@@ -499,11 +501,64 @@
              </table>
              </div>
 
-              <a href="<?php echo base_url('salesuser/report') ?>" class="btn btn-info">Report</a>
+              <a href="<?php echo base_url('form_sales/report') ?>" class="btn btn-info">Report</a>
               </div>
               </div>
               </div>
       </div>  
+      
+       <div id="customerr" class="tab-pane fade">
+        <br>
+        <div class="container">
+             <div class="row">
+             <div class="col-xs-12 col-sm-12">
+        <h1>Customer</h1>
+        <div class="table-responsive">
+             <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
+              <table class="table display table-bordered sortable" id="formTable">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Company</th>
+                      <th>Address</th>
+                      <th>Telp</th>
+                      <th>Fax</th>
+                      <th>HP</th>
+                      <th>Email</th>
+                      <th>Sales</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                     <tbody>
+                        <?php $i=1 ?>
+                        <?php foreach ($customers as $customer): ?>
+                          <tr>
+                            <td><?php echo $i ?></td>
+                            <td><?php echo $customer->company ?></td>
+                            <td><?php echo $customer->address ?></td>
+                            <td><?php echo $customer->telp ?></td>
+                            <td><?php echo $customer->fax ?></td>
+                            <td><?php echo $customer->hp ?></td>
+                            <td><?php echo $customer->email ?></td>
+                            <td><?php echo $customer->sales ?></td>
+                            <td>
+                            <!-- <a href="<?php echo base_url('form_sales/update_customer/'.$customer->id) ?>" class="btn btn-info">Update</a> -->
+                            <a href="<?php echo base_url('form_sales/delete_customer/'.$customer->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_customer/'.$customer->id) ?>" class="btn btn-primary">Save</a></td>
+                            <input type="hidden" name="id" value="<?php echo $customer->id ?>">
+                          </tr>
+                        <?php $i++ ?>
+                        <?php endforeach ?>
+                      </tbody>
+             </table>
+             </div>
+             </div>
+             </div>
+             </div>
+
+              <a href="<?php echo base_url('form_sales/customer') ?>" class="btn btn-info">Customer</a>
+      </div>  
+      
 
      <!--  <div id="history" class="tab-pane">
             <br>

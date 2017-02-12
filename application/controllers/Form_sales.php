@@ -2,54 +2,37 @@
 	/**
 	* 
 	*/
-	class Salesadmin extends CI_Controller
+	class Form_sales extends CI_Controller
 	{
 
 		public function index(){
-			 $data['users'] = $this->user_model->get_data('users');
-			 $data['customers'] = $this->user_model->get_data('customers');
-			 $data['trial_reqs'] = $this->user_model->get_data('trial_reqs');
-			 $data['trial_results'] = $this->user_model->get_data('trial_results');
-			 $data['histories']= $this->user_model->get_data('history');
-				$this->load->view('salesadmin',$data);
-		}	
-		
-		public function edit($id){
-			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
-			$this->load->view('edit_user',$data);
+			 $data['histories']= $this->get_history();
+			 $data['customers'] = $this->get_customers();
+			 $data['trial_reqs'] = $this->get_trial_reqs();
+			 $data['trial_results'] = $this->get_trial_results();
+			 $data['reports'] = $this->get_reports();
 		}
 
-		public function see_more($id){
-			$data['trial_req'] = $this->form_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
-
+		public function get_customers(){
+			return $this->customer_model->get_data('customers');
 		}
 
-		// public function button_see($id){
-		// 	$data['owner_form'] = $this->form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
-
-		// }
-
-		// public function btn_see($id){
-		// 	$data['form_exchange'] = $this->form_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
-
-		// }
-
-		public function update(){
-			if($this->input->post('update')){
-				$data= array(
-						 
-						'password' => sha1($this->input->post('password')),
-						'address' => $this->input->post('address')
-
-					);
-				 
-				$this->user_model->update_data('users',$data,array('id'=>$this->input->post('id')));
-				redirect('salesadmin/index');
-
-			}else{
-				redirect('salesadmin/edit');
-			}
+		public function get_history(){
+			return $this->history_model->get_data('history');
 		}
+
+		public function get_trial_reqs(){
+			return $this->trial_reqs_model->get_data('trial_reqs');
+		}
+
+		public function get_trial_results(){
+			return $this->trial_results_model->get_data('trial_results');
+		}
+
+		public function get_reports(){
+			return $this->reports_model->get_data('reports');
+		}
+			
 
 		 public function customer(){
 		 	$this->load->view('forms/customers');

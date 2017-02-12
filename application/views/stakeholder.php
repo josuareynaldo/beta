@@ -40,9 +40,8 @@
           &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
           &nbsp<span id="date_time"></span>
           <script type="text/javascript">window.onload = date_time('date_time');</script>
-          &nbsp<h1>Stakeholder View
           <div class="right" style="float: right;">
-             <a href="<?php echo base_url('stakeholder/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+             <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
              <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
           </div>
           </h1>
@@ -57,7 +56,6 @@
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a data-toggle="pill" href="#form_replace">Form Replacement</a></li>
                     <li><a data-toggle="pill" href="#form_service">Form Service</a></li>
                     <li><a data-toggle="pill" href="#owner_form">Owner Form</a></li>
                     <li><a data-toggle="pill" href="#form_exchange">Form Exchange</a></li>
@@ -69,7 +67,6 @@
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Report
                 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a data-toggle="pill" href="#quote">Quotation</a></li>
                     <li><a data-toggle="pill" href="#rpt">Customer Report</a></li>
                 </ul>
           </li>
@@ -92,7 +89,6 @@
                       <th>No.</th>
                       <th>Name</th>
                       <th>Password</th>
-                      <th>Email</th>
                       <th>Address</th>
                       <th>Position</th>
                       <th>Action</th>
@@ -105,10 +101,9 @@
                         <td><?php echo $i; ?></td>
                         <td><?php echo $user->name ?></td>
                         <td><?php echo $user->password ?></td>
-                        <td><?php echo $user->email ?></td>
                         <td><?php echo $user->address ?></td>
                         <td><?php echo $user->position ?></td>
-                        <td><a href="<?php echo base_url('stakeholder/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('stakeholder/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                        <td><a href="<?php echo base_url('user/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
                       </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>
@@ -117,7 +112,7 @@
                 </table>
                    </div>
 
-                <a href="<?php echo base_url('stakeholder/register') ?>" class="btn btn-primary">User Register</a>
+                <a href="<?php echo base_url('user/add_user') ?>" class="btn btn-primary">User Register</a>
           </div>
           </div>
           </div>
@@ -209,7 +204,7 @@
                     <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
                 </div>
                  <div class="form-group">
-                    <label for="serial_number">Parts Number</label>
+                    <label for="part_name">Part Name</label>
                     <input class="form-control ui-widget" id="part_name" type="text" name="name" placholder="" disabled="" required autocomplete="off">
                 </div>
                 <div class="form-group">
@@ -242,7 +237,7 @@
                     $(document).ready(function(){
 
                         $("#serial_number").autocomplete({
-                            source: 'stakeholder/lookupParts',
+                            source: '<?php echo base_url()?>product/lookupParts',
 
                             focus: function(event, ui){
                                 event.preventDefault();
@@ -277,84 +272,12 @@
                     });
                 </script>
                 <br>
-                <br>
-                <form action="<?php echo base_url('stakeholder/addpart') ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                    Please Select The Article Number
-                      <select name="select" id="select">
-                        <?php foreach ($products as $product): ?>
-                            <?php echo "<option value='".$product->article_number."'>".$product->article_number."</option>" ?>
-                          <?php endforeach; ?>   
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <input type="submit" name="register_part" value="Accessories Register" class="btn btn-primary">
-
-                    </div>
-                </form>
-                
+                <br>                
                
           </div>
           </div>
           </div>
           </div>
-
-
-           <div id="form_replace" class="tab-pane">
-      <br>
-             <div class="container">
-             <div class="row">
-             <div class="col-xs-12 col-sm-12">
-          <h1>Form Replacement</h1>
-        <!--    <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For article No" title="Type in a name"> -->
-          <div class="table-responsive">
-              <table class="table display table-bordered sortable" id="formTable">
-                  <thead>
-                    <tr>
-                      <th>No.</th>
-                      <th>Exchange ID</th>
-                      <th>Article No.</th>
-                      <th>Date Record</th>
-                      <th>Description</th>
-                      <th>Technician</th>
-                      <th>Serial No.</th>
-                      <th>Date Install</th>
-                      <th>Date Replace</th>
-                      <th>Problem Desc</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $i=1 ?>
-                    <?php foreach ($form_replacements as $form_replacement): ?>
-                      <tr>
-                        <td><?php echo $i ?></td>
-                        <td><?php echo $form_replacement->exchange_id ?></td>
-                        <td><?php echo $form_replacement->article_number ?></td>
-                        <td><?php echo $form_replacement->date_record ?></td>
-                        <td><?php echo $form_replacement->description ?></td>
-                        <td><?php echo $form_replacement->technician ?></td>
-                        <td><?php echo $form_replacement->serial_number ?></td>
-                        <td><?php echo $form_replacement->date_install ?></td>
-                        <td><?php echo $form_replacement->date_replace ?></td>
-                        <td><?php echo $form_replacement->problem ?></td>
-                        
-                        <td><a href="<?php echo base_url('stakeholder/delete_replacement/'.$form_replacement->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('stakeholder/save_replacement/'.$form_replacement->id) ?>" class="btn btn-primary">Save</a>
-                        </td>
-                      </tr>
-                    <?php $i++ ?>
-                    <?php endforeach ?>
-                    
-                  </tbody>
-                </table>
-                </div>
-                </div>
-                </div>
-                </div>
-
-                <a href="<?php echo base_url('stakeholder/form_replacement') ?>" class="btn btn-info">Form Replacement</a>
-      </div>
 
       <div id="form_service" class="tab-pane">
       <br>
@@ -386,13 +309,10 @@
                             <td><?php echo $form_service->serial_number ?></td>
                             <td><?php echo $form_service->status ?></td>
                             <td><?php echo $form_service->technician ?></td>
-                            <td><button type="<?php echo base_url('stakeholder/see_more'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
+                            <td><button type="<?php echo base_url('user/see_more'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#hoi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#prs">See more</button></td>
                             <input type="hidden" name="id" value="<?php echo $form_service->id ?>">
-                            <!-- <td><a href="<?php echo base_url('stakeholder/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('stakeholder/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a>
-                            </td> -->
                           </tr>
                         <?php $i++ ?>
                         <?php endforeach ?>
@@ -403,7 +323,7 @@
              </div>
              </div>
 
-              <a href="<?php echo base_url('stakeholder/form_service') ?>" class="btn btn-info">Form Service</a>
+              <a href="<?php echo base_url('form_tech/form_service') ?>" class="btn btn-info">Form Service</a>
       </div>
 
       <div id="poi" class="modal fade" role="dialog">
@@ -523,8 +443,8 @@
                             <td><?php echo $form_service->replace_part ?></td>
                             <td><?php echo $form_service->service_work ?></td>
                     <?php $i++ ?>
-                    <td><a href="<?php echo base_url('stakeholder/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('stakeholder/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a></td>
+                    <td><a href="<?php echo base_url('form_tech/delete_service/'.$form_service->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('form_tech/save_service/'.$form_service->id) ?>" class="btn btn-primary">Save</a></td>
                   <?php endforeach ?>
                 </tbody>
               </table>
@@ -576,9 +496,9 @@
                         <td><?php echo $owner_form->solvent_number ?></td>
                         <td><?php echo $owner_form->distributor ?></td>
                         <td><?php echo $owner_form->date ?></td>
-                        <td><button type="<?php echo base_url('stakeholder/button_see'.$owner_forms->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#own">See more</button></td>
-                         <td><a href="<?php echo base_url('stakeholder/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('stakeholder/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a>
+                        <td><button type="<?php echo base_url('user/button_see'.$owner_forms->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#own">See more</button></td>
+                         <td><a href="<?php echo base_url('form_tech/delete_owner/'.$owner_form->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('form_tech/save_owner/'.$owner_form->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                       </tr>
                     <?php $i++ ?>
@@ -590,6 +510,8 @@
                 </div>
                 </div>
                 </div>
+                
+                  <a href="<?php echo base_url('form_tech/owner_form') ?>" class="btn btn-info">Owner Form</a>
 
         <div id="own" class="modal fade" role="dialog">
           <div class="modal-dialog">
@@ -638,9 +560,10 @@
           </div>
         </div>
       </div>
-                
-     <a href="<?php echo base_url('stakeholder/owner_form') ?>" class="btn btn-info">Owner Form</a>
+    
+      
       </div>
+        
 
 
 
@@ -683,7 +606,7 @@
                         <td><?php echo $form_exchange->technician ?></td>
                         <td><?php echo $form_exchange->cust ?></td>
                         <td><?php echo $form_exchange->date ?></td> 
-                        <td><button type="<?php echo base_url('stakeholder/btn_see'.$form_exchanges->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#exc">See more</button></td>
+                        <td><button type="<?php echo base_url('user/btn_see'.$form_exchanges->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#exc">See more</button></td>
                       </tr>
                     <?php $i++ ?>
                     <?php endforeach ?>
@@ -707,6 +630,7 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>No</th>
                      <th><a data-toggle="tooltip" title="Part of Stock ?">Part of Stock</a></th>
                       <th><a data-toggle="tooltip" title="Dismantled from a printer ?">Dismantled</a></th>
                       <th>Desc of Fault</th>
@@ -714,14 +638,14 @@
                       <th><a data-toggle="tooltip" title="Scrapping permitted if repair cost wouldn't be economic(otherwise redelivery unfree)">Scrapping</a></th>
                       <th><a data-toggle="tooltip" title="If No warranty / exchange part => herewith new order for this part">Warranty / Exch Part</a></th>
                       <th>Contact</th>
-                        <th>Action</th>
+                      <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php $i=1 ?>
                     <?php foreach ($form_exchanges as $form_exchange): ?>
                       <tr>
-                        <td><?php echo $i ?></td>
+              <td><?php echo $i ?></td>
                         <td><?php echo $form_exchange->stock ?></td>
                         <td><?php echo $form_exchange->dismantled ?></td>
                         <td><?php echo $form_exchange->descr ?></td>
@@ -729,8 +653,8 @@
                         <td><?php echo $form_exchange->scrapping ?></td>
                         <td><?php echo $form_exchange->warranty ?></td>
                         <td><?php echo $form_exchange->contact ?></td>
-                        <td><a href="<?php echo base_url('stakeholder/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?php echo base_url('stakeholder/save_exchange/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
+                        <td><a href="<?php echo base_url('form_tech/delete_exchange/'.$form_exchange->id) ?>" class="btn btn-danger">Delete</a>
+                        <a href="<?php echo base_url('form_tech/save_exchange/'.$form_exchange->id) ?>" class="btn btn-primary">Save</a>
                         </td>
                         </td>
                       </tr>
@@ -746,7 +670,7 @@
         </div>
       </div>
             
-      <a href="<?php echo base_url('stakeholder/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
+      <a href="<?php echo base_url('form_tech/form_exchange') ?>" class="btn btn-info">Form Exchange</a>
       </div>
 
       <div id="trial_req" class="tab-pane">
@@ -777,11 +701,11 @@
                             <td><?php echo $trial_req->trial_no ?></td>
                             <td><?php echo $trial_req->date_start ?></td>
                             <td><?php echo $trial_req->date_end ?></td>
-                            <td><button type="<?php echo base_url('salesuser/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
+                            <td><button type="<?php echo base_url('user/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#apl">See more</button></td>
                             <td>
-                            <a href="<?php echo base_url('salesuser/deleter_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('salesuser/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
+                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
                             </td>
                             <input type="hidden" name="id" value="<?php echo $trial_req->id ?>">
                           </tr>
@@ -794,7 +718,7 @@
              </div>
              </div>
 
-              <a href="<?php echo base_url('salesuser/trial_req') ?>" class="btn btn-info">Trial Request</a>
+              <a href="<?php echo base_url('form_sales/trial_req') ?>" class="btn btn-info">Trial Request</a>
       </div>
 
       <div id="cst" class="modal fade" role="dialog">
@@ -923,8 +847,8 @@
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
                             <td>
-                            <a href="<?php echo base_url('salesuser/deleter_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('salesuser/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
+                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $trial_res->id ?>">
                           </tr>
                         <?php $i++ ?>
@@ -936,7 +860,7 @@
              </div>
              </div>
 
-              <a href="<?php echo base_url('salesuser/trial_result') ?>" class="btn btn-info">Trial Result</a>
+              <a href="<?php echo base_url('form_sales/trial_result') ?>" class="btn btn-info">Trial Result</a>
       </div>
 
       <div id="cust" class="modal fade" role="dialog">
@@ -1124,8 +1048,8 @@
                             <td><?php echo $report->report ?></td>
                             <td><?php echo $report->action_plan ?></td>
                             <td>
-                            <a href="<?php echo base_url('stakeholder/delete_report/'.$report->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('stakeholder/save_report/'.$report->id) ?>" class="btn btn-primary">Save</a></td>
+                            <a href="<?php echo base_url('form_sales/delete_report/'.$report->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_report/'.$report->id) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $report>id ?>">
                           </tr>
                         <?php $i++ ?>
@@ -1137,7 +1061,7 @@
              </div>
              </div>
 
-              <a href="<?php echo base_url('stakeholder/report') ?>" class="btn btn-info">Report</a>
+              <a href="<?php echo base_url('form_sales/report') ?>" class="btn btn-info">Report</a>
       </div> 
 
 
@@ -1176,9 +1100,9 @@
                             <td><?php echo $customer->email ?></td>
                             <td><?php echo $customer->sales ?></td>
                             <td>
-                            <!-- <a href="<?php echo base_url('stakeholder/update_customer/'.$customer->id) ?>" class="btn btn-info">Update</a> -->
-                            <a href="<?php echo base_url('stakeholder/delete_customer/'.$customer->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('stakeholder/save_customer/'.$customer->id) ?>" class="btn btn-primary">Save</a></td>
+                            <!-- <a href="<?php echo base_url('form_sales/update_customer/'.$customer->id) ?>" class="btn btn-info">Update</a> -->
+                            <a href="<?php echo base_url('form_sales/delete_customer/'.$customer->id) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_customer/'.$customer->id) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $customer->id ?>">
                           </tr>
                         <?php $i++ ?>
@@ -1190,7 +1114,7 @@
              </div>
              </div>
 
-              <a href="<?php echo base_url('stakeholder/customer') ?>" class="btn btn-info">Customer</a>
+              <a href="<?php echo base_url('form_sales/customer') ?>" class="btn btn-info">Customer</a>
       </div>  
 
 

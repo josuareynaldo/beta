@@ -3,7 +3,7 @@
 	/**
 	* 
 	*/
-	class User_model extends CI_Model
+	class Trial_reqs_model extends CI_Model
 	{
 		public function get_data($table = ''){
 			return $this->db->get($table)->result();

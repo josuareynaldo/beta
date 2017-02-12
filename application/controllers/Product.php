@@ -7,15 +7,73 @@ class Product extends CI_Controller
 {
 	
 	public function index(){
-		$data['products'] = $this->user_model->get_data('products');
-		$data['articles'] = $this->user_model->get_data('articles');
+		$data['products'] = $this->get_products();
+		$data['articles'] = $this->get_acc();
+		$data['histories']= $this->get_history();
 
-		$this->load->view('product',$data);
+
 	}
 	
+	public function get_products(){
+			return $this->products_model->get_data('products');
+		}
+
+	public function get_acc(){
+			return $this->acc_model->get_data('acc');
+		}
+
+	public function get_history(){
+			return $this->history_model->get_data('history');
+		}
+
 	public function register_product(){
 			$this->load->view('register_product');
 		}
+
+	public function lookupParts(){
+				$term = $this->input->get('term');
+				if (isset($term)) {
+					$q = strtolower($term);
+					$query = $this->products_model->lookup('acc','serial_number',$q);
+
+					if (count($query) > 0) {
+							foreach ($query as $row) {
+								$new_row['label']  = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['value0'] = htmlentities(stripcslashes($row['part_name']));
+								$new_row['value']  = htmlentities(stripcslashes($row['description']));
+								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
+								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
+								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
+								$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
+								$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
+								$row_set[] = $new_row;
+							}
+							echo json_encode($row_set);
+					}
+				}
+
+
+	}
+
+		public function lookupProduct()
+		{
+			$term = $this->input->get('term');
+				if (isset($term)) {
+					$q = strtolower($term);
+					$query = $this->products_model->lookup('products','article_number',$q);
+
+					if (count($query) > 0) {
+							foreach ($query as $row) {
+								$new_row['label']  = htmlentities(stripcslashes($row['article_number']));
+								$row_set[] = $new_row;
+							}
+							echo json_encode($row_set);
+					}
+				}
+
+		}
+
+
 
 	public function add_product(){
 			
@@ -249,8 +307,8 @@ class Product extends CI_Controller
 		}
 
 		public function delete($article_number){
-			$this->user_model->delete_data('products',array('article_number'=>$serial_number));
-			$this->user_model->delete_data('articles',array('article_number'=>$serial_number));
+			$this->user_model->delete_data('products',array('article_number'=>$article_number));
+			$this->user_model->delete_data('articles',array('article_number'=>$article_number));
 			$data['products']= $this->user_model->get_byCondition('products',array('article_number'=>$article_number));
 
 			foreach ($products as $product) {

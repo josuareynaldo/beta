@@ -3,7 +3,7 @@
 	/**
 	* 
 	*/
-	class User_model extends CI_Model
+	class Owner_form_model extends CI_Model
 	{
 		public function get_data($table = ''){
 			return $this->db->get($table)->result();

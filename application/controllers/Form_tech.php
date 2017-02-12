@@ -2,180 +2,33 @@
 	/**
 	* 
 	*/
-	class Stakeholder extends CI_Controller
+	class Form_tech extends CI_Controller
 	{
 
 		public function index(){
-			$data['users'] = $this->user_model->get_data('users');
-			$data['customers'] = $this->user_model->get_data('customers');
-			$data['products'] = $this->user_model->get_data('products');
-			$data['articles'] = $this->user_model->get_data('articles');
-			$data['histories']= $this->user_model->get_data('history');
-			$data['form_replacements'] = $this->form_model->get_data('form_replacements');
-			$data['form_services'] = $this->form_model->get_data('form_services');
-			$data['owner_forms'] = $this->form_model->get_data('owner_forms');
-			$data['form_exchanges'] = $this->form_model->get_data('form_exchanges');
-			$data['trial_reqs'] = $this->user_model->get_data('trial_reqs');
-			 $data['trial_results'] = $this->user_model->get_data('trial_results');
-			 $data['reports'] = $this->user_model->get_data('reports');
-			$childs = array();
-			foreach ($data['products'] as $product) {
-				$articles = $this->user_model->get_products($product->article_number);
-				$childs[$product->article_number] = array();
-				foreach ($articles as $article) {
-
-					if(array_key_exists($article->article_number,$childs)){
-	        			array_push($childs[$article->article_number],$article);
-	        		}else{
-	        			$childs[$article->article_number] = $article;	
-	        		}
-					
-				}
-				
-			}
-
-			$data['childs'] = $childs;
-
-			// $data['products'] = $this->user_model->get_data('products');
-			// $data['childs'] = $this->user_model->get_byCondition('products',array('serial_number'=>'123456'))->result();
-			$this->load->view('stakeholder',$data);
+			$data['histories']= $this->get_history();
+			$data['form_services'] = $this->get_services();
+			$data['owner_forms'] = $this->get_exchanges();
+			$data['form_exchanges'] = $this->get_owners();
 			
-		}	
+		}
 
-		public function lookupParts()
-			{
-				$term = $this->input->get('term');
-				if (isset($term)) {
-					$q = strtolower($term);
-					$query = $this->m_autocomplete->lookup('articles','serial_number',$q);
+		public function get_history(){
+			return $this->history_model->get_data('history');
+		}
 
-					if (count($query) > 0) {
-							foreach ($query as $row) {
-								$new_row['label']  = htmlentities(stripcslashes($row['serial_number']));
-								$new_row['value0'] = htmlentities(stripcslashes($row['part_name']));
-								$new_row['value']  = htmlentities(stripcslashes($row['description']));
-								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
-								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
-								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
-								$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
-								$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
-								$row_set[] = $new_row;
-							}
-							echo json_encode($row_set);
-					}
-				}
+		public function get_services(){
+			return $this->form_services_model->get_data('form_services');
+		}
 
+		public function get_exchanges(){
+			return $this->form_exchanges_model->get_data('form_exchanges');
+		}
 
-			}
-		public function lookupProduct()
-		{
-			$term = $this->input->get('term');
-				if (isset($term)) {
-					$q = strtolower($term);
-					$query = $this->m_autocomplete->lookup('products','article_number',$q);
-
-					if (count($query) > 0) {
-							foreach ($query as $row) {
-								$new_row['label']  = htmlentities(stripcslashes($row['article_number']));
-								$row_set[] = $new_row;
-							}
-							echo json_encode($row_set);
-					}
-				}
-
+		public function get_owners(){
+			return $this->owner_form_model->get_data('owner_forms');
 		}
 		
-		public function register(){
-			$this->load->view('register_user');
-		}
-
-		public function add_user(){
-			if($this->input->post('register')){
-				$data= array(
-						'name' => $this->input->post('name'),
-						'password' => sha1($this->input->post('password')),
-						'email' => $this->input->post('email'),
-						'address' => $this->input->post('address'),
-						'position' => $this->input->post('pos')
-					);
-
-				$this->user_model->insert_data('users',$data);
-				$report=array(
-						'report'=> $this->session->userdata('name').' has created an user account with name '.$this->input->post('name').' with the position as '.$this->input->post('pos')
-					);
-				$this->user_model->insert_data('history',$report);	
-			$this->user_model->insert_data('history',$report);
-				redirect('stakeholder/index');
-
-			}else{
-				redirect('stakeholder/register_user');
-			}
-		}
-
-		public function edit($id){
-			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
-			$this->load->view('edit_user',$data);
-		}
-
-		public function see_more($id){
-			$data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
-
-		}
-
-		public function button_see($id){
-			$data['owner_form'] = $this->form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
-
-		}
-
-		public function btn_see($id){
-			$data['form_exchange'] = $this->form_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
-
-		}
-
-		public function update(){
-			if($this->input->post('update')){
-				$data= array(
-						 
-						'password' => sha1($this->input->post('password')),
-						'address' => $this->input->post('address')
-
-					);
-				 
-				$this->user_model->update_data('users',$data,array('id'=>$this->input->post('id')));
-				$report=array(
-						'report'=> 'Stakeholder '.$this->session->userdata('name').' has edited an user account with name '.$this->input->post('name')
-					);
-				$this->user_model->insert_data('history',$report);
-				redirect('stakeholder/index');
-
-			}else{
-				redirect('stakeholder/register_user');
-			}
-		}
-
-		public function delete($id){
-			$temp=$this->user_model->select_data('name','users',$id);
-			$this->user_model->delete_data('users',array('id'=>$id));
-			$report=array(
-						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted an user account with name '.$temp->name
-					);
-			$this->user_model->insert_data('history',$report);
-			redirect('stakeholder/index');
-
-		}
-
-		public function addpart(){
-		if($this->input->post('register_part'))
-			$value=$this->input->post('select');
-			redirect('product/register_part/'.$value);
-		}
-
-
-		public function deleteProduct($id){
-			$this->user_model->delete_data('products',array('id'=>$id));
-			redirect('stakeholder/index');
-
-		}
 
 		public function form_replacement(){
 			$this->load->view('forms/form_replacements');

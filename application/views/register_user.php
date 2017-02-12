@@ -58,12 +58,12 @@
             
             <label for="">Type</label><br>
             <div class="radio-btn">
-              <input type="radio" name="pos" value="User"> <b>User</b><br>
-              <input type="radio" name="pos" value="Manager"> <b>Manager</b><br>
+              <input type="radio" name="pos" value="Tech_User"> <b>Technical User</b><br>
+              <input type="radio" name="pos" value="Tech_Manager"> <b>Technical Manager</b><br>
               <input type="radio" name="pos" value="Stakeholder"> <b>Stakeholder</b><br>
-              <input type="radio" name="pos" value="Salesmanager"> <b>Salesmanager</b><br>
-              <input type="radio" name="pos" value="Salesadmin"> <b>Salesadmin</b><br>
-              <input type="radio" name="pos" value="Salesuser"> <b>Salesuser</b>
+              <input type="radio" name="pos" value="Salesmanager"> <b>Sales Manager</b><br>
+              <input type="radio" name="pos" value="Salesadmin"> <b>Sales Admin</b><br>
+              <input type="radio" name="pos" value="Salesuser"> <b>Sales User</b>
             </div>
             <div class="form-group">
               <input type="submit" name="register" value="Register" class="btn btn-primary">
