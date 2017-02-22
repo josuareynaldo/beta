@@ -16,12 +16,14 @@
 		public function get_byCondition($table = '',$condition = array()){
 			return $this->db->get_where($table,$condition);
 		}
+		
 		public function select_data($column= '',$table= '',$where= ''){
 			$this->db->select($column);
 			$this->db->from($table);
 			$this->db->where('id',$where);
 			return $this->db->get()->row();
 		}
+
 		public function update_data($table = '',$data = array(),$condition = array()){
 			$this->db->update($table,$data,$condition);
 		}

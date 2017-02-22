@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Register Part</title>
+    <title>Register Accessories</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('product/add_part') ?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url('product/add_acc') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Article Number</label>
               <input class="form-control" type="text" name="article_number" value="<?php echo $article_number ?>" readonly="readonly">
@@ -51,7 +51,11 @@
            <div class="form-group">
               <label for="">Description</label>
               <textarea class="form-control"  name="description" placeholder="Input description" required="1" ></textarea>
-            </div>
+           </div>
+           <div class="form-group">
+             <label for="">Quantity</label>
+             <input class="form-control" type="number" name="quantity" required="1">
+           </div>
             <div class="form-group">
               <label for="">Type</label>
               <textarea class="form-control"  name="type" placeholder="Input type" required="1" ></textarea>
@@ -65,7 +69,7 @@
               <input class="form-control" type="date" name="date_install" required="1" autocomplete="off">
             </div>
              <div class="form-group">
-              <label for="">Upload Parts Image</label>
+              <label for="">Upload Parts Image(JPG|PNG)</label>
               <input class="file" type="file" name="upload_image" required="1" autocomplete="off">
             </div>
             <div class="form-group">

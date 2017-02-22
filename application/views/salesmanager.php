@@ -38,7 +38,7 @@
           &nbsp<span id="date_time"></span>
           <script type="text/javascript">window.onload = date_time('date_time');</script>
              <div class="right" style="float: right;">
-               <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+               <a href="<?php echo base_url('user/edit_user/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
                <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
             </div>
           </h1>

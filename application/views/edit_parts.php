@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
-          <form action="<?php echo base_url('product/updateParts') ?>" method="post">
+          <form action="<?php echo base_url('product/update_acc') ?>" method="post">
             <div class="form-group">
               <label for="">Article Number</label>
               <input class="form-control" type="text" name="article_number" placeholder="Input Serial Number" value="<?php echo $articles->article_number ?>" readonly="readonly">
@@ -44,16 +44,20 @@
             </div>
             <div class="form-group">
               <label for="">Part Name</label>
-              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name"> 
+              <input class="form-control" type="text" id="part_name" name="part_name" value="<?php echo $articles->part_name ?>"> 
             </div>
            <div class="form-group">
               <label for="">Description</label>
-              <textarea class="form-control"  name="description" placeholder="Input description" required="1" ></textarea>
+              <textarea class="form-control"  name="description" value="<?php echo $articles->description ?>" required="1" ></textarea>
             </div>
             <div class="form-group">
               <label for="">Type</label>
-              <textarea class="form-control"  name="type" placeholder="Input type" required="1" ></textarea>
+              <textarea class="form-control"  name="type" value="<?php echo $articles->type ?>" required="1" ></textarea>
             </div>
+            <div class="form-group">
+             <label for="">Quantity</label>
+             <input class="form-control" type="number" name="quantity" value="<?php echo $articles->article_number ?>" required="1">
+           </div>
             <div class="form-group">
               <label for="">Service Date</label>
               <input class="form-control" type="date" name="service_date" required="1" autocomplete="off">

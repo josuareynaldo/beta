@@ -12,8 +12,8 @@
 			$data['articles'] = $this->get_acc();
 			$data['histories']= $this->get_history();
 			$data['form_services'] = $this->get_services();
-			$data['owner_forms'] = $this->get_exchanges();
-			$data['form_exchanges'] = $this->get_owners();
+			$data['owner_forms'] = $this->get_owners();
+			$data['form_exchanges'] = $this->get_exchanges();
 			$data['trial_reqs'] = $this->get_trial_reqs();
 			$data['trial_results'] = $this->get_trial_results();
 			$data['reports'] = $this->get_reports();
@@ -60,9 +60,8 @@
 			else if($this->session->userdata('position')=='Salesmanager'){
 				$this->load->view('salesadmin',$data);
 			}
-
-			
 		}
+
 		public function get_users(){
 			return $this->user_model->get_data('users');
 		}
@@ -107,7 +106,7 @@
 			return $this->reports_model->get_data('reports');
 		}
 		
-		public function register(){
+		public function register_user(){
 			$this->load->view('register_user');
 		}
 
@@ -127,16 +126,17 @@
 				$report=array(
 						'report'=> $this->session->userdata('name').' has created an user account with name '.$this->input->post('name').' with the position as '.$this->input->post('pos')
 					);
-				$this->user_model->insert_data('history',$report);	
-			$this->user_model->insert_data('history',$report);
-				redirect('stakeholder/index');
+				$this->history_model->insert_data('history',$report);	
+				redirect('user/index');
 
-			}else{
-				redirect('stakeholder/register_user');
+			}
+
+			else{
+				redirect('user/register_user');
 			}
 		}
 
-		public function edit($id){
+		public function edit_user($id){
 			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
 			$this->load->view('edit_user',$data);
 		}
@@ -144,7 +144,6 @@
 		public function see_more($id){
 			$data['form_services'] = $this->form_services_model->get_byCondition('form_services',array('id'=>$id))->row();
 			$data['trial_reqs'] = $this->trial_reqs_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
-
 		}
 
 		public function button_see($id){
@@ -157,7 +156,7 @@
 
 		}
 
-		public function update(){
+		public function update_user(){
 			if($this->input->post('update')){
 				$data= array(
 						 
@@ -170,28 +169,28 @@
 				$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has edited an user account with name '.$this->input->post('name')
 					);
-				$this->user_model->insert_data('history',$report);
-				redirect('stakeholder/index');
+				$this->history_model->insert_data('history',$report);
+				redirect('user/index');
 
 			}else{
 				redirect('stakeholder/register_user');
 			}
 		}
 
-		public function delete($id){
-			$temp=$this->user_model->select_data('name','users',$id);
+		public function delete_user($id){
+			$temp=$this->history_model->select_data('name','users',$id);
 			$this->user_model->delete_data('users',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted an user account with name '.$temp->name
 					);
-			$this->user_model->insert_data('history',$report);
-			redirect('stakeholder/index');
+			$this->history_model->insert_data('history',$report);
+			redirect('user/index');
 
 		}
 
 		public function delete_history(){
 			$this->user_model->truncate_table('history');
-			redirect('manager/index');
+			redirect('user/index');
 		}
 
 	}

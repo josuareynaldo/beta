@@ -41,7 +41,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url($this->session->userdata('position')); ?>/add_form_service" method="post">
+          <form action="<?php echo base_url(); ?>form_tech/add_form_service" method="post">
             <h2>Printer Information</h2>
             <div class="form-group">
               <label for="">Date Service</label>
@@ -146,22 +146,22 @@
 <script>
       $(document).ready(function(){
 
-                            $("#serial_number").autocomplete({
-                                source: '<?php echo base_url()?>manager/lookupParts',
+                          $("#serial_number").autocomplete({
+                            source: '<?php echo base_url() ?>product/lookup_Acc',
 
-                                focus: function(event, ui){
-                                    event.preventDefault();
+                            focus: function(event, ui){
+                                event.preventDefault();
 
-                                    $(this).val(ui.item.label);
-                                    return false;
-                                },
+                                $(this).val(ui.item.label);
+                                return false;
+                            },
 
-                                select: function(event, ui){
-                                    event.preventDefault();
+                            select: function(event, ui){
+                                event.preventDefault();
 
-                                    $(this).val(ui.item.label);
-                                    return false;
-                                }
-                            });
+                                $(this).val(ui.item.label);
+                                return false;
+                            }
+                        });
                         });
 </script>

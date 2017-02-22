@@ -33,14 +33,14 @@
       <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
-          <form action="<?php echo base_url('product/update') ?>" method="post">
+          <form action="<?php echo base_url('product/update_product') ?>" method="post">
             <div class="form-group">
               <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input Serial Number" value="<?php echo $products->article_number ?>" >
+              <input class="form-control" type="text" name="article_number" value="<?php echo $products->article_number ?>" >
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name" placeholder="Input Product Name"> 
+              <input class="form-control" type="text" id="product_name" name="product_name" value="<?php echo $products->product_name ?>"> 
             </div>
            <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
@@ -48,8 +48,12 @@
             </div>
             <div class="form-group">
               <label for="product_name">Description</label>
-              <input class="form-control" type="text" id="description" name="description" placeholder="Input Description"> 
+              <input class="form-control" type="text" id="description" name="description" value="<?php echo $products->description ?>"> 
             </div>
+            <div class="form-group">
+             <label for="">Quantity</label>
+             <input class="form-control" type="number" name="quantity" required="1" value="<?php echo $products->quantity ?>">
+           </div>
             <div class="form-group">
               <input type="hidden" name="id" value="<?php echo $products->article_number ?>">
               <input type="submit" name="update" value="Update" class="btn btn-info">

@@ -40,7 +40,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url($this->session->userdata('position')); ?>/add_form_exchange" method="post">
+          <form action="<?php echo base_url(); ?>form_tech/add_form_exchange" method="post">
             <div class="form-group">
               <label for="">Article No.</label>
               <input class="form-control" type="text" id="article_number" name="article_number" placeholder="Input Article Number" required="1">
@@ -130,11 +130,11 @@
 </html>
 
 
-  <script>
+<script>
       $(document).ready(function(){
 
                             $("#article_number").autocomplete({
-                                source: '<?php echo base_url()?>manager/lookupProduct',
+                                source: '<?php echo base_url()?>product/lookup_Product',
 
                                 focus: function(event, ui){
                                     event.preventDefault();
@@ -152,7 +152,7 @@
                             });
 
                           $("#serial_number").autocomplete({
-                            source: '<?php echo base_url() ?>manager/lookupParts',
+                            source: '<?php echo base_url() ?>product/lookup_Acc',
 
                             focus: function(event, ui){
                                 event.preventDefault();
@@ -169,4 +169,4 @@
                             }
                         });
                         });
-  </script>
+</script>

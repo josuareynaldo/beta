@@ -34,7 +34,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('salesuser/add_trial_req') ?>" method="post">
+          <form action="<?php echo base_url() ?>/form_sales/add_trial_req" method="post">
             <div class="form-group">
               <label for="">Trial / Install No.</label>
               <input class="form-control" type="text" name="trial_no" placeholder="Input Trial No" required="1" autocomplete="off">

@@ -41,7 +41,7 @@
           &nbsp<span id="date_time"></span>
           <script type="text/javascript">window.onload = date_time('date_time');</script>
           <div class="right" style="float: right;">
-             <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+             <a href="<?php echo base_url('user/edit_user/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
              <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
           </div>
           </h1>
@@ -178,7 +178,7 @@
                     $(document).ready(function(){
 
                         $("#serial_number").autocomplete({
-                            source: '<?php echo base_url()?>product/lookupParts',
+                            source: '<?php echo base_url()?>product/lookup_Acc',
 
                             focus: function(event, ui){
                                 event.preventDefault();
@@ -205,7 +205,8 @@
                                 $('#type').val(ui.item.value1);
                                 $('#service_date').val(ui.item.value2);
                                 $('#date_install').val(ui.item.value3);
-                                $('#img').attr("src",ui.item.value4);
+                                var base_url = '<?php echo base_url();?>';
+                                $('#img').attr("src",base_url+ui.item.value4);
                                 $('#img').show();
                                 return false;
                             }

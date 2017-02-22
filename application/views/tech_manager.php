@@ -43,7 +43,7 @@
           &nbsp<span id="date_time"></span>
           <script type="text/javascript">window.onload = date_time('date_time');</script>
           <div class="right" style="float: right;">
-             <a href="<?php echo base_url('user/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+             <a href="<?php echo base_url('user/edit_user/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
              <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
           </div>
           </h1>
@@ -97,7 +97,7 @@
                         <td><?php echo $user->password ?></td>
                         <td><?php echo $user->address ?></td>
                         <td><?php echo $user->position ?></td>
-                        <td><a href="<?php echo base_url('user/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                        <td><a href="<?php echo base_url('user/edit_user/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete_user/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
                       </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>
@@ -107,7 +107,7 @@
                 </div>
                    
 
-                <a href="<?php echo base_url('user/register') ?>" class="btn btn-primary">User Register</a>
+                <a href="<?php echo base_url('user/register_user') ?>" class="btn btn-primary">User Register</a>
           </div>
           </div>
           </div>
@@ -145,7 +145,7 @@
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->description ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="<?php echo base_url('product/register_acc/'.$product->article_number) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit_product/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_product/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
@@ -167,7 +167,7 @@
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><a href="<?php echo base_url('product/editParts/'.$row->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/deleteParts/'.$row->serial_number) ?>" class="btn btn-danger">Delete</a></td>
+                            <td><a href="<?php echo base_url('product/edit_acc/'.$row->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_acc/'.$row->serial_number) ?>" class="btn btn-danger">Delete</a></td>
                             
                           </tr>
                        <?php endforeach; ?>
@@ -232,7 +232,7 @@
                     $(document).ready(function(){
 
                         $("#serial_number").autocomplete({
-                            source: '<?php echo base_url()?>product/lookupParts',
+                            source: '<?php echo base_url()?>product/lookup_Acc',
 
                             focus: function(event, ui){
                                 event.preventDefault();
@@ -244,7 +244,8 @@
                                 $('#type').val(ui.item.value1);
                                 $('#service_date').val(ui.item.value2);
                                 $('#date_install').val(ui.item.value3);
-                                $('#img').attr("src",ui.item.value4);
+                                var base_url = '<?php echo base_url();?>';
+                                $('#img').attr("src",base_url+ui.item.value4);
                                 $('#img').show();
                                 return false;
                             },
@@ -259,7 +260,8 @@
                                 $('#type').val(ui.item.value1);
                                 $('#service_date').val(ui.item.value2);
                                 $('#date_install').val(ui.item.value3);
-                                $('#img').attr("src",ui.item.value4);
+                                var base_url = '<?php echo base_url();?>';
+                                $('#img').attr("src",base_url+ui.item.value4);
                                 $('#img').show();
                                 return false;
                             }

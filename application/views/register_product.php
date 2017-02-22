@@ -59,6 +59,10 @@
               <input class="form-control" type="text" id="description" name="description" placeholder="Input Description" required="1"> 
             </div>
             <div class="form-group">
+             <label for="">Quantity</label>
+             <input class="form-control" type="number" name="quantity" required="1">
+           </div>
+            <div class="form-group">
               <input type="submit" name="register_product" value="Register Product" class="btn btn-primary">
 
             </div>

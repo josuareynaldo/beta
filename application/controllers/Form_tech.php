@@ -47,28 +47,10 @@
 			$this->load->view('forms/form_exchanges');
 		}
 
-		 public function trial_req(){
-		 	$this->load->view('forms/trial_reqs');
-		 }
-
-		public function trial_result(){
-		 	$this->load->view('forms/trial_results');
-		 }
-
-		  public function customer(){
-		 	$this->load->view('forms/customers');
-		 }
-
-		 public function report(){
-		 	$this->load->view('forms/reports');
-		 }
-
-
-
 		public function add_form_replacement(){
 			if($this->input->post('save')){
-				$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
-				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				$query1 = $this->products_model->lookup('products','article_number',$this->input->post('article_number'));
+				$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
 				if(count($query1)>0 && count($query2)>0){
 					$data= array(
 						'exchange_id' => $this->input->post('exchange_id'),
@@ -83,27 +65,27 @@
 
 
 					);
-					$this->form_model->insert_data('form_replacements',$data);
+					$this->form_replacements_model->insert_data('form_replacements',$data);
 					$report=array(
 							'report'=> $this->session->userdata('name').' has inserted a new form replacement with Exchange Id '.$this->input->post('exchange_id')
 						);
-					$this->user_model->insert_data('history',$report);
-					redirect('stakeholder/index');
+					$this->history_model->insert_data('history',$report);
+					redirect('user/index');
 				}
 				else{
-					redirect('stakeholder/form_replacement');
+					redirect('form_tech/form_replacement');
 				}
 				
 			}
 
 			else{
-				redirect('stakeholder/form_replacement');
+				redirect('form_tech/form_replacement');
 			}
 		}
 
 		public function add_form_service(){
 			if($this->input->post('save')){
-				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
 				if(count($query2)>0){
 					$data= array(
 						'date_service' => $this->input->post('date_service'),
@@ -128,26 +110,26 @@
 						'service_work' => $this->input->post('service_work')
 
 					);
-					$this->form_model->insert_data('form_services',$data);
+					$this->form_services_model->insert_data('form_services',$data);
 					$report=array(
 							'report'=> $this->session->userdata('name').' has inserted a new form service with Service Date '.$this->input->post('date_service')
 						);
-					$this->user_model->insert_data('history',$report);
-					redirect('stakeholder/index');
+					$this->history_model->insert_data('history',$report);
+					redirect('user/index');
 				}
 				else{
-					redirect('stakeholder/form_service');
+					redirect('form_tech/form_service');
 				}
 
 			}else{
-				redirect('stakeholder/form_service');
+				redirect('form_tech/form_service');
 			}
 		}
 
 
 		public function add_owner_form(){
-			$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
-			$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+			$query1 = $this->products_model->lookup('products','article_number',$this->input->post('article_number'));
+			$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
 			if(count($query1)>0 && count($query2)>0){
 				if($this->input->post('save')){
 				$data= array(
@@ -172,27 +154,27 @@
 						'date' => $this->input->post('date')
 
 					);
-				$this->form_model->insert_data('owner_forms',$data);
+				$this->owner_form_model->insert_data('owner_forms',$data);
 				$report=array(
 						'report'=> $this->session->userdata('name').' has inserted a new owner form with serial number '.$this->input->post('serial_number')
 					);
-				$this->user_model->insert_data('history',$report);
-				redirect('stakeholder/index');
+				$this->history_model->insert_data('history',$report);
+				redirect('user/index');
 			}
 			else{
-				redirect('stakeholder/owner_form');
+				redirect('form_tech/owner_form');
 			}
 
 			}else{
-				redirect('stakeholder/owner_form');
+				redirect('form_tech/owner_form');
 			}
 		}
 
 
 		public function add_form_exchange(){
 			if($this->input->post('save')){
-				$query1 = $this->form_model->lookup('products','article_number',$this->input->post('article_number'));
-				$query2 = $this->form_model->lookup('articles','serial_number',$this->input->post('serial_number'));
+				$query1 = $this->products_model->lookup('products','article_number',$this->input->post('article_number'));
+				$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
 				if(count($query1)>0 && count($query2)>0){
 					$data= array(
 						'article_number' => $this->input->post('article_number'),
@@ -213,362 +195,153 @@
 						'date' => $this->input->post('date')
 
 					);
-					$this->form_model->insert_data('form_exchanges',$data);
+					$this->form_exchanges_model->insert_data('form_exchanges',$data);
 					$report=array(
 							'report'=> $this->session->userdata('name').' has inserted a new form exchange with article number '.$this->input->post('article_number')
 						);
-					$this->user_model->insert_data('history',$report);
-					redirect('stakeholder/index');
+					$this->history_model->insert_data('history',$report);
+					redirect('user/index');
 				}
 
 				else{
-					redirect('stakeholder/form_exchange');
+					redirect('form_tech/form_exchange');
 					}
 				}
 				
 			else{
-				redirect('stakeholder/form_exchange');
+				redirect('form_tech/form_exchange');
 			}
 		}
-
-		 public function add_trial_req(){
-			if($this->input->post('save')){
-				$data= array(
-						'trial_no' => $this->input->post('trial_no'),
-						'date_start' => $this->input->post('date_start'),
-						'date_end' => $this->input->post('date_end'),
-						'company' => $this->input->post('company'),
-						'street' => $this->input->post('street'),
-						'contact' => $this->input->post('contact'),
-						'profession' => $this->input->post('profession'),
-						'phone' => $this->input->post('phone'),
-						'email' => $this->input->post('email'),
-						'bus_field' => $this->input->post('bus_field'),
-						'machine_type' => implode(', ',	$this->input->post('machine_type')),
-						'ink_type' => $this->input->post('ink_type'),
-						'solvent_type' => $this->input->post('solvent_type'),
-						'material' => implode(', ', $this->input->post('material')),
-						'printing_app' => implode(', ', $this->input->post('printing_app')),
-						'acc_supp' => implode(', ', $this->input->post('acc_supp')),
-						'sensor_type' => implode(', ', $this->input->post('sensor_type')),
-						'encoder' => implode(', ', $this->input->post('encoder')),
-						'sales_note' => $this->input->post('sales_note'),
-						'tech_note' => $this->input->post('tech_note')
-
-
-					);
-				$this->form_model->insert_data('trial_reqs',$data);
-				redirect('stakeholder/index');
-
-			}else{
-				redirect('stakeholder/trial_req');
-			}
-		}
-
-		public function add_trial_result(){
-			if($this->input->post('save')){
-				$data= array(
-						'result_no' => $this->input->post('result_no'),
-						'company' => $this->input->post('company'),
-						'street' => $this->input->post('street'),
-						'contact' => $this->input->post('contact'),
-						'profession' => $this->input->post('profession'),
-						'phone' => $this->input->post('phone'),
-						'email' => $this->input->post('email'),
-						'bus_field' => $this->input->post('bus_field'),
-						'machine_type' => implode(', ',	$this->input->post('machine_type')),
-						'ink_type' => $this->input->post('ink_type'),
-						'solvent_type' => $this->input->post('solvent_type'),
-						'material' => implode(', ', $this->input->post('material')),
-						'printing_app' => implode(', ', $this->input->post('printing_app')),
-						'acc_supp' => implode(', ', $this->input->post('acc_supp')),
-						'sensor_type' => implode(', ', $this->input->post('sensor_type')),
-						'encoder' => implode(', ', $this->input->post('encoder')),
-						'print_char' => $this->input->post('print_char'),
-						'dots' => $this->input->post('dots'),
-						'counter_start' => $this->input->post('counter_start'),
-						'counter_end' => $this->input->post('counter_end'),
-						'total_counter' => $this->input->post('total_counter'),
-						'date_start' => $this->input->post('date_start'),
-						'date_end' => $this->input->post('date_end'),
-						'time_start' => $this->input->post('time_start'),
-						'time_end' => $this->input->post('time_end'),
-						'ink' => $this->input->post('ink'),
-						'solvent' => $this->input->post('solvent'),
-						'temperature' => $this->input->post('temperature'),
-						'humidity' => $this->input->post('humidity'),
-						'result' => $this->input->post('result'),
-						'customer' => $this->input->post('customer'),
-
-
-					);
-				$this->form_model->insert_data('trial_results',$data);
-				redirect('stakeholder/index');
-
-			}else{
-				redirect('stakeholder/trial_result');
-			}
-		}
-
-		 public function add_customer(){
-			if($this->input->post('save')){
-				$data= array(
-						'company' => $this->input->post('company'),
-						'address' => $this->input->post('address'),
-						'telp' => $this->input->post('telp'),
-						'fax' => $this->input->post('fax'),
-						'hp' => $this->input->post('hp'),
-						'email' => $this->input->post('email'),
-						'sales' => $this->input->post('sales')
-					);
-				$this->form_model->insert_data('customers',$data);
-				redirect('stakeholder/index');
-
-			}else{
-				redirect('stakeholder/customer');
-			}
-		}
-
-		public function add_report(){
-			if($this->input->post('save')){
-				$data= array(
-						'sales_name' => $this->input->post('sales_name'),
-						'date_report' => $this->input->post('date_report'),
-						'date_info' => $this->input->post('date_info'),
-						'customer' => $this->input->post('customer'),
-						'report' => $this->input->post('report'),
-						'action_plan' => $this->input->post('action_plan'),
-
-
-					);
-				$this->form_model->insert_data('reports',$data);
-				redirect('stakeholder/index');
-
-			}else{
-				redirect('stakeholder/report');
-			}
-		}
-
-
 
 		public function delete_replacement($id){
-			$temp=$this->user_model->select_data('exchange_id','form_replacements',$id);
-			$this->form_model->delete_data('form_replacements',array('id'=>$id));
+			$temp=$this->history_model->select_data('exchange_id','form_replacements',$id);
+			$this->form_replacements_model->delete_data('form_replacements',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted a replacement form with exchange ID '.$temp->exchange_id
 					);
-			$this->user_model->insert_data('history',$report);
-			redirect('stakeholder/index');
+			$this->history_model->insert_data('history',$report);
+			redirect('user/index');
 		}
 
 		public function delete_service($id){
-			$temp=$this->user_model->select_data('date_service','form_services',$id);
-			$this->form_model->delete_data('form_services',array('id'=>$id));
+			$temp=$this->history_model->select_data('date_service','form_services',$id);
+			$this->form_services_model->delete_data('form_services',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted a service form with install date '.$temp->date_service
 					);
-			$this->user_model->insert_data('history',$report);
-			redirect('stakeholder/index');
+			$this->history_model->insert_data('history',$report);
+			redirect('user/index');
 		}
 
 		public function delete_owner($id){
-			$temp=$this->user_model->select_data('serial_number','owner_forms',$id);
-			$this->form_model->delete_data('owner_forms',array('id'=>$id));
+			$temp=$this->history_model->select_data('serial_number','owner_forms',$id);
+			$this->owner_form_model->delete_data('owner_forms',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted a service form with serial number '.$temp->serial_number
 					);
-			$this->user_model->insert_data('history',$report);
-			redirect('stakeholder/index');
+			$this->history_model->insert_data('history',$report);
+			redirect('user/index');
 		}
 
 		public function delete_exchange($id){
-			$temp=$this->user_model->select_data('article_number','form_exchanges',$id);
-			$this->form_model->delete_data('form_exchanges',array('id'=>$id));
+			$temp=$this->history_model->select_data('article_number','form_exchanges',$id);
+			$this->form_exchanges_model->delete_data('form_exchanges',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted a service form with article number '.$temp->article_number
 					);
-			$this->user_model->insert_data('history',$report);
-			redirect('stakeholder/index');
+			$this->history_model->insert_data('history',$report);
+			redirect('user/index');
 		}
-
-		public function delete_trial_req($id){
-			$this->form_model->delete_data('trial_reqs',array('id'=>$id));
-			redirect('stakeholder/index');
-		 }
-
-		public function delete_trial_result($id){
-			$this->form_model->delete_data('trial_results',array('id'=>$id));
-			redirect('stakeholder/index');
-		 }
-
-		 public function delete_customer($id){
-			$this->form_model->delete_data('customers',array('id'=>$id));
-			redirect('stakeholder/index');
-		 }
-
-		 public function delete_report($id){
-			$this->form_model->delete_data('reports',array('id'=>$id));
-			redirect('stakeholder/index');
-		 }
 
 
 		public function save_replacement($id){
-		$temp=$this->user_model->select_data('exchange_id','form_replacements',$id);
-		$data['form_replacement'] = $this->form_model->get_byCondition('form_replacements',array('id'=>$id))->row();
-        //load the view and saved it into $html variable
-        $html=$this->load->view('pdf/form_replacementPDF', $data, true);
- 
-        //this the the PDF filename that user will get to download
-        $pdfFilePath = "form_replacement.pdf";
- 
-        //load mPDF library
- 
-       //generate the PDF from the given html
-        $this->m_pdf->pdf->WriteHTML($html);
- 
-        //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");
-        $report=array(
-						'report'=> $this->session->userdata('name').' has saved a replacement form with exchange ID '.$temp->exchange_id
-					);
-		$this->user_model->insert_data('history',$report);
-
+			$temp=$this->history_model->select_data('exchange_id','form_replacements',$id);
+			$data['form_replacement'] = $this->form_replacements_model->get_byCondition('form_replacements',array('id'=>$id))->row();
+	        //load the view and saved it into $html variable
+	        $html=$this->load->view('pdf/form_replacementPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "form_replacement.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	        $this->m_pdf->pdf->WriteHTML($html);
+	 
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+	        $report=array(
+							'report'=> $this->session->userdata('name').' has saved a replacement form with exchange ID '.$temp->exchange_id
+						);
+			$this->history_model->insert_data('history',$report);
 		}
 
 		public function save_service($id){
-		$temp=$this->user_model->select_data('date_service','form_services',$id);
-		$data['form_service'] = $this->form_model->get_byCondition('form_services',array('id'=>$id))->row();
-        //load the view and saved it into $html variable
-        $html=$this->load->view('pdf/form_servicePDF', $data, true);
- 
-        //this the the PDF filename that user will get to download
-        $pdfFilePath = "form_service.pdf";
- 
-        //load mPDF library
- 
-       //generate the PDF from the given html
-        $this->m_pdf->pdf->WriteHTML($html);
- 
-        //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");
-        $report=array(
-						'report'=> $this->session->userdata('name').' has saved a service form with install date '.$temp->date_service
-					);
-		$this->user_model->insert_data('history',$report);        
+			$temp=$this->history_model->select_data('date_service','form_services',$id);
+			$data['form_service'] = $this->form_services_model->get_byCondition('form_services',array('id'=>$id))->row();
+	        //load the view and saved it into $html variable
+	        $html=$this->load->view('pdf/form_servicePDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "form_service.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	        $this->m_pdf->pdf->WriteHTML($html);
+	 
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+	        $report=array(
+							'report'=> $this->session->userdata('name').' has saved a service form with install date '.$temp->date_service
+						);
+			$this->history_model->insert_data('history',$report);        
 		}
 
 		public function save_owner($id){
-		$temp=$this->user_model->select_data('serial_number','owner_forms',$id);
-		$data['owner_form'] = $this->form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
-        //load the view and saved it into $html variable
-        $html=$this->load->view('pdf/owner_formPDF', $data, true);
- 
-        //this the the PDF filename that user will get to download
-        $pdfFilePath = "owner_form.pdf";
- 
-        //load mPDF library
- 
-       //generate the PDF from the given html
-        $this->m_pdf->pdf->WriteHTML($html);
- 
-        //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");
-        $report=array(
-						'report'=> $this->session->userdata('name').' has saved a service form with article number '.$temp->article_number
-					);
-			$this->user_model->insert_data('history',$report);        
+			$temp=$this->history_model->select_data('serial_number','owner_forms',$id);
+			$data['owner_form'] = $this->owner_form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
+	        //load the view and saved it into $html variable
+	        $html=$this->load->view('pdf/owner_formPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "owner_form.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	        $this->m_pdf->pdf->WriteHTML($html);
+	 
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+	        $report=array(
+							'report'=> $this->session->userdata('name').' has saved a service form with article number '.$temp->article_number
+						);
+			$this->history_model->insert_data('history',$report);        
 		}
 
 
 		public function save_exchange($id){
-		$temp=$this->user_model->select_data('article_number','form_exchanges',$id);
-		$data['form_exchange'] = $this->form_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
-        //load the view and saved it into $html variable
-        $html=$this->load->view('pdf/form_exchangePDF', $data, true);
- 
-        //this the the PDF filename that user will get to download
-        $pdfFilePath = "form_exchange.pdf";
- 
-        //load mPDF library
- 
-       //generate the PDF from the given html
-        $this->m_pdf->pdf->WriteHTML($html);
- 
-        //download it.
-        $this->m_pdf->pdf->Output($pdfFilePath, "D");
-        $report=array(
-						'report'=> 'Stakeholder '.$this->session->userdata('name').' has saved a service form with article number '.$temp->article_number
-					);
-		$this->user_model->insert_data('history',$report);        
+			$temp=$this->history_model->select_data('article_number','form_exchanges',$id);
+			$data['form_exchange'] = $this->form_exchanges_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
+	        //load the view and saved it into $html variable
+	        $html=$this->load->view('pdf/form_exchangePDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "form_exchange.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	        $this->m_pdf->pdf->WriteHTML($html);
+	 
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");
+	        $report=array(
+							'report'=> 'Stakeholder '.$this->session->userdata('name').' has saved a service form with article number '.$temp->article_number
+						);
+			$this->history_model->insert_data('history',$report);        
 		}
-
-
-		public function save_trial_req($id){
-			 $data['trial_req'] = $this->form_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
-	  			//load the view and saved it into $html variable
-	         $html=$this->load->view('pdf/trial_reqPDF', $data, true);
-	 
-	        //this the the PDF filename that user will get to download
-	        $pdfFilePath = "trial_req.pdf";
-	 
-	        //load mPDF library
-	 
-	       //generate the PDF from the given html
-	         $this->m_pdf->pdf->WriteHTML($html);
-	        //download it.
-	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
-	 	}
-
-		public function save_trial_result($id){
-			 $data['trial_result'] = $this->form_model->get_byCondition('trial_results',array('id'=>$id))->row();
-	  			//load the view and saved it into $html variable
-	         $html=$this->load->view('pdf/trial_resultPDF', $data, true);
-	 
-	        //this the the PDF filename that user will get to download
-	        $pdfFilePath = "trial_req.pdf";
-	 
-	        //load mPDF library
-	 
-	       //generate the PDF from the given html
-	         $this->m_pdf->pdf->WriteHTML($html);
-	        //download it.
-	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
-	 	}
-
-	 	public function save_customer($id){
-			 $data['trial_req'] = $this->form_model->get_byCondition('customers',array('id'=>$id))->row();
-	  			//load the view and saved it into $html variable
-	         $html=$this->load->view('pdf/customerPDF', $data, true);
-	 
-	        //this the the PDF filename that user will get to download
-	        $pdfFilePath = "customer.pdf";
-	 
-	        //load mPDF library
-	 
-	       //generate the PDF from the given html
-	         $this->m_pdf->pdf->WriteHTML($html);
-	        //download it.
-	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
-	 	}
-
-
-	 	public function save_report($id){
-			 $data['report'] = $this->form_model->get_byCondition('report',array('id'=>$id))->row();
-	  			//load the view and saved it into $html variable
-	         $html=$this->load->view('pdf/reportPDF', $data, true);
-	 
-	        //this the the PDF filename that user will get to download
-	        $pdfFilePath = "report.pdf";
-	 
-	        //load mPDF library
-	 
-	       //generate the PDF from the given html
-	         $this->m_pdf->pdf->WriteHTML($html);
-	        //download it.
-	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
-	 	}
-
-
 	}
 
  ?>

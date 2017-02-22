@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10">
-          <form action="<?php echo base_url('user/update') ?>" method="post">
+          <form action="<?php echo base_url('user/update_user') ?>" method="post">
             <div class="form-group">
               <label for="">Name</label>
               <input class="form-control" type="text" name="name" placeholder="Input name" value="<?php echo $user->name ?>" disabled="1">
