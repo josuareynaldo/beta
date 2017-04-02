@@ -19,14 +19,14 @@
 			$data['reports'] = $this->get_reports();
 			$childs = array();
 			foreach ($data['products'] as $product) {
-				$articles = $this->products_model->get_products($product->article_number);
-				$childs[$product->article_number] = array();
+				$articles = $this->products_model->get_products($product->article_number_product);
+				$childs[$product->article_number_product] = array();
 				foreach ($articles as $article) {
 
-					if(array_key_exists($article->article_number,$childs)){
-	        			array_push($childs[$article->article_number],$article);
+					if(array_key_exists($article->article_number_product,$childs)){
+	        			array_push($childs[$article->article_number_product],$article);
 	        		}else{
-	        			$childs[$article->article_number] = $article;	
+	        			$childs[$article->article_number_product] = $article;	
 	        		}
 					
 				}

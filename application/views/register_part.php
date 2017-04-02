@@ -37,16 +37,16 @@
         <div class="col-xs-4">
           <form action="<?php echo base_url('product/add_acc') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" value="<?php echo $article_number ?>" readonly="readonly">
+              <label for="">Article Number Product</label>
+              <input class="form-control" type="text" name="article_number_product" value="<?php echo $article_number_product ?>" readonly="readonly">
+            </div>
+            <div class="form-group">
+              <label for="">Article Number Accessories</label>
+              <input class="form-control" type="text" name="article_number_acc" placeholder="Input article Number Accessories">
             </div>
             <div class="form-group">
               <label for="">Serial Number</label>
-              <input class="form-control" type="text" name="serial_number" placeholder="Input serial number" required="1" >
-            </div>
-            <div class="form-group">
-              <label for="">Part Name</label>
-              <input class="form-control" type="text" id="part_name" name="part_name" placeholder="Input Product Name" required="1"> 
+              <input class="form-control" type="text" name="serial_number" placeholder="Input serial number" >
             </div>
            <div class="form-group">
               <label for="">Description</label>
@@ -69,8 +69,8 @@
               <input class="form-control" type="date" name="date_install" required="1" autocomplete="off">
             </div>
              <div class="form-group">
-              <label for="">Upload Parts Image(JPG|PNG)</label>
-              <input class="file" type="file" name="upload_image" required="1" autocomplete="off">
+              <label for="">Upload Parts Image(JPG|PNG) (Optional)</label>
+              <input class="file" type="file" name="upload_image" autocomplete="off">
             </div>
             <div class="form-group">
               <input type="hidden" name="id" value="<?php echo $articles->serial_number ?>">

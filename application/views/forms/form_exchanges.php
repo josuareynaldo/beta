@@ -42,12 +42,12 @@
         <div class="col-xs-4">
           <form action="<?php echo base_url(); ?>form_tech/add_form_exchange" method="post">
             <div class="form-group">
-              <label for="">Article No.</label>
-              <input class="form-control" type="text" id="article_number" name="article_number" placeholder="Input Article Number" required="1">
+              <label for="">Article Number Product</label>
+              <input class="form-control" type="text" id="article_number_product" name="article_number" placeholder="Input Article Number" required="1">
             </div>
             <div class="form-group">
-              <label for="">Serial No.</label>
-              <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input Serial Number" required="1" autocomplete="off">
+              <label for="">Article Number Accessories</label>
+              <input class="form-control" type="text" id="article_number_acc" name="serial_number" placeholder="Input Serial Number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="">Date Replacement</label>
@@ -133,7 +133,7 @@
 <script>
       $(document).ready(function(){
 
-                            $("#article_number").autocomplete({
+                            $("#article_number_product").autocomplete({
                                 source: '<?php echo base_url()?>product/lookup_Product',
 
                                 focus: function(event, ui){
@@ -151,7 +151,7 @@
                                 }
                             });
 
-                          $("#serial_number").autocomplete({
+                          $("#article_number_acc").autocomplete({
                             source: '<?php echo base_url() ?>product/lookup_Acc',
 
                             focus: function(event, ui){

@@ -47,8 +47,8 @@
                         <input class="form-control" type="text" name="exchange_id" placeholder="Input Exchange ID" required="1" autocomplete="off">
                       </div>
                       <div class="form-group">
-                        <label for="">Article No.</label>
-                        <input class="form-control" id="article_number" type="text" name="article_number" placeholder="Input Article Number" required="1">
+                        <label for="">Article Number Product</label>
+                        <input class="form-control" id="article_number_product" type="text" name="article_number_product" placeholder="Input Article Number" required="1">
                       </div>
                       <div class="form-group">
                         <label for="">Date Record</label>
@@ -63,8 +63,8 @@
                         <input class="form-control" type="text" name="technician" placeholder="Input Technician" required="1">
                       </div>
                       <div class="form-group">
-                        <label for="">Serial No.</label>
-                        <input class="form-control" id="serial_number" type="text" name="serial_number" placeholder="Input Serial Number" required="1">
+                        <label for="">Article Number Accessories</label>
+                        <input class="form-control" id="article_number_acc" type="text" name="article_number_acc" placeholder="Input Serial Number" required="1">
                       </div>
                       <div class="form-group">
                         <label for="">Date Install</label>
@@ -99,7 +99,7 @@
 <script>
       $(document).ready(function(){
 
-                            $("#article_number").autocomplete({
+                            $("#article_number_product").autocomplete({
                                 source: '<?php echo base_url()?>product/lookup_Product',
 
                                 focus: function(event, ui){
@@ -117,7 +117,7 @@
                                 }
                             });
 
-                          $("#serial_number").autocomplete({
+                          $("#article_number_acc").autocomplete({
                             source: '<?php echo base_url() ?>product/lookup_Acc',
 
                             focus: function(event, ui){

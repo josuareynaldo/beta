@@ -35,8 +35,12 @@
         <div class="col-xs-10">
           <form action="<?php echo base_url('product/update_product') ?>" method="post">
             <div class="form-group">
-              <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" value="<?php echo $products->article_number ?>" >
+              <label for="">Article Number Product</label>
+              <input class="form-control" type="text" name="article_number_product" value="<?php echo $products->article_number ?>" >
+            </div>
+            <div class="form-group">
+              <label for="product_name">Serial Number</label>
+              <input class="form-control" type="text" id="serial_number" name="serial_number" value="<?php echo $products->serial_number ?>"> 
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
@@ -45,10 +49,6 @@
            <div class="form-group">
               <label for="shipment_date">Shipment Date</label>
               <input class="form-control" type="date" name="shipment_date" autocomplete="off" id="shipment_date">
-            </div>
-            <div class="form-group">
-              <label for="product_name">Description</label>
-              <input class="form-control" type="text" id="description" name="description" value="<?php echo $products->description ?>"> 
             </div>
             <div class="form-group">
              <label for="">Quantity</label>

@@ -43,8 +43,12 @@
         <div class="col-xs-4">
           <form action="<?php echo base_url('product/add_product') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input article number" required="1" autocomplete="off">
+              <label for="">Article Number Product</label>
+              <input class="form-control" type="text" name="article_number_product" placeholder="Input article number" required="1" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="">Serial Number</label>
+              <input class="form-control" type="text" name="serial_product" placeholder="Input serial number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>

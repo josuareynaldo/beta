@@ -36,16 +36,16 @@
         <div class="col-xs-4">
           <form action="<?php echo base_url('form_sales/add_report') ?>" method="post">
             <div class="form-group">
+              <label for="">Date of Report</label>
+              <input class="form-control" type="date" name="date_report" placeholder="YYYY/MM/DD" value="<?php echo date("Y-m-d"); ?>" required="1" disabled="1">
+            </div>
+            <div class="form-group">
               <label for="">Sales Name</label>
               <input class="form-control" type="text" name="sales_name" placeholder="Input Sales Name" required="1" autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="">Date of Report</label>
-              <input class="form-control" type="date" name="date_report" placeholder="YYYY/MM/DD" required="1">
-            </div>
-            <div class="form-group">
-              <label for="">Date Infomartion</label>
-              <input class="form-control" type="date" name="date_info" placeholder="YYYY/MM/DD" required="1">
+              <label for="">Visiting Date</label>
+              <input class="form-control" type="date" name="visit_date" placeholder="YYYY/MM/DD" required="1">
             </div>
             <div class="form-group">
               <label for="">Customer</label>

@@ -126,10 +126,10 @@
               <tr>
                 <th>Toggle</th>
                 <th>No.</th>
-                <th>Article Number</th>
+                <th>Article Number Product</th>
+                <th>Serial Number</th>
                 <th>Product Name</th>
                 <th>Shipment Date</th>
-                <th>Description</th>
                 <th>Quantity</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -141,20 +141,20 @@
                 <tr class="clickable" data-toggle="collapse" id="row<?php echo $i ?>" data-target=".row<?php echo $i ?>">
                   <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
-                  <td><?php echo $product->article_number ?></td>
+                  <td><?php echo $product->article_number_product ?></td>
+                  <td><?php echo $product->serial_number ?></td>
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
-                  <td><?php echo $product->description ?></td>
                   <td><?php echo $row->quantity ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><a href="<?php echo base_url('product/register_acc/'.$product->article_number) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit_product/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_product/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="<?php echo base_url('product/register_acc/'.$product->article_number_product) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit_product/'.$product->article_number_product) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_product/'.$product->article_number_product) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
-                    <?php if($product->article_number == $key): ?>
+                    <?php if($product->article_number_product == $key): ?>
                       <tr class="collapse row<?php echo $i ?>">
+                        <th>Article Number Accessories</th>
                         <th>Serial Number</th>
-                        <th>Part Name</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Quantity</th>
@@ -164,14 +164,14 @@
                       </tr>
                        <?php foreach ($value as $row):?>
                           <tr class="collapse row<?php echo $i ?>">
+                            <td><?php echo $row->article_number_acc ?></td>
                             <td><?php echo $row->serial_number ?></td>
-                            <td><?php echo $row->part_name ?></td>
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->quantity ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><a href="<?php echo base_url('product/edit_acc/'.$row->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_acc/'.$row->serial_number) ?>" class="btn btn-danger">Delete</a></td>
+                            <td><a href="<?php echo base_url('product/edit_acc/'.$row->article_number_acc) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_acc/'.$row->article_number_acc) ?>" class="btn btn-danger">Delete</a></td>
                             
                           </tr>
                        <?php endforeach; ?>
@@ -192,23 +192,19 @@
           </div>
           </div>
 
-          <div id="accessories" class="tab-pane">
+     <div id="accessories" class="tab-pane">
             <br>
              <div class="container">
              <div class="row">
              <div class="col-xs-12">
                 <h1>Accessories</h1>
                 <div class="form-group">
+                    <label for="article_number">Article Number Accessories</label>
+                    <input class="form-control" id="article_number_acc" type="text" name="article_number" placholder="">
+                </div>
+                <div class="form-group">
                     <label for="serial_number">Serial Number</label>
-                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="part_name">Parts Name</label>
-                    <input class="form-control ui-widget" id="part_name" type="text" name="name" placholder="" disabled="" required autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="article_number">Article Number</label>
-                    <input class="form-control" id="article_number" type="text" name="article_number" placholder="" disabled="">
+                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required disabled="" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -236,20 +232,20 @@
                   <img id="img">
                 </div>
                  <script type="text/javascript">
-       
+                  
                     $(document).ready(function(){
 
-                        $("#serial_number").autocomplete({
+                        $("#article_number_acc").autocomplete({
                             source: '<?php echo base_url()?>product/lookup_Acc',
 
                             focus: function(event, ui){
                                 event.preventDefault();
 
                                 $(this).val(ui.item.label);
-                                $('#article_number').val(ui.item.value5);
-                                $('#part_name').val(ui.item.value0);
+                                $('#serial_number').val(ui.item.value5);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
+                                $('#quantity').val(ui.item.value6);
                                 $('#service_date').val(ui.item.value2);
                                 $('#date_install').val(ui.item.value3);
                                 var base_url = '<?php echo base_url();?>';
@@ -262,10 +258,10 @@
                                 event.preventDefault();
 
                                 $(this).val(ui.item.label);
-                                $('#article_number').val(ui.item.value5);
-                                $('#part_name').val(ui.item.value0);
+                                $('#serial_number').val(ui.item.value5);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
+                                $('#quantity').val(ui.item.value6);
                                 $('#service_date').val(ui.item.value2);
                                 $('#date_install').val(ui.item.value3);
                                 var base_url = '<?php echo base_url();?>';
@@ -277,8 +273,7 @@
                     });
                 </script>
                 <br>
-                <br>
-                
+                <br>                
                
           </div>
           </div>

@@ -31,18 +31,17 @@ class Product extends CI_Controller{
 				$term = $this->input->get('term');
 				if (isset($term)) {
 					$q = strtolower($term);
-					$query = $this->products_model->lookup('acc','serial_number',$q);
+					$query = $this->products_model->lookup('acc','article_number_acc',$q);
 
 					if (count($query) > 0) {
 							foreach ($query as $row) {
-								$new_row['label']  = htmlentities(stripcslashes($row['serial_number']));
-								$new_row['value0'] = htmlentities(stripcslashes($row['part_name']));
+								$new_row['label']  = htmlentities(stripcslashes($row['article_number_acc']));
 								$new_row['value']  = htmlentities(stripcslashes($row['description']));
 								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
 								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
 								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
 								$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
-								$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
+								$new_row['value5'] = htmlentities(stripcslashes($row['serial_number']));
 								$new_row['value6'] = htmlentities(stripcslashes($row['quantity']));
 								$row_set[] = $new_row;
 							}
@@ -82,7 +81,7 @@ class Product extends CI_Controller{
 						}
 
 					$data=array(
-								'article_number' => $this->input->post('article_number'),
+								'article_number_product' => $this->input->post('article_number_product'),
 								'product_name' => $this->input->post('product_name'),
 								'shipment_date' => $this->input->post('shipment_date'),
 								'quantity' => $this->input->post('quantity'),
@@ -101,7 +100,7 @@ class Product extends CI_Controller{
 	}
 
 	public function register_acc($article_number){
-		$data['article_number'] = $article_number;
+		$data['article_number_product'] = $article_number;
 		$this->load->view('register_part',$data);
 	}
 
@@ -134,10 +133,16 @@ class Product extends CI_Controller{
 				        $this->image_lib->resize();
                        $image_name = $config['upload_path'].'/'.$image['file_name'];
                 }
+                if(empty($this->input->post('serial_number'))){
+                	$serial_number="N/A";
+                }
+                else{
+                	$serial_number=$this->input->post('serial_number');
+                }
 				$data1= array(
-						'serial_number' => $this->input->post('serial_number'),
-						'article_number' => $this->input->post('article_number'),
-						'part_name' => $this->input->post('part_name'),
+						'article_number_acc' => $this->input->post('article_number_acc'),
+						'article_number_product' => $this->input->post('article_number_product'),
+						'serial_number' => $serial_number,
 						'quantity' => $this->input->post('quantity'),
 						'description' => $this->input->post('description'),
 						'type' => $this->input->post('type'),
@@ -149,7 +154,7 @@ class Product extends CI_Controller{
 					);
 					$this->acc_model->insert_data('acc',$data1);
 					$report=array(
-						'report'=> $this->session->userdata('name').' has inserted parts with serial_number '.$this->input->post('serial_number').' into part database'
+						'report'=> $this->session->userdata('name').' has inserted parts with article number accessories '.$this->input->post('article_number_acc').' into accessories database'
 					);
 					
 					$this->history_model->insert_data('history',$report);
@@ -163,7 +168,7 @@ class Product extends CI_Controller{
 
 
 	public function edit_product($article_number){
-			$data['products'] = $this->products_model->get_byCondition('products',array('article_number'=>$article_number))->row();
+			$data['products'] = $this->products_model->get_byCondition('products',array('article_number_product'=>$article_number))->row();
 			$this->load->view('edit_product',$data);
 	}
 
@@ -180,7 +185,7 @@ class Product extends CI_Controller{
 							$status="Warranty Expired";
 						}
 				$data= array(
-						'article_number' => $this->input->post('article_number'),
+						'article_number_product' => $this->input->post('article_number'),
 						'product_name' => $this->input->post('product_name'),
 						'quantity' => $this->input->post('quantity'),
 						'shipment_date' => $this->input->post('shipment_date'),
@@ -188,7 +193,7 @@ class Product extends CI_Controller{
 						'status' => $status
 					);
 				 
-				$this->products_model->update_data('products',$data,array('article_number'=>$this->input->post('article_number')));
+				$this->products_model->update_data('products',$data,array('article_number_product'=>$this->input->post('article_number_product')));
 				$report=array(
 						'report'=> $this->session->userdata('name').' has updated '.$this->input->post('product_name').' on product database'
 					);
@@ -202,7 +207,7 @@ class Product extends CI_Controller{
 	}
 
 	public function edit_acc($serial_number){
-			$data['articles'] = $this->acc_model->get_byCondition('acc',array('serial_number'=>$serial_number))->row();
+			$data['articles'] = $this->acc_model->get_byCondition('acc',array('article_number_acc'=>$serial_number))->row();
 			$this->load->view('edit_parts',$data);
 	}
 
@@ -210,7 +215,7 @@ class Product extends CI_Controller{
 			if($this->input->post('update')){
 				$data= array(
 						'serial_number' => $this->input->post('serial_number'),
-						'article_number' => $this->input->post('article_number'),
+						'article_number_acc' => $this->input->post('article_number_acc'),
 						'part_name' => $this->input->post('part_name'),
 						'description' => $this->input->post('description'),
 						'type' => $this->input->post('type'),
@@ -219,9 +224,9 @@ class Product extends CI_Controller{
 						'date_install' => $this->input->post('date_install')
 					);
 				 
-				$this->acc_model->update_data('acc',$data,array('serial_number'=>$this->input->post('serial_number')));
+				$this->acc_model->update_data('acc',$data,array('article_number_acc'=>$this->input->post('article_number_acc')));
 				$report=array(
-						'report'=> $this->session->userdata('name').' has updated parts with serial number '.$this->input->post('serial_number').' on part database'
+						'report'=> $this->session->userdata('name').' has updated parts with article number accessories'.$this->input->post('article_number_acc').' on accessories database'
 					);
 					
 					$this->history_model->insert_data('history',$report);
@@ -248,15 +253,15 @@ class Product extends CI_Controller{
 	}
 
 	public function delete_product($article_number){
-			$this->products_model->delete_data('products',array('article_number'=>$article_number));
-			$this->acc_model->delete_data('acc',array('article_number'=>$article_number));
-			$data['products']= $this->products_model->get_byCondition('products',array('article_number'=>$article_number));
+			$this->products_model->delete_data('products',array('article_number_product'=>$article_number));
+			$this->acc_model->delete_data('acc',array('article_number_product'=>$article_number));
+			$data['products']= $this->products_model->get_byCondition('products',array('article_number_product'=>$article_number_product));
 
 			foreach ($products as $product) {
 				recursiveRemoveDirectory(baseurl().$products->image_name);
 			}
 			$report=array(
-						'report'=> $this->session->userdata('name').' has deleted product with article number '.$article_number.' on product database'
+						'report'=> $this->session->userdata('name').' has deleted product with article number product '.$article_number.' on product database'
 					);
 					
 			$this->history_model->insert_data('history',$report);
@@ -264,9 +269,9 @@ class Product extends CI_Controller{
 	}
 
 	public function delete_acc($serial_number){
-			$this->user_model->delete_data('acc',array('serial_number'=>$serial_number));
+			$this->user_model->delete_data('acc',array('article_number_acc'=>$serial_number));
 			$report=array(
-						'report'=> $this->session->userdata('name').' has deleted product with serial number '.$article_number.' on part database'
+						'report'=> $this->session->userdata('name').' has deleted product with article number accessories '.$serial_number.' on part database'
 					);		
 			$this->history_model->insert_data('history',$report);
 			redirect('user/index');

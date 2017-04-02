@@ -35,16 +35,16 @@
         <div class="col-xs-10">
           <form action="<?php echo base_url('product/update_acc') ?>" method="post">
             <div class="form-group">
-              <label for="">Article Number</label>
-              <input class="form-control" type="text" name="article_number" placeholder="Input Serial Number" value="<?php echo $articles->article_number ?>" readonly="readonly">
+              <label for="">Article Number Product</label>
+              <input class="form-control" type="text" name="article_number_product" value="<?php echo $articles->article_number_product ?>" readonly="readonly">
+            </div>
+            <div class="form-group">
+              <label for="">Article Number Accessories</label>
+              <input class="form-control" type="text" name="article_number_acc" required="1" value="<?php echo $articles->article_number_acc ?>" readonly="readonly">
             </div>
             <div class="form-group">
               <label for="">Serial Number</label>
               <input class="form-control" type="text" name="serial_number" placeholder="Input article number" required="1" value="<?php echo $articles->serial_number ?>" readonly="readonly">
-            </div>
-            <div class="form-group">
-              <label for="">Part Name</label>
-              <input class="form-control" type="text" id="part_name" name="part_name" value="<?php echo $articles->part_name ?>"> 
             </div>
            <div class="form-group">
               <label for="">Description</label>

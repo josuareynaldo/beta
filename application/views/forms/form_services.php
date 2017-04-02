@@ -48,8 +48,8 @@
               <input class="form-control" type="date" name="date_service" placeholder="Input Date Service" required="1" autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="">Serial No.</label>
-              <input class="form-control" type="text" id="serial_number" name="serial_number" placeholder="Input Serial Number" required="1">
+              <label for="">Article Number Accessories</label>
+              <input class="form-control" type="text" id="article_number_acc" name="article_number_acc" placeholder="Input Article Number Accessories" required="1">
             </div>
             <div class="form-group">
               <label for="">Printer</label>
@@ -146,7 +146,7 @@
 <script>
       $(document).ready(function(){
 
-                          $("#serial_number").autocomplete({
+                          $("#article_number_acc").autocomplete({
                             source: '<?php echo base_url() ?>product/lookup_Acc',
 
                             focus: function(event, ui){

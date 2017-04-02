@@ -49,8 +49,8 @@
 
 		public function add_form_replacement(){
 			if($this->input->post('save')){
-				$query1 = $this->products_model->lookup('products','article_number',$this->input->post('article_number'));
-				$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
+				$query1 = $this->products_model->lookup('products','article_number_product',$this->input->post('article_number_product'));
+				$query2 = $this->products_model->lookup('acc','article_number_acc',$this->input->post('article_number_acc'));
 				if(count($query1)>0 && count($query2)>0){
 					$data= array(
 						'exchange_id' => $this->input->post('exchange_id'),
@@ -85,7 +85,7 @@
 
 		public function add_form_service(){
 			if($this->input->post('save')){
-				$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
+				$query2 = $this->products_model->lookup('acc','article_number_acc',$this->input->post('article_number_acc'));
 				if(count($query2)>0){
 					$data= array(
 						'date_service' => $this->input->post('date_service'),
@@ -128,8 +128,8 @@
 
 
 		public function add_owner_form(){
-			$query1 = $this->products_model->lookup('products','article_number',$this->input->post('article_number'));
-			$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
+				$query1 = $this->products_model->lookup('products','article_number_product',$this->input->post('article_number_product'));
+				$query2 = $this->products_model->lookup('acc','article_number_acc',$this->input->post('article_number_acc'));
 			if(count($query1)>0 && count($query2)>0){
 				if($this->input->post('save')){
 				$data= array(
@@ -173,8 +173,8 @@
 
 		public function add_form_exchange(){
 			if($this->input->post('save')){
-				$query1 = $this->products_model->lookup('products','article_number',$this->input->post('article_number'));
-				$query2 = $this->products_model->lookup('acc','serial_number',$this->input->post('serial_number'));
+				$query1 = $this->products_model->lookup('products','article_number_product',$this->input->post('article_number_product'));
+				$query2 = $this->products_model->lookup('acc','article_number_acc',$this->input->post('article_number_acc'));
 				if(count($query1)>0 && count($query2)>0){
 					$data= array(
 						'article_number' => $this->input->post('article_number'),
@@ -234,7 +234,7 @@
 		}
 
 		public function delete_owner($id){
-			$temp=$this->history_model->select_data('serial_number','owner_forms',$id);
+			$temp=$this->history_model->select_data('article_number_acc','owner_forms',$id);
 			$this->owner_form_model->delete_data('owner_forms',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted a service form with serial number '.$temp->serial_number
@@ -244,7 +244,7 @@
 		}
 
 		public function delete_exchange($id){
-			$temp=$this->history_model->select_data('article_number','form_exchanges',$id);
+			$temp=$this->history_model->select_data('article_number_product','form_exchanges',$id);
 			$this->form_exchanges_model->delete_data('form_exchanges',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted a service form with article number '.$temp->article_number
@@ -299,7 +299,7 @@
 		}
 
 		public function save_owner($id){
-			$temp=$this->history_model->select_data('serial_number','owner_forms',$id);
+			$temp=$this->history_model->select_data('article_number_acc','owner_forms',$id);
 			$data['owner_form'] = $this->owner_form_model->get_byCondition('owner_forms',array('id'=>$id))->row();
 	        //load the view and saved it into $html variable
 	        $html=$this->load->view('pdf/owner_formPDF', $data, true);
@@ -322,7 +322,7 @@
 
 
 		public function save_exchange($id){
-			$temp=$this->history_model->select_data('article_number','form_exchanges',$id);
+			$temp=$this->history_model->select_data('article_number_product','form_exchanges',$id);
 			$data['form_exchange'] = $this->form_exchanges_model->get_byCondition('form_exchanges',array('id'=>$id))->row();
 	        //load the view and saved it into $html variable
 	        $html=$this->load->view('pdf/form_exchangePDF', $data, true);

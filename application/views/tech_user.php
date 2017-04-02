@@ -77,10 +77,10 @@
               <tr>
                 <th>Toggle</th>
                 <th>No.</th>
-                <th>Article Number</th>
+                <th>Article Number Product</th>
+                <th>Serial Number</th>
                 <th>Product Name</th>
                 <th>Shipment Date</th>
-                <th>Description</th>
                 <th>Quantity</th>
                 <th>Status</th>
               </tr>
@@ -91,29 +91,29 @@
                 <tr class="clickable" data-toggle="collapse" id="row<?php echo $i ?>" data-target=".row<?php echo $i ?>">
                   <td><i class="glyphicon glyphicon-plus"></i></td>
                   <td><?php echo $i ?></td>
-                  <td><?php echo $product->article_number ?></td>
+                  <td><?php echo $product->article_number_product ?></td>
+                  <td><?php echo $product->serial_number ?></td>
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
-                  <td><?php echo $product->description ?></td>
-                  <td><?php echo $row->quantity ?></td>
+                  <td><?php echo $product->quantity ?></td>
                   <td><?php echo $product->status ?></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
-                    <?php if($product->article_number == $key): ?>
+                    <?php if($product->article_number_product == $key): ?>
                       <tr class="collapse row<?php echo $i ?>">
+                        <th>Article Number Accessories</th>
                         <th>Serial Number</th>
-                        <th>Part Name</th>
                         <th>Description</th>
                         <th>Type</th>
                         <th>Quantity</th>
                         <th>Service Date</th>
                         <th>Installation Date</th>
-    </tr>
+                      </tr>
                        <?php foreach ($value as $row):?>
                           <tr class="collapse row<?php echo $i ?>">
+                            <td><?php echo $row->article_number_acc ?></td>
                             <td><?php echo $row->serial_number ?></td>
-                            <td><?php echo $row->part_name ?></td>  
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
                             <td><?php echo $row->quantity ?></td>
@@ -145,16 +145,12 @@
              <div class="col-xs-12">
                 <h1>Accessories</h1>
                 <div class="form-group">
-                    <label for="serial_number">Serial Number</label>
-                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required autocomplete="off">
-                </div>
-                 <div class="form-group">
-                    <label for="part_name">Parts Name</label>
-                    <input class="form-control ui-widget" id="part_name" type="text" name="name" placholder="" disabled="" required autocomplete="off">
+                    <label for="article_number">Article Number Accessories</label>
+                    <input class="form-control" id="article_number_acc" type="text" name="article_number" placholder="">
                 </div>
                 <div class="form-group">
-                    <label for="article_number">Article Number</label>
-                    <input class="form-control" id="article_number" type="text" name="article_number" placholder="" disabled="">
+                    <label for="serial_number">Serial Number</label>
+                    <input class="form-control ui-widget" id="serial_number" type="text" name="name" placholder="" required disabled="" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -182,23 +178,24 @@
                   <img id="img">
                 </div>
                  <script type="text/javascript">
-       
+                  
                     $(document).ready(function(){
 
-                        $("#serial_number").autocomplete({
+                        $("#article_number_acc").autocomplete({
                             source: '<?php echo base_url()?>product/lookup_Acc',
 
                             focus: function(event, ui){
                                 event.preventDefault();
 
                                 $(this).val(ui.item.label);
-                                $('#article_number').val(ui.item.value5);
-                                $('#part_name').val(ui.item.value0);
+                                $('#serial_number').val(ui.item.value5);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
+                                $('#quantity').val(ui.item.value6);
                                 $('#service_date').val(ui.item.value2);
                                 $('#date_install').val(ui.item.value3);
-                                $('#img').attr("src",ui.item.value4);
+                                var base_url = '<?php echo base_url();?>';
+                                $('#img').attr("src",base_url+ui.item.value4);
                                 $('#img').show();
                                 return false;
                             },
@@ -207,10 +204,10 @@
                                 event.preventDefault();
 
                                 $(this).val(ui.item.label);
-                                $('#article_number').val(ui.item.value5);
-                                $('#part_name').val(ui.item.value0);
+                                $('#serial_number').val(ui.item.value5);
                                 $('#description').val(ui.item.value);
                                 $('#type').val(ui.item.value1);
+                                $('#quantity').val(ui.item.value6);
                                 $('#service_date').val(ui.item.value2);
                                 $('#date_install').val(ui.item.value3);
                                 var base_url = '<?php echo base_url();?>';
@@ -222,8 +219,7 @@
                     });
                 </script>
                 <br>
-                <br>
-                
+                <br>                
                
           </div>
           </div>
