@@ -34,7 +34,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('salesuser/add_report') ?>" method="post">
+          <form action="<?php echo base_url('form_sales/add_report') ?>" method="post">
             <div class="form-group">
               <label for="">Sales Name</label>
               <input class="form-control" type="text" name="sales_name" placeholder="Input Sales Name" required="1" autocomplete="off">

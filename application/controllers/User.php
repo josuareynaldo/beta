@@ -57,7 +57,7 @@
 				$this->load->view('salesmanager',$data);
 			}
 
-			else if($this->session->userdata('position')=='Salesmanager'){
+			else if($this->session->userdata('position')=='Salesadmin'){
 				$this->load->view('salesadmin',$data);
 			}
 		}

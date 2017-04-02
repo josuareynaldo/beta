@@ -81,6 +81,7 @@
                 <th>Product Name</th>
                 <th>Shipment Date</th>
                 <th>Description</th>
+                <th>Quantity</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -94,6 +95,7 @@
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->description ?></td>
+                  <td><?php echo $row->quantity ?></td>
                   <td><?php echo $product->status ?></td>
                 </tr>
   
@@ -104,6 +106,7 @@
                         <th>Part Name</th>
                         <th>Description</th>
                         <th>Type</th>
+                        <th>Quantity</th>
                         <th>Service Date</th>
                         <th>Installation Date</th>
     </tr>
@@ -113,6 +116,7 @@
                             <td><?php echo $row->part_name ?></td>  
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
+                            <td><?php echo $row->quantity ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
                           </tr>
@@ -159,6 +163,10 @@
                 <div class="form-group">
                     <label for="type">Type</label>
                     <input class="form-control" id="type" type="text" name="type" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="type">Quantity</label>
+                    <input class="form-control" id="quantity" type="text" name="type" placholder="" disabled="">
                 </div>
                 <div class="form-group">
                     <label for="service_date">Service Date</label>

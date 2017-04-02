@@ -38,6 +38,10 @@
 		 	$this->load->view('forms/customers');
 		 }
 
+		 public function report(){
+		 	$this->load->view('forms/reports');
+		 }
+
 		 public function trial_req(){
 		 	$this->load->view('forms/trial_reqs');
 		 }
@@ -47,7 +51,7 @@
 		 }
 
 
-		public function add_customer(){
+		 public function add_customer(){
 			if($this->input->post('save')){
 				$data= array(
 						'company' => $this->input->post('company'),
@@ -58,7 +62,7 @@
 						'email' => $this->input->post('email'),
 						'sales' => $this->input->post('sales')
 					);
-				$this->customers_model->insert_data('customers',$data);
+				$this->customer_model->insert_data('customers',$data);
 				redirect('user/index');
 
 			}else{
@@ -66,7 +70,27 @@
 			}
 		}
 
-		public function add_trial_req(){
+		public function add_report(){
+			if($this->input->post('save')){
+				$data= array(
+						'sales_name' => $this->input->post('sales_name'),
+						'date_report' => $this->input->post('date_report'),
+						'date_info' => $this->input->post('date_info'),
+						'customer' => $this->input->post('customer'),
+						'report' => $this->input->post('report'),
+						'action_plan' => $this->input->post('action_plan'),
+
+
+					);
+				$this->reports_model->insert_data('reports',$data);
+				redirect('user/index');
+
+			}else{
+				redirect('form_sales/report');
+			}
+		}
+
+		 public function add_trial_req(){
 			if($this->input->post('save')){
 				$data= array(
 						'trial_no' => $this->input->post('trial_no'),
@@ -96,7 +120,7 @@
 				redirect('user/index');
 
 			}else{
-				redirect('forms_sales/trial_req');
+				redirect('form_sales/trial_req');
 			}
 		}
 
@@ -146,42 +170,62 @@
 		}
 
 		public function delete_customer($id){
-			$this->customers_model->delete_data('customers',array('id'=>$id));
+			$this->customer_model->delete_data('customers',array('id'=>$id));
 			redirect('user/index');
-		}
+		 }
+
+		public function delete_report($id){
+			$this->reports_model->delete_data('reports',array('id'=>$id));
+			redirect('user/index');
+		 }
 
 		public function delete_trial_req($id){
 			$this->trial_reqs_model->delete_data('trial_reqs',array('id'=>$id));
 			redirect('user/index');
-		}
+		 }
 
 		public function delete_trial_result($id){
 			$this->trial_results_model->delete_data('trial_results',array('id'=>$id));
 			redirect('user/index');
-		}
+		 }
 
+		public function save_report($id){
+			 $data['report'] = $this->reports_model->get_byCondition('reports',array('id'=>$id))->row();
+	  			//load the view and saved it into $html variable
+	         $html=$this->load->view('pdf/reportPDF', $data, true);
+	 
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "report.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	         $this->m_pdf->pdf->WriteHTML($html);
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+	 	}
 
 		public function save_customer($id){
-				$data['trial_req'] = $this->trial_reqs_model->get_byCondition('customers',array('id'=>$id))->row();
-		  			//load the view and saved it into $html variable
-		        $html=$this->load->view('pdf/customerPDF', $data, true);
+			 $data['trial_req'] = $this->customer_model->get_byCondition('customers',array('id'=>$id))->row();
+	  			//load the view and saved it into $html variable
+	         $html=$this->load->view('pdf/customerPDF', $data, true);
 	 
-		        //this the the PDF filename that user will get to download
-		        $pdfFilePath = "customer.pdf";
-		 
-		        //load mPDF library
-		 
-		       //generate the PDF from the given html
-		         $this->m_pdf->pdf->WriteHTML($html);
-		        //download it.
-		        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
+	        //this the the PDF filename that user will get to download
+	        $pdfFilePath = "customer.pdf";
+	 
+	        //load mPDF library
+	 
+	       //generate the PDF from the given html
+	         $this->m_pdf->pdf->WriteHTML($html);
+	        //download it.
+	        $this->m_pdf->pdf->Output($pdfFilePath, "D");        
 	 	}
 		
 
 		public function save_trial_req($id){
-			$data['trial_req'] = $this->trial_reqs_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
+			 $data['trial_req'] = $this->trial_reqs_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
 	  			//load the view and saved it into $html variable
-	        $html=$this->load->view('pdf/trial_reqPDF', $data, true);
+	         $html=$this->load->view('pdf/trial_reqPDF', $data, true);
 	 
 	        //this the the PDF filename that user will get to download
 	        $pdfFilePath = "trial_req.pdf";
@@ -196,9 +240,9 @@
 
 
 		public function save_trial_result($id){
-			$data['trial_result'] = $this->trial_results_model->get_byCondition('trial_results',array('id'=>$id))->row();
+			 $data['trial_result'] = $this->trial_results_model->get_byCondition('trial_results',array('id'=>$id))->row();
 	  			//load the view and saved it into $html variable
-	        $html=$this->load->view('pdf/trial_resultPDF', $data, true);
+	         $html=$this->load->view('pdf/trial_resultPDF', $data, true);
 	 
 	        //this the the PDF filename that user will get to download
 	        $pdfFilePath = "trial_req.pdf";

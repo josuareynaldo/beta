@@ -130,6 +130,7 @@
                 <th>Product Name</th>
                 <th>Shipment Date</th>
                 <th>Description</th>
+                <th>Quantity</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -144,6 +145,7 @@
                   <td><?php echo $product->product_name ?></td>
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->description ?></td>
+                  <td><?php echo $row->quantity ?></td>
                   <td><?php echo $product->status ?></td>
                   <td><a href="<?php echo base_url('product/register_acc/'.$product->article_number) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit_product/'.$product->article_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_product/'.$product->article_number) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
@@ -155,6 +157,7 @@
                         <th>Part Name</th>
                         <th>Description</th>
                         <th>Type</th>
+                        <th>Quantity</th>
                         <th>Service Date</th>
                         <th>Installation Date</th>
                         <th>Action</th>
@@ -165,6 +168,7 @@
                             <td><?php echo $row->part_name ?></td>
                             <td><?php echo $row->description ?></td>
                             <td><?php echo $row->type ?></td>
+                            <td><?php echo $row->quantity ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
                             <td><a href="<?php echo base_url('product/edit_acc/'.$row->serial_number) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_acc/'.$row->serial_number) ?>" class="btn btn-danger">Delete</a></td>
@@ -213,6 +217,10 @@
                 <div class="form-group">
                     <label for="type">Type</label>
                     <input class="form-control" id="type" type="text" name="type" placholder="" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="type">Quantity</label>
+                    <input class="form-control" id="quantity" type="text" name="type" placholder="" disabled="">
                 </div>
                 <div class="form-group">
                     <label for="service_date">Service Date</label>
