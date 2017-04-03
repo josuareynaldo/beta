@@ -12,21 +12,21 @@
 			$data['articles'] = $this->get_acc();
 			$data['histories']= $this->get_history();
 			$data['form_services'] = $this->get_services();
-			$data['owner_forms'] = $this->get_owners();
-			$data['form_exchanges'] = $this->get_exchanges();
+			$data['owner_forms'] = $this->get_exchanges();
+			$data['form_exchanges'] = $this->get_owners();
 			$data['trial_reqs'] = $this->get_trial_reqs();
 			$data['trial_results'] = $this->get_trial_results();
 			$data['reports'] = $this->get_reports();
 			$childs = array();
 			foreach ($data['products'] as $product) {
-				$articles = $this->products_model->get_products($product->article_number_product);
-				$childs[$product->article_number_product] = array();
+				$articles = $this->products_model->get_products($product->article_number);
+				$childs[$product->article_number] = array();
 				foreach ($articles as $article) {
 
-					if(array_key_exists($article->article_number_product,$childs)){
-	        			array_push($childs[$article->article_number_product],$article);
+					if(array_key_exists($article->article_number,$childs)){
+	        			array_push($childs[$article->article_number],$article);
 	        		}else{
-	        			$childs[$article->article_number_product] = $article;	
+	        			$childs[$article->article_number] = $article;	
 	        		}
 					
 				}
@@ -57,11 +57,12 @@
 				$this->load->view('salesmanager',$data);
 			}
 
-			else if($this->session->userdata('position')=='Salesadmin'){
+			else if($this->session->userdata('position')=='Salesmanager'){
 				$this->load->view('salesadmin',$data);
 			}
-		}
 
+			
+		}
 		public function get_users(){
 			return $this->user_model->get_data('users');
 		}
@@ -106,7 +107,7 @@
 			return $this->reports_model->get_data('reports');
 		}
 		
-		public function register_user(){
+		public function register(){
 			$this->load->view('register_user');
 		}
 
@@ -126,17 +127,16 @@
 				$report=array(
 						'report'=> $this->session->userdata('name').' has created an user account with name '.$this->input->post('name').' with the position as '.$this->input->post('pos')
 					);
-				$this->history_model->insert_data('history',$report);	
-				redirect('user/index');
+				$this->user_model->insert_data('history',$report);	
+			$this->user_model->insert_data('history',$report);
+				redirect('stakeholder/index');
 
-			}
-
-			else{
-				redirect('user/register_user');
+			}else{
+				redirect('stakeholder/register_user');
 			}
 		}
 
-		public function edit_user($id){
+		public function edit($id){
 			$data['user'] = $this->user_model->get_byCondition('users',array('id'=>$id))->row();
 			$this->load->view('edit_user',$data);
 		}
@@ -144,6 +144,7 @@
 		public function see_more($id){
 			$data['form_services'] = $this->form_services_model->get_byCondition('form_services',array('id'=>$id))->row();
 			$data['trial_reqs'] = $this->trial_reqs_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
+
 		}
 
 		public function button_see($id){
@@ -156,7 +157,7 @@
 
 		}
 
-		public function update_user(){
+		public function update(){
 			if($this->input->post('update')){
 				$data= array(
 						 
@@ -169,28 +170,28 @@
 				$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has edited an user account with name '.$this->input->post('name')
 					);
-				$this->history_model->insert_data('history',$report);
-				redirect('user/index');
+				$this->user_model->insert_data('history',$report);
+				redirect('stakeholder/index');
 
 			}else{
 				redirect('stakeholder/register_user');
 			}
 		}
 
-		public function delete_user($id){
-			$temp=$this->history_model->select_data('name','users',$id);
+		public function delete($id){
+			$temp=$this->user_model->select_data('name','users',$id);
 			$this->user_model->delete_data('users',array('id'=>$id));
 			$report=array(
 						'report'=> 'Stakeholder '.$this->session->userdata('name').' has deleted an user account with name '.$temp->name
 					);
-			$this->history_model->insert_data('history',$report);
-			redirect('user/index');
+			$this->user_model->insert_data('history',$report);
+			redirect('stakeholder/index');
 
 		}
 
 		public function delete_history(){
 			$this->user_model->truncate_table('history');
-			redirect('user/index');
+			redirect('manager/index');
 		}
 
 	}

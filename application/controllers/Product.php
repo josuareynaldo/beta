@@ -3,54 +3,60 @@
 /**
 * 
 */
-class Product extends CI_Controller{
+class Product extends CI_Controller
+{
 	
 	public function index(){
 		$data['products'] = $this->get_products();
 		$data['articles'] = $this->get_acc();
 		$data['histories']= $this->get_history();
+
+
 	}
 	
 	public function get_products(){
 			return $this->products_model->get_data('products');
-	}
+		}
 
 	public function get_acc(){
 			return $this->acc_model->get_data('acc');
-	}
+		}
 
 	public function get_history(){
 			return $this->history_model->get_data('history');
-	}
+		}
 
 	public function register_product(){
 			$this->load->view('register_product');
-	}
+		}
 
-	public function lookup_Acc(){
+	public function lookupParts(){
 				$term = $this->input->get('term');
 				if (isset($term)) {
 					$q = strtolower($term);
-					$query = $this->products_model->lookup('acc','article_number_acc',$q);
+					$query = $this->products_model->lookup('acc','serial_number',$q);
 
 					if (count($query) > 0) {
 							foreach ($query as $row) {
-								$new_row['label']  = htmlentities(stripcslashes($row['article_number_acc']));
+								$new_row['label']  = htmlentities(stripcslashes($row['serial_number']));
+								$new_row['value0'] = htmlentities(stripcslashes($row['part_name']));
 								$new_row['value']  = htmlentities(stripcslashes($row['description']));
 								$new_row['value1'] = htmlentities(stripcslashes($row['type']));
 								$new_row['value2'] = htmlentities(stripcslashes($row['service_date']));
 								$new_row['value3'] = htmlentities(stripcslashes($row['date_install']));
 								$new_row['value4'] = htmlentities(stripcslashes($row['image_name']));
-								$new_row['value5'] = htmlentities(stripcslashes($row['serial_number']));
-								$new_row['value6'] = htmlentities(stripcslashes($row['quantity']));
+								$new_row['value5'] = htmlentities(stripcslashes($row['article_number']));
 								$row_set[] = $new_row;
 							}
 							echo json_encode($row_set);
 					}
 				}
+
+
 	}
 
-	public function lookup_Product(){
+		public function lookupProduct()
+		{
 			$term = $this->input->get('term');
 				if (isset($term)) {
 					$q = strtolower($term);
@@ -64,7 +70,10 @@ class Product extends CI_Controller{
 							echo json_encode($row_set);
 					}
 				}
-	}
+
+		}
+
+
 
 	public function add_product(){
 			
@@ -81,33 +90,43 @@ class Product extends CI_Controller{
 						}
 
 					$data=array(
-								'article_number_product' => $this->input->post('article_number_product'),
+								'article_number' => $this->input->post('article_number'),
 								'product_name' => $this->input->post('product_name'),
 								'shipment_date' => $this->input->post('shipment_date'),
-								'quantity' => $this->input->post('quantity'),
 								'description' =>$this->input->post('description'),
 								'status' => $status,
 					);
 
-					$this->products_model->insert_data('products',$data);
+					$this->user_model->insert_data('products',$data);
 					$report=array(
 						'report'=> $this->session->userdata('name').' has inserted '.$this->input->post('product_name').' into product database'
 					);
 					
-					$this->history_model->insert_data('history',$report);
-					redirect('user/index');
+					$this->user_model->insert_data('history',$report);
+					if($this->session->userdata('position')=="Manager"){
+						redirect('manager/index');
+					}
+					elseif($this->session->userdata('position')=="Stakeholder"){
+							redirect('stakeholder/index');
+					}
+					else{
+							redirect('user/index');
+					}
+								
+			
 			}
-	}
+		}
 
-	public function register_acc($article_number){
-		$data['article_number_product'] = $article_number;
-		$this->load->view('register_part',$data);
-	}
+		public function register_part($article_number){
+			$data['article_number'] = $article_number;
+			$this->load->view('register_part',$data);
+			
+		}
 
-	public function add_acc(){
+		public function add_part(){
 			
 			if($this->input->post('register_part')){
-				$config['upload_path']          = 'uploads/acc/'.$this->input->post('serial_number');
+				$config['upload_path']          = 'uploads/products/'.$this->input->post('serial_number');
                 $config['allowed_types']        = 'gif|jpg|png';
                 // $config['max_size']             = 100;
                 // $config['max_width']            = 1024;
@@ -133,17 +152,20 @@ class Product extends CI_Controller{
 				        $this->image_lib->resize();
                        $image_name = $config['upload_path'].'/'.$image['file_name'];
                 }
-                if(empty($this->input->post('serial_number'))){
-                	$serial_number="N/A";
+                else
+                {
+                        
+						
+
+                        
                 }
-                else{
-                	$serial_number=$this->input->post('serial_number');
-                }
+
+				
+				
 				$data1= array(
-						'article_number_acc' => $this->input->post('article_number_acc'),
-						'article_number_product' => $this->input->post('article_number_product'),
-						'serial_number' => $serial_number,
-						'quantity' => $this->input->post('quantity'),
+						'serial_number' => $this->input->post('serial_number'),
+						'article_number' => $this->input->post('article_number'),
+						'part_name' => $this->input->post('part_name'),
 						'description' => $this->input->post('description'),
 						'type' => $this->input->post('type'),
 						'service_date' => $this->input->post('service_date'),
@@ -152,27 +174,45 @@ class Product extends CI_Controller{
 						'image_name' => $image_name
 
 					);
-					$this->acc_model->insert_data('acc',$data1);
+					$this->user_model->insert_data('articles',$data1);
 					$report=array(
-						'report'=> $this->session->userdata('name').' has inserted parts with article number accessories '.$this->input->post('article_number_acc').' into accessories database'
+						'report'=> $this->session->userdata('name').' has inserted parts with serial_number '.$this->input->post('serial_number').' into part database'
 					);
 					
-					$this->history_model->insert_data('history',$report);
-					redirect('user/index');
+					$this->user_model->insert_data('history',$report);
+					if($this->session->userdata('position')=="Manager"){
+							redirect('manager/index');
+						}
+						elseif($this->session->userdata('position')=="Stakeholder"){
+								redirect('stakeholder/index');
+						}
+						else{
+								redirect('user/index');
+						}				
+			
 			}
 
 			else{
-				redirect('user/index');
+			
+				if($this->session->userdata('position')=="Manager"){
+							redirect('manager/index');
+						}
+						elseif($this->session->userdata('position')=="Stakeholder"){
+								redirect('stakeholder/index');
+						}
+						else{
+								redirect('user/index');
+						}				
 			}
-	}
+		}
 
 
-	public function edit_product($article_number){
-			$data['products'] = $this->products_model->get_byCondition('products',array('article_number_product'=>$article_number))->row();
+		public function edit($article_number){
+			$data['products'] = $this->user_model->get_byCondition('products',array('article_number'=>$article_number))->row();
 			$this->load->view('edit_product',$data);
-	}
+		}
 
-	public function update_product(){
+		public function update(){
 			if($this->input->post('update')){
 				$currDate=date("Y/m/d");
 				$productDate=$this->input->post('shipment_date');
@@ -185,62 +225,76 @@ class Product extends CI_Controller{
 							$status="Warranty Expired";
 						}
 				$data= array(
-						'article_number_product' => $this->input->post('article_number'),
+						'article_number' => $this->input->post('article_number'),
 						'product_name' => $this->input->post('product_name'),
-						'quantity' => $this->input->post('quantity'),
 						'shipment_date' => $this->input->post('shipment_date'),
 						'description' => $this->input->post('description'),
 						'status' => $status
 					);
 				 
-				$this->products_model->update_data('products',$data,array('article_number_product'=>$this->input->post('article_number_product')));
+				$this->user_model->update_data('products',$data,array('article_number'=>$this->input->post('article_number')));
 				$report=array(
 						'report'=> $this->session->userdata('name').' has updated '.$this->input->post('product_name').' on product database'
 					);
 					
-				$this->history_model->insert_data('history',$report);
-				redirect('user/index');
+				$this->user_model->insert_data('history',$report);
+				if($this->session->userdata('position')=="Manager"){
+					redirect('manager/index');
+				}
+				elseif($this->session->userdata('position')=="Stakeholder"){
+					redirect('stakeholder/index');
+				}
+				else{
+					redirect('user/index');
+				}
 
 			}else{
-				redirect('product/register_product');
+				redirect('product/register');
 			}
-	}
+		}
 
-	public function edit_acc($serial_number){
-			$data['articles'] = $this->acc_model->get_byCondition('acc',array('article_number_acc'=>$serial_number))->row();
+		public function editParts($serial_number){
+			$data['articles'] = $this->user_model->get_byCondition('articles',array('serial_number'=>$serial_number))->row();
 			$this->load->view('edit_parts',$data);
-	}
+		}
 
-	public function update_acc(){
+		public function updateParts(){
 			if($this->input->post('update')){
 				$data= array(
 						'serial_number' => $this->input->post('serial_number'),
-						'article_number_acc' => $this->input->post('article_number_acc'),
+						'article_number' => $this->input->post('article_number'),
 						'part_name' => $this->input->post('part_name'),
 						'description' => $this->input->post('description'),
 						'type' => $this->input->post('type'),
-						'quantity' => $this->input->post('quantity'),
 						'service_date' => $this->input->post('service_date'),
 						'date_install' => $this->input->post('date_install')
 					);
 				 
-				$this->acc_model->update_data('acc',$data,array('article_number_acc'=>$this->input->post('article_number_acc')));
+				$this->user_model->update_data('articles',$data,array('serial_number'=>$this->input->post('serial_number')));
 				$report=array(
-						'report'=> $this->session->userdata('name').' has updated parts with article number accessories'.$this->input->post('article_number_acc').' on accessories database'
+						'report'=> $this->session->userdata('name').' has updated parts with serial number '.$this->input->post('serial_number').' on part database'
 					);
 					
-					$this->history_model->insert_data('history',$report);
+					$this->user_model->insert_data('history',$report);
+
+				if($this->session->userdata('position')=="Manager"){
+					redirect('manager/index');
+				}
+				elseif($this->session->userdata('position')=="Stakeholder"){
+					redirect('stakeholder/index');
+				}
+				else{
 					redirect('user/index');
+				}
 
+			}else{
+				redirect('product/register');
 			}
+		}
 
-			else{
 
-				redirect('product/register_acc');
-			}
-	}
-
-	function recursiveRemoveDirectory($directory){
+		function recursiveRemoveDirectory($directory)
+		{
 		    foreach(glob("{$directory}/*") as $file)
 		    {
 		        if(is_dir($file)) { 
@@ -250,32 +304,55 @@ class Product extends CI_Controller{
 		        }
 		    }
 		    rmdir($directory);
-	}
+		}
 
-	public function delete_product($article_number){
-			$this->products_model->delete_data('products',array('article_number_product'=>$article_number));
-			$this->acc_model->delete_data('acc',array('article_number_product'=>$article_number));
-			$data['products']= $this->products_model->get_byCondition('products',array('article_number_product'=>$article_number_product));
+		public function delete($article_number){
+			$this->user_model->delete_data('products',array('article_number'=>$article_number));
+			$this->user_model->delete_data('articles',array('article_number'=>$article_number));
+			$data['products']= $this->user_model->get_byCondition('products',array('article_number'=>$article_number));
 
 			foreach ($products as $product) {
 				recursiveRemoveDirectory(baseurl().$products->image_name);
 			}
 			$report=array(
-						'report'=> $this->session->userdata('name').' has deleted product with article number product '.$article_number.' on product database'
+						'report'=> $this->session->userdata('name').' has deleted product with article number '.$article_number.' on product database'
 					);
 					
-			$this->history_model->insert_data('history',$report);
-			redirect('user/index');
-	}
+			$this->user_model->insert_data('history',$report);
 
-	public function delete_acc($serial_number){
-			$this->user_model->delete_data('acc',array('article_number_acc'=>$serial_number));
+			if($this->session->userdata('position')=="Manager"){
+					redirect('manager/index');
+			}
+			elseif($this->session->userdata('position')=="Stakeholder"){
+					redirect('stakeholder/index');
+					}
+				else{
+					redirect('user/index');
+				}
+
+
+		}
+
+
+
+		public function deleteParts($serial_number){
+			$this->user_model->delete_data('articles',array('serial_number'=>$serial_number));
 			$report=array(
-						'report'=> $this->session->userdata('name').' has deleted product with article number accessories '.$serial_number.' on part database'
+						'report'=> $this->session->userdata('name').' has deleted product with serial number '.$article_number.' on part database'
 					);		
-			$this->history_model->insert_data('history',$report);
-			redirect('user/index');
-	}
+			$this->user_model->insert_data('history',$report);
+			if($this->session->userdata('position')=="Manager"){
+					redirect('manager/index');
+				}
+				elseif($this->session->userdata('position')=="Stakeholder"){
+					redirect('stakeholder/index');
+				}
+				else{
+					redirect('user/index');
+				}
+
+
+		}
 
 
 
