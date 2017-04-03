@@ -34,9 +34,9 @@
 		}
 
 		function get_products($article_number){
-			$this->db->select('articles.*,products.product_name');
+			$this->db->select('acc.*,products.product_name');
 			$this->db->from('products');
-			$this->db->join('articles', 'articles.article_number = products.article_number');
+			$this->db->join('acc', 'acc.article_number_product = products.article_number_product');
 			$this->db->where('products.article_number',$article_number);
 			return $this->db->get()->result();
 		}
