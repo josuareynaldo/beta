@@ -9,10 +9,8 @@
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url() ?>css/font.css" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Andada" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/search.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>css/header.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/jquery.dataTables.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,12 +25,16 @@
     <script src="<?php echo base_url() ?>js/search.js"></script>
     <script src="<?php echo base_url() ?>js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url() ?>js/datatable.js"></script>
-    <script type="text/javascript" src="<?php echo base_url() ?>js/time.js"></script>
+
   </head>
-  <body style="margin-top: 50px;">
+  <body>
+  <pre>
+    <?php print_r($this->session->userdata()) ?>
+  </pre>
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
+<<<<<<< HEAD:application/views/pdf/salesuser.php
        <div class="header">
           &nbsp<p>Welcome, <?php echo $this->session->userdata('position').' ',$this->session->userdata('name') ?></p>
           &nbsp<span id="date_time"></span>
@@ -47,6 +49,14 @@
         <div class="col-xs-6 col-sm-12">
          <ul class="nav nav-pills" id="pills">
           <li class="active"><a data-toggle="pill" href="#customerr">Customer</a></li>
+=======
+        <iframe src="http://free.timeanddate.com/clock/i5dtx2kz/n108/tlid38/fn2/fs20/ftb/tt0/th1/ta1" frameborder="0" width="464" height="30"></iframe>
+
+        <p>Welcome, <?php echo $this->session->userdata('position').' ', $this->session->userdata('name') ?></p>
+         <ul class="nav nav-pills">
+          <li class="active"><a data-toggle="pill" href="#edit">User</a></li>
+          <li><a data-toggle="pill" href="#customerr">Customer</a></li>
+>>>>>>> origin/master:application/views/salesuser.php
           <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">Report
                 <span class="caret"></span></a>
@@ -54,19 +64,56 @@
                     <li><a data-toggle="pill" href="#rpt">Customer Report</a></li>
                 </ul>
           </li>
-          <!-- <li><a data-toggle="pill" href="#history">History</a></li> -->
+          <li><a data-toggle="pill" href="#history">History</a></li>
         </ul>
-        </div>
+          
 
+        <div class="right" style="float: right;">
+           <a href="<?php echo base_url('salesuser/edit/'.$this->session->userdata('id')) ?>" class="btn btn-success">Edit</a>
+           <a href="<?php echo base_url('login/log_out') ?>" class="btn btn-primary">Logout</a> 
+        </div>
       
         <div class="tab-content">
+<<<<<<< HEAD:application/views/pdf/salesuser.php
       <div id="customerr" class="tab-pane fade in active">
+=======
+          <div id="edit" class="tab-pane fade in active">
+            <br>
+          <h1>User</h1>
+        <table class="table display table-bordered sortable"  id="userTable">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Name</th>
+                  <th>Password</th>
+                  <th>Email</th>
+                  <th>Address</th>
+                  <th>Position</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <?php $i=1 ?>
+                <?php foreach ($users as $user): ?>
+                  <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $user->name ?></td>
+                    <td><?php echo $user->password ?></td>
+                    <td><?php echo $user->email ?></td>
+                    <td><?php echo $user->address ?></td>
+                    <td><?php echo $user->position ?></td>
+                  </tr>
+                <?php $i++; ?>
+                <?php endforeach; ?>
+                
+              </tbody>
+            </table>
+          </div>
+
+      <div id="customerr" class="tab-pane">
+>>>>>>> origin/master:application/views/salesuser.php
         <br>
-        <div class="container">
-             <div class="row">
-             <div class="col-xs-12 col-sm-12">
         <h1>Customer</h1>
-        <div class="table-responsive">
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
@@ -104,14 +151,11 @@
                         <?php endforeach ?>
                       </tbody>
              </table>
-             </div>
-             </div>
-             </div>
-             </div>
 
               <a href="<?php echo base_url('form_sales/customer') ?>" class="btn btn-info">Customer</a>
       </div>  
 
+<<<<<<< HEAD:application/views/pdf/salesuser.php
 
       <div id="trial_req" class="tab-pane">
       <br>
@@ -160,105 +204,12 @@
 
               <a href="<?php echo base_url('form_sales/trial_req') ?>" class="btn btn-info">Trial Request</a>
       </div>
+=======
+>>>>>>> origin/master:application/views/salesuser.php
       
-      <div id="cst" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Customer Information</h4>
-            </div>
-            <div class="modal-body">
-              <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>No. </th>
-                    <th>Company</th>
-                    <th>Street</th>
-                    <th>Contact Person</th>
-                    <th>Profession</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Business Field</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $i=1 ?>
-                  <?php foreach ($trial_reqs as $trial_req): ?> 
-                  <tr>
-                    <td><?php echo $i ?></td>
-                    <td><?php echo $trial_req->company ?></td>
-                    <td><?php echo $trial_req->street ?></td>
-                    <td><?php echo $trial_req->contact ?></td>
-                    <td><?php echo $trial_req->profession ?></td>
-                    <td><?php echo $trial_req->phone ?></td>
-                    <td><?php echo $trial_req->email ?></td> 
-                    <td><?php echo $trial_req->bus_field ?></td> 
-                    <?php $i++ ?>
-                 <?php endforeach ?> 
-                  </tr>
-                </tbody>
-              </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div id="apl" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Application</h4>
-            </div>
-            <div class="modal-body">
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>No. </th>
-                    <th>Machine Type</th>
-                    <th>Ink Type</th>
-                    <th>Solvent Type</th>
-                    <th>Material to Print</th>
-                    <th>Printing App</th>
-                    <th>Accessories Supp</th>
-                    <th>Sensor Type</th>
-                    <th>Encoder</th>
-                    <th>Sales Note</th>
-                    <th>Technical Note</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $i=1 ?>
-                    <?php foreach ($trial_reqs as $trial_req): ?>
-                          <tr>
-                            <td><?php echo $i ?></td>
-                            <td><?php echo $trial_req->machine_type ?></td>
-                            <td><?php echo $trial_req->ink_type ?></td>
-                            <td><?php echo $trial_req->solvent_type ?></td>
-                            <td><?php echo $trial_req->material ?></td>
-                            <td><?php echo $trial_req->printing_app ?></td>
-                            <td><?php echo $trial_req->acc_supp ?></td>
-                            <td><?php echo $trial_req->sensor_type ?></td>
-                            <td><?php echo $trial_req->encoder ?></td>
-                            <td><?php echo $trial_req->sales_note ?></td>
-                            <td><?php echo $trial_req->tech_note ?></td>
-                          </tr>
-                    <?php $i++ ?>
-                  <?php endforeach ?>
-                </tbody>
-              </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>  
-
-      <div id="trial_res" class="tab-pane">
+      <div id="quote" class="tab-pane">
         <br>
+<<<<<<< HEAD:application/views/pdf/salesuser.php
              <div class="container">
              <div class="row">
              <div class="col-xs-12 col-sm-12">
@@ -345,122 +296,28 @@
             </div>
           </div>
         </div>
+=======
+        <h1>Quotation</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>To</th>
+              <th>Date</th>
+              <th>Telp.</th>
+              <th>Sales</th>
+              <th>Grand Total</th>
+            </tr>
+          </thead>
+        </table>
+        <a href="<?php echo base_url('salesuser/quotation') ?>" class="btn btn-info">Create Quotation</a>
+>>>>>>> origin/master:application/views/salesuser.php
       </div>
-
-      <div id="app" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Application</h4>
-            </div>
-            <div class="modal-body">
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>No. </th>
-                    <th>Machine Type</th>
-                    <th>Ink Type</th>
-                    <th>Solvent Type</th>
-                    <th>Material to Print</th>
-                    <th>Printing App</th>
-                    <th>Accessories Supp</th>
-                    <th>Sensor Type</th>
-                    <th>Encoder</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $i=1 ?>
-                    <?php foreach ($trial_results as $trial_res): ?>
-                          <tr>
-                            <td><?php echo $i ?></td>
-                            <td><?php echo $trial_res->machine_type ?></td>
-                            <td><?php echo $trial_res->ink_type ?></td>
-                            <td><?php echo $trial_res->solvent_type ?></td>
-                            <td><?php echo $trial_res->material ?></td>
-                            <td><?php echo $trial_res->printing_app ?></td>
-                            <td><?php echo $trial_res->acc_supp ?></td>
-                            <td><?php echo $trial_res->sensor_type ?></td>
-                            <td><?php echo $trial_res->encoder ?></td>
-                          </tr>
-                    <?php $i++ ?>
-                  <?php endforeach ?>
-                </tbody>
-              </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="res" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Application</h4>
-            </div>
-            <div class="modal-body">
-            <div class="table-responsive">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>No. </th>
-                    <th>Printed Characters</th>
-                    <th>Printed Dots</th>
-                    <th>Counter Start</th>
-                    <th>Counter End</th>
-                    <th>Total Counter</th>
-                    <th>Date Start</th>
-                    <th>Date End</th>
-                    <th>Time Start</th>
-                    <th>Time End</th>
-                    <th>Ink</th>
-                    <th>Solvent</th>
-                    <th>Temperature</th>
-                    <th>Humidity</th>
-                    <th>Trial Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php $i=1 ?>
-                    <?php foreach ($trial_results as $trial_res): ?>
-                          <tr>
-                            <td><?php echo $i ?></td>
-                            <td><?php echo $trial_res->print_char ?></td>
-                            <td><?php echo $trial_res->dots ?></td>
-                            <td><?php echo $trial_res->counter_start ?></td>
-                            <td><?php echo $trial_res->counter_end ?></td>
-                            <td><?php echo $trial_res->total_counter ?></td>
-                            <td><?php echo $trial_res->date_start ?></td>
-                            <td><?php echo $trial_res->date_end ?></td>
-                            <td><?php echo $trial_res->time_start ?></td>
-                            <td><?php echo $trial_res->time_end ?></td>
-                            <td><?php echo $trial_res->ink ?></td>
-                            <td><?php echo $trial_res->solvent ?></td>
-                            <td><?php echo $trial_res->temperature ?></td>
-                            <td><?php echo $trial_res->humidity ?></td>
-                            <td><?php echo $trial_res->result ?></td>
-                          </tr>
-                    <?php $i++ ?>
-                  <?php endforeach ?>
-                </tbody>
-              </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>   
 
        <div id="rpt" class="tab-pane">
         <br>
-        <div class="container">
-             <div class="row">
-             <div class="col-xs-12 col-sm-12">
         <h1>Report Form</h1>
              <!-- <input type="text" id="search1" onkeyup="searchFunctionUser()" placeholder="Search For Serial No" title="Type in a name"> -->
-             <div class="table-responsive">
               <table class="table display table-bordered sortable" id="formTable">
                   <thead>
                     <tr>
@@ -494,15 +351,11 @@
                         <?php endforeach ?>
                       </tbody>
              </table>
-             </div>
-             </div>
-             </div>
-             </div>
 
               <a href="<?php echo base_url('form_sales/report') ?>" class="btn btn-info">Report</a>
       </div>     
 
-      <!-- <div id="history" class="tab-pane">
+      <div id="history" class="tab-pane">
             <br>
             <div class="container">
       <div class="row">
@@ -532,7 +385,7 @@
           </div>
           </div>
           </div>
-          </div> -->
+          </div>
 
         <script>
             $(document).ready(function(){
