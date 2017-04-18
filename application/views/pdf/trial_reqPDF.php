@@ -33,7 +33,7 @@
       </div>
 
 
-      <div style="width:auto;height:auto;border:2px solid #000; font-family: calibri;">NO 00<?php echo $trial_req->trial_no ?>/VII/TECH-REQUEST/<?php echo date("Y") ?> </div>
+      <div style="width:auto;height:auto;border:2px solid #000; font-family: calibri;">NO <?php echo $trial_req->trial_no ?>/VII/TECH-REQUEST/<?php echo date("Y") ?> </div>
 
       <br>
 

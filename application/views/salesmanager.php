@@ -100,7 +100,7 @@
                         <td><?php echo $user->password ?></td>
                         <td><?php echo $user->address ?></td>
                         <td><?php echo $user->position ?></td>
-                        <td><a href="<?php echo base_url('user/edit/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
+                        <td><a href="<?php echo base_url('user/edit_user/'.$user->id) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('user/delete_user/'.$user->id) ?>" class="btn btn-danger">Delete</a></td>  
                       </tr>
                     <?php $i++; ?>
                     <?php endforeach; ?>
@@ -135,6 +135,7 @@
                       <th>Date of End Trial</th>
                       <th>Customer Information</th>
                       <th>Application</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -148,6 +149,7 @@
                             <td><?php echo $trial_req->date_end ?></td>
                             <td><button type="<?php echo base_url('form_sales/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#apl">See more</button></td>
+                            <td><?php echo $trial_req->status ?></td>
                             <td>
                             <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
                             <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
@@ -278,6 +280,7 @@
                       <th>Customer Information</th>
                       <th>Application</th>
                       <th>Trial Result</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -290,9 +293,10 @@
                             <td><button type="<?php echo base_url('form_sales/see_more'.$trial_res->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cust">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
+                            <td><?php echo $trial_res->status ?></td>
                             <td>
-                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
+                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->trial_no) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->trial_no) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $trial_res->id ?>">
                           </tr>
                         <?php $i++ ?>

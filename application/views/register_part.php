@@ -35,7 +35,7 @@
       <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-          <form action="<?php echo base_url('product/add_acc') ?>" method="post" enctype="multipart/form-data">
+          <form action="<?php echo base_url('product/add_part') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group">
               <label for="">Article Number Product</label>
               <input class="form-control" type="text" name="article_number_product" value="<?php echo $article_number_product ?>" readonly="readonly">
@@ -70,10 +70,10 @@
             </div>
              <div class="form-group">
               <label for="">Upload Parts Image(JPG|PNG) (Optional)</label>
-              <input class="file" type="file" name="upload_image" autocomplete="off">
+              <input class="file" type="file" name="img_name" autocomplete="off">
             </div>
             <div class="form-group">
-              <input type="hidden" name="id" value="<?php echo $articles->serial_number ?>">
+              <input type="hidden" name="id" value="<?php echo $acc->serial_number ?>">
               <input type="submit" name="register_part" value="Register part" class="btn btn-info">
             </div>
           </form>

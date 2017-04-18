@@ -48,11 +48,11 @@
             </div>
             <div class="form-group">
               <label for="">Serial Number</label>
-              <input class="form-control" type="text" name="serial_product" placeholder="Input serial number" required="1" autocomplete="off">
+              <input class="form-control" type="text" name="serial_number" placeholder="Input serial number" required="1" autocomplete="off">
             </div>
             <div class="form-group">
               <label for="product_name">Product Name</label>
-              <input class="form-control" type="text" id="product_name" name="product_name"  required="1"> 
+              <input class="form-control" type="text" id="product_name" name="product_name" placeholder="Input Product name"  required="1"> 
             </div>
             <div class="form-group">
               <label for="shipment_date">Shipment Date</label>

@@ -184,6 +184,13 @@
               <input class="form-control" type="text" name="customer" placeholder="" required="1">
             </div>
             <div class="form-group">
+              <label for="">Status </label><br>
+              <input type="radio"  name="stats" value="done"> Done<br>
+              <input type="radio"  name="stats" value="ongoing"> Ongoing<br>
+              <input type="radio"  name="stats" value="pending"> Pending<br>
+              <input type="radio"  name="stats" value="cancelled"> Cancelled<br>
+            </div>
+            <div class="form-group">
               <input type="submit" name="save" value="Save Form" class="btn btn-primary">
             </div>
           </form>

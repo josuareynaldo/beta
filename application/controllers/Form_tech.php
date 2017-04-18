@@ -96,6 +96,8 @@
 						'ink_number' => $this->input->post('ink_number'),
 						'solvent_number' => $this->input->post('solvent_number'),
 						'technician' => $this->input->post('technician'),
+						'customer' => $this->input->post('customer'),
+						'pic' => $this->input->post('pic'),
 						'visco_act' => $this->input->post('visco_act'),
 						'pres_act' => $this->input->post('pres_act'),
 						'mb_value' => $this->input->post('mb_value'),

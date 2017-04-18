@@ -8,7 +8,7 @@ class Product extends CI_Controller
 	
 	public function index(){
 		$data['products'] = $this->get_products();
-		$data['articles'] = $this->get_acc();
+		$data['acc'] = $this->get_acc();
 		$data['histories']= $this->get_history();
 
 
@@ -90,8 +90,10 @@ class Product extends CI_Controller
 
 					$data=array(
 								'article_number_product' => $this->input->post('article_number_product'),
+								'serial_number' => $this->input->post('serial_number'),
 								'product_name' => $this->input->post('product_name'),
 								'shipment_date' => $this->input->post('shipment_date'),
+								'quantity' => $this->input->post('quantity'),
 								'status' => $status,
 					);
 
@@ -128,7 +130,7 @@ class Product extends CI_Controller
     				mkdir($config['upload_path']);
 				} 
 
-                if ( $this->upload->do_upload('upload_image'))
+                if ( $this->upload->do_upload('img_name'))
                 {
                         #$error = array('error' => $this->upload->display_errors());
                 		$image = $this->upload->data();
@@ -140,7 +142,7 @@ class Product extends CI_Controller
 				        $resize['overwrite']=true;
 				        $this->load->library('image_lib', $resize);
 				        $this->image_lib->resize();
-                       $image_name = $config['upload_path'].'/'.$image['file_name'];
+                       $img_name = $config['upload_path'].'/'.$image['file_name'];
                 }
                 else
                 {
@@ -165,7 +167,7 @@ class Product extends CI_Controller
 						'service_date' => $this->input->post('service_date'),
 						'date_install' => $this->input->post('date_install'),
 						'description' => $this->input->post('description'),
-						'image_name' => $image_name
+						'img_name' => $img_name
 
 					);
 					$this->user_model->insert_data('acc',$data1);
@@ -204,6 +206,7 @@ class Product extends CI_Controller
 						'article_number_product' => $this->input->post('article_number_product'),
 						'product_name' => $this->input->post('product_name'),
 						'shipment_date' => $this->input->post('shipment_date'),
+						'quantity' => $this->input->post('quantity'),
 						'status' => $status
 					);
 				 

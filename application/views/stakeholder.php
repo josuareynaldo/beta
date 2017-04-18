@@ -131,6 +131,7 @@
                 <th>Toggle</th>
                 <th>No.</th>
                 <th>Article Number Product</th>
+                <th>Serial Number</th>
                 <th>Product Name</th>
                 <th>Shipment Date</th>
                 <th>Quantity</th>
@@ -150,7 +151,7 @@
                   <td><?php echo $product->shipment_date ?></td>
                   <td><?php echo $product->quantity ?></td>
                   <td><?php echo $product->status ?></td>
-                  <td><a href="<?php echo base_url('product/register_acc/'.$product->article_number_product) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit_product/'.$product->article_number_product) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_product/'.$product->article_number_product) ?>" class="btn btn-danger">Delete</a></td>
+                  <td><a href="<?php echo base_url('product/register_part/'.$product->article_number_product) ?>" class="btn btn-info">New Acc</a><a href="<?php echo base_url('product/edit/'.$product->article_number_product) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete/'.$product->article_number_product) ?>" class="btn btn-danger">Delete</a></td>
                 </tr>
   
                   <?php foreach ($childs as $key => $value): ?>
@@ -174,7 +175,7 @@
                             <td><?php echo $row->quantity ?></td>
                             <td><?php echo $row->service_date ?></td>
                             <td><?php echo $row->date_install ?></td>
-                            <td><a href="<?php echo base_url('product/edit_acc/'.$row->article_number_acc) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/delete_acc/'.$row->article_number_acc) ?>" class="btn btn-danger">Delete</a></td>
+                            <td><a href="<?php echo base_url('product/editParts/'.$row->article_number_acc) ?>" class="btn btn-success">Edit</a>  <a href="<?php echo base_url('product/deleteParts/'.$row->article_number_acc) ?>" class="btn btn-danger">Delete</a></td>
                             
                           </tr>
                        <?php endforeach; ?>
@@ -299,6 +300,8 @@
                       <th>Serial No.</th>
                       <th>Status</th>
                       <th>Technician</th>
+                      <th>Customer</th>
+                      <th>PIC</th>
                       <th>Printer of Information</th>
                       <th>Hydraulic of Information</th>
                       <th>Problem</th>
@@ -313,6 +316,8 @@
                             <td><?php echo $form_service->serial_number ?></td>
                             <td><?php echo $form_service->status ?></td>
                             <td><?php echo $form_service->technician ?></td>
+                            <td><?php echo $form_service->customer ?></td>
+                            <td><?php echo $form_service->pic ?></td>
                             <td><button type="<?php echo base_url('user/see_more'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#hoi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#prs">See more</button></td>
@@ -694,6 +699,7 @@
                       <th>Date of End Trial</th>
                       <th>Customer Information</th>
                       <th>Application</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -707,6 +713,7 @@
                             <td><?php echo $trial_req->date_end ?></td>
                             <td><button type="<?php echo base_url('user/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#apl">See more</button></td>
+                            <td><?php echo $trial_req->status ?></td>
                             <td>
                             <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
                             <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
@@ -838,6 +845,7 @@
                       <th>Customer Information</th>
                       <th>Application</th>
                       <th>Trial Result</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -851,8 +859,9 @@
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
                             <td>
-                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
+                            <td><? php echo $trial_res->status ?></td>
+                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->trial_no) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->trial_no) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $trial_res->id ?>">
                           </tr>
                         <?php $i++ ?>

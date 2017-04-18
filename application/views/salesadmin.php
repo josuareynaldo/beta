@@ -139,6 +139,7 @@
                       <th>Date of End Trial</th>
                       <th>Customer Information</th>
                       <th>Application</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -153,8 +154,9 @@
                             <td><button type="<?php echo base_url('salesuser/see_more'.$trial_req->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#cst">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#apl">See more</button></td>
                             <td>
-                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
-                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a>
+                            <td><?php echo $trial_req->status ?></td>
+                            <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->trial_no) ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->trial_no) ?>" class="btn btn-primary">Save</a>
                             </td>
                             <input type="hidden" name="id" value="<?php echo $trial_req->id ?>">
                           </tr>
@@ -282,6 +284,7 @@
                       <th>Customer Information</th>
                       <th>Application</th>
                       <th>Trial Result</th>
+                      <th>Status</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -295,6 +298,7 @@
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#app">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#res">See more</button></td>
                             <td>
+                            <td><? php echo $trial_res->status ?></td>
                             <a href="<?php echo base_url('form_sales/delete_trial_req/'.$trial_req->id) ?>" class="btn btn-danger">Delete</a>
                             <a href="<?php echo base_url('form_sales/save_trial_req/'.$trial_req->id) ?>" class="btn btn-primary">Save</a></td>
                             <input type="hidden" name="id" value="<?php echo $trial_res->id ?>">

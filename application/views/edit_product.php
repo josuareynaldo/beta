@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-1"></div>
         <div class="col-xs-10 text-center" >
-          <h2>Product Registration</h2>
+          <h2>Edit Product</h2>
         </div>
         <div class="col-xs-1"></div>
         

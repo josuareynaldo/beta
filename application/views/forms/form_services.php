@@ -75,6 +75,14 @@
               <label for="">Technician</label>
               <input class="form-control" type="text" name="technician" placeholder="Input Technician" required="1">
             </div>
+            <div class="form-group">
+              <label for="">Customer</label>
+              <input class="form-control" type="text" name="customer" placeholder="Input Customer" required="1">
+            </div>
+            <div class="form-group">
+              <label for="">PIC</label>
+              <input class="form-control" type="text" name="pic" placeholder="Input PIC" required="1">
+            </div>
             
             <h2>Hydraulic of Information</h2>
             <div class="form-group">

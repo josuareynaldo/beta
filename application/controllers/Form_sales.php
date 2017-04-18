@@ -112,7 +112,8 @@
 						'sensor_type' => implode(', ', $this->input->post('sensor_type')),
 						'encoder' => implode(', ', $this->input->post('encoder')),
 						'sales_note' => $this->input->post('sales_note'),
-						'tech_note' => $this->input->post('tech_note')
+						'tech_note' => $this->input->post('tech_note'),
+						'status' => $this->input->post('stat')
 
 
 					);
@@ -158,6 +159,7 @@
 						'humidity' => $this->input->post('humidity'),
 						'result' => $this->input->post('result'),
 						'customer' => $this->input->post('customer'),
+						'status' => $this->input->post('stats')
 
 
 					);
@@ -180,7 +182,7 @@
 		 }
 
 		public function delete_trial_req($id){
-			$this->trial_reqs_model->delete_data('trial_reqs',array('id'=>$id));
+			$this->trial_reqs_model->delete_data('trial_reqs',array('trial_no'=>$trial_no));
 			redirect('user/index');
 		 }
 
@@ -223,7 +225,7 @@
 		
 
 		public function save_trial_req($id){
-			 $data['trial_req'] = $this->trial_reqs_model->get_byCondition('trial_reqs',array('id'=>$id))->row();
+			 $data['trial_req'] = $this->trial_reqs_model->get_byCondition('trial_reqs',array('trial_no'=>$trial_no))->row();
 	  			//load the view and saved it into $html variable
 	         $html=$this->load->view('pdf/trial_reqPDF', $data, true);
 	 

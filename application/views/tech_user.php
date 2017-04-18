@@ -244,6 +244,8 @@
                       <th>Serial No.</th>
                       <th>Status</th>
                       <th>Technician</th>
+                      <th>Customer</th>
+                      <th>PIC</th>
                       <th>Printer of Information</th>
                       <th>Hydraulic of Information</th>
                       <th>Problem</th>
@@ -258,6 +260,8 @@
                             <td><?php echo $form_service->serial_number ?></td>
                             <td><?php echo $form_service->status ?></td>
                             <td><?php echo $form_service->technician ?></td>
+                            <td><?php echo $form_service->customer ?></td>
+                            <td><?php echo $form_service->pic ?></td>
                             <td><button type="<?php echo base_url('form_tech/see_more'.$form_service->id) ?>" class="btn btn-success" data-toggle="modal" data-target="#poi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#hoi">See more</button></td>
                             <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#prs">See more</button></td>

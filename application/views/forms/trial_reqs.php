@@ -133,6 +133,13 @@
               <textarea class="form-control"  name="tech_note" placeholder="Input Note" required="1" ></textarea>
             </div>
             <div class="form-group">
+              <label for="">Status </label><br>
+              <input type="radio"  name="stat" value="done"> Done<br>
+              <input type="radio"  name="stat" value="ongoing"> Ongoing<br>
+              <input type="radio"  name="stat" value="pending"> Pending<br>
+              <input type="radio"  name="stat" value="cancelled"> Cancelled<br>
+            </div>
+            <div class="form-group">
               <input type="submit" name="save" value="Save Form" class="btn btn-primary">
             </div>
           </form>
